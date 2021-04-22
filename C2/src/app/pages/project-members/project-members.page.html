@@ -1,0 +1,101 @@
+<!-- header -->
+<ion-header [appScrollTracker]='scrollArea'>
+	<ion-toolbar color="primary">
+		<ion-title>
+			{{stringKey.PROJECT_MEMBER}}
+		</ion-title>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-buttons slot="end" (click)="loadData()">
+			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+
+
+<!-- header -->
+<ion-content #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="stringKey.PROJECT_MEMBER" [info]="stringKey.PROJECT_MEMBER_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+
+	<!-- breadcrumb -->
+	<app-breadcrumb [crumbs]='breadCrumb'></app-breadcrumb>
+	<!-- breadcrumb -->
+
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	<!-- fab -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark">
+			<ion-icon [src]="stringKey.ICON_ADD" (click)="addProjectUser()"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- fab -->
+
+	<!-- project admin -->
+	<ion-card>
+		<!-- panel header -->
+		<app-panel-header [panelTitle]="stringKey.PROJECT_ADMIN" [panelIcon]="stringKey.ICON_ADMIN"
+			[panelColor]="stringKey.COLOR_PRIMARY" [isEventRequired]=false></app-panel-header>
+		<!-- panel header -->
+		<!-- info -->
+		<app-panel-info [title]="stringKey.PROJECT_ADMIN_INFO"></app-panel-info>
+
+		<!-- no data -->
+		<app-no-data *ngIf="!projectMemberModel?.projectAdministrator?.success"
+			[text]="stringKey.NO_DATA_PROJECT_ADMIN">
+		</app-no-data>
+		<!-- no data -->
+
+		<!-- info -->
+		<ng-container *ngIf="projectMemberModel?.projectAdministrator?.success">
+			<ion-card *ngFor="
+					let projectAdministrator of projectMemberModel?.projectAdministrator?.data
+        ">
+				<!-- panel header -->
+				<app-panel-header
+					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
+					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_SECONDARY"
+					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false></app-panel-header>
+				<!-- panel header -->
+
+			</ion-card>
+		</ng-container>
+	</ion-card>
+	<!-- project admin -->
+	<!--  project member -->
+	<ion-card>
+		<!-- panel header -->
+		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
+			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
+		</app-panel-header>
+		<!-- panel header -->
+
+		<!-- info -->
+		<app-panel-info [title]="stringKey.PROJECT_MEMBER_INFO"></app-panel-info>
+		<!-- info -->
+
+		<!-- no data -->
+		<app-no-data *ngIf="!projectMemberModel?.projectMembers?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
+		</app-no-data>
+		<!-- no data -->
+
+		<ng-container *ngIf="projectMemberModel?.projectMembers?.success">
+			<ion-card *ngFor="
+					let projectMember of projectMemberModel?.projectMembers?.data
+        ">
+				<app-panel-header
+					[panelTitle]="getUserFullName(projectMember?.userFirstName,projectMember?.userLastName)"
+					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_SECONDARY"
+					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
+					(event)="openProjectMembersOptions(projectMember)"></app-panel-header>
+			</ion-card>
+		</ng-container>
+	</ion-card>
+	<!--  project member -->
+</ion-content>

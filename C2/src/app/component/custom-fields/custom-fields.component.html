@@ -1,0 +1,24 @@
+<ion-item lines="none" *ngIf="description">
+  <ion-icon color="tertiary" slot="start" [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+  <p>
+    {{ description }}
+  </p>
+</ion-item>
+<ion-item lines="none" *ngIf="sprintStartDate">
+  <ion-icon color="tertiary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
+  <p>
+    {{ sprintStartDate }}
+  </p>
+</ion-item>
+<ion-item lines="none" *ngIf="sprintEndDate">
+  <ion-icon color="tertiary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
+  <p>
+    {{ sprintEndDate }}
+  </p>
+</ion-item>
+<ion-item lines="none" *ngIf="weight">
+  <ion-icon color="tertiary" slot="start" [src]="stringKey.ICON_WEIGHT"></ion-icon>
+  <p>
+    {{ weight }}
+  </p>
+</ion-item>

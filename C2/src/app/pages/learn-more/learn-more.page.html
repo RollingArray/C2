@@ -1,0 +1,74 @@
+<!-- header -->
+<ion-header [appScrollTracker] = 'scrollArea'>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{stringKey.APP_NAME}}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content  color="light" lines="none" #scrollArea scrollEvents="true">
+  <!-- page title -->
+  <app-page-info-title [title]="stringKey.APP_NAME" [info]="stringKey.APP_TAG_LINE"></app-page-info-title>
+  <!-- page title -->
+  <ion-grid lines="none">
+    <p align="center">
+      <img src="assets/images/app_icon.svg" />
+    </p>
+    <p align="center">
+      <ion-label>{{stringKey.APP_VERSION}}</ion-label>
+    </p>
+    <p align="center">
+      {{stringKey.COPYRIGHT}} {{year}} | <b>{{stringKey.OWNER_EMAIL}}</b>
+    </p>
+    <p align="center">
+      {{stringKey.QUERY}} <br><b>{{stringKey.SUPPORT_EMAIL}}</b>
+    </p>
+    <ion-card>
+      <ion-item color="primary" lines="none">
+        <h3>
+          <ion-icon color="info" slot="start" [src]="stringKey.ICON_MENU"></ion-icon>
+          {{stringKey.WHAT_WE_ARE}}
+        </h3>
+      </ion-item>
+      <ion-card color="info">
+        <ion-item lines="none">
+          <p>
+            {{stringKey.WHAT_WE_ARE_INFO_1}}
+          </p>
+        </ion-item>
+        <ion-item lines="none" color="warning">
+          <ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+          <p>
+            <b>{{stringKey.WHAT_WE_ARE_INFO_2}}</b>
+          </p>
+        </ion-item>
+      </ion-card>
+    </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="primary" (click)="faq()">
+            <ion-icon [src]="stringKey.ICON_HELP"></ion-icon>
+            <ion-label>&nbsp; {{stringKey.FAQ}} </ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="primary" (click)="tnc()">
+            <ion-icon [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+            <ion-label>&nbsp; {{stringKey.T_N_C}} </ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="primary" (click)="pp()">
+            <ion-icon [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+            <ion-label>&nbsp; {{stringKey.P_P}} </ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,91 @@
+<ion-header [appScrollTracker] = 'scrollArea' >
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{stringKey.SIGN_IN}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
+  <!-- page title -->
+  <app-page-info-title [title]="stringKey.SIGN_IN" [info]="stringKey.SIGN_IN_INFO"></app-page-info-title>
+  <!-- page title -->
+  <form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
+    <ion-grid lines="none">
+      <ion-row justify-content-center lines="none">
+        <ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4" offset-sm="4" lines="none">
+          <!-- email -->
+          <ion-card lines="none" color="light">
+            <ion-item lines="none" color="light">
+              <ion-label position="floating">{{stringKey.EMAIL}}</ion-label>
+              <ion-input autocomplete="off" formControlName="userEmail" type="text" value="a.b@c.com">
+              </ion-input>
+            </ion-item>
+            <ion-card *ngIf="userEmail.invalid && userEmail.touched" color="warning">
+              <ion-item color="warning">
+                <ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+                {{stringKey.FORM_VALIDATION_EMAIL}}
+              </ion-item>
+            </ion-card>
+          </ion-card>
+          <!-- email -->
+          <!-- password -->
+          <ion-card lines="none" color="light">
+            <ion-item lines="none" color="light">
+              <ion-label position="floating">{{stringKey.PASSWORD}}</ion-label>
+              <ion-input autocomplete="off" formControlName="userPassword" type="password" value="">
+              </ion-input>
+            </ion-item>
+            <ion-card *ngIf="userPassword.invalid && userPassword.touched" color="warning">
+              <ion-item color="warning">
+                <ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+                {{stringKey.FORM_VALIDATION_PASSWORD}}
+              </ion-item>
+            </ion-card>
+          </ion-card>
+          <!-- password -->
+          <!-- forgot password -->
+          <ion-card lines="none" color="primary-gradient">
+            <ion-item lines="none" color="primary-gradient">
+              <ion-label>{{stringKey.FORGOT_PASSWORD}}</ion-label>
+              <ion-button slot="end" expand="block" color="tertiary" [routerLink]="['/reset-password-code']">
+                {{stringKey.GET_IT}}
+              </ion-button>
+            </ion-item>
+          </ion-card>
+          <!-- forgot password -->
+          <!-- not active -->
+          <ion-card lines="none" color="primary-gradient">
+            <ion-item lines="none" color="primary-gradient">
+              {{stringKey.NOT_ACTIVATED}}
+              <ion-button slot="end" expand="block" color="tertiary" [routerLink]="['/account-activation']">
+                <ion-label>&nbsp; {{stringKey.ACTIVATE}}
+                </ion-label>
+              </ion-button>
+            </ion-item>
+          </ion-card>
+          <!-- not active -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button size="default" expand="block" color="tertiary" (click)="goBack()">
+            <ion-icon [src]="stringKey.ICON_CANCEL"></ion-icon>
+            <ion-label>&nbsp; {{stringKey.CANCEL}} </ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button size="default" expand="block" color="primary" (click)="submit()" [disabled]="formGroup.invalid">
+            <ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
+            <ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,41 @@
+ion-slides {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: block;
+}
+
+.swiper-slide h2 {
+  margin-top: 20px;
+}
+
+.swiper-slide img {
+  margin: 10px 0 0 0;
+  pointer-events: none;
+
+  @media screen and (min-width : 600px){
+    max-width: 35%;
+  }
+
+  @media screen and (min-width : 320px) and (max-width : 360px) {
+      max-width: 70%;
+  }
+  @media screen and (min-width : 320px) and (max-width : 359px) {
+    max-width: 70%;
+}
+  @media screen and (min-width : 360px) and (max-width : 440px) {
+      max-width: 70%;
+  }
+}
+
+b {
+  font-weight: 500;
+}
+
+p {
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ion-color-step-600, #41444b);
+}

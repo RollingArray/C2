@@ -1,9 +1,7 @@
 <!-- header -->
-<ion-header [appScrollTracker] = 'scrollArea'>
+<ion-header [appScrollTracker]="scrollArea">
   <ion-toolbar color="primary">
-    <ion-title>
-      {{stringKey.MY_PROJECT}}
-    </ion-title>
+    <ion-title> {{stringKey.MY_PROJECT}} </ion-title>
     <ion-buttons slot="end" (click)="loadData()">
       <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
     </ion-buttons>
@@ -12,7 +10,10 @@
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
   <!-- page title -->
-  <app-page-info-title [title]="stringKey.MY_PROJECT" [info]="stringKey.MY_PROJECT_INFO"></app-page-info-title>
+  <app-page-info-title
+    [title]="stringKey.MY_PROJECT"
+    [info]="stringKey.MY_PROJECT_INFO"
+  ></app-page-info-title>
   <!-- page title -->
 
   <!-- refresh btn -->
@@ -26,32 +27,33 @@
     </ion-fab-button>
   </ion-fab>
   <!-- no data -->
-  <app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
+  <app-no-data
+    *ngIf="!hasData"
+    [text]="stringKey.NO_DATA_MY_PROJECT"
+  ></app-no-data>
   <!-- no data -->
   <ng-container *ngIf="hasData">
     <ion-card *ngFor="let project of projects">
-      <app-panel-header 
-        [panelTitle] = "project.projectName" 
-        [panelIcon] = "stringKey.ICON_PROJECT" 
-        [panelColor] = "stringKey.COLOR_PRIMARY"
-        [eventIcon] = "stringKey.ICON_MORE"
-        [isEventRequired] = true 
-        (event) = "openProjectOptions(project)"
+      <app-panel-header
+        [panelTitle]="project.projectName"
+        [panelIcon]="stringKey.ICON_PROJECT"
+        [panelColor]="stringKey.COLOR_PRIMARY"
+        [eventIcon]="stringKey.ICON_MORE"
+        [isEventRequired]="true"
+        (event)="openProjectOptions(project)"
       ></app-panel-header>
-      <app-custom-fields 
-        [description] = "project.projectDescription"
-      >
+      <app-custom-fields [description]="project.projectDescription">
       </app-custom-fields>
     </ion-card>
   </ng-container>
 </ion-content>
 <ion-footer>
-  <app-panel-header 
-        [panelTitle] = "loggedInUserName" 
-        [panelIcon] = "stringKey.ICON_USER" 
-        [panelColor] = "stringKey.COLOR_SECONDARY"
-        [eventIcon] = "stringKey.ICON_LOGOUT"
-        [isEventRequired] = true 
-        (event) = "logout()"
-      ></app-panel-header>
+  <app-panel-header
+    [panelTitle]="loggedInUserName"
+    [panelIcon]="stringKey.ICON_USER"
+    [panelColor]="stringKey.COLOR_SECONDARY"
+    [eventIcon]="stringKey.ICON_LOGOUT"
+    [isEventRequired]="true"
+    (event)="logout()"
+  ></app-panel-header>
 </ion-footer>

@@ -27,6 +27,10 @@ export class ApiUrls {
 
   public static readonly PROJECT_SPRINTS: string = ApiUrls.API_BASE_PATH + "/project/sprints/";
   public static readonly PROJECT_SPRINT_CRUD: string = ApiUrls.API_BASE_PATH + "/project/sprint/crud/";
+  
+  public static readonly PROJECT_GOALS: string = ApiUrls.API_BASE_PATH + "/project/goals/";
+  public static readonly PROJECT_GOAL_CRUD: string = ApiUrls.API_BASE_PATH + "/project/goal/crud/";
+  
   public static readonly PROJECT_TASK_TYPES: string = ApiUrls.API_BASE_PATH + "/project/task/types/";
   public static readonly PROJECT_TASK_TYPE_CRUD: string = ApiUrls.API_BASE_PATH + "/project/task/type/crud/";
   public static readonly PROJECT_USER_STORY: string = ApiUrls.API_BASE_PATH + "/project/userstory/";

@@ -31,6 +31,11 @@ const routes: Routes = [
 				path: 'sprints',
 				loadChildren: () => import('../project-sprint/project-sprint.module').then(m => m.ProjectSprintPageModule)
 			},
+			{
+				path: 'goals',
+				loadChildren: () => import('../project-goal/project-goal.module').then(m => m.ProjectGoalPageModule)
+			},
+			
 		]
 	}
 ];

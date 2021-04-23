@@ -16,6 +16,11 @@ export class ArrayKey {
 					url: ['sprints'],
 					icon: StringKey.ICON_PROJECT
 				},
+				{
+					title: StringKey.VIEW + ' ' + StringKey.PROJECT_GOAL,
+					url: ['goals'],
+					icon: StringKey.ICON_GOAL
+				},
 				// {
 				// 	title: StringKey.VIEW + ' ' + StringKey.TASK_TYPE,
 				// 	url: ['task','types'],

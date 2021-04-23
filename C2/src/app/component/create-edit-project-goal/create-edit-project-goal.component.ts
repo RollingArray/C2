@@ -1,54 +1,55 @@
 import { Component, OnInit, OnDestroy, Input, Injector } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
-import { ProjectModel } from "src/app/shared/model/project.model";
+import { GoalModel } from "src/app/shared/model/goal.model";
 import { ModalData } from "src/app/shared/model/modal-data.model";
 import { AlertService } from "src/app/shared/service/alert.service";
-import { ProjectService } from "src/app/shared/service/project.service";
 import { LoadingService } from "src/app/shared/service/loading.service";
 import { NavParams } from "@ionic/angular";
 import { Operations } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
+import { ProjectGoalService } from 'src/app/shared/service/project-goal.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
-	selector: "app-create-edit-project",
-	templateUrl: "./create-edit-project.component.html",
-	styleUrls: ["./create-edit-project.component.scss"],
+	selector: "app-create-edit-project-goal",
+	templateUrl: "./create-edit-project-goal.component.html",
+	styleUrls: ["./create-edit-project-goal.component.scss"],
 })
-export class CreateEditProjectComponent extends BaseFormComponent implements OnInit, OnDestroy {
-	
+export class CreateEditProjectGoalComponent extends BaseFormComponent implements OnInit, OnDestroy {
+
 	/**
-	 * Input  of create edit project component
+	 * Input  of create edit project goal component
 	 */
 	@Input() data: string;
 
 	/**
-	 * Passed project of create edit project component
+	 * Passed goal of create edit project goal component
 	 */
-	private _passedProject: ProjectModel;
+	private _passedGoal: GoalModel;
 
 	/**
-	 * Default project model of create edit project component
+	 * Default goal model of create edit project goal component
 	 */
-	private _defaultProjectModel: ProjectModel;
+	private _defaultGoalModel: GoalModel;
 
 	/**
-	 * Modal data of create edit project component
+	 * Modal data of create edit project goal component
 	 */
 	private _modalData: ModalData;
 
 	/**
-	 * Creates an instance of create edit project component.
+	 * Creates an instance of create edit project goal component.
 	 * @param injector 
 	 * @param alertService 
-	 * @param projectService 
+	 * @param projectGoalService 
 	 * @param loadingService 
 	 * @param navParams 
 	 */
 	constructor(
 		injector: Injector,
 		private alertService: AlertService,
-		private projectService: ProjectService,
+		private projectGoalService: ProjectGoalService,
 		private loadingService: LoadingService,
 		public navParams: NavParams
 	) {
@@ -56,10 +57,10 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	}
 
 	/**
-	 * on init
-	 */
-	ngOnInit() {
-		this._passedProject = this.navParams.get("data");
+ 	* on init
+ 	*/
+	ngOnInit() { 
+		this._passedGoal = this.navParams.get("data");
 		this.buildFrom();
 	}
 
@@ -75,8 +76,8 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	 */
 	private setPassedValueToFrom() {
 		const form = this.formGroup.value;
-		form.projectName = this._passedProject.projectName;
-		form.projectDescription = this._passedProject.projectDescription;
+		form.goalName = this._passedGoal.goalName;
+		form.goalDescription = this._passedGoal.goalDescription;
 	}
 
 	/**
@@ -84,20 +85,20 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	 */
 	private buildFrom() {
 		this.formGroup = this.formBuilder.group({
-			projectName: [
-				this._passedProject.projectName,
+			goalName: [
+				this._passedGoal.goalName,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.ALPHANUMERIC_NAME_PATTERN),
 				]),
 			],
-			projectDescription: [
-				this._passedProject.projectDescription,
+			goalDescription: [
+				this._passedGoal.goalDescription,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.DESCRIPTION_PATTERN),
 				]),
-			],
+			]
 		});
 
 		this.setPassedValueToFrom();
@@ -108,33 +109,34 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	 */
 	get pageTitle() {
 		let title: string;
-		if (this._passedProject.operationType === Operations.Create) {
-			title = this.stringKey.CREATE_PROJECT;
+		if (this._passedGoal.operationType === Operations.Create) {
+			title = this.stringKey.CREATE_GOAL;
 		} else {
-			title = this.stringKey.UPDATE_PROJECT;
+			title = this.stringKey.UPDATE_GOAL;
 		}
 
 		return title;
 	}
 
 	/**
-	 * Gets project name
+	 * Gets goal name
 	 */
-	get projectName() {
-		return this.formGroup.get("projectName");
+	get goalName() {
+		return this.formGroup.get("goalName");
 	}
 
 	/**
-	 * Gets project description
+	 * Gets goal description
 	 */
-	get projectDescription() {
-		return this.formGroup.get("projectDescription");
+	get goalDescription() {
+		return this.formGroup.get("goalDescription");
 	}
 
 	/**
-	 * Submits create edit project component
+	 * Submits create edit project goal component
 	 */
 	async submit() {
+		console.log(this.formGroup, this.formGroup.value);
 		if (this.formGroup.invalid) {
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_FIELDS}`
@@ -151,12 +153,13 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	private buildDataModelToPass() {
 		// build data userModel
 		const form = this.formGroup.value;
-		const model: ProjectModel = {
-			userId: this._passedProject.userId,
-			projectId: this._passedProject.projectId,
-			projectName: form.projectName,
-			projectDescription: form.projectDescription,
-			operationType: this._passedProject.operationType,
+		const model: GoalModel = {
+			userId: this._passedGoal.userId,
+			projectId: this._passedGoal.projectId,
+			goalId: this._passedGoal.goalId,
+			goalName: form.goalName,
+			goalDescription: form.goalDescription,
+			operationType: this._passedGoal.operationType,
 		};
 
 		return model;
@@ -168,10 +171,10 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	async submitData() {
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
 
-		const crudProject: ProjectModel = this.buildDataModelToPass();
+		const crudGoal: GoalModel = this.buildDataModelToPass();
 
-		this.projectService
-			.crudProject(crudProject)
+		this.projectGoalService
+			.projectGoalCrud(crudGoal)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -186,12 +189,12 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 
 						await this.presentToast(baseModel.message);
 						// store active user
-						await this.dismissModal();
+						this.dismissModal();
 					}
 				},
-				async (error) => {
+				(error) => {
 					//console.log(error);
-					await this.loadingService.dismiss();
+					this.loadingService.dismiss();
 				}
 			);
 	}
@@ -199,22 +202,23 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	/**
 	 * Cancels modal
 	 */
-	 async cancelModal() {
-		this._passedProject = this._passedProject;
+	cancelModal() {
+
+		this._passedGoal = this._defaultGoalModel;
 		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,
 		};
 		// store active user
-		await this.dismissModal();
+		this.dismissModal();
 	}
 
 	/**
 	 * Dismiss modal
 	 */
-	async dismissModal() {
-		await this.modalController.dismiss(this._modalData).then(() => {
+	dismissModal() {
+		this.modalController.dismiss(this._modalData).then(() => {
 			this.formGroup.reset();
-		}); 
+		});
 	}
 }

@@ -236,10 +236,10 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 	 * @param goalModel 
 	 * @returns  
 	 */
-	async editProjectGoal(goalModel: GoalModel) {
+	async editProjectGoal(goalModel: GoalModel, operation: string) {
 		goalModel.userId = this._loggedInUser;
 		goalModel.projectId = this._projectId;
-		goalModel.operationType = `${Operations.Edit}`;
+		goalModel.operationType = operation;
 
 		const modal = await this.modalController.create({
 			component: CreateEditProjectGoalComponent,
@@ -273,7 +273,14 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectGoal(selectedGoal);
+						this.editProjectGoal(selectedGoal, `${Operations.Edit}`);
+					}
+				},
+				{
+					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_DELETE,
+					handler: () => {
+						this.editProjectGoal(selectedGoal, `${Operations.Delete}`);
 					}
 				},
 				{

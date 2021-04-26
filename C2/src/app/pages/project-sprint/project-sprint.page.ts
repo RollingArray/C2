@@ -242,10 +242,10 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	 * @param sprintModel 
 	 * @returns  
 	 */
-	async editProjectSprint(sprintModel: SprintModel) {
+	async editProjectSprint(sprintModel: SprintModel, operation: string) {
 		sprintModel.userId = this._loggedInUser;
 		sprintModel.projectId = this._projectId;
-		sprintModel.operationType = `${Operations.Edit}`;
+		sprintModel.operationType = operation;
 
 		const modal = await this.modalController.create({
 			component: CreateEditProjectSprintComponent,
@@ -279,7 +279,14 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectSprint(selectedSprint);
+						this.editProjectSprint(selectedSprint, `${Operations.Edit}`);
+					}
+				},
+				{
+					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_DELETE,
+					handler: () => {
+						this.editProjectSprint(selectedSprint, `${Operations.Delete}`);
 					}
 				},
 				{

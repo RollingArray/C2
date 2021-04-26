@@ -9,7 +9,7 @@
           stringKey.CANCEL
       }}</ion-button>
       </ion-buttons>
-      <ion-buttons slot="end">
+      <ion-buttons slot="end" *ngIf="!ifOperationDelete">
         <ion-button fill="outline" (click)="submit()">{{
             stringKey.SAVE
         }}</ion-button>
@@ -23,7 +23,7 @@
   <!-- page title -->
 
   <!-- fab -->
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="!ifOperationDelete">
     <ion-fab-button color="dark" (click)="submit()">
       <ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
     </ion-fab-button>

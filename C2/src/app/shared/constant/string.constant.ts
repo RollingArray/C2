@@ -64,9 +64,11 @@ export class StringKey {
 	public static readonly SPRINT_DETAIL_INFO: string = 'Enter/update the following details to create/update a sprint';
 	public static readonly CREATE_SPRINT: string = 'Create Sprint';
 	public static readonly UPDATE_SPRINT: string = 'Update Sprint';
-	public static readonly GOAL_DETAIL_INFO: string = 'Enter/update the following details to create/update a goal';
+	public static readonly DELETE_SPRINT: string = 'Delete Sprint';
+	public static readonly GOAL_DETAIL_INFO: string = 'Provide following details to the goal';
 	public static readonly CREATE_GOAL: string = 'Create Goal';
 	public static readonly UPDATE_GOAL: string = 'Update Goal';
+	public static readonly DELETE_GOAL: string = `Delete Goal`;
 	public static readonly TASK_TYPE: string = 'Task Type(s)';
 	public static readonly TASK_TYPE_INFO: string = 'Task Type Defines The Category Of a Certain Type Of Work or Activity';
 	public static readonly CREATE_TASK_TYPE: string = 'Create Task Type';
@@ -86,6 +88,7 @@ export class StringKey {
 	public static readonly PROJECT: string = 'Project(s)';
 	public static readonly ADD_DETAILS: string = 'Add Details';
 	public static readonly EDIT_DETAILS: string = 'Edit Details';
+	public static readonly DELETE_DETAILS: string = 'Delete Details';
 	public static readonly VIEW_DETAILS: string = 'View Details';
 	public static readonly PROJECT_ADMIN: string = 'Project Administrator';
 	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are nominated by the project to run the project smoothly';
@@ -313,6 +316,7 @@ export class StringKey {
 	public static readonly SAVE: string = 'Save';
 	public static readonly ADD: string = 'Add';
 	public static readonly EDIT: string = 'Edit';
+	public static readonly DELETE: string = 'Delete';
 	public static readonly VIEW: string = 'View';
 	public static readonly CLOSE: string = 'Close';
 	public static readonly APPROVE: string = 'Approve';
@@ -329,7 +333,7 @@ export class StringKey {
 	public static readonly API_REQUEST_MESSAGE_3: string = 'Signing In  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_4: string = 'Signing Out  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_5: string = 'Signing Up  .. Please Wait';
-
+	public static readonly API_REQUEST_MESSAGE_6: string = 'Deleting Detail(s)  .. Please Wait';
 
 	public static readonly TOKEN_EXPIRE: string = 'Oh No !! Your Authorization Has Expired. Please Authorize yourself';
 	public static readonly IN_APP_LOGIN_SUCCESS: string = 'Delighted To Get You Back, You Can Proceed !';

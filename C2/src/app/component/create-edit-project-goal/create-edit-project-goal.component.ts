@@ -39,6 +39,30 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	private _modalData: ModalData;
 
 	/**
+	 * Loading message of create edit project goal component
+	 */
+	private _loadingMessage :string;
+
+	/**
+	 * If operation delete of create edit project goal component
+	 */
+	private _ifOperationDelete : boolean = false;
+
+	/**
+	 * Sets if operation delete
+	 */
+	public set ifOperationDelete(value: boolean) {
+		this._ifOperationDelete = value;
+	}
+
+	/**
+	 * Gets if operation delete
+	 */
+	public get ifOperationDelete(): boolean {
+		return this._ifOperationDelete;
+	}
+
+	/**
 	 * Creates an instance of create edit project goal component.
 	 * @param injector 
 	 * @param alertService 
@@ -62,6 +86,12 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	ngOnInit() { 
 		this._passedGoal = this.navParams.get("data");
 		this.buildFrom();
+		this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_2}`;
+		if(this._passedGoal.operationType === Operations.Delete){
+			this._ifOperationDelete = true;
+			this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_6}`;
+			this.submitData();
+		}
 	}
 
 	/**
@@ -109,12 +139,21 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	 */
 	get pageTitle() {
 		let title: string;
-		if (this._passedGoal.operationType === Operations.Create) {
-			title = this.stringKey.CREATE_GOAL;
-		} else {
-			title = this.stringKey.UPDATE_GOAL;
+		switch (this._passedGoal.operationType) {
+			case Operations.Create:
+				title = this.stringKey.CREATE_GOAL;
+				break;
+			case Operations.Edit:
+				title = this.stringKey.UPDATE_GOAL;
+				break;
+			case Operations.Delete:
+				title = this.stringKey.DELETE_GOAL;
+				break;
+		
+			default:
+				break;
 		}
-
+		
 		return title;
 	}
 
@@ -169,7 +208,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	 * Submits data
 	 */
 	async submitData() {
-		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+		this.loadingService.present(this._loadingMessage);
 
 		const crudGoal: GoalModel = this.buildDataModelToPass();
 
@@ -190,6 +229,11 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 						await this.presentToast(baseModel.message);
 						// store active user
 						this.dismissModal();
+					}
+
+					// cancel model if operation delete
+					if(this._passedGoal.operationType === Operations.Delete){
+						this.cancelModal()
 					}
 				},
 				(error) => {

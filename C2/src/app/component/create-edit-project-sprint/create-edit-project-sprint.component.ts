@@ -18,11 +18,60 @@ import { DatePipe } from '@angular/common';
 })
 export class CreateEditProjectSprintComponent extends BaseFormComponent
 	implements OnInit, OnDestroy {
-	@Input() data: string;
-	passedSprint: SprintModel;
-	defaultSprintModel: SprintModel;
-	modalData: ModalData;
 
+	/**
+	 * Input  of create edit project sprint component
+	 */
+	@Input() data: string;
+
+	/**
+	 * Passed sprint of create edit project sprint component
+	 */
+	private _passedSprint: SprintModel;
+
+	/**
+	 * Default sprint model of create edit project sprint component
+	 */
+	private _defaultSprintModel: SprintModel;
+
+	/**
+	 * Modal data of create edit project sprint component
+	 */
+	private _modalData: ModalData;
+
+	/**
+	 * Loading message of create edit project goal component
+	 */
+	 private _loadingMessage :string;
+
+	/**
+	 * If operation delete of create edit project goal component
+	 */
+	 private _ifOperationDelete : boolean = false;
+
+	 /**
+	  * Sets if operation delete
+	  */
+	 public set ifOperationDelete(value: boolean) {
+		 this._ifOperationDelete = value;
+	 }
+ 
+	 /**
+	  * Gets if operation delete
+	  */
+	 public get ifOperationDelete(): boolean {
+		 return this._ifOperationDelete;
+	 }
+
+	/**
+	 * Creates an instance of create edit project sprint component.
+	 * @param injector 
+	 * @param alertService 
+	 * @param projectSprintService 
+	 * @param loadingService 
+	 * @param navParams 
+	 * @param datePipe 
+	 */
 	constructor(
 		injector: Injector,
 		private alertService: AlertService,
@@ -32,34 +81,58 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		private datePipe: DatePipe
 	) {
 		super(injector);
-		this.passedSprint = this.navParams.get("data");
-		console.log(this.passedSprint);
+		this._passedSprint = this.navParams.get("data");
 		this.buildFrom();
+		this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_2}`;
+		if(this._passedSprint.operationType === Operations.Delete){
+			this._ifOperationDelete = true;
+			this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_6}`;
+			this.submitData();
+		}
 	}
 
+	/**
+	 * on init
+	 */
+	ngOnInit() {}
+
+	/**
+	 * on destroy
+	 */
+	ngOnDestroy() {
+		super.ngOnDestroy();
+	}
+
+	/**
+	 * Sets passed value to from
+	 */
 	private setPassedValueToFrom() {
 		const form = this.formGroup.value;
-		form.sprintName = this.passedSprint.sprintName;
-		form.sprintStartDate = this.passedSprint.sprintStartDate;
-		form.sprintEndDate = this.passedSprint.sprintEndDate;
+		form.sprintName = this._passedSprint.sprintName;
+		form.sprintStartDate = this._passedSprint.sprintStartDate;
+		form.sprintEndDate = this._passedSprint.sprintEndDate;
 	}
+
+	/**
+	 * Builds from
+	 */
 	private buildFrom() {
 		this.formGroup = this.formBuilder.group({
 			sprintName: [
-				this.passedSprint.sprintName,
+				this._passedSprint.sprintName,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.ALPHANUMERIC_NAME_PATTERN),
 				]),
 			],
 			sprintStartDate: [
-				this.passedSprint.sprintStartDate,
+				this._passedSprint.sprintStartDate,
 				this.validators().compose([
 					this.validators().required,
 				]),
 			],
 			sprintEndDate: [
-				this.passedSprint.sprintEndDate,
+				this._passedSprint.sprintEndDate,
 				this.validators().compose([
 					this.validators().required,
 				]),
@@ -69,31 +142,53 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		this.setPassedValueToFrom();
 	}
 
+	/**
+	 * Gets page title
+	 */
 	get pageTitle() {
 		let title: string;
-		if (this.passedSprint.operationType === Operations.Create) {
-			title = this.stringKey.CREATE_SPRINT;
-		} else {
-			title = this.stringKey.UPDATE_SPRINT;
+		switch (this._passedSprint.operationType) {
+			case Operations.Create:
+				title = this.stringKey.CREATE_SPRINT;
+				break;
+			case Operations.Edit:
+				title = this.stringKey.UPDATE_SPRINT;
+				break;
+			case Operations.Delete:
+				title = this.stringKey.DELETE_SPRINT;
+				break;
+		
+			default:
+				break;
 		}
 
 		return title;
 	}
 
-	//get user email
+	/**
+	 * Gets sprint name
+	 */
 	get sprintName() {
 		return this.formGroup.get("sprintName");
 	}
 
+	/**
+	 * Gets sprint start date
+	 */
 	get sprintStartDate() {
 		return this.formGroup.get("sprintStartDate");
 	}
 
+	/**
+	 * Gets sprint end date
+	 */
 	get sprintEndDate() {
 		return this.formGroup.get("sprintEndDate");
 	}
 
-	// submit login
+	/**
+	 * Submits create edit project sprint component
+	 */
 	async submit() {
 		if (this.formGroup.invalid) {
 			await this.alertService.presentBasicAlert(
@@ -103,8 +198,11 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 			await this.submitData();
 		}
 	}
+	
 	/**
-	 * @param  {} date
+	 * Transforms date
+	 * @param date 
+	 * @returns  
 	 */
 	private transformDate(date){
 		let formattedDate = this.datePipe.transform(
@@ -114,24 +212,32 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		
 		return formattedDate;
 	}
+
+	/**
+	 * Builds data model to pass
+	 * @returns  
+	 */
 	private buildDataModelToPass() {
 		// build data userModel
 		const form = this.formGroup.value;
 		const model: SprintModel = {
-			userId: this.passedSprint.userId,
-			projectId: this.passedSprint.projectId,
-			sprintId: this.passedSprint.sprintId,
+			userId: this._passedSprint.userId,
+			projectId: this._passedSprint.projectId,
+			sprintId: this._passedSprint.sprintId,
 			sprintName: form.sprintName,
 			sprintStartDate: this.transformDate(form.sprintStartDate),
 			sprintEndDate: this.transformDate(form.sprintEndDate),
-			operationType: this.passedSprint.operationType,
+			operationType: this._passedSprint.operationType,
 		};
 
 		return model;
 	}
 
+	/**
+	 * Submits data
+	 */
 	async submitData() {
-		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+		this.loadingService.present(this._loadingMessage);
 
 		const crudSprint: SprintModel = this.buildDataModelToPass();
 
@@ -144,7 +250,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 
 					// build
 					if (baseModel.success) {
-						this.modalData = {
+						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
 						};
@@ -152,6 +258,11 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 						await this.presentToast(baseModel.message);
 						// store active user
 						this.dismissModal();
+					}
+
+					// cancel model if operation delete
+					if(this._passedSprint.operationType === Operations.Delete){
+						this.cancelModal()
 					}
 				},
 				(error) => {
@@ -161,10 +272,13 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 			);
 	}
 
+	/**
+	 * Cancels modal
+	 */
 	cancelModal() {
 		
-		this.passedSprint = this.defaultSprintModel;
-		this.modalData = {
+		this._passedSprint = this._defaultSprintModel;
+		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,
 		};
@@ -172,15 +286,12 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		this.dismissModal();
 	}
 
+	/**
+	 * Dismiss modal
+	 */
 	dismissModal() {
-		this.modalController.dismiss(this.modalData).then(() => {
+		this.modalController.dismiss(this._modalData).then(() => {
 			this.formGroup.reset();
 		});
-	}
-
-	ngOnInit() {}
-
-	ngOnDestroy() {
-		super.ngOnDestroy();
 	}
 }

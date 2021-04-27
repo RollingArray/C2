@@ -24,29 +24,60 @@ import { DataCommunicationService } from "./data-communication.service";
 	providedIn: "root",
 })
 export abstract class BaseService<T extends BaseModel> {
+	/**
+	 * String key of base service
+	 */
 	readonly stringKey = StringKey;
+
+	/**
+	 * User model of base service
+	 */
 	private userModel: UserModel;
+
+	/**
+	 * Subscription  of base service
+	 */
 	private subscription: Subscription = new Subscription();
 
-	/* construct base service class */
+	/**
+	 * Creates an instance of base service.
+	 * @param httpClient 
+	 * @param localStorageService 
+	 * @param alertController 
+	 * @param dataCommunicationService 
+	 */
 	constructor(
 		private httpClient: HttpClient,
 		private localStorageService: LocalStorageService,
 		public alertController: AlertController,
 		private dataCommunicationService: DataCommunicationService
-	) {}
+	) { }
 
-	onInit() {}
+	/**
+	 * Determines whether init on
+	 */
+	onInit() { }
+
+	/**
+	 * Determines whether destroy on
+	 */
 	onDestroy() {
 		this.subscription.unsubscribe();
 	}
 
-	// get ls service
+	/**
+	 * Gets local storage service
+	 * @returns local storage service 
+	 */
 	getLocalStorageService(): LocalStorageService {
 		return this.localStorageService;
 	}
 
-	/** Abstract get api request, reqires api url and returns an Observable */
+	/**
+	 * Gets base service
+	 * @param url 
+	 * @returns get 
+	 */
 	public get(url: string): Observable<T> {
 		const apiData = this.httpClient.get(url).pipe(
 			map((response: any) => response as T),
@@ -55,7 +86,12 @@ export abstract class BaseService<T extends BaseModel> {
 		return apiData;
 	}
 
-	/*Abstract post api request, reqires api url, post data and returns an Observable*/
+	/**
+	 * Posts base service
+	 * @param url 
+	 * @param data 
+	 * @returns post 
+	 */
 	public post(url: string, data: T): Observable<T> {
 		console.log(url);
 		console.log(JSON.stringify(data));
@@ -71,11 +107,11 @@ export abstract class BaseService<T extends BaseModel> {
 							updatedLoggedInSessionId:
 								response.updatedLoggedInSessionId,
 						};
-            const subscribe = this.localStorageService
+						const subscribe = this.localStorageService
 							.updateActiveUserToken(this.userModel)
 							.subscribe();
-            
-              this.subscription.add(subscribe);
+
+						this.subscription.add(subscribe);
 					}
 				} else {
 					if (response.error.errorCode === "INVALID_SESSION") {
@@ -85,15 +121,19 @@ export abstract class BaseService<T extends BaseModel> {
 					} else {
 						this.errorAlert(response.error.message);
 					}
-        }
-        
-        return response as T;
+				}
+
+				return response as T;
 			}),
 			catchError((error) => of(null))
 		);
 		return apiData;
 	}
 
+	/**
+	 * Updates token for current user
+	 * @param response 
+	 */
 	async updateTokenForCurrentUser(response: BaseModel) {
 		// build
 		this.userModel = {
@@ -107,7 +147,12 @@ export abstract class BaseService<T extends BaseModel> {
 		this.subscription.add(subscribe);
 	}
 
-	/* Abstract put api request, reqires api url, post data and returns an Observable*/
+	/**
+	 * Puts base service
+	 * @param url 
+	 * @param data 
+	 * @returns put 
+	 */
 	public put(url: string, data: T): Observable<T> {
 		const apiData = this.httpClient.put<T>(url, data).pipe(
 			map((response: any) => response as T),
@@ -116,7 +161,11 @@ export abstract class BaseService<T extends BaseModel> {
 		return apiData;
 	}
 
-	// error alert
+	/**
+	 * Errors alert
+	 * @param message 
+	 * @returns  
+	 */
 	errorAlert(message: string) {
 		//this.dataComunicaitonService.currentMessage("message").;
 
@@ -127,7 +176,7 @@ export abstract class BaseService<T extends BaseModel> {
 				buttons: [
 					{
 						text: "ok",
-						handler: (data) => {},
+						handler: (data) => { },
 					},
 				],
 			})

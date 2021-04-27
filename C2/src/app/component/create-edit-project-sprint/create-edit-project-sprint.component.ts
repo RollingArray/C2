@@ -40,30 +40,6 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	private _modalData: ModalData;
 
 	/**
-	 * Loading message of create edit project goal component
-	 */
-	 private _loadingMessage :string;
-
-	/**
-	 * If operation delete of create edit project goal component
-	 */
-	 private _ifOperationDelete : boolean = false;
-
-	 /**
-	  * Sets if operation delete
-	  */
-	 public set ifOperationDelete(value: boolean) {
-		 this._ifOperationDelete = value;
-	 }
- 
-	 /**
-	  * Gets if operation delete
-	  */
-	 public get ifOperationDelete(): boolean {
-		 return this._ifOperationDelete;
-	 }
-
-	/**
 	 * Creates an instance of create edit project sprint component.
 	 * @param injector 
 	 * @param alertService 
@@ -83,12 +59,6 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		super(injector);
 		this._passedSprint = this.navParams.get("data");
 		this.buildFrom();
-		this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_2}`;
-		if(this._passedSprint.operationType === Operations.Delete){
-			this._ifOperationDelete = true;
-			this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_6}`;
-			this.submitData();
-		}
 	}
 
 	/**
@@ -154,10 +124,6 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 			case Operations.Edit:
 				title = this.stringKey.UPDATE_SPRINT;
 				break;
-			case Operations.Delete:
-				title = this.stringKey.DELETE_SPRINT;
-				break;
-		
 			default:
 				break;
 		}
@@ -234,10 +200,48 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	}
 
 	/**
+	 * Deletes create edit project goal component
+	 */
+	 async delete() {
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: this.stringKey.ALERT_DELETE,
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, {
+					text: this.stringKey.YES,
+					handler: async () => {
+						this._passedSprint.operationType = Operations.Delete;
+						await this.submitData();
+					}
+				}
+			]
+		});
+
+		await alertController.present();
+	}
+
+	/**
+	 * Gets loading message
+	 */
+	 async getLoadingMessage() {
+		if (this._passedSprint.operationType === Operations.Delete) {
+			return `${this.stringKey.API_REQUEST_MESSAGE_6}`;
+		}
+		else {
+			return `${this.stringKey.API_REQUEST_MESSAGE_2}`;
+		}
+	}
+
+	/**
 	 * Submits data
 	 */
 	async submitData() {
-		this.loadingService.present(this._loadingMessage);
+		this.loadingService.present(await this.getLoadingMessage());
 
 		const crudSprint: SprintModel = this.buildDataModelToPass();
 

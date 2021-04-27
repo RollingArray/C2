@@ -9,11 +9,6 @@
 				stringKey.CANCEL
 				}}</ion-button>
 		</ion-buttons>
-		<ion-buttons slot="end" *ngIf="!ifOperationDelete">
-			<ion-button fill="outline" (click)="submit()">{{
-				stringKey.SAVE
-				}}</ion-button>
-		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <!-- header -->
@@ -23,12 +18,19 @@
 	<!-- page title -->
 
 	<!-- fab -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="!ifOperationDelete">
-		<ion-fab-button color="dark" (click)="submit()">
-			<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark">
+			<ion-icon [src]="stringKey.ICON_MORE"></ion-icon>
 		</ion-fab-button>
+		<ion-fab-list side="top">
+			<ion-fab-button color="dark" (click)="submit()">
+				<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+			</ion-fab-button>
+			<ion-fab-button color="dark" (click)="delete()">
+				<ion-icon [src]="stringKey.ICON_DELETE"></ion-icon>
+			</ion-fab-button>
+		</ion-fab-list>
 	</ion-fab>
-	<!-- fab -->
 
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<!-- Goal name -->
@@ -65,8 +67,8 @@
 			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
-					<ion-textarea rows="5" [placeholder]="stringKey.FORM_PLACEHOLDER_GOAL_DESCRIPTION" autocomplete="off"
-						formControlName="goalDescription" type="text">
+					<ion-textarea rows="5" [placeholder]="stringKey.FORM_PLACEHOLDER_GOAL_DESCRIPTION"
+						autocomplete="off" formControlName="goalDescription" type="text">
 					</ion-textarea>
 				</ion-item>
 				<ion-card *ngIf="goalDescription.invalid && goalDescription.touched" color="warning">

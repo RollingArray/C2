@@ -22,6 +22,7 @@ import { Regex } from "src/app/shared/constant/regex.constant";
 import { ArrayKey } from 'src/app/shared/constant/array.constant';
 import { Subject } from 'rxjs';
 import { Operations } from 'src/app/shared/enum/operations.enum';
+import { ModalData } from "src/app/shared/model/modal-data.model";
 
 @Component({
 	selector: 'base-form-component',
@@ -44,6 +45,7 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 	readonly regex = Regex;
 	readonly arrayKey = ArrayKey;
 	readonly operations = Operations;
+	
 
 	/**
 	 * Creates an instance of base form component.
@@ -83,26 +85,15 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Dismiss modal
-	 */
-	dismissModal() {
-		// using the injected ModalController this page
-		// can "dismiss" itself and optionally pass back data
-		this.modalController.dismiss({
-			dismissed: true
-		});
-	}
-
-	/**
 	 * Presents toast
 	 * @param responseMessage 
 	 */
 	async presentToast(responseMessage) {
 
-		if(this.toastController){
+		if (this.toastController) {
 			this.toastController.dismiss();
 		}
-		
+
 		const toast = await this.toastController.create({
 			message: responseMessage,
 			duration: 3000

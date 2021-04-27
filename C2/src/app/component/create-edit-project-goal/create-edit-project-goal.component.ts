@@ -36,31 +36,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	/**
 	 * Modal data of create edit project goal component
 	 */
-	private _modalData: ModalData;
-
-	/**
-	 * Loading message of create edit project goal component
-	 */
-	private _loadingMessage :string;
-
-	/**
-	 * If operation delete of create edit project goal component
-	 */
-	private _ifOperationDelete : boolean = false;
-
-	/**
-	 * Sets if operation delete
-	 */
-	public set ifOperationDelete(value: boolean) {
-		this._ifOperationDelete = value;
-	}
-
-	/**
-	 * Gets if operation delete
-	 */
-	public get ifOperationDelete(): boolean {
-		return this._ifOperationDelete;
-	}
+	 private _modalData: ModalData;
 
 	/**
 	 * Creates an instance of create edit project goal component.
@@ -81,17 +57,11 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	}
 
 	/**
- 	* on init
- 	*/
-	ngOnInit() { 
+	  * on init
+	  */
+	ngOnInit() {
 		this._passedGoal = this.navParams.get("data");
 		this.buildFrom();
-		this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_2}`;
-		if(this._passedGoal.operationType === Operations.Delete){
-			this._ifOperationDelete = true;
-			this._loadingMessage = `${this.stringKey.API_REQUEST_MESSAGE_6}`;
-			this.submitData();
-		}
 	}
 
 	/**
@@ -108,6 +78,20 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 		const form = this.formGroup.value;
 		form.goalName = this._passedGoal.goalName;
 		form.goalDescription = this._passedGoal.goalDescription;
+	}
+
+	/**
+	 * Gets goal name
+	 */
+	 get goalName() {
+		return this.formGroup.get("goalName");
+	}
+
+	/**
+	 * Gets goal description
+	 */
+	get goalDescription() {
+		return this.formGroup.get("goalDescription");
 	}
 
 	/**
@@ -146,43 +130,12 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 			case Operations.Edit:
 				title = this.stringKey.UPDATE_GOAL;
 				break;
-			case Operations.Delete:
-				title = this.stringKey.DELETE_GOAL;
-				break;
-		
+
 			default:
 				break;
 		}
-		
+
 		return title;
-	}
-
-	/**
-	 * Gets goal name
-	 */
-	get goalName() {
-		return this.formGroup.get("goalName");
-	}
-
-	/**
-	 * Gets goal description
-	 */
-	get goalDescription() {
-		return this.formGroup.get("goalDescription");
-	}
-
-	/**
-	 * Submits create edit project goal component
-	 */
-	async submit() {
-		console.log(this.formGroup, this.formGroup.value);
-		if (this.formGroup.invalid) {
-			await this.alertService.presentBasicAlert(
-				`${this.stringKey.MANDATORY_FIELDS}`
-			);
-		} else {
-			await this.submitData();
-		}
 	}
 
 	/**
@@ -205,10 +158,61 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	}
 
 	/**
+	 * Submits create edit project goal component
+	 */
+	async submit() {
+		if (this.formGroup.invalid) {
+			await this.alertService.presentBasicAlert(
+				`${this.stringKey.MANDATORY_FIELDS}`
+			);
+		} else {
+			await this.submitData();
+		}
+	}
+
+	/**
+	 * Gets loading message
+	 */
+	async getLoadingMessage() {
+		if (this._passedGoal.operationType === Operations.Delete) {
+			return `${this.stringKey.API_REQUEST_MESSAGE_6}`;
+		}
+		else {
+			return `${this.stringKey.API_REQUEST_MESSAGE_2}`;
+		}
+	}
+
+	/**
+	 * Deletes create edit project goal component
+	 */
+	async delete() {
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: this.stringKey.ALERT_DELETE,
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, {
+					text: this.stringKey.YES,
+					handler: async () => {
+						this._passedGoal.operationType = Operations.Delete;
+						await this.submitData();
+					}
+				}
+			]
+		});
+
+		await alertController.present();
+	}
+
+	/**
 	 * Submits data
 	 */
 	async submitData() {
-		this.loadingService.present(this._loadingMessage);
+		this.loadingService.present(await this.getLoadingMessage());
 
 		const crudGoal: GoalModel = this.buildDataModelToPass();
 
@@ -221,6 +225,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 
 					// build
 					if (baseModel.success) {
+
 						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
@@ -232,7 +237,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 					}
 
 					// cancel model if operation delete
-					if(this._passedGoal.operationType === Operations.Delete){
+					if (this._passedGoal.operationType === Operations.Delete) {
 						this.cancelModal()
 					}
 				},
@@ -244,25 +249,24 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	}
 
 	/**
+	 * Dismiss modal
+	 */
+	 dismissModal() {
+		this.modalController.dismiss(this._modalData).then(() => {
+			this.formGroup.reset();
+		});
+	}
+
+	/**
 	 * Cancels modal
 	 */
 	cancelModal() {
 
-		this._passedGoal = this._defaultGoalModel;
 		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,
 		};
 		// store active user
 		this.dismissModal();
-	}
-
-	/**
-	 * Dismiss modal
-	 */
-	dismissModal() {
-		this.modalController.dismiss(this._modalData).then(() => {
-			this.formGroup.reset();
-		});
 	}
 }

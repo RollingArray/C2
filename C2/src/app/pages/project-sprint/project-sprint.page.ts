@@ -283,13 +283,6 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 					}
 				},
 				{
-					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_DELETE,
-					handler: () => {
-						this.editProjectSprint(selectedSprint, `${Operations.Delete}`);
-					}
-				},
-				{
 					text: this.stringKey.CANCEL,
 					icon: this.stringKey.ICON_CANCEL,
 					handler: () => {

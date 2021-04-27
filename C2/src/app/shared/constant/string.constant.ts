@@ -1,5 +1,5 @@
 export class StringKey {
-	public static readonly APP_NAME: string = ' ';
+	public static readonly APP_NAME: string = 'C2';
 	public static readonly APP_TAG_LINE: string = 'Build Your Credibility Index';
 	public static readonly APP_VERSION: string = '6.2.0';
 	public static readonly APP_BUNDLE_ID: string = 'in.co.rollingarray.c2';
@@ -145,6 +145,7 @@ export class StringKey {
 	public static readonly PROJECT_NAME_PLACEHOLDER: string = 'Provide a suitable name to your project';
 	public static readonly PROJECT_DESCRIPTION_PLACEHOLDER: string = 'What is the project for';
 	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
+	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
 	public static readonly PROJECT_REQUEST: string = 'Project(s) request';
 	public static readonly FORGOT_PASSWORD: string = 'Forgot your password';
 	public static readonly NEW_PASSWORD: string = 'New password';

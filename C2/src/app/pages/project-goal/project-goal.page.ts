@@ -277,13 +277,6 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 					}
 				},
 				{
-					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_DELETE,
-					handler: () => {
-						this.editProjectGoal(selectedGoal, `${Operations.Delete}`);
-					}
-				},
-				{
 					text: this.stringKey.CANCEL,
 					icon: this.stringKey.ICON_CANCEL,
 					handler: () => {

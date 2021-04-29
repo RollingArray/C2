@@ -21,7 +21,7 @@ import { StringKey } from "src/app/shared/constant/string.constant";
 import { Regex } from "src/app/shared/constant/regex.constant";
 import { ArrayKey } from 'src/app/shared/constant/array.constant';
 import { Subject } from 'rxjs';
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { ModalData } from "src/app/shared/model/modal-data.model";
 
 @Component({
@@ -44,7 +44,7 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 	readonly stringKey = StringKey;
 	readonly regex = Regex;
 	readonly arrayKey = ArrayKey;
-	readonly operations = Operations;
+	readonly operations = OperationsEnum;
 	
 
 	/**

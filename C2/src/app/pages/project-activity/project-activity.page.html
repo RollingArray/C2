@@ -1,0 +1,47 @@
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+	<ion-toolbar color="primary">
+		<ion-title> {{stringKey.PROJECT_ACTIVITY}} </ion-title>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-buttons slot="end" (click)="loadData()">
+			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="stringKey.PROJECT_ACTIVITY" [info]="stringKey.ACTIVITY_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+
+	<!-- breadcrumb -->
+	<app-breadcrumb [crumbs]='breadCrumb'></app-breadcrumb>
+	<!-- breadcrumb -->
+
+	<!-- refresh btn -->
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	<!-- refresh btn -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark" (click)="addProjectActivity()">
+			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- no data -->
+	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
+	<!-- no data -->
+	<ng-container *ngIf="hasData">
+		<ion-card *ngFor="let activity of projectActivityModel?.projectActivities.data">
+			<app-panel-header [panelTitle]="activity" [panelIcon]="stringKey.ICON_ACTIVITY"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
+				(event)="openActivityOptions(activity)"></app-panel-header>
+			<app-custom-fields [description]="activity.activityName">
+			</app-custom-fields>
+		</ion-card>
+
+	</ng-container>
+</ion-content>

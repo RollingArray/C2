@@ -5,7 +5,7 @@ import { ModalData } from "src/app/shared/model/modal-data.model";
 import { AlertService } from "src/app/shared/service/alert.service";
 import { LoadingService } from "src/app/shared/service/loading.service";
 import { NavParams } from "@ionic/angular";
-import { Operations } from "src/app/shared/enum/operations.enum";
+import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
 import { ProjectGoalService } from 'src/app/shared/service/project-goal.service';
@@ -124,10 +124,10 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	get pageTitle() {
 		let title: string;
 		switch (this._passedGoal.operationType) {
-			case Operations.Create:
+			case OperationsEnum.Create:
 				title = this.stringKey.CREATE_GOAL;
 				break;
-			case Operations.Edit:
+			case OperationsEnum.Edit:
 				title = this.stringKey.UPDATE_GOAL;
 				break;
 
@@ -174,7 +174,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 	 * Gets loading message
 	 */
 	async getLoadingMessage() {
-		if (this._passedGoal.operationType === Operations.Delete) {
+		if (this._passedGoal.operationType === OperationsEnum.Delete) {
 			return `${this.stringKey.API_REQUEST_MESSAGE_6}`;
 		}
 		else {
@@ -198,7 +198,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 				}, {
 					text: this.stringKey.YES,
 					handler: async () => {
-						this._passedGoal.operationType = Operations.Delete;
+						this._passedGoal.operationType = OperationsEnum.Delete;
 						await this.submitData();
 					}
 				}
@@ -237,7 +237,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 					}
 
 					// cancel model if operation delete
-					if (this._passedGoal.operationType === Operations.Delete) {
+					if (this._passedGoal.operationType === OperationsEnum.Delete) {
 						this.cancelModal()
 					}
 				},

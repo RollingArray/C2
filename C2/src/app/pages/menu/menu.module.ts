@@ -35,6 +35,10 @@ const routes: Routes = [
 				path: 'goals',
 				loadChildren: () => import('../project-goal/project-goal.module').then(m => m.ProjectGoalPageModule)
 			},
+			{
+				path: 'activities',
+				loadChildren: () => import('../project-activity/project-activity.module').then( m => m.ProjectActivityPageModule)
+			},
 			
 		]
 	}

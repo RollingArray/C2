@@ -1,4 +1,4 @@
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
 import { Component, OnInit, OnDestroy, Injector } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
@@ -92,7 +92,7 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
       addedUserId : user.userId,
       projectId: this.projectModel.projectId,
       userTypeId : userTypeEnum,
-      operationType : Operations.Create
+      operationType : OperationsEnum.Create
     };
 
 		this.projectMemberService

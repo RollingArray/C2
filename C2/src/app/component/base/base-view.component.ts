@@ -19,7 +19,7 @@ import { Regex } from "src/app/shared/constant/regex.constant";
 import { ArrayKey } from 'src/app/shared/constant/array.constant';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 
 @Component({
 	selector: 'base-view-component',
@@ -42,7 +42,7 @@ export abstract class BaseViewComponent implements OnInit, OnDestroy {
 	readonly stringKey = StringKey;
 	readonly regex = Regex;
 	readonly arrayKey = ArrayKey;
-	readonly operations = Operations;
+	readonly operations = OperationsEnum;
 
 	constructor(
 		injector: Injector,

@@ -6,7 +6,7 @@ import { AlertService } from "src/app/shared/service/alert.service";
 import { ProjectService } from "src/app/shared/service/project.service";
 import { LoadingService } from "src/app/shared/service/loading.service";
 import { NavParams } from "@ionic/angular";
-import { Operations } from "src/app/shared/enum/operations.enum";
+import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
 
@@ -108,7 +108,7 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	 */
 	get pageTitle() {
 		let title: string;
-		if (this._passedProject.operationType === Operations.Create) {
+		if (this._passedProject.operationType === OperationsEnum.Create) {
 			title = this.stringKey.CREATE_PROJECT;
 		} else {
 			title = this.stringKey.UPDATE_PROJECT;

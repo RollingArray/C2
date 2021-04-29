@@ -9,7 +9,7 @@ import { ProjectService } from 'src/app/shared/service/project.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { CreateEditProjectComponent } from 'src/app/component/create-edit-project/create-edit-project.component';
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { DisableBackService } from 'src/app/shared/service/disable-back.service';
 import { NavParams } from '@ionic/angular';
 import { takeUntil } from 'rxjs/operators';
@@ -216,7 +216,7 @@ export class MyProjectPage extends BaseViewComponent {
 
 	async editProject(project: ProjectModel) {
 		project.userId = this._loggedInUser;
-		project.operationType = `${Operations.Edit}`;
+		project.operationType = `${OperationsEnum.Edit}`;
 
 		const modal = await this.modalController.create({
 			component: CreateEditProjectComponent,
@@ -242,7 +242,7 @@ export class MyProjectPage extends BaseViewComponent {
 		this._projectModel.userId = this._loggedInUser;
 		this._projectModel.projectName = '';
 		this._projectModel.projectDescription = '';
-		this._projectModel.operationType = `${Operations.Create}`;
+		this._projectModel.operationType = `${OperationsEnum.Create}`;
 	}
 
 	//open project options

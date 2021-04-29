@@ -17,12 +17,12 @@ import { ProjectModel } from "../model/project.model";
 
 // constant
 import { ApiUrls } from "../constant/api-urls.constant";
-import { GoalModel } from '../model/goal.model';
+import { ActivityModel } from '../model/activity.model';
 
 @Injectable({
 	providedIn: "root"
 })
-export class ProjectGoalService extends BaseService<GoalModel> {
+export class ProjectActivityService extends BaseService<ActivityModel> {
 	/**
 	 * 
 	 * @param httpClient 
@@ -49,16 +49,16 @@ export class ProjectGoalService extends BaseService<GoalModel> {
 	 * @param projectModel 
 	 * @returns project activities 
 	 */
-	getProjectGoals(projectModel: ProjectModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_GOALS}`, projectModel);
+	getProjectActivities(projectModel: ProjectModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITIES}`, projectModel);
 	}
 
 	/**
-	 * Projects goal crud
-	 * @param goalModel 
-	 * @returns goal crud 
+	 * Projects activity crud
+	 * @param activityModel 
+	 * @returns activity crud 
 	 */
-	projectGoalCrud(goalModel: GoalModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_GOAL_CRUD}`, goalModel);
+	projectActivityCrud(activityModel: ActivityModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_CRUD}`, activityModel);
 	}
 }

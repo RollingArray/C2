@@ -1,5 +1,5 @@
 import { AlertService } from 'src/app/shared/service/alert.service';
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
@@ -183,7 +183,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 			addedUserId: projectUserType.userId,
 			projectId: projectUserType.projectId,
 			userTypeId: userType,
-			operationType: `${Operations.Edit}`
+			operationType: `${OperationsEnum.Edit}`
 		};
 
 		this.projectMemberService

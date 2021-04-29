@@ -31,7 +31,7 @@ export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
 
 	async ngOnInit() {
 		if (await this.activeUserId()) {
-			this.router.navigate(["/go"]);
+			this.router.navigate(["/my-project"]);
 		} else {
 			this.localStorageService
 				.getIntroStatus()

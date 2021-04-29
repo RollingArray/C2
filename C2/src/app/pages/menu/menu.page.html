@@ -18,7 +18,7 @@
 				<ion-menu-toggle auto-hide="false">
 					<ion-card (click)="gotoMyProjects()">
 						<ion-item color="secondary" lines="none">
-							<ion-icon name="arrow-back-outline"></ion-icon>
+							<ion-icon slot="start" name="arrow-back-outline"></ion-icon>
 							<ion-label> {{stringKey.MY_PROJECT}} </ion-label>
 						</ion-item>
 					</ion-card>
@@ -30,7 +30,7 @@
 						</ion-item>
 						<ion-menu-toggle auto-hide="false">
 							<ion-card *ngFor="let eachSubMenu of p.children" color="tertiary">
-								<ion-item lines="none" color="dark" class="sub-item" (click)="gotoPage(eachSubMenu)"
+								<ion-item lines="none" color="dark" (click)="gotoPage(eachSubMenu)"
 									routerDirection="root" routerLinkActive="active">
 									<ion-icon slot="start" [src]="eachSubMenu.icon"></ion-icon>
 									{{ eachSubMenu.title }}

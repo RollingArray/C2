@@ -99,22 +99,28 @@ export class StringKey {
 	public static readonly PROJECT_SPRINT_INFO: string = 'Sprint is a duration. Sprint needs a suitable name, start and end date';
 	public static readonly PROJECT_GOAL: string = 'Project Goal(s)';
 	public static readonly PROJECT_GOAL_INFO: string = 'Goal is simply what is to be achieved, no more and no less';
+	public static readonly PROJECT_ACTIVITY: string = 'Project Activity(s)';
+	public static readonly ACTIVITY_INFO: string = 'Activity is a measurable target which is performed to achieve a goal';
 
-	public static readonly USER_STORY: string = 'User Story(s)';
-	public static readonly USER_STORY_INFO: string = 'Enter/update the following details to create/update a user story';
-	public static readonly CREATE_USER_STORY: string = 'Create User Story';
-	public static readonly UPDATE_USER_STORY: string = 'Update User Story';
-	public static readonly PROJECT_USER_STORY_INFO: string = 'User Story is a is a collection of tasks to define key performance indicator';
+
+	public static readonly ASSIGNEE: string = 'User Story(s)';
+	public static readonly ASSIGNEE_INFO: string = 'Enter/update the following details to create/update a user story';
+	public static readonly CREATE_ASSIGNEE: string = 'Create User Story';
+	public static readonly UPDATE_ASSIGNEE: string = 'Update User Story';
+	public static readonly PROJECT_ASSIGNEE_INFO: string = 'User Story is a is a collection of tasks to define key performance indicator';
 	public static readonly TASK_MEASUREMENT_CRITERIA: string = 'Measurement Criteria';
 	public static readonly TASK_MEASUREMENT_CRITERIA_INFO: string = 'Measurement Criteria definition';
-	public static readonly PROJECT_TASK_MEASUREMENT_CRITERIA_INFO: string = 'Enter/update the following details to create/update a measurement criteria';
-	public static readonly CREATE_TASK_MEASUREMENT_CRITERIA: string = 'Create Measurement Criteria';
-	public static readonly UPDATE_TASK_MEASUREMENT_CRITERIA: string = 'Update Measurement Criteria';
+	public static readonly PROJECT_ACTIVITY_INFO: string = 'Enter/update the following details to create/update an activity';
+	public static readonly CREATE_ACTIVITY: string = 'Create Activity';
+	public static readonly UPDATE_ACTIVITY: string = 'Update Activity';
+
 	public static readonly MEASUREMENT_TYPE_NUM: string = 'NUM';
 	public static readonly MEASUREMENT_TYPE_BOOL: string = 'BOOL';
 	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the task measures based on the numeric scale';
 	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the task measures based on either full or none';
-	public static readonly FORM_INFO_MEASUREMENT_PURPOSE: string = 'What is the measurement purpose';
+	public static readonly FORM_INFO_ACTIVITY: string = 'What is the activity to perform to achieve the goal';
+	public static readonly FORM_INFO_ACTIVITY_WEIGHT: string = 'Provide a weight to the activity, maximum is 100 %';
+	public static readonly FORM_INFO_ACTIVITY_RESULT_TYPE: string = 'Provide in what context the result of the activity will be judged';
 	public static readonly MEASUREMENT_TYPE: string = 'Primary parameter to measure the task type';
 	public static readonly KPI: string = 'Key Performance Indicator';
 	public static readonly KPI_INFO: string = 'Key Performance Indicator is the Performance Indicator, which allows objectively evaluates the effectiveness of workflow';
@@ -195,12 +201,10 @@ export class StringKey {
 
 	public static readonly FORM_INFO_TASK_TYPE_NAME: string = 'Provide a suitable name for your task type';
 	public static readonly FORM_INFO_TASK_TYPE_DESCRIPTION: string = 'Provide the postal description of your task type';
-	public static readonly FORM_INFO_USER_STORY_NAME: string = 'Provide a suitable name for your user story';
-	public static readonly FORM_INFO_USER_STORY_DESCRIPTION: string = 'Provide the postal description of your user story';
-	public static readonly FORM_INFO_SELECT_USER_STORY: string = 'Select relevant user story';
+	public static readonly FORM_INFO_SELECT_ASSIGNEE: string = 'Select an assignee to perform the activity';
 	public static readonly FORM_INFO_SELECT_TASK_TYPE: string = 'Select relevant task type';
-	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant sprint';
-	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant goal';
+	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant sprint where the activity will be performed';
+	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant goal desired to achieve in the sprint';
 	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the task type';
 
 	public static readonly FORM_INFO_PERSONAL_DETAILS: string = 'Provide some of your personal details';
@@ -253,9 +257,10 @@ export class StringKey {
 
 	public static readonly FORM_PLACEHOLDER_TASK_TYPE_NAME: string = 'Research';
 	public static readonly FORM_PLACEHOLDER_TASK_TYPE_DESCRIPTION: string = 'Research for a feature';
-	public static readonly FORM_PLACEHOLDER_USER_STORY_NAME: string = 'KPI1 - Sales plan';
-	public static readonly FORM_PLACEHOLDER_USER_STORY_DESCRIPTION: string = 'Implementation of sales plan';
-	public static readonly FORM_PLACEHOLDER_MEASUREMENT_PURPOSE: string = 'To provide product sales plan';
+	public static readonly FORM_PLACEHOLDER_ACTIVITY: string = 'To provide product sales plan';
+	public static readonly FORM_PLACEHOLDER_ACTIVITY_WEIGHT: string = '100';
+	public static readonly FORM_PLACEHOLDER_ACTIVITY_RESULT_TYPE: string = 'dollar / quatre';
+	
 	public static readonly FORM_PLACEHOLDER_NUM: string = '5';
 	public static readonly FORM_PLACEHOLDER_TASK_NAME: string = 'Proposals';
 	public static readonly FORM_PLACEHOLDER_TASK_DESCRIPTION: string = 'Writing proposals for the sales plan';
@@ -282,9 +287,10 @@ export class StringKey {
 
 	public static readonly FORM_VALIDATION_TASK_TYPE_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
 	public static readonly FORM_VALIDATION_TASK_TYPE_DESCRIPTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
-	public static readonly FORM_VALIDATION_USER_STORY_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
-	public static readonly FORM_VALIDATION_USER_STORY_DESCRIPTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
-	public static readonly FORM_VALIDATION_MEASUREMENT_PURPOSE: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
+	public static readonly FORM_VALIDATION_ACTIVITY: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
+	public static readonly FORM_VALIDATION_ACTIVITY_RESULT_TYPE: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
+	
+	
 	public static readonly FORM_VALIDATION_NUM: string = 'It is a mandatory filed. Only [0-9] allowed';
 	public static readonly FORM_VALIDATION_DESCRIPTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
 	public static readonly FORM_VALIDATION_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
@@ -362,6 +368,7 @@ export class StringKey {
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
+	public static readonly NO_DATA_ACTIVITY: string = 'No activity has been set for the project yet. Add a new activity';
 	public static readonly NO_DATA_MY_PROJECT: string = 'You do not have any project yet, you may create a new project here';
 	public static readonly NO_DATA: string = 'No data available';
 	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
@@ -401,7 +408,11 @@ export class StringKey {
 	public static readonly ICON_SIGN_UP: string = StringKey.ICON_BASE_PATH + "signup.svg";
 	public static readonly ICON_LEARN: string = StringKey.ICON_BASE_PATH + "learn.svg";
 	public static readonly ICON_PROJECT: string = StringKey.ICON_BASE_PATH + "project.svg";
+	public static readonly ICON_SPRINT: string = StringKey.ICON_BASE_PATH + "sprint.svg";
 	public static readonly ICON_GOAL: string = StringKey.ICON_BASE_PATH + "goal.svg";
+	public static readonly ICON_ACTIVITY: string = StringKey.ICON_BASE_PATH + "activity.svg";
+	public static readonly ICON_MULTI_SELECT: string = StringKey.ICON_BASE_PATH + "multi-select.svg";
+	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
 	public static readonly ICON_NOTIFICATION: string = StringKey.ICON_BASE_PATH + "notifications.svg";
@@ -430,7 +441,7 @@ export class StringKey {
 	public static readonly ICON_SCALE: string = StringKey.ICON_BASE_PATH + "scale-measurement.svg";
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
-	public static readonly ICON_USER_STORY: string = StringKey.ICON_BASE_PATH + "user-story.svg";
+	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";

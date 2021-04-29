@@ -20,6 +20,8 @@ export class ApiUrls {
   public static readonly USER_PROJECT: string = ApiUrls.API_BASE_PATH + "/user/projects/";
   public static readonly USER_PROJECT_CRUD: string = ApiUrls.API_BASE_PATH + "/user/project/crud/";
   public static readonly PROJECT_DETAILS: string = ApiUrls.API_BASE_PATH + "/project/details/";
+  public static readonly PROJECT_RAW: string = ApiUrls.API_BASE_PATH + "/project/raw/";
+  
   public static readonly PROJECT_MEMBERS: string = ApiUrls.API_BASE_PATH + "/project/members/";
   public static readonly SEARCH_PROJECT: string = ApiUrls.API_BASE_PATH + "/search/project/";
   public static readonly PROJECT_MEMBER_CRUD: string = ApiUrls.API_BASE_PATH + "/project/member/crud/";
@@ -31,21 +33,7 @@ export class ApiUrls {
   public static readonly PROJECT_GOALS: string = ApiUrls.API_BASE_PATH + "/project/goals/";
   public static readonly PROJECT_GOAL_CRUD: string = ApiUrls.API_BASE_PATH + "/project/goal/crud/";
   
-  public static readonly PROJECT_TASK_TYPES: string = ApiUrls.API_BASE_PATH + "/project/task/types/";
-  public static readonly PROJECT_TASK_TYPE_CRUD: string = ApiUrls.API_BASE_PATH + "/project/task/type/crud/";
-  public static readonly PROJECT_USER_STORY: string = ApiUrls.API_BASE_PATH + "/project/userstory/";
-  public static readonly PROJECT_USER_STORY_CRUD: string = ApiUrls.API_BASE_PATH + "/project/userstory/crud/";
-
-  public static readonly PROJECT_TASK_MEASUREMENT_CRITERIA: string = ApiUrls.API_BASE_PATH + "/project/task/type/measurement/criteria/";
-  public static readonly PROJECT_TASK_MEASUREMENT_CRITERIA_CRUD: string = ApiUrls.API_BASE_PATH + "/project/task/type/measurement/criteria/crud/";
-  public static readonly PROJECT_RAW: string = ApiUrls.API_BASE_PATH + "/project/raw/";
-
-  public static readonly PROJECT_USER_PERFORMANCE_MATRIX: string = ApiUrls.API_BASE_PATH + "/project/user/performance/matrix/";
-  public static readonly PROJECT_USER_PERFORMANCE_MATRIX_CRUD: string = ApiUrls.API_BASE_PATH + "/project/user/performance/matrix/crud/";
-
-  public static readonly PROJECT_USER_TASK: string = ApiUrls.API_BASE_PATH + "/project/user/task/";
-  public static readonly PROJECT_USER_TASK_CRUD: string = ApiUrls.API_BASE_PATH + "/project/user/task/crud/";
-  public static readonly PROJECT_USER_TASK_REVIEW_CRUD: string = ApiUrls.API_BASE_PATH + "/project/user/task/review/crud/";
-  public static readonly PROJECT_USER_TASK_SELF_ASSESSMENT: string = ApiUrls.API_BASE_PATH + "/project/user/task/self/assessment/";
+  public static readonly PROJECT_ACTIVITIES: string = ApiUrls.API_BASE_PATH + "/goal/activities/";
+  public static readonly PROJECT_ACTIVITY_CRUD: string = ApiUrls.API_BASE_PATH + "/goal/activity/crud/";
 
 }

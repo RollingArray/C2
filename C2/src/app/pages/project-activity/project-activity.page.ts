@@ -8,50 +8,44 @@ import { ModalData } from 'src/app/shared/model/modal-data.model';
 import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
 import { NavParams } from '@ionic/angular';
-import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
-import { ProjectService } from 'src/app/shared/service/project.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
-import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { takeUntil } from 'rxjs/operators';
-import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
-import { CreateEditProjectUserComponent } from 'src/app/component/create-edit-project-user/create-edit-project-user.component';
-import { ProjectMemberService } from 'src/app/shared/service/project-member.service';
-import { ProjectSprintService } from 'src/app/shared/service/project-sprint.service';
-import { CreateEditProjectSprintComponent } from 'src/app/component/create-edit-project-sprint/create-edit-project-sprint.component';
-import { SprintModel } from 'src/app/shared/model/sprint.model';
-import { ProjectSprintModel } from 'src/app/shared/model/project-sprint.model';
+import { ProjectActivityService } from 'src/app/shared/service/project-activity.service';
+import { ActivityModel } from 'src/app/shared/model/activity.model';
+import { ProjectActivityModel } from 'src/app/shared/model/project-activity.model';
+import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity-criteria/create-edit-project-activity.component';
 
 
 @Component({
 	selector: "project-users",
-	templateUrl: "./project-sprint.page.html",
-	styleUrls: ["./project-sprint.page.scss"]
+	templateUrl: "./project-activity.page.html",
+	styleUrls: ["./project-activity.page.scss"]
 })
-export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDestroy {
+export class ProjectActivityPage extends BaseViewComponent implements OnInit, OnDestroy {
 
 	/**
-	 * Modal data of project sprint page
+	 * Modal data of project activity page
 	 */
 	private _modalData: ModalData;
 
 	/**
-	 * Logged in user of project sprint page
+	 * Logged in user of project activity page
 	 */
 	private _loggedInUser: string;
 
 	/**
-	 * Project id of project sprint page
+	 * Project id of project activity page
 	 */
 	private _projectId: string;
 
 	/**
-	 * Sprints  of project sprint page
+	 * Activitys  of project activity page
 	 */
-	private _sprints: SprintModel[];
+	private _activitys: ActivityModel[];
 
 	/**
-	 * Bread crumb of project sprint page
+	 * Bread crumb of project activity page
 	 */
 	private _breadCrumb: string[];
 
@@ -61,9 +55,9 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	private _hasData: boolean = false;
 
 	/**
-	 * Project sprint model of project sprint page
+	 * Project activity model of project activity page
 	 */
-	private _projectSprintModel: ProjectSprintModel;
+	private _projectActivityModel: ProjectActivityModel;
 
 	/**
 	 * Sets bread crumb
@@ -94,40 +88,40 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	}
 
 	/**
-	 * Sets sprints
+	 * Sets activitys
 	 */
-	public set sprints(value: SprintModel[]) {
-		this._sprints = value;
+	public set activitys(value: ActivityModel[]) {
+		this._activitys = value;
 	}
 
 	/**
-	 * Gets sprints
+	 * Gets activitys
 	 */
-	public get sprints(): SprintModel[] {
-		return this._sprints;
+	public get activitys(): ActivityModel[] {
+		return this._activitys;
 	}
 
 	/**
-	 * Sets project sprint model
+	 * Sets project activity model
 	 */
-	public set projectSprintModel(value: ProjectSprintModel) {
-		this._projectSprintModel = value;
+	public set projectActivityModel(value: ProjectActivityModel) {
+		this._projectActivityModel = value;
 	}
 
 	/**
-	 * Gets project sprint model
+	 * Gets project activity model
 	 */
-	public get projectSprintModel(): ProjectSprintModel {
-		return this._projectSprintModel;
+	public get projectActivityModel(): ProjectActivityModel {
+		return this._projectActivityModel;
 	}
 
-	
+
 
 	// MyProjectPage constructor
 	constructor(
 		injector: Injector,
 		public localStorageService: LocalStorageService,
-		private projectSprintService: ProjectSprintService,
+		private projectActivityService: ProjectActivityService,
 		private loadingService: LoadingService,
 	) {
 		super(injector);
@@ -137,7 +131,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	 * Actives user id
 	 * @returns  
 	 */
-	 async activeUserId() {
+	async activeUserId() {
 		this.localStorageService
 			.getActiveUserId()
 			.pipe(takeUntil(this.unsubscribe))
@@ -179,18 +173,18 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 			userId: this._loggedInUser
 		};
 
-		this.projectSprintService
-			.getProjectSprints(passedData)
+		this.projectActivityService
+			.getProjectActivities(passedData)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
 					this.loadingService.dismiss();
 					if (baseModel.success) {
-						
-						this._projectSprintModel = baseModel.data;
+
+						this._projectActivityModel = baseModel.data;
 						await this.generateBreadcrumb();
 
-						if(this._projectSprintModel.projectSprints.success){
+						if (this._projectActivityModel.projectActivities.success) {
 							this._hasData = true;
 						}
 					}
@@ -201,23 +195,23 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	/**
 	 * Generates breadcrumb
 	 */
-	 async generateBreadcrumb(){
-		let projectName = this._projectSprintModel.projectDetails?.projectName;
-		this._breadCrumb = [projectName, this.stringKey.PROJECT_SPRINT];
+	async generateBreadcrumb() {
+		let projectName = this._projectActivityModel.projectDetails?.projectName;
+		this._breadCrumb = [projectName, this.stringKey.PROJECT_GOAL];
 	}
 
 	/**
-	 * Adds project sprint
+	 * Adds project activity
 	 * @returns  
 	 */
-	async addProjectSprint() {
-		const passedModel: SprintModel = {
+	async addProjectActivity() {
+		const passedModel: ActivityModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
 			operationType: `${OperationsEnum.Create}`
 		}
 		const modal = await this.modalController.create({
-			component: CreateEditProjectSprintComponent,
+			component: CreateEditProjectActivityComponent,
 			componentProps: {
 				data: passedModel
 			}
@@ -238,19 +232,19 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	}
 
 	/**
-	 * Edits project sprint
-	 * @param sprintModel 
+	 * Edits project activity
+	 * @param activityModel 
 	 * @returns  
 	 */
-	async editProjectSprint(sprintModel: SprintModel, operation: string) {
-		sprintModel.userId = this._loggedInUser;
-		sprintModel.projectId = this._projectId;
-		sprintModel.operationType = operation;
+	async editProjectActivity(activityModel: ActivityModel, operation: string) {
+		activityModel.userId = this._loggedInUser;
+		activityModel.projectId = this._projectId;
+		activityModel.operationType = operation;
 
 		const modal = await this.modalController.create({
-			component: CreateEditProjectSprintComponent,
+			component: CreateEditProjectActivityComponent,
 			componentProps: {
-				data: sprintModel
+				data: activityModel
 			}
 		});
 
@@ -268,10 +262,10 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	}
 
 	/**
-	 * Opens sprint options
-	 * @param selectedSprint 
+	 * Opens activity options
+	 * @param selectedActivity 
 	 */
-	async openSprintOptions(selectedSprint: SprintModel) {
+	async openActivityOptions(selectedActivity: ActivityModel) {
 		const actionSheet = await this.actionSheetController.create({
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
 			buttons: [
@@ -279,7 +273,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectSprint(selectedSprint, `${OperationsEnum.Edit}`);
+						this.editProjectActivity(selectedActivity, `${OperationsEnum.Edit}`);
 					}
 				},
 				{

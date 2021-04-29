@@ -129,17 +129,3 @@
   --ion-color-info-shade: #cec294;
   --ion-color-info-tint: #8f740b;
 }
-
-.card-no-shadow
-{
-  box-shadow:none !important
-}
-
-$steps: 10;
-$gradient-color: #323433;
-$gradient-5d0088-color: #5d0088;
-$amount: 3;
-
-.darken {
-  --ion-background-color: linear-gradient(#5d0088, #5d0088)
-}

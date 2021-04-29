@@ -1,15 +1,16 @@
-import { Component, OnInit, OnDestroy, Input, Injector } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input, Injector, ViewChild, ElementRef } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
 import { SprintModel } from "src/app/shared/model/sprint.model";
 import { ModalData } from "src/app/shared/model/modal-data.model";
 import { AlertService } from "src/app/shared/service/alert.service";
 import { LoadingService } from "src/app/shared/service/loading.service";
-import { NavParams } from "@ionic/angular";
-import { Operations } from "src/app/shared/enum/operations.enum";
+import { AnimationController, NavParams } from "@ionic/angular";
+import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
 import { ProjectSprintService } from 'src/app/shared/service/project-sprint.service';
 import { DatePipe } from '@angular/common';
+import { IntroModule } from "../intro/intro.component.module";
 
 @Component({
 	selector: "app-create-edit-project-sprint",
@@ -54,7 +55,8 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		private projectSprintService: ProjectSprintService,
 		private loadingService: LoadingService,
 		public navParams: NavParams,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		public animationCtrl: AnimationController
 	) {
 		super(injector);
 		this._passedSprint = this.navParams.get("data");
@@ -64,7 +66,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	/**
 	 * on init
 	 */
-	ngOnInit() {}
+	ngOnInit() { }
 
 	/**
 	 * on destroy
@@ -118,10 +120,10 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	get pageTitle() {
 		let title: string;
 		switch (this._passedSprint.operationType) {
-			case Operations.Create:
+			case OperationsEnum.Create:
 				title = this.stringKey.CREATE_SPRINT;
 				break;
-			case Operations.Edit:
+			case OperationsEnum.Edit:
 				title = this.stringKey.UPDATE_SPRINT;
 				break;
 			default:
@@ -164,18 +166,18 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 			await this.submitData();
 		}
 	}
-	
+
 	/**
 	 * Transforms date
 	 * @param date 
 	 * @returns  
 	 */
-	private transformDate(date){
+	private transformDate(date) {
 		let formattedDate = this.datePipe.transform(
 			new Date(date),
 			"yyyy-MM-dd"
 		);
-		
+
 		return formattedDate;
 	}
 
@@ -202,7 +204,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	/**
 	 * Deletes create edit project goal component
 	 */
-	 async delete() {
+	async delete() {
 		const alertController = await this.alertController.create({
 			header: this.stringKey.CONFIRM_ACTION,
 			message: this.stringKey.ALERT_DELETE,
@@ -215,7 +217,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 				}, {
 					text: this.stringKey.YES,
 					handler: async () => {
-						this._passedSprint.operationType = Operations.Delete;
+						this._passedSprint.operationType = OperationsEnum.Delete;
 						await this.submitData();
 					}
 				}
@@ -228,8 +230,8 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	/**
 	 * Gets loading message
 	 */
-	 async getLoadingMessage() {
-		if (this._passedSprint.operationType === Operations.Delete) {
+	async getLoadingMessage() {
+		if (this._passedSprint.operationType === OperationsEnum.Delete) {
 			return `${this.stringKey.API_REQUEST_MESSAGE_6}`;
 		}
 		else {
@@ -265,7 +267,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 					}
 
 					// cancel model if operation delete
-					if(this._passedSprint.operationType === Operations.Delete){
+					if (this._passedSprint.operationType === OperationsEnum.Delete) {
 						this.cancelModal()
 					}
 				},
@@ -280,7 +282,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	 * Cancels modal
 	 */
 	cancelModal() {
-		
+
 		this._passedSprint = this._defaultSprintModel;
 		this._modalData = {
 			cancelled: true,

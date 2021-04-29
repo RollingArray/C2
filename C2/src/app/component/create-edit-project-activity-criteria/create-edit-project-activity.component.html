@@ -1,0 +1,393 @@
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+	<ion-toolbar color="primary">
+		<ion-title>
+			{{ pageTitle }}
+		</ion-title>
+		<ion-buttons slot="start">
+			<ion-button fill="outline" (click)="cancelModal()">{{
+				stringKey.CANCEL
+				}}</ion-button>
+		</ion-buttons>
+		<ion-buttons slot="end">
+			<ion-button fill="outline" (click)="submit()">{{
+				stringKey.SAVE
+				}}</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="pageTitle" [info]="stringKey.PROJECT_ACTIVITY_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+
+	<!-- fab -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark" (click)="submit()">
+			<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- fab -->
+
+	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
+		<!-- select sprint -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.sprint)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_MULTI_SELECT" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_SPRINT }}
+			</ion-item>
+		</ion-card>
+		<ion-card lines="none" color="light">
+			<ion-card *ngIf="selectedSprint">
+				<app-panel-header [panelTitle]="selectedSprint.sprintName" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			</ion-card>
+		</ion-card>
+		<!-- select sprint -->
+
+		<!-- select goal -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.goal)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_MULTI_SELECT" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_GOAL }}
+			</ion-item>
+		</ion-card>
+		<ion-card lines="none" color="light">
+			<ion-card *ngIf="selectedGoal">
+				<app-panel-header [panelTitle]="selectedGoal.goalName" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			</ion-card>
+		</ion-card>
+		<!-- select goal -->
+
+		<!-- activity name -->
+		<ion-card color="secondary">
+			<p>
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					{{ stringKey.FORM_INFO_ACTIVITY }}
+				</ion-item>
+			</p>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_ACTIVITY" autocomplete="off"
+						formControlName="activityName" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="activityName.invalid && activityName.touched" color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_ACTIVITY }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+		</ion-card>
+		<!-- activity name -->
+
+		<!-- activity result type -->
+		<ion-card color="secondary">
+			<p>
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					{{ stringKey.FORM_INFO_ACTIVITY_RESULT_TYPE }}
+				</ion-item>
+			</p>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_ACTIVITY_RESULT_TYPE" autocomplete="off"
+						formControlName="activityResultType" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="activityResultType.invalid && activityResultType.touched" color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_ACTIVITY_RESULT_TYPE }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+		</ion-card>
+		<!-- activity result type -->
+
+		<!-- select member -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.member)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_MULTI_SELECT" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }} assignee
+			</ion-item>
+		</ion-card>
+		<ion-card lines="none" color="light">
+			<ion-card *ngIf="selectedUser">
+				<app-panel-header [panelTitle]="selectedUser.userFirstName" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			</ion-card>
+		</ion-card>
+		<!-- select member -->
+
+		<!-- activity weight -->
+		<ion-card color="secondary">
+			<p>
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					{{ stringKey.FORM_INFO_ACTIVITY_WEIGHT }}
+				</ion-item>
+			</p>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-range formControlName="activityWeight" color="primary" min="1" max="100" step="1">
+						<ion-label slot="start">1</ion-label>
+      					<ion-label slot="end">100</ion-label>
+					</ion-range>
+				</ion-item>
+			</ion-card>
+		</ion-card>
+		<!-- activity weight -->
+
+		<!-- select measurement type -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.measurementType)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_MULTI_SELECT" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_MEASUREMENT_TYPE }}
+
+			</ion-item>
+		</ion-card>
+		<ion-card lines="none" color="light">
+			<ion-card *ngIf="selectedActivityMeasurementType">
+				<app-panel-header [panelTitle]="selectedActivityMeasurementType" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			</ion-card>
+		</ion-card>
+
+		<!-- select measurement type -->
+
+		<div *ngIf="showNumScale">
+			<ion-card color="senary">
+				<ion-item color="senary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<p>
+
+						{{ stringKey.CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO }}
+					</p>
+				</ion-item>
+				<ion-item color="senary">
+
+					<ion-toggle [(ngModel)]="characteristicsHigherBetter" [ngModelOptions]="{ standalone: true }"
+						(ionChange)="onToggleBtnChange($event)"></ion-toggle>
+				</ion-item>
+			</ion-card>
+
+			<!-- criteria poor value -->
+			<ion-card color="secondary">
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_POOR_VALUE }}</span>
+					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_POOR_INVERSE_VALUE
+						}}</span>
+				</ion-item>
+			</ion-card>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_NUM" autocomplete="off"
+						formControlName="criteriaPoorValue" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="criteriaPoorValue.invalid && criteriaPoorValue.touched" color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_NUM }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+
+			<!-- criteriaPoorValue -->
+
+			<!-- criteria improvement value -->
+			<ion-card color="secondary">
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_VALUE
+						}}</span>
+					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE
+						}}</span>
+				</ion-item>
+			</ion-card>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_NUM" autocomplete="off"
+						formControlName="criteriaImprovementValue" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="
+            criteriaImprovementValue.invalid && criteriaImprovementValue.touched
+          " color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_NUM }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+
+			<!-- criteriaImprovementValue -->
+
+			<!-- criteria expectation value -->
+			<ion-card color="secondary">
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXPECTATION_VALUE
+						}}</span>
+					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE
+						}}</span>
+				</ion-item>
+			</ion-card>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_NUM" autocomplete="off"
+						formControlName="criteriaExpectationValue" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="
+            criteriaExpectationValue.invalid && criteriaExpectationValue.touched
+          " color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_NUM }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+
+			<!-- criteria Expectation Value -->
+
+			<!-- criteria exceed value -->
+			<ion-card color="secondary">
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXCEED_VALUE }}</span>
+					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE
+						}}</span>
+				</ion-item>
+			</ion-card>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_NUM" autocomplete="off"
+						formControlName="criteriaExceedValue" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="criteriaExceedValue.invalid && criteriaExceedValue.touched" color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_NUM }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+
+			<!-- criteriaExceedValue -->
+
+			<!-- criteria outstanding value -->
+			<ion-card color="secondary">
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_OUTSTANDING_VALUE
+						}}</span>
+					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE
+						}}</span>
+				</ion-item>
+			</ion-card>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_NUM" autocomplete="off"
+						formControlName="criteriaOutstandingValue" type="text">
+					</ion-input>
+				</ion-item>
+				<ion-card *ngIf="
+            criteriaOutstandingValue.invalid && criteriaOutstandingValue.touched
+          " color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_NUM }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+			<!-- criteriaOutstandingValue -->
+		</div>
+	</form>
+</ion-content>
+
+<!-- drop selector back drop -->
+<div #dropSelectorBackdrop class="dropSelectorBackdrop" (click)="closeDropSelector()"></div>
+<!-- drop selector back drop -->
+
+<!-- drop selector -->
+<div #dropSelector class="dropSelector">
+	<!-- drop selector header -->
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-title slot="start">
+				{{ dropSelectorTitle }}
+			</ion-title>
+			<ion-buttons slot="end">
+				<ion-button fill="outline" (click)="closeDropSelector()">{{
+					stringKey.CLOSE
+					}}</ion-button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+	<!-- drop selector header -->
+
+	<!-- member drop selector -->
+	<ion-content #memberDropSelector>
+		<ion-card *ngFor="let user of projectUsers">
+			<app-panel-header [panelTitle]="getUserFullName(user.userFirstName, user.userFirstName)" [panelIcon]="stringKey.ICON_USER"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE"
+				[isEventRequired]="true" (event)="chooseUser(user)"></app-panel-header>
+		</ion-card>
+	</ion-content>
+	<!-- member drop selector -->
+
+	<!-- sprint drop selector -->
+	<ion-content #sprintDropSelector>
+		<ion-list>
+			<ion-card *ngFor="let sprint of projectSprints">
+				<app-panel-header [panelTitle]="sprint.sprintName" [panelIcon]="stringKey.ICON_DURATION"
+					[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE"
+					[isEventRequired]="true" (event)="chooseSprint(sprint)"></app-panel-header>
+				<app-custom-fields [sprintStartDate]="sprint.sprintStartDate" [sprintEndDate]="sprint.sprintEndDate">
+				</app-custom-fields>
+			</ion-card>
+		</ion-list>
+	</ion-content>
+	<!-- sprint drop selector -->
+
+	<!-- goal drop selector -->
+	<ion-content #goalDropSelector>
+		<ion-card *ngFor="let goal of projectGoals">
+			<app-panel-header [panelTitle]="goal.goalName" [panelIcon]="stringKey.ICON_GOAL"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true"
+				(event)="chooseGoal(goal)"></app-panel-header>
+			<app-custom-fields [description]="goal.goalDescription">
+			</app-custom-fields>
+		</ion-card>
+	</ion-content>
+	<!-- goal drop selector -->
+	
+	<!-- activity measurement type -->
+	<ion-content #activityMeasurementTypeDropSelector>
+		<ion-card>
+			<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE_NUM" [panelIcon]="stringKey.ICON_RIGHT_ARROW"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE"
+				[isEventRequired]="true" (event)="chooseTaskMeasurementType(activityMeasurementTypeEnum.Num)">
+			</app-panel-header>
+			<app-custom-fields [description]="stringKey.MEASUREMENT_TYPE_NUM_INFO">
+			</app-custom-fields>
+		</ion-card>
+		<ion-card>
+			<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE_BOOL"
+				[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_PRIMARY"
+				[eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true"
+				(event)="chooseTaskMeasurementType(activityMeasurementTypeEnum.Bool)"></app-panel-header>
+			<app-custom-fields [description]="stringKey.MEASUREMENT_TYPE_BOOL_INFO">
+			</app-custom-fields>
+		</ion-card>
+	</ion-content>
+</div>
+<!-- drop selector -->

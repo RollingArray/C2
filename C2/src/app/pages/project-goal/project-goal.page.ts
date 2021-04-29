@@ -1,5 +1,5 @@
 import { AlertService } from 'src/app/shared/service/alert.service';
-import { Operations } from 'src/app/shared/enum/operations.enum';
+import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
@@ -208,7 +208,7 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 		const passedModel: GoalModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
-			operationType: `${Operations.Create}`
+			operationType: `${OperationsEnum.Create}`
 		}
 		const modal = await this.modalController.create({
 			component: CreateEditProjectGoalComponent,
@@ -273,7 +273,7 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectGoal(selectedGoal, `${Operations.Edit}`);
+						this.editProjectGoal(selectedGoal, `${OperationsEnum.Edit}`);
 					}
 				},
 				{

@@ -18,7 +18,7 @@
 	<!-- page title -->
 
 	<!-- breadcrumb -->
-	<app-breadcrumb [crumbs]='breadCrumb'></app-breadcrumb>
+	<app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
 	<!-- breadcrumb -->
 
 	<!-- refresh btn -->
@@ -31,6 +31,13 @@
 			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
 		</ion-fab-button>
 	</ion-fab>
+	<!-- refresh btn -->
+
+	<!-- filter -->
+	<ion-card (click)="openFilter()">
+		<app-project-filter [filter]="filterModel"></app-project-filter>
+	</ion-card>
+	<!-- filter -->
 	<!-- no data -->
 	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
 	<!-- no data -->
@@ -42,6 +49,50 @@
 			<app-custom-fields [description]="activity.activityName">
 			</app-custom-fields>
 		</ion-card>
-
 	</ng-container>
+	<ion-card>
+		<app-panel-header panelTitle="SPRINT" panelIcon="stringKey.ICON_SPRINT" [panelColor]="stringKey.COLOR_PRIMARY"
+			eventIcon="stringKey.ICON_MORE"></app-panel-header>
+		<ion-card>
+			<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
+				[panelColor]="stringKey.COLOR_SECONDARY" eventIcon="stringKey.ICON_MORE"></app-panel-header>
+			<ion-grid>
+				<ion-row>
+					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+						<ion-card>
+							<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
+								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+						</ion-card>
+					</ion-col>
+					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+						<ion-card>
+							<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
+								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			<ion-card style="overflow-x: auto">
+				<table>
+					<tr>
+						<th>{{stringKey.POOR}}</th>
+						<th>{{stringKey.IMPROVEMENT}}</th>
+						<th>{{stringKey.EXPECTATION}}</th>
+						<th>{{stringKey.EXCEED}}</th>
+						<th>{{stringKey.OUTSTANDING}}</th>
+					</tr>
+					<tr>
+						<td>{{stringKey.POOR}}</td>
+						<td>{{stringKey.IMPROVEMENT}}</td>
+						<td>{{stringKey.EXPECTATION}}</td>
+						<td>{{stringKey.EXCEED}}</td>
+						<td>{{stringKey.OUTSTANDING}}</td>
+					</tr>
+				</table>
+			</ion-card>
+
+		</ion-card>
+	</ion-card>
 </ion-content>

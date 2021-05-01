@@ -1,7 +1,11 @@
 ion-item {
-	cursor: pointer;
+  cursor: pointer;
   p {
     width: 90%;
     margin: 10px;
   }
+}
+
+ion-icon {
+  font-size: 30px; //Preferred size here
 }

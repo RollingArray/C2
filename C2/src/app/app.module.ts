@@ -35,7 +35,7 @@ import { DisableBackService } from './shared/service/disable-back.service';
     IonicModule.forRoot({hardwareBackButton: false}),
 		AppRoutingModule,
     HttpClientModule,
-    CreateEditProjectModule,
+    //CreateEditProjectModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

@@ -14,7 +14,9 @@ import { takeUntil } from 'rxjs/operators';
 import { ProjectActivityService } from 'src/app/shared/service/project-activity.service';
 import { ActivityModel } from 'src/app/shared/model/activity.model';
 import { ProjectActivityModel } from 'src/app/shared/model/project-activity.model';
-import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity-criteria/create-edit-project-activity.component';
+import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
+import { FilterModel } from 'src/app/shared/model/filter.model';
+import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component';
 
 
 @Component({
@@ -42,7 +44,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	/**
 	 * Activitys  of project activity page
 	 */
-	private _activitys: ActivityModel[];
+	private _activities: ActivityModel[];
 
 	/**
 	 * Bread crumb of project activity page
@@ -58,6 +60,11 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Project activity model of project activity page
 	 */
 	private _projectActivityModel: ProjectActivityModel;
+
+	/**
+	 * Filter model of project activity page
+	 */
+	private _filterModel: FilterModel;
 
 	/**
 	 * Sets bread crumb
@@ -91,14 +98,14 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Sets activitys
 	 */
 	public set activitys(value: ActivityModel[]) {
-		this._activitys = value;
+		this._activities = value;
 	}
 
 	/**
 	 * Gets activitys
 	 */
 	public get activitys(): ActivityModel[] {
-		return this._activitys;
+		return this._activities;
 	}
 
 	/**
@@ -114,6 +121,22 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	public get projectActivityModel(): ProjectActivityModel {
 		return this._projectActivityModel;
 	}
+
+	/**
+	 * Sets filter model
+	 */
+	public set filterModel(value: FilterModel) {
+		this._filterModel = value;
+	}
+
+	/**
+	 * Gets filter model
+	 */
+	public get filterModel(): FilterModel {
+		return this._filterModel;
+	}
+
+	private : FilterModel;
 
 
 
@@ -146,6 +169,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	ngOnInit() {
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
+		this.getSelectProjectFilter();
 	}
 
 	/**
@@ -286,6 +310,52 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 			]
 		});
 		await actionSheet.present();
+	}
+
+	/**
+	 * Gets select project filter
+	 */
+	async getSelectProjectFilter() {
+		this.localStorageService
+			.getSelectedProjectFilter(this._projectId)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(async (data: FilterModel) => {
+				this._filterModel = data;
+				if(this._filterModel){
+					this.loadData();
+				}
+			});
+	}
+
+	/**
+	 * Opens filter
+	 * @returns  
+	 */
+	async openFilter(){
+		const passedModel: FilterModel = {
+			userId: this._loggedInUser,
+			projectId: this._projectId
+		}
+		const modal = await this.modalController.create({
+			component: CreateEditProjectFilterComponent,
+			componentProps: {
+				data: passedModel
+			}
+		});
+
+		modal.onDidDismiss().then(async data => {
+
+			this._modalData = data.data;
+			if (this._modalData.cancelled) {
+				//do not refresh the page
+			} else {
+				//load data from network
+				await this.getSelectProjectFilter();
+				//this.loadData();
+			}
+		});
+
+		return await modal.present();
 	}
 }
 

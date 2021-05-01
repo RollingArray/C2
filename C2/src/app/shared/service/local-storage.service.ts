@@ -4,6 +4,8 @@ import { LocalStoreKey } from '../constant/local-store-key.constant';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { ProjectModel } from '../model/project.model';
+import { FilterModel } from '../model/filter.model';
+import { EncryptionService } from './encryption.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,7 +20,11 @@ export class LocalStorageService {
 	public currentActiveUserToken$ = new BehaviorSubject<string>("");
 	public introStatus$ = new BehaviorSubject<string>("");
 	public selectedProject$ = new BehaviorSubject<ProjectModel>({});
-	constructor() {
+	public selectedProjectFilter$ = new BehaviorSubject<FilterModel>({});
+	
+	constructor(
+		private encryptionService: EncryptionService
+	) {
 
 	}
 
@@ -148,6 +154,33 @@ export class LocalStorageService {
 		});
 
 		return this.selectedProject$.asObservable();
+	}
+
+	// set active user details
+	setSelectedProjectFilter(filterModel: FilterModel): Observable<boolean> {
+		const observable$ = new BehaviorSubject<boolean>(false);
+		const encryptedFilter = this.encryptionService.encryptData(JSON.stringify(filterModel), filterModel.projectId);
+		localStorage.setItem(`${LocalStoreKey.FILTER}`, encryptedFilter);
+		
+		observable$.next(true);
+		return observable$.asObservable();
+	}
+
+	/**
+	 * Gets selected project filter
+	 * @param projectId 
+	 * @returns selected project filter 
+	 */
+	getSelectedProjectFilter(projectId: string): Observable<FilterModel> {
+		const encryptedFilter = localStorage.getItem(`${LocalStoreKey.FILTER}`);
+		console.log(encryptedFilter);
+		const decryptedFilter = this.encryptionService.decryptData(encryptedFilter, projectId);
+		console.log(decryptedFilter);
+		const filterModel: FilterModel = JSON.parse(decryptedFilter);
+		
+		this.selectedProjectFilter$ = new BehaviorSubject<FilterModel>(filterModel);
+
+		return this.selectedProjectFilter$.asObservable();
 	}
 
 }

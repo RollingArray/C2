@@ -1,0 +1,128 @@
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+	<ion-toolbar color="primary">
+		<ion-title>
+			{{ stringKey.CHOOSE_FILTER }}
+		</ion-title>
+		<ion-buttons slot="start">
+			<ion-button fill="outline" (click)="cancelModal()">{{
+				stringKey.CANCEL
+				}}</ion-button>
+		</ion-buttons>
+		<ion-buttons slot="end">
+			<ion-button fill="outline" (click)="submit()">{{
+				stringKey.SELECT
+				}}</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="stringKey.CHOOSE_FILTER" [info]="stringKey.PROJECT_FILTER_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+
+	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
+		<!-- select goal -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.goal)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_GOAL" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_GOAL }}
+			</ion-item>
+		</ion-card>
+		<ion-card *ngIf="selectedGoal" color="light">
+			<app-panel-header [panelTitle]="selectedGoal.goalName" [panelIcon]="stringKey.ICON_SELECT"
+				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+		</ion-card>
+		<!-- select goal -->
+
+		<!-- select sprint -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.sprint)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_SPRINT" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_SPRINT }}
+			</ion-item>
+		</ion-card>
+		<ion-card *ngIf="selectedSprint" color="light">
+			<app-panel-header [panelTitle]="selectedSprint.sprintName" [panelIcon]="stringKey.ICON_SELECT"
+				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+		</ion-card>
+		<!-- select sprint -->
+
+		<!-- select member -->
+		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.member)" class="selector">
+			<ion-item color="secondary" lines="none">
+				<ion-icon [src]="stringKey.ICON_USER" slot="start"></ion-icon>
+				{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }} assignee
+			</ion-item>
+		</ion-card>
+		<ion-card *ngIf="selectedUser" color="light">
+			<app-panel-header [panelTitle]="getUserFullName(selectedUser.userFirstName, selectedUser.userLastName)" [panelIcon]="stringKey.ICON_SELECT"
+				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+		</ion-card>
+		<!-- select member -->
+	</form>
+</ion-content>
+
+<!-- drop selector back drop -->
+<div #dropSelectorBackdrop class="dropSelectorBackdrop" (click)="closeDropSelector()"></div>
+<!-- drop selector back drop -->
+
+<!-- drop selector -->
+<div #dropSelector class="dropSelector">
+	<!-- drop selector header -->
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-title slot="start">
+				{{ dropSelectorTitle }}
+			</ion-title>
+			<ion-buttons slot="end">
+				<ion-button fill="outline" (click)="closeDropSelector()">{{
+					stringKey.CLOSE
+					}}</ion-button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+	<!-- drop selector header -->
+
+	<!-- member drop selector -->
+	<ion-content #memberDropSelector>
+		<ion-card *ngFor="let user of projectUsers">
+			<app-panel-header [panelTitle]="getUserFullName(user.userFirstName, user.userLastName)"
+				[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_PRIMARY"
+				[eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true" (event)="chooseUser(user)">
+			</app-panel-header>
+			<app-custom-fields [description]="user.userEmail">
+			</app-custom-fields>
+		</ion-card>
+	</ion-content>
+	<!-- member drop selector -->
+
+	<!-- sprint drop selector -->
+	<ion-content #sprintDropSelector>
+		<ion-list>
+			<ion-card *ngFor="let sprint of projectSprints">
+				<app-panel-header [panelTitle]="sprint.sprintName" [panelIcon]="stringKey.ICON_DURATION"
+					[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE"
+					[isEventRequired]="true" (event)="chooseSprint(sprint)"></app-panel-header>
+				<app-custom-fields [sprintStartDate]="sprint.sprintStartDate" [sprintEndDate]="sprint.sprintEndDate">
+				</app-custom-fields>
+			</ion-card>
+		</ion-list>
+	</ion-content>
+	<!-- sprint drop selector -->
+
+	<!-- goal drop selector -->
+	<ion-content #goalDropSelector>
+		<ion-card *ngFor="let goal of projectGoals">
+			<app-panel-header [panelTitle]="goal.goalName" [panelIcon]="stringKey.ICON_GOAL"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true"
+				(event)="chooseGoal(goal)"></app-panel-header>
+			<app-custom-fields [description]="goal.goalDescription">
+			</app-custom-fields>
+		</ion-card>
+	</ion-content>
+	<!-- goal drop selector -->
+</div>
+<!-- drop selector -->

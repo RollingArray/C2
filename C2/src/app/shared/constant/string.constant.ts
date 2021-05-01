@@ -81,6 +81,7 @@ export class StringKey {
 	public static readonly ACCUMULATED_MEASUREMENT_CRITERIA: string = 'Accumulated measurement criteria received over reviews';
 	public static readonly REVIEWS_RESULTING_PERFORMANCE: string = 'Reviews resulting performance';
 	public static readonly REVIEWS: string = 'Reviews';
+	public static readonly CHOOSE_FILTER: string = 'Choose Filter';
 
 
 	public static readonly SELECT: string = 'Select';
@@ -113,6 +114,7 @@ export class StringKey {
 	public static readonly PROJECT_ACTIVITY_INFO: string = 'Enter/update the following details to create/update an activity';
 	public static readonly CREATE_ACTIVITY: string = 'Create Activity';
 	public static readonly UPDATE_ACTIVITY: string = 'Update Activity';
+	public static readonly PROJECT_FILTER_INFO: string = 'Choose relevant Sprint, Goal and Assignee from the list of available details';
 
 	public static readonly MEASUREMENT_TYPE_NUM: string = 'NUM';
 	public static readonly MEASUREMENT_TYPE_BOOL: string = 'BOOL';
@@ -201,10 +203,10 @@ export class StringKey {
 
 	public static readonly FORM_INFO_TASK_TYPE_NAME: string = 'Provide a suitable name for your task type';
 	public static readonly FORM_INFO_TASK_TYPE_DESCRIPTION: string = 'Provide the postal description of your task type';
-	public static readonly FORM_INFO_SELECT_ASSIGNEE: string = 'Select an assignee to perform the activity';
+	public static readonly FORM_INFO_SELECT_ASSIGNEE: string = 'Select an Assignee';
 	public static readonly FORM_INFO_SELECT_TASK_TYPE: string = 'Select relevant task type';
-	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant sprint where the activity will be performed';
-	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant goal desired to achieve in the sprint';
+	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant Sprint';
+	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant Goal';
 	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the task type';
 
 	public static readonly FORM_INFO_PERSONAL_DETAILS: string = 'Provide some of your personal details';
@@ -412,6 +414,7 @@ export class StringKey {
 	public static readonly ICON_GOAL: string = StringKey.ICON_BASE_PATH + "goal.svg";
 	public static readonly ICON_ACTIVITY: string = StringKey.ICON_BASE_PATH + "activity.svg";
 	public static readonly ICON_MULTI_SELECT: string = StringKey.ICON_BASE_PATH + "multi-select.svg";
+	public static readonly ICON_FILTER: string = StringKey.ICON_BASE_PATH + "filter.svg";
 	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

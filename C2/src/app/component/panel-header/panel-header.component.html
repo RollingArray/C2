@@ -1,22 +1,17 @@
-<ion-item
-  [color]="panelColor"
-  lines="none"
-  (click)="onPanelTap()"
-  *ngIf="!isNoIcon"
->
-  <ion-icon [src]="panelIcon"></ion-icon>
-  <p>
-    <b>
-      {{ panelTitle }}
-    </b>
-  </p>
-  <ion-icon slot="end" [src]="eventIcon" *ngIf="isEventRequired"></ion-icon>
+<ion-item [color]="panelColor" lines="none" (click)="onPanelTap()" *ngIf="!isNoIcon">
+	<ion-icon [src]="panelIcon"></ion-icon>
+	<p>
+		<b>
+			{{ panelTitle }}
+		</b>
+	</p>
+	<ion-icon slot="end" [src]="eventIcon" *ngIf="isEventRequired"></ion-icon>
 </ion-item>
 <ion-item [color]="panelColor" lines="none" *ngIf="isNoIcon">
-  <ion-item>
-    <p>
-      <b> {{ panelSubHead }} : </b>
-      {{ panelTitle }}
-    </p>
-  </ion-item>
+	<ion-item>
+		<p>
+			<b> {{ panelSubHead }} : </b>
+			{{ panelTitle }}
+		</p>
+	</ion-item>
 </ion-item>

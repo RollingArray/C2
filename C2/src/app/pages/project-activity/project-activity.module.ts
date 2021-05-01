@@ -12,7 +12,9 @@ import { SharedModule } from 'src/app/shared/module/shared.module';
 import { ProjectActivityPage } from './project-activity.page';
 import { CustomFieldsModule } from 'src/app/component/custom-fields/custom-fields-fields.component.module';
 import { BreadcrumbModule } from 'src/app/component/breadcrumb/breadcrumb.component.module';
-import { CreateEditProjectActivityModule } from 'src/app/component/create-edit-project-activity-criteria/create-edit-project-activity.component.module';
+import { CreateEditProjectActivityModule } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component.module';
+import { CreateEditProjectFilterModule } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component.module';
+import { ProjectFilterModule } from 'src/app/component/project-filter/project-filter.component.module';
 
 const routes: Routes = [
   {
@@ -27,6 +29,8 @@ const routes: Routes = [
     IonicModule,
     SharedModule,
     CreateEditProjectActivityModule,
+    CreateEditProjectFilterModule,
+    ProjectFilterModule,
     NoDataModule,
     PageInfoTitleModule,
     PanelHeaderModule,

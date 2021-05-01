@@ -6,32 +6,20 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-21 07:54:28 
- * Last modified  : 2021-04-29 19:56:20
+ * Last modified  : 2021-05-01 11:07:29
  */
 
-@import '~@ionic/angular/css/core.css';
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
-@import '~@ionic/angular/css/display.css';
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
-@import './theme/colors.scss';
-
-ion-card{
-    border-radius: 10px;
-}
-
-.card-no-shadow
-{
-  box-shadow:none !important
-}
-
-.selector{
-    cursor: pointer;
-}
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "./theme/colors.scss";
+@import "./theme/common-object.scss";
 
 

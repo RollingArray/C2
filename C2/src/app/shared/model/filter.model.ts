@@ -17,7 +17,7 @@ export interface FilterModel extends ProjectModel {
     sprintName ?: string;
     goalId ?: string;
     goalName ?: string;
-    assignedUserId ?: string;
+    assigneeUserId ?: string;
     userFirstName ?: string;
     userLastName ?: string;
     userEmail ?: string;

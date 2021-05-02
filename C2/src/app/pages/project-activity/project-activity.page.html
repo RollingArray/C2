@@ -11,7 +11,7 @@
 	</ion-toolbar>
 </ion-header>
 <!-- header -->
-<ion-content #scrollArea scrollEvents="true">
+<ion-content #scrollArea scrollEvents="true"		>
 	<!-- page title -->
 	<app-page-info-title [title]="stringKey.PROJECT_ACTIVITY" [info]="stringKey.ACTIVITY_INFO">
 	</app-page-info-title>
@@ -38,61 +38,143 @@
 		<app-project-filter [filter]="filterModel"></app-project-filter>
 	</ion-card>
 	<!-- filter -->
+
 	<!-- no data -->
 	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
 	<!-- no data -->
+
+	<!-- data container -->
 	<ng-container *ngIf="hasData">
-		<ion-card *ngFor="let activity of projectActivityModel?.projectActivities.data">
-			<app-panel-header [panelTitle]="activity" [panelIcon]="stringKey.ICON_ACTIVITY"
+		<ion-card *ngFor="let activity of activities">
+			<!-- title -->
+			<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
 				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-				(event)="openActivityOptions(activity)"></app-panel-header>
-			<app-custom-fields [description]="activity.activityName">
-			</app-custom-fields>
-		</ion-card>
-	</ng-container>
-	<ion-card>
-		<app-panel-header panelTitle="SPRINT" panelIcon="stringKey.ICON_SPRINT" [panelColor]="stringKey.COLOR_PRIMARY"
-			eventIcon="stringKey.ICON_MORE"></app-panel-header>
-		<ion-card>
-			<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
-				[panelColor]="stringKey.COLOR_SECONDARY" eventIcon="stringKey.ICON_MORE"></app-panel-header>
+				(event)="openActivityOptions(activity)">
+			</app-panel-header>
+			<!-- title -->
+
+			<!-- activity grid -->
 			<ion-grid>
 				<ion-row>
+					<!-- measurement type -->
 					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 						<ion-card>
-							<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
-								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
+							<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE"
+								[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_SECONDARY"
+								eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+							<app-panel-header [panelTitle]="activity.activityResultType"
+								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
+								eventIcon="stringKey.ICON_MORE">
 							</app-panel-header>
 						</ion-card>
 					</ion-col>
+					<!-- measurement type -->
+
+					<!-- weight -->
 					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 						<ion-card>
-							<app-panel-header panelTitle="ACTIVITY & Result type" panelIcon="stringKey.ICON_ACTIVITY"
-								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
+							<app-panel-header [panelTitle]="stringKey.WEIGHT_IN_P" [panelIcon]="stringKey.ICON_WEIGHT"
+								[panelColor]="stringKey.COLOR_SECONDARY" eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+							<app-panel-header [panelTitle]="activity.activityWeight"
+								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
+								eventIcon="stringKey.ICON_MORE">
 							</app-panel-header>
 						</ion-card>
 					</ion-col>
+					<!-- weight -->
+
+					<!-- scale -->
+					<ion-col>
+						<ion-card>
+
+							<!-- title -->
+							<app-panel-header [panelTitle]="stringKey.ACTIVITY_MEASUREMENT_SCALE"
+								[panelIcon]="stringKey.ICON_SCALE" [panelColor]="stringKey.COLOR_SECONDARY"
+								eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+							<!-- title -->
+
+							<!-- number -->
+							<app-panel-header
+								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num"
+								[panelTitle]="stringKey.MEASUREMENT_TYPE_NUM_INFO"
+								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
+								eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+							<!-- number -->
+
+							<!-- bool -->
+							<app-panel-header
+								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Bool"
+								[panelTitle]="stringKey.MEASUREMENT_TYPE_BOOL_INFO"
+								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
+								eventIcon="stringKey.ICON_MORE">
+							</app-panel-header>
+							<!-- bool -->
+
+							<!-- number scale table -->
+							<div id="overflow-content"
+								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num">
+								<table>
+									<tr>
+										<th>{{stringKey.POOR}}</th>
+										<th>{{stringKey.IMPROVEMENT}}</th>
+										<th>{{stringKey.EXPECTATION}}</th>
+										<th>{{stringKey.EXCEED}}</th>
+										<th>{{stringKey.OUTSTANDING}}</th>
+									</tr>
+									<tr>
+										<td colspan="5"></td>
+									</tr>
+									<tr>
+										<td>
+											{{stringKey.LESS_THAN}}
+											{{activity.criteriaPoorValue}}
+										</td>
+										<td>
+											{{stringKey.MORE_THAN_EQUAL}}
+											{{activity.criteriaPoorValue}},
+											{{stringKey.LESS_THAN}}
+											{{activity.criteriaImprovementValue}}
+										</td>
+										<td>
+											{{stringKey.MORE_THAN_EQUAL}}
+											{{activity.criteriaImprovementValue}},
+											{{stringKey.LESS_THAN}}
+											{{activity.criteriaExpectationValue}}
+										</td>
+										<td>
+											{{stringKey.MORE_THAN_EQUAL}}
+											{{activity.criteriaExpectationValue}},
+											{{stringKey.LESS_THAN}}
+											{{activity.criteriaExceedValue}}
+										</td>
+										<td>
+											{{stringKey.MORE_THAN_EQUAL}}
+											{{activity.criteriaExceedValue}},
+											{{stringKey.LESS_THAN_EQUAL}}
+											{{activity.criteriaOutstandingValue}}
+										</td>
+									</tr>
+									<tr>
+										<td colspan="5"></td>
+									</tr>
+								</table>
+							</div>
+							<!-- number scale table -->
+						</ion-card>
+					</ion-col>
+					<!-- scale -->
 				</ion-row>
 			</ion-grid>
-			<ion-card style="overflow-x: auto">
-				<table>
-					<tr>
-						<th>{{stringKey.POOR}}</th>
-						<th>{{stringKey.IMPROVEMENT}}</th>
-						<th>{{stringKey.EXPECTATION}}</th>
-						<th>{{stringKey.EXCEED}}</th>
-						<th>{{stringKey.OUTSTANDING}}</th>
-					</tr>
-					<tr>
-						<td>{{stringKey.POOR}}</td>
-						<td>{{stringKey.IMPROVEMENT}}</td>
-						<td>{{stringKey.EXPECTATION}}</td>
-						<td>{{stringKey.EXCEED}}</td>
-						<td>{{stringKey.OUTSTANDING}}</td>
-					</tr>
-				</table>
-			</ion-card>
-
+			<!-- activity grid -->
 		</ion-card>
-	</ion-card>
+	</ng-container>
+	<!-- data container -->
+	
+	<!-- empty row -->
+	<div id="dum-height"></div>
+	<!-- empty row -->
 </ion-content>

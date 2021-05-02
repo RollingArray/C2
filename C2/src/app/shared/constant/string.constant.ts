@@ -118,12 +118,12 @@ export class StringKey {
 
 	public static readonly MEASUREMENT_TYPE_NUM: string = 'NUM';
 	public static readonly MEASUREMENT_TYPE_BOOL: string = 'BOOL';
-	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the task measures based on the numeric scale';
-	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the task measures based on either full or none';
+	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the activity measures based on the following numeric scale';
+	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the activity measures based on either fully achieved or none';
 	public static readonly FORM_INFO_ACTIVITY: string = 'What is the activity to perform to achieve the goal';
 	public static readonly FORM_INFO_ACTIVITY_WEIGHT: string = 'Provide a weight to the activity, maximum is 100 %';
 	public static readonly FORM_INFO_ACTIVITY_RESULT_TYPE: string = 'Provide in what context the result of the activity will be judged';
-	public static readonly MEASUREMENT_TYPE: string = 'Primary parameter to measure the task type';
+	public static readonly MEASUREMENT_TYPE: string = 'Measurement Parameter';
 	public static readonly KPI: string = 'Key Performance Indicator';
 	public static readonly KPI_INFO: string = 'Key Performance Indicator is the Performance Indicator, which allows objectively evaluates the effectiveness of workflow';
 	public static readonly VIEW_USER_KPI: string = 'View Performance Matrix';
@@ -177,6 +177,7 @@ export class StringKey {
 	public static readonly EXCEED: string = 'Exceed';
 	public static readonly OUTSTANDING: string = 'Outstanding';
 	public static readonly WEIGHT_IN_P: string = 'Weight in %';
+	public static readonly ACTIVITY_MEASUREMENT_SCALE: string = 'Activity measurement scale';
 	public static readonly PERFORMANCE_IN_P: string = 'Performances in %';
 	public static readonly WEIGHTED_PERFORMANCE_IN_P: string = 'Weighted Performances in %';
 	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
@@ -207,7 +208,7 @@ export class StringKey {
 	public static readonly FORM_INFO_SELECT_TASK_TYPE: string = 'Select relevant task type';
 	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant Sprint';
 	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant Goal';
-	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the task type';
+	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the activity';
 
 	public static readonly FORM_INFO_PERSONAL_DETAILS: string = 'Provide some of your personal details';
 	public static readonly FORM_INFO_CREDENTIAL_DETAILS: string = 'Provide your credential, we will use this while you sign in';
@@ -290,7 +291,7 @@ export class StringKey {
 	public static readonly FORM_VALIDATION_TASK_TYPE_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
 	public static readonly FORM_VALIDATION_TASK_TYPE_DESCRIPTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
 	public static readonly FORM_VALIDATION_ACTIVITY: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
-	public static readonly FORM_VALIDATION_ACTIVITY_RESULT_TYPE: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
+	public static readonly FORM_VALIDATION_ACTIVITY_RESULT_TYPE: string = 'It is a mandatory filed. Can be between 1 - 50 characters';
 	
 	
 	public static readonly FORM_VALIDATION_NUM: string = 'It is a mandatory filed. Only [0-9] allowed';
@@ -349,6 +350,7 @@ export class StringKey {
 	public static readonly CONFIRM_ACTION: string = 'Confirm Your Action !';
 	public static readonly CONFIRM_LOG_OUT: string = 'Do You Want To Sign Out';
 	public static readonly MANDATORY_FIELDS: string = 'Do Not Keep Field(s) Blank';
+	public static readonly MANDATORY_SELECT: string = 'Select <b>Goal</b>, <b>Sprint</b> & <b>Assignee</b> to create an <b>Activity</b>';
 	public static readonly DELETE_CONFIRM: string = 'Are You Sure You Want To Delete';
 	public static readonly RESEND_ACTIVATION_CODE: string = 'Email Required For Resending Activation Code';
 	public static readonly ALLOW_NOTIFICATION: string = 'You did not allow us to send notifications, please allow to send notification from your app settings to receive update from your project';
@@ -370,7 +372,7 @@ export class StringKey {
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
-	public static readonly NO_DATA_ACTIVITY: string = 'No activity has been set for the project yet. Add a new activity';
+	public static readonly NO_DATA_ACTIVITY: string = 'No Activity has been found. Play with filters to find an activity or add a new activity';
 	public static readonly NO_DATA_MY_PROJECT: string = 'You do not have any project yet, you may create a new project here';
 	public static readonly NO_DATA: string = 'No data available';
 	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
@@ -415,7 +417,10 @@ export class StringKey {
 	public static readonly ICON_ACTIVITY: string = StringKey.ICON_BASE_PATH + "activity.svg";
 	public static readonly ICON_MULTI_SELECT: string = StringKey.ICON_BASE_PATH + "multi-select.svg";
 	public static readonly ICON_FILTER: string = StringKey.ICON_BASE_PATH + "filter.svg";
-	
+	public static readonly ICON_RESULT: string = StringKey.ICON_BASE_PATH + "result.svg";
+	public static readonly ICON_SCALE: string = StringKey.ICON_BASE_PATH + "scale-measurement.svg";
+	public static readonly ICON_SLIDER: string = StringKey.ICON_BASE_PATH + "slider.svg";
+
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
 	public static readonly ICON_NOTIFICATION: string = StringKey.ICON_BASE_PATH + "notifications.svg";
@@ -441,13 +446,14 @@ export class StringKey {
 	public static readonly ICON_KPI_STORY: string = StringKey.ICON_BASE_PATH + "kpi-story.svg";
 	public static readonly ICON_SELECT: string = StringKey.ICON_BASE_PATH + "select.svg";
 	public static readonly ICON_WEIGHT: string = StringKey.ICON_BASE_PATH + "quantity.svg";
-	public static readonly ICON_SCALE: string = StringKey.ICON_BASE_PATH + "scale-measurement.svg";
+	
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";
+	
 
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";
@@ -460,5 +466,5 @@ export class StringKey {
 	public static readonly COLOR_DARK: string = "dark";
 	public static readonly COLOR_MEDIUM: string = "medium";
 	public static readonly COLOR_LIGHT: string = "light";
-
+	public static readonly COLOR_INFO: string = "info";
 }

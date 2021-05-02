@@ -17,6 +17,7 @@ import { ProjectActivityModel } from 'src/app/shared/model/project-activity.mode
 import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
 import { FilterModel } from 'src/app/shared/model/filter.model';
 import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component';
+import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measurement-type.enum';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	private _projectId: string;
 
 	/**
-	 * Activitys  of project activity page
+	 * Activities  of project activity page
 	 */
 	private _activities: ActivityModel[];
 
@@ -66,6 +67,10 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 */
 	private _filterModel: FilterModel;
 
+	/**
+	 * Activity measurement type enum of project activity page
+	 */
+	activityMeasurementTypeEnum = ActivityMeasurementTypeEnum;
 	/**
 	 * Sets bread crumb
 	 */
@@ -95,16 +100,16 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	}
 
 	/**
-	 * Sets activitys
+	 * Sets activities
 	 */
-	public set activitys(value: ActivityModel[]) {
+	public set activities(value: ActivityModel[]) {
 		this._activities = value;
 	}
 
 	/**
-	 * Gets activitys
+	 * Gets activities
 	 */
-	public get activitys(): ActivityModel[] {
+	public get activities(): ActivityModel[] {
 		return this._activities;
 	}
 
@@ -146,6 +151,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 		public localStorageService: LocalStorageService,
 		private projectActivityService: ProjectActivityService,
 		private loadingService: LoadingService,
+		private alertService: AlertService
 	) {
 		super(injector);
 	}
@@ -192,13 +198,8 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	async loadData() {
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
 
-		const passedData: ProjectModel = {
-			projectId: this._projectId,
-			userId: this._loggedInUser
-		};
-
 		this.projectActivityService
-			.getProjectActivities(passedData)
+			.getProjectActivities(this._filterModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -209,7 +210,11 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 						await this.generateBreadcrumb();
 
 						if (this._projectActivityModel.projectActivities.success) {
+							this._activities = this._projectActivityModel.projectActivities.data
 							this._hasData = true;
+						}
+						else{
+							this._hasData = false;
 						}
 					}
 				}
@@ -221,7 +226,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 */
 	async generateBreadcrumb() {
 		let projectName = this._projectActivityModel.projectDetails?.projectName;
-		this._breadCrumb = [projectName, this.stringKey.PROJECT_GOAL];
+		this._breadCrumb = [projectName, this.stringKey.PROJECT_ACTIVITY];
 	}
 
 	/**
@@ -229,9 +234,17 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * @returns  
 	 */
 	async addProjectActivity() {
+		if(!this._filterModel){
+			await this.alertService.presentBasicAlert(
+				`${this.stringKey.MANDATORY_SELECT}`
+			);
+		}
 		const passedModel: ActivityModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
+			assigneeUserId: this._filterModel.assigneeUserId,
+			sprintId: this._filterModel.sprintId,
+			goalId: this._filterModel.goalId,
 			operationType: `${OperationsEnum.Create}`
 		}
 		const modal = await this.modalController.create({

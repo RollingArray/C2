@@ -8,6 +8,7 @@ export class Regex {
   public static readonly NUMBER_PATTERN = /^[0-9]*$/;
 	public static readonly FLOAT_NUMBER_PATTERN = /^[0-9.]*$/;
 	public static readonly ALPHANUMERIC_NAME_PATTERN = /^[a-zA-Z0-9 \[\]()-.,;:!&@#%$^\/_\-\n]{2,200}$/;
+  public static readonly ACTIVITY_RESULT_TYPE_PATTERN = /^[a-zA-Z0-9 \[\]()-.,;:!&@#%$^\/_\-\n]{1,50}$/;
 	public static readonly VERIFICATION_CODE_PATTERN = /([a-zA-Z0-9]{8,30}\s*)+/;
   public static readonly RESET_PASSWORD_CODE_PATTERN = /([a-zA-Z0-9]{4,30}\s*)+/;
   public static readonly DATE_PATTERN = /^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$/;

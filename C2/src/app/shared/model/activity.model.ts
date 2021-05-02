@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-29 11:11:02 
- * Last modified  : 2021-05-01 17:11:17
+ * Last modified  : 2021-05-02 19:32:09
  */
 
 
@@ -21,6 +21,7 @@ export interface ActivityModel extends ProjectModel {
     assigneeUserId ?: string;
     activityName ?: string;
     activityWeight ?: number;
+    activityWeightDelta ?: number;
     activityMeasurementType ?: ActivityMeasurementTypeEnum;
     activityResultType ?: string;
     criteriaPoorValue ?: number;

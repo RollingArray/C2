@@ -27,30 +27,115 @@ import { ModuleEnum } from "src/app/shared/enum/module.enum";
 })
 export class CreateEditProjectActivityComponent extends BaseFormComponent
 	implements OnInit, OnDestroy {
-	@Input() data: string;
-	passedActivity: ActivityModel;
-	defaultSprintModel: SprintModel;
-	projectSprints: SprintModel[];
-	projectUsers: UserModel[];
-	projectGoals: GoalModel[];
-	selectedSprint: SprintModel;
-	selectedUser: UserModel = null;
-	selectedGoal: GoalModel;
+
+	/**
+	 * Passed activity of create edit project activity component
+	 */
+	_passedActivity: ActivityModel;
+
+	/**
+	 * Default sprint model of create edit project activity component
+	 */
+	_defaultSprintModel: SprintModel;
+
+	/**
+	 * Project sprints of create edit project activity component
+	 */
+	_projectSprints: SprintModel[];
+
+	/**
+	 * Project users of create edit project activity component
+	 */
+	_projectUsers: UserModel[];
+
+	/**
+	 * Project goals of create edit project activity component
+	 */
+	_projectGoals: GoalModel[];
+
+	/**
+	 * Selected sprint of create edit project activity component
+	 */
+	_selectedSprint: SprintModel;
+
+	/**
+	 * Selected user of create edit project activity component
+	 */
+	_selectedUser: UserModel = null;
+
+	/**
+	 * Selected goal of create edit project activity component
+	 */
+	_selectedGoal: GoalModel;
+
+	/**
+	 * Selected activity measurement type of create edit project activity component
+	 */
 	selectedActivityMeasurementType: ActivityMeasurementTypeEnum;
-	modalData: ModalData;
-	showNumScale : boolean = false;
-	characteristicsHigherBetter : boolean = true;
+
+	/**
+	 * Modal data of create edit project activity component
+	 */
+	_modalData: ModalData;
+
+	/**
+	 * Show num scale of create edit project activity component
+	 */
+	_showNumScale : boolean = false;
+
+	/**
+	 * Activity weight delta of create edit project activity component
+	 */
+	_activityWeightDelta : number = 0
+
+	/**
+	 * Previous activity weight delta of create edit project activity component
+	 */
+	_previousActivityWeightDelta : number = 0
+
+	/**
+	 * Characteristics higher better of create edit project activity component
+	 */
+	_characteristicsHigherBetter : boolean = true;
+	
+	/**
+	 * Activity measurement type enum of create edit project activity component
+	 */
 	activityMeasurementTypeEnum = ActivityMeasurementTypeEnum;
+
+	/**
+	 * Module enum of create edit project activity component
+	 */
 	moduleEnum = ModuleEnum;
+
+	/**
+	 * Animation duration of create edit project activity component
+	 */
 	_animationDuration = 100;
+
+	/**
+	 * Transition height of create edit project activity component
+	 */
 	_transitionHeight = -356;
+
+	/**
+	 * Drop selector title of create edit project activity component
+	 */
 	_dropSelectorTitle: string;
 
+	/**
+	 * View child of create edit project activity component
+	 */
 	@ViewChild("dropSelector", { read: ElementRef, static: true}) dropSelector: ElementRef;
-	@ViewChild("memberDropSelector", { read: ElementRef, static: true}) memberDropSelector: ElementRef;
-	@ViewChild("sprintDropSelector", { read: ElementRef, static: true}) sprintDropSelector: ElementRef;
-	@ViewChild("goalDropSelector", { read: ElementRef, static: true}) goalDropSelector: ElementRef;
+	
+	/**
+	 * View child of create edit project activity component
+	 */
 	@ViewChild("dropSelectorBackdrop", { read: ElementRef, static: true}) dropSelectorBackdrop: ElementRef;
+	
+	/**
+	 * View child of create edit project activity component
+	 */
 	@ViewChild("activityMeasurementTypeDropSelector", { read: ElementRef, static: true}) activityMeasurementTypeDropSelector: ElementRef;
 	
 	/**
@@ -66,7 +151,45 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	public get dropSelectorTitle(): string {
 		return this._dropSelectorTitle;
 	}
+
+	/**
+	 * Sets show num scale
+	 */
+	 public set showNumScale(value: boolean) {
+		this._showNumScale = value;
+	}
+
+	/**
+	 * Gets show num scale
+	 */
+	public get showNumScale(): boolean {
+		return this._showNumScale;
+	}
+
+	/**
+	 * Sets characteristics higher better
+	 */
+	public set characteristicsHigherBetter(value: boolean) {
+		this._characteristicsHigherBetter = value;
+	}
+
+	/**
+	 * Gets characteristics higher better
+	 */
+	public get characteristicsHigherBetter(): boolean {
+		return this._characteristicsHigherBetter;
+	}
 	
+	/**
+	 * Creates an instance of create edit project activity component.
+	 * @param injector 
+	 * @param alertService 
+	 * @param projectActivityService 
+	 * @param projectService 
+	 * @param loadingService 
+	 * @param navParams 
+	 * @param animationController 
+	 */
 	constructor(
 		injector: Injector,
 		private alertService: AlertService,
@@ -78,60 +201,35 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 
 	) {
 		super(injector);
-		this.passedActivity = this.navParams.get("data");
-		console.log(this.passedActivity);
+		this._passedActivity = this.navParams.get("data");
 		this.buildFrom();
 		this.loadData();
 	}
 
-	// load data
-	async loadData() {
-		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
-
-		const passedData: ProjectModel = {
-			projectId: this.passedActivity.projectId,
-			userId: this.passedActivity.userId
-		};
-
-		this.projectService
-			.getProjectRaw(passedData)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				(baseModel: BaseModel) => {
-					this.loadingService.dismiss();
-					if (baseModel.success) {
-						this.projectSprints = baseModel.data.projectSprints.data;
-						this.projectUsers = baseModel.data.projectMembers.data;
-						this.projectGoals = baseModel.data.projectGoals.data;
-					}
-				}
-			);
+	/**
+	 * on init
+	 */
+	 ngOnInit() { 
+		this.dropSelectorBackdrop.nativeElement.hidden = true;
 	}
 
-	public chooseUser(passedUser: UserModel){
-		this.selectedUser = passedUser;
-		this.formGroup.controls.userId.setValue(this.selectedUser);
-		this.closeDropSelector();
+	/**
+	 * on destroy
+	 */
+	ngOnDestroy() {
+		super.ngOnDestroy();
 	}
 
-	public chooseSprint(passedSprint: SprintModel){
-		this.selectedSprint = passedSprint;
-		this.formGroup.controls.sprintId.setValue(this.selectedSprint);
-		this.closeDropSelector();
-	}
-
-	public chooseGoal(passedGoal: GoalModel){
-		this.selectedGoal = passedGoal;
-		this.formGroup.controls.goalId.setValue(this.selectedGoal);
-		this.closeDropSelector();
-	}
-
-	public chooseTaskMeasurementType(operations: ActivityMeasurementTypeEnum){
+	/**
+	 * Chooses task measurement type
+	 * @param operations 
+	 */
+	 public chooseTaskMeasurementType(operations: ActivityMeasurementTypeEnum){
 		this.selectedActivityMeasurementType = operations;
 		const form = this.formGroup.value;
 		this.formGroup.controls.activityMeasurementType.setValue(operations);
 		if(operations == ActivityMeasurementTypeEnum.Bool){
-			this.showNumScale = false;
+			this._showNumScale = false;
 			this.formGroup.controls.criteriaPoorValue.setValue('0');
 			this.formGroup.controls.criteriaImprovementValue.setValue('0');
 			this.formGroup.controls.criteriaExpectationValue.setValue('0');
@@ -139,55 +237,45 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			this.formGroup.controls.criteriaOutstandingValue.setValue('100');
 		}
 		else{
-			this.showNumScale = true;
+			this._showNumScale = true;
 		}
 		this.closeDropSelector();
 	}
 
+	/**
+	 * Sets passed value to from
+	 */
 	private setPassedValueToFrom() {
 		const form = this.formGroup.value;
-		form.sprintId = this.passedActivity.sprintId;
-		form.userId = this.passedActivity.userId;
-		form.goalId = this.passedActivity.goalId;
-		form.activityName = this.passedActivity.activityName;
-		form.activityWeight = this.passedActivity.activityWeight;
-		form.activityMeasurementType = this.passedActivity.activityMeasurementType;
-		form.activityResultType = this.passedActivity.activityResultType;
-		form.criteriaPoorValue = this.passedActivity.criteriaPoorValue;
-		form.criteriaImprovementValue = this.passedActivity.criteriaImprovementValue;
-		form.criteriaExpectationValue = this.passedActivity.criteriaExpectationValue;
-		form.criteriaExceedValue = this.passedActivity.criteriaExceedValue;
-		form.criteriaOutstandingValue = this.passedActivity.criteriaOutstandingValue;
+		form.activityName = this._passedActivity.activityName;
+		form.activityWeight = this._passedActivity.activityWeight;
+		form.activityMeasurementType = this._passedActivity.activityMeasurementType;
+		form.activityResultType = this._passedActivity.activityResultType;
+		form.criteriaPoorValue = this._passedActivity.criteriaPoorValue;
+		form.criteriaImprovementValue = this._passedActivity.criteriaImprovementValue;
+		form.criteriaExpectationValue = this._passedActivity.criteriaExpectationValue;
+		form.criteriaExceedValue = this._passedActivity.criteriaExceedValue;
+		form.criteriaOutstandingValue = this._passedActivity.criteriaOutstandingValue;
+
+		if(this._passedActivity.activityMeasurementType){
+			this.chooseTaskMeasurementType(this._passedActivity.activityMeasurementType);
+		}
 	}
+
+	/**
+	 * Builds from
+	 */
 	private buildFrom() {
 		this.formGroup = this.formBuilder.group({
-			sprintId: [
-				this.passedActivity.sprintId,
-				this.validators().compose([
-					this.validators().required,
-				]),
-			],
-			userId: [
-				this.passedActivity.userId,
-				this.validators().compose([
-					this.validators().required,
-				]),
-			],
-			goalId: [
-				this.passedActivity.goalId,
-				this.validators().compose([
-					this.validators().required,
-				]),
-			],
 			activityName: [
-				this.passedActivity.activityName,
+				this._passedActivity.activityName,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.ALPHANUMERIC_NAME_PATTERN),
 				]),
 			],
 			activityWeight: [
-				this.passedActivity.activityWeight,
+				this._passedActivity.activityWeight,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
@@ -195,48 +283,48 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			],
 			
 			activityMeasurementType: [
-				this.passedActivity.activityMeasurementType,
+				this._passedActivity.activityMeasurementType,
 				this.validators().compose([
 					this.validators().required,
 				]),
 			],
 			activityResultType: [
-				this.passedActivity.activityResultType,
+				this._passedActivity.activityResultType,
 				this.validators().compose([
 					this.validators().required,
-					this.validators().pattern(this.regex.DESCRIPTION_PATTERN),
+					this.validators().pattern(this.regex.ACTIVITY_RESULT_TYPE_PATTERN),
 				]),
 			],
 			criteriaPoorValue: [
-				this.passedActivity.criteriaPoorValue,
+				this._passedActivity.criteriaPoorValue,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
 				]),
 			],
 			criteriaImprovementValue: [
-				this.passedActivity.criteriaImprovementValue,
+				this._passedActivity.criteriaImprovementValue,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
 				]),
 			],
 			criteriaExpectationValue: [
-				this.passedActivity.criteriaExpectationValue,
+				this._passedActivity.criteriaExpectationValue,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
 				]),
 			],
 			criteriaExceedValue: [
-				this.passedActivity.criteriaExceedValue,
+				this._passedActivity.criteriaExceedValue,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
 				]),
 			],
 			criteriaOutstandingValue: [
-				this.passedActivity.criteriaOutstandingValue,
+				this._passedActivity.criteriaOutstandingValue,
 				this.validators().compose([
 					this.validators().required,
 					this.validators().pattern(this.regex.NUMBER_PATTERN),
@@ -247,69 +335,124 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		this.setPassedValueToFrom();
 	}
 	
-	
-
+	/**
+	 * Gets page title
+	 */
 	get pageTitle() {
 		let title: string;
-		if (this.passedActivity.operationType === OperationsEnum.Create) {
+		if (this._passedActivity.operationType === OperationsEnum.Create) {
 			title = this.stringKey.CREATE_ACTIVITY;
 		} else {
 			title = this.stringKey.UPDATE_ACTIVITY;
+			this._previousActivityWeightDelta = this._passedActivity.activityWeight;
 		}
 
 		return title;
 	}
 
+	/**
+	 * Calculates weight delta
+	 * @param activityWeight 
+	 * @returns  
+	 */
+	async calculateWeightDelta(activityWeight: number){
+		//console.log(`${this._previousActivityWeightDelta} - ${activityWeight}`);
+		return activityWeight - this._previousActivityWeightDelta;
+	}
 	
-	//get frm value
-	get sprintId() {
-		return this.formGroup.get("sprintId");
+	/**
+	 * Loads data
+	 */
+	async loadData() {
+		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
+
+		const passedData: ProjectModel = {
+			projectId: this._passedActivity.projectId,
+			userId: this._passedActivity.userId
+		};
+
+		this.projectService
+			.getProjectRaw(passedData)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(
+				(baseModel: BaseModel) => {
+					this.loadingService.dismiss();
+					if (baseModel.success) {
+						this._projectSprints = baseModel.data.projectSprints.data;
+						this._projectUsers = baseModel.data.projectMembers.data;
+						this._projectGoals = baseModel.data.projectGoals.data;
+					}
+				}
+			);
 	}
 
-	get userId() {
-		return this.formGroup.get("userId");
-	}
-
-	get goalId() {
-		return this.formGroup.get("goalId");
-	}
-
+	/**
+	 * Gets activity name
+	 */
 	get activityName() {
 		return this.formGroup.get("activityName");
 	}
 
+	/**
+	 * Gets activity weight
+	 */
 	get activityWeight() {
 		return this.formGroup.get("activityWeight");
 	}
 
+	/**
+	 * Gets activity result type
+	 */
 	get activityResultType() {
 		return this.formGroup.get("activityResultType");
 	}
 
+	/**
+	 * Gets activity measurement type
+	 */
 	get activityMeasurementType() {
 		return this.formGroup.get("activityMeasurementType");
 	}
 
+	/**
+	 * Gets criteria poor value
+	 */
 	get criteriaPoorValue() {
 		return this.formGroup.get("criteriaPoorValue");
 	}
 
+	/**
+	 * Gets criteria improvement value
+	 */
 	get criteriaImprovementValue() {
 		return this.formGroup.get("criteriaImprovementValue");
 	}
 
+	/**
+	 * Gets criteria expectation value
+	 */
 	get criteriaExpectationValue() {
 		return this.formGroup.get("criteriaExpectationValue");
 	}
 
+	/**
+	 * Gets criteria exceed value
+	 */
 	get criteriaExceedValue() {
 		return this.formGroup.get("criteriaExceedValue");
 	}
 
+	/**
+	 * Gets criteria outstanding value
+	 */
 	get criteriaOutstandingValue() { 
 		return this.formGroup.get("criteriaOutstandingValue");
 	}
 
+	/**
+	 * Finds invalid controls
+	 * @returns  
+	 */
 	public findInvalidControls() {
 		const invalid = [];
 		const controls = this.formGroup.controls;
@@ -321,7 +464,9 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		return invalid;
 	}
 
-	// submit login
+	/**
+	 * Submits create edit project activity component
+	 */
 	async submit() {
 		console.log(this.findInvalidControls());
 		console.log(this.formGroup.value);
@@ -335,7 +480,7 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 				await this.submitData();
 			}
 			else{
-				if(this.characteristicsHigherBetter){
+				if(this._characteristicsHigherBetter){
 					this.higherBetterValueValidation();
 				}
 				else{
@@ -427,22 +572,32 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		}	
 	}
 	
+	/**
+	 * Determines whether toggle btn change on
+	 * @param event 
+	 */
 	onToggleBtnChange(event): void {
-		const val = this.characteristicsHigherBetter;
+		const val = this._characteristicsHigherBetter;
 		console.log(val);
 	}
 
-	private buildDataModelToPass() {
+	/**
+	 * Builds data model to pass
+	 * @returns  
+	 */
+	private async buildDataModelToPass() {
 		// build data userModel
 		const form = this.formGroup.value;
 		const model: ActivityModel = {
-			userId: this.passedActivity.userId,
-			projectId: this.passedActivity.projectId,
-			sprintId: this.selectedSprint.sprintId,
-			assigneeUserId:this.selectedUser.userId,
-			goalId:this.selectedGoal.goalId,
+			userId: this._passedActivity.userId,
+			projectId: this._passedActivity.projectId,
+			sprintId: this._passedActivity.sprintId,
+			assigneeUserId:this._passedActivity.assigneeUserId,
+			goalId:this._passedActivity.goalId,
+			activityId: this._passedActivity.activityId,
 			activityName: form.activityName,
 			activityWeight: form.activityWeight,
+			activityWeightDelta: await this.calculateWeightDelta(form.activityWeight),
 			activityMeasurementType: this.selectedActivityMeasurementType,
 			activityResultType: form.activityResultType,
 			criteriaPoorValue: form.criteriaPoorValue,
@@ -450,17 +605,20 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			criteriaExpectationValue: form.criteriaExpectationValue,
 			criteriaExceedValue: form.criteriaExceedValue,
 			criteriaOutstandingValue: form.criteriaOutstandingValue,
-			characteristicsHigherBetter : this.characteristicsHigherBetter ? 1 : 0,
-			operationType: this.passedActivity.operationType,
+			characteristicsHigherBetter : this._characteristicsHigherBetter ? 1 : 0,
+			operationType: this._passedActivity.operationType,
 		};
 
 		return model;
 	}
 
+	/**
+	 * Submits data
+	 */
 	async submitData() {
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
 
-		const activityModel: ActivityModel = this.buildDataModelToPass();
+		const activityModel: ActivityModel = await this.buildDataModelToPass();
 		
 		this.projectActivityService
 			.projectActivityCrud(activityModel)
@@ -471,7 +629,7 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 
 					// build
 					if (baseModel.success) {
-						this.modalData = {
+						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
 						};
@@ -488,10 +646,13 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			);
 	}
 
+	/**
+	 * Cancels modal
+	 */
 	cancelModal() {
 
-		this.passedActivity = this.defaultSprintModel;
-		this.modalData = {
+		this._passedActivity = this._defaultSprintModel;
+		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,
 		};
@@ -499,19 +660,13 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		this.dismissModal();
 	}
 
+	/**
+	 * Dismiss modal
+	 */
 	dismissModal() {
-		this.modalController.dismiss(this.modalData).then(() => {
+		this.modalController.dismiss(this._modalData).then(() => {
 			this.formGroup.reset();
 		});
-	}
-
-	
-	ngOnInit() { 
-		this.dropSelectorBackdrop.nativeElement.hidden = true;
-	}
-
-	ngOnDestroy() {
-		super.ngOnDestroy();
 	}
 
 	/**
@@ -534,34 +689,10 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	private activeDropSelector(dropSelectorType: ModuleEnum) {
 		this.dropSelectorBackdrop.nativeElement.hidden = false;
-		
+		console.log(dropSelectorType);
 		switch (dropSelectorType) {
-			case ModuleEnum.member:
-				this._dropSelectorTitle = `${this.stringKey.SELECT} ${ModuleEnum.member}`;
-				this.memberDropSelector.nativeElement.hidden = false;
-				this.sprintDropSelector.nativeElement.hidden = true;
-				this.goalDropSelector.nativeElement.hidden = true;
-				this.activityMeasurementTypeDropSelector.nativeElement.hidden = true;
-				break;
-			case ModuleEnum.sprint:
-				this._dropSelectorTitle = `${this.stringKey.SELECT} ${ModuleEnum.sprint}`;
-				this.memberDropSelector.nativeElement.hidden = true;
-				this.sprintDropSelector.nativeElement.hidden = false;
-				this.goalDropSelector.nativeElement.hidden = true;
-				this.activityMeasurementTypeDropSelector.nativeElement.hidden = true;
-				break;
-			case ModuleEnum.goal:
-				this._dropSelectorTitle = `${this.stringKey.SELECT} ${ModuleEnum.goal}`;
-				this.memberDropSelector.nativeElement.hidden = true;
-				this.sprintDropSelector.nativeElement.hidden = true;
-				this.goalDropSelector.nativeElement.hidden = false;
-				this.activityMeasurementTypeDropSelector.nativeElement.hidden = true;
-				break;
 			case ModuleEnum.measurementType:
 				this._dropSelectorTitle = `${this.stringKey.SELECT} ${ModuleEnum.measurementType}`;
-				this.memberDropSelector.nativeElement.hidden = true;
-				this.sprintDropSelector.nativeElement.hidden = true;
-				this.goalDropSelector.nativeElement.hidden = true;
 				this.activityMeasurementTypeDropSelector.nativeElement.hidden = false;
 				break;
 		

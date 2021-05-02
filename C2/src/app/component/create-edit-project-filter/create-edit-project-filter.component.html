@@ -30,10 +30,9 @@
 				<ion-icon [src]="stringKey.ICON_GOAL" slot="start"></ion-icon>
 				{{ stringKey.FORM_INFO_SELECT_GOAL }}
 			</ion-item>
-		</ion-card>
-		<ion-card *ngIf="selectedGoal" color="light">
-			<app-panel-header [panelTitle]="selectedGoal.goalName" [panelIcon]="stringKey.ICON_SELECT"
-				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			<app-panel-header *ngIf="selectedGoal" [panelTitle]="selectedGoal.goalName"
+				[panelIcon]="stringKey.ICON_SELECT" [panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false">
+			</app-panel-header>
 		</ion-card>
 		<!-- select goal -->
 
@@ -43,10 +42,9 @@
 				<ion-icon [src]="stringKey.ICON_SPRINT" slot="start"></ion-icon>
 				{{ stringKey.FORM_INFO_SELECT_SPRINT }}
 			</ion-item>
-		</ion-card>
-		<ion-card *ngIf="selectedSprint" color="light">
-			<app-panel-header [panelTitle]="selectedSprint.sprintName" [panelIcon]="stringKey.ICON_SELECT"
-				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			<app-panel-header *ngIf="selectedSprint" [panelTitle]="selectedSprint.sprintName"
+				[panelIcon]="stringKey.ICON_SELECT" [panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false">
+			</app-panel-header>
 		</ion-card>
 		<!-- select sprint -->
 
@@ -56,11 +54,12 @@
 				<ion-icon [src]="stringKey.ICON_USER" slot="start"></ion-icon>
 				{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }} assignee
 			</ion-item>
+			<app-panel-header *ngIf="selectedUser"
+			[panelTitle]="getUserFullName(selectedUser.userFirstName, selectedUser.userLastName)"
+			[panelIcon]="stringKey.ICON_SELECT" [panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false">
+		</app-panel-header>
 		</ion-card>
-		<ion-card *ngIf="selectedUser" color="light">
-			<app-panel-header [panelTitle]="getUserFullName(selectedUser.userFirstName, selectedUser.userLastName)" [panelIcon]="stringKey.ICON_SELECT"
-				[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
-		</ion-card>
+		
 		<!-- select member -->
 	</form>
 </ion-content>

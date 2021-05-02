@@ -292,7 +292,7 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 
 	public chooseUser(passedUser: UserModel){
 		this._selectedUser = passedUser;
-		this.formGroup.controls.assignedUserId.setValue(this._selectedUser.userId);
+		this.formGroup.controls.assigneeUserId.setValue(this._selectedUser.userId);
 		this.formGroup.controls.userFirstName.setValue(this._selectedUser.userFirstName);
 		this.formGroup.controls.userLastName.setValue(this._selectedUser.userLastName);
 		this.formGroup.controls.userEmail.setValue(this._selectedUser.userEmail);
@@ -328,8 +328,8 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 					this.validators().required,
 				]),
 			],
-			assignedUserId: [
-				this._filter.assignedUserId,
+			assigneeUserId: [
+				this._filter.assigneeUserId,
 				this.validators().compose([
 					this.validators().required,
 				]),
@@ -412,7 +412,7 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 		const model: FilterModel = {
 			projectId: this._filter.projectId,
 			userId: this._filter.userId,
-			assignedUserId:this._selectedUser.userId,
+			assigneeUserId:this._selectedUser.userId,
 			userFirstName:this._selectedUser.userFirstName,
 			userLastName:this._selectedUser.userLastName,
 			userEmail:this._selectedUser.userEmail,

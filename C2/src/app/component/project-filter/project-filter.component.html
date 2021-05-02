@@ -1,49 +1,38 @@
 <app-panel-header [panelTitle]="stringKey.CHOOSE_FILTER" [panelIcon]="stringKey.ICON_FILTER"
-	[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true">
+	[panelColor]="stringKey.COLOR_SENARY" [eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true">
 </app-panel-header>
-<ion-grid>
+<ion-grid color="medium">
 	<ion-row>
 		<ion-col size="12">
 			<!-- select goal -->
-			<ion-card color="secondary" class="selector">
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_GOAL" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_SELECT_GOAL }}
-				</ion-item>
+			<ion-card class="selector">
+				<app-panel-header [panelTitle]="stringKey.FORM_INFO_SELECT_GOAL" [panelIcon]="stringKey.ICON_GOAL"
+					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
+				<app-panel-header *ngIf="filter" [panelTitle]="filter.goalName" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_LIGHT" [isEventRequired]="false"></app-panel-header>
 			</ion-card>
-			<ion-card *ngIf="filter" color="light">
-				<app-panel-header [panelTitle]="filter.goalName" [panelIcon]="stringKey.ICON_SELECT"
-					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
-			</ion-card>
+			
 			<!-- select goal -->
 		</ion-col>
 
 		<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 			<!-- select sprint -->
-			<ion-card color="secondary" class="selector">
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_SPRINT" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_SELECT_SPRINT }}
-				</ion-item>
-			</ion-card>
-			<ion-card *ngIf="filter" color="light">
-				<app-panel-header [panelTitle]="filter.sprintName" [panelIcon]="stringKey.ICON_SELECT"
-					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			<ion-card class="selector">
+				<app-panel-header [panelTitle]="stringKey.FORM_INFO_SELECT_SPRINT " [panelIcon]="stringKey.ICON_SPRINT"
+					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
+				<app-panel-header *ngIf="filter" [panelTitle]="filter.sprintName" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_LIGHT" [isEventRequired]="false"></app-panel-header>
 			</ion-card>
 			<!-- select sprint -->
 		</ion-col>
 
 		<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 			<!-- select member -->
-			<ion-card color="secondary" class="selector">
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_USER" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }}
-				</ion-item>
-			</ion-card>
-			<ion-card *ngIf="filter">
-				<app-panel-header [panelTitle]="getUserFullName(filter.userFirstName, filter.userLastName)" [panelIcon]="stringKey.ICON_SELECT"
-					[panelColor]="stringKey.COLOR_SUCCESS" [isEventRequired]="false"></app-panel-header>
+			<ion-card class="selector">
+				<app-panel-header [panelTitle]="stringKey.FORM_INFO_SELECT_ASSIGNEE" [panelIcon]="stringKey.ICON_USER"
+					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
+				<app-panel-header *ngIf="filter" [panelTitle]="getUserFullName(filter.userFirstName, filter.userLastName)" [panelIcon]="stringKey.ICON_SELECT"
+					[panelColor]="stringKey.COLOR_LIGHT" [isEventRequired]="false"></app-panel-header>
 			</ion-card>
 			<!-- select member -->
 		</ion-col>

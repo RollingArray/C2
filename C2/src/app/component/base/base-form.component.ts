@@ -61,6 +61,22 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 		this.actionSheetController = injector.get(ActionSheetController);
 	}
 
+
+	/**
+	 * Finds invalid controls
+	 * @returns  
+	 */
+	 public findInvalidControls() {
+		const invalid = [];
+		const controls = this.formGroup.controls;
+		for (const name in controls) {
+			if (controls[name].invalid) {
+				invalid.push(name);
+			}
+		}
+		return invalid;
+	}
+	
 	/**
 	 * Validators base form component
 	 * @returns  

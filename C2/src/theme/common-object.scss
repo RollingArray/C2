@@ -6,13 +6,15 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-05-02 20:08:54
+ * Last modified  : 2021-05-04 17:16:26
  */
 
 
 ion-card {
-  //border-radius: 10px;
-  margin: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+  margin: 16px;
 }
 
 ion-grid,
@@ -55,14 +57,12 @@ td, th {
 }
 
 td {
-  background-color: var(--ion-color-medium);
   color: var(--ion-color-primary);
   text-align: center;
   padding: 5px;
-  font-weight: bold;
-  font-size: 17px;
+  font-size: 16px;
   border-right: 1px solid;
-  border-color: var(--ion-color-primary);
+  border-color: var(--ion-color-medium);
   line-height: 30px;
   letter-spacing: 2px;
   // background: url('/assets/custom-ion-icons/td-border.svg') bottom right no-repeat;

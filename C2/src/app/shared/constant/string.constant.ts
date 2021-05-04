@@ -69,6 +69,10 @@ export class StringKey {
 	public static readonly CREATE_GOAL: string = 'Create Goal';
 	public static readonly UPDATE_GOAL: string = 'Update Goal';
 	public static readonly DELETE_GOAL: string = `Delete Goal`;
+	public static readonly ADD_COMMENT: string = 'Add Comment';
+	public static readonly UPDATE_COMMENT: string = 'Update Comment';
+	public static readonly DELETE_COMMENT: string = `Delete Comment`;
+	public static readonly COMMENT_INFO: string = 'Document your activity progress';
 	public static readonly TASK_TYPE: string = 'Task Type(s)';
 	public static readonly TASK_TYPE_INFO: string = 'Task Type Defines The Category Of a Certain Type Of Work or Activity';
 	public static readonly CREATE_TASK_TYPE: string = 'Create Task Type';
@@ -123,7 +127,10 @@ export class StringKey {
 	public static readonly FORM_INFO_ACTIVITY: string = 'What is the activity to perform to achieve the goal';
 	public static readonly FORM_INFO_ACTIVITY_WEIGHT: string = 'Provide a weight to the activity, maximum is 100 %';
 	public static readonly FORM_INFO_ACTIVITY_RESULT_TYPE: string = 'Provide in what context the result of the activity will be judged';
+	public static readonly FORM_INFO_COMMENT: string = 'Provide details of the progress you have mede on the activity ';
+	
 	public static readonly MEASUREMENT_TYPE: string = 'Measurement Parameter';
+	public static readonly ASSIGNEE_COMMENT: string = 'Assignee Comment';
 	public static readonly KPI: string = 'Key Performance Indicator';
 	public static readonly KPI_INFO: string = 'Key Performance Indicator is the Performance Indicator, which allows objectively evaluates the effectiveness of workflow';
 	public static readonly VIEW_USER_KPI: string = 'View Performance Matrix';
@@ -152,8 +159,6 @@ export class StringKey {
 	public static readonly SEARCH_PROJECT_INFO: string = 'You can search any project by entering a matching string from the project description / city / state / country';
 	public static readonly PROJECT_NAME_PLACEHOLDER: string = 'Provide a suitable name to your project';
 	public static readonly PROJECT_DESCRIPTION_PLACEHOLDER: string = 'What is the project for';
-	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
-	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
 	public static readonly PROJECT_REQUEST: string = 'Project(s) request';
 	public static readonly FORGOT_PASSWORD: string = 'Forgot your password';
 	public static readonly NEW_PASSWORD: string = 'New password';
@@ -185,10 +190,16 @@ export class StringKey {
 	public static readonly CREDIBILITY_SCORE_OUT_OF_5: string = 'Credibility Score out of 5';
 	public static readonly CREDIBILITY_INDEX_INFO: string = 'Credibility index uses custom algorithm to the evaluate the feedback and arrive on the credibility score';
 	public static readonly FEEDBACK_ANALYSIS: string = 'Review feedback analysis';
-	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
 	public static readonly SEARCH_USER: string = 'Search User';
 	public static readonly SEARCH_USER_INFO: string = 'You can search any user by entering a matching string from the user first name / last name / email';
 
+
+	//alert
+	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
+	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
+	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
+	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
+	
 
 	//form info
 	public static readonly FORM_INFO_PROJECT_NAME: string = 'Provide a suitable name for your project';
@@ -261,6 +272,7 @@ export class StringKey {
 	public static readonly FORM_PLACEHOLDER_TASK_TYPE_NAME: string = 'Research';
 	public static readonly FORM_PLACEHOLDER_TASK_TYPE_DESCRIPTION: string = 'Research for a feature';
 	public static readonly FORM_PLACEHOLDER_ACTIVITY: string = 'To provide product sales plan';
+	public static readonly FORM_PLACEHOLDER_COMMENT: string = 'Executed the plan with a precision of 90%';
 	public static readonly FORM_PLACEHOLDER_ACTIVITY_WEIGHT: string = '100';
 	public static readonly FORM_PLACEHOLDER_ACTIVITY_RESULT_TYPE: string = 'dollar / quatre';
 	
@@ -292,6 +304,7 @@ export class StringKey {
 	public static readonly FORM_VALIDATION_TASK_TYPE_DESCRIPTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space,/()] allowed';
 	public static readonly FORM_VALIDATION_ACTIVITY: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
 	public static readonly FORM_VALIDATION_ACTIVITY_RESULT_TYPE: string = 'It is a mandatory filed. Can be between 1 - 50 characters';
+	public static readonly FORM_VALIDATION_COMMENT: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
 	
 	
 	public static readonly FORM_VALIDATION_NUM: string = 'It is a mandatory filed. Only [0-9] allowed';
@@ -373,10 +386,12 @@ export class StringKey {
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
 	public static readonly NO_DATA_ACTIVITY: string = 'No Activity has been found. Play with filters to find an activity or add a new activity';
+	public static readonly NO_DATA_COMMENT: string = 'No Comment has been found. If you have started working on the activity, it would be ideal to document your progress in the comment';
 	public static readonly NO_DATA_MY_PROJECT: string = 'You do not have any project yet, you may create a new project here';
 	public static readonly NO_DATA: string = 'No data available';
 	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
 	public static readonly NO_DATA_ADMIN: string = 'We did not find any pending request';
+	public static readonly NO_FILTER: string = 'Select Filter to refine your result';
 
 	public static readonly WHAT_WE_ARE: string = 'What is C2';
 	public static readonly WHAT_WE_ARE_INFO_1: string = 'C2 is an open platform aiming to connect projects with the local suppliers. This platform will help adapt a systematic approach to order daily essentials from the local suppliers. It helps keep track of the orders and deliveries by suppliers. The aim is to aid the local suppliers to manage their orders and description the issues more effectively so they can do more business within the area.';
@@ -420,6 +435,7 @@ export class StringKey {
 	public static readonly ICON_RESULT: string = StringKey.ICON_BASE_PATH + "result.svg";
 	public static readonly ICON_SCALE: string = StringKey.ICON_BASE_PATH + "scale-measurement.svg";
 	public static readonly ICON_SLIDER: string = StringKey.ICON_BASE_PATH + "slider.svg";
+	public static readonly ICON_COMMENT: string = StringKey.ICON_BASE_PATH + "comment.svg";
 
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

@@ -12,6 +12,11 @@ export class ProjectFilterComponent extends BaseFormComponent
 	 * Input  of project filter component
 	 */
 	@Input() filter;
+
+	/**
+	 * Input  of project filter component
+	 */
+	@Input() filterExist;
 	
 	/**
 	 * Creates an instance of project filter component.

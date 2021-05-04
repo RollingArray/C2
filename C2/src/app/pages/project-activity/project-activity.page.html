@@ -11,7 +11,7 @@
 	</ion-toolbar>
 </ion-header>
 <!-- header -->
-<ion-content #scrollArea scrollEvents="true"		>
+<ion-content #scrollArea scrollEvents="true">
 	<!-- page title -->
 	<app-page-info-title [title]="stringKey.PROJECT_ACTIVITY" [info]="stringKey.ACTIVITY_INFO">
 	</app-page-info-title>
@@ -35,12 +35,12 @@
 
 	<!-- filter -->
 	<ion-card (click)="openFilter()">
-		<app-project-filter [filter]="filterModel"></app-project-filter>
+		<app-project-filter [filter]="filterModel" [filterExist]="filterExist"></app-project-filter>
 	</ion-card>
 	<!-- filter -->
 
 	<!-- no data -->
-	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
+	<app-no-data [activity]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
 	<!-- no data -->
 
 	<!-- data container -->
@@ -60,13 +60,10 @@
 					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 						<ion-card>
 							<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE"
-								[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_SECONDARY"
+								[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_MEDIUM"
 								eventIcon="stringKey.ICON_MORE">
 							</app-panel-header>
-							<app-panel-header [panelTitle]="activity.activityResultType"
-								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
+							<app-custom-fields [data]="activity.activityResultType"></app-custom-fields>
 						</ion-card>
 					</ion-col>
 					<!-- measurement type -->
@@ -75,12 +72,9 @@
 					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
 						<ion-card>
 							<app-panel-header [panelTitle]="stringKey.WEIGHT_IN_P" [panelIcon]="stringKey.ICON_WEIGHT"
-								[panelColor]="stringKey.COLOR_SECONDARY" eventIcon="stringKey.ICON_MORE">
+								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
 							</app-panel-header>
-							<app-panel-header [panelTitle]="activity.activityWeight"
-								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
+							<app-custom-fields [data]="activity.activityWeight.toString()"></app-custom-fields>
 						</ion-card>
 					</ion-col>
 					<!-- weight -->
@@ -91,27 +85,23 @@
 
 							<!-- title -->
 							<app-panel-header [panelTitle]="stringKey.ACTIVITY_MEASUREMENT_SCALE"
-								[panelIcon]="stringKey.ICON_SCALE" [panelColor]="stringKey.COLOR_SECONDARY"
+								[panelIcon]="stringKey.ICON_SCALE" [panelColor]="stringKey.COLOR_MEDIUM"
 								eventIcon="stringKey.ICON_MORE">
 							</app-panel-header>
 							<!-- title -->
 
 							<!-- number -->
-							<app-panel-header
+							<app-custom-fields
 								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num"
-								[panelTitle]="stringKey.MEASUREMENT_TYPE_NUM_INFO"
-								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
+								[data]="stringKey.MEASUREMENT_TYPE_NUM_INFO">
+							</app-custom-fields>
 							<!-- number -->
 
 							<!-- bool -->
-							<app-panel-header
+							<app-custom-fields
 								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Bool"
-								[panelTitle]="stringKey.MEASUREMENT_TYPE_BOOL_INFO"
-								[panelIcon]="stringKey.ICON_RIGHT_ARROW" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
+								[data]="stringKey.MEASUREMENT_TYPE_BOOL_INFO">
+							</app-custom-fields>
 							<!-- bool -->
 
 							<!-- number scale table -->
@@ -167,13 +157,40 @@
 						</ion-card>
 					</ion-col>
 					<!-- scale -->
+
+					<!-- comment -->
+					<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+						<ion-card>
+							<app-panel-header [panelTitle]="stringKey.ASSIGNEE_COMMENT"
+								[panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_MEDIUM"
+								[eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
+								(event)="openActivityCommentOptions(activity)">
+							</app-panel-header>
+
+							<!-- assignee -->
+							<app-panel-header [panelTitle]="getUserFullName(activity.assigneeUserFirstName, activity.assigneeUserLastName)" [panelIcon]="stringKey.ICON_USER"
+								[panelColor]="stringKey.COLOR_MEDIUM">
+							</app-panel-header>
+							<!-- assignee -->
+ 
+							<!-- no data -->
+							<app-no-data [comment]=true *ngIf="!activity.commentDescription"
+								[text]="stringKey.NO_DATA_COMMENT" (click)="addActivityComment(activity)"></app-no-data>
+							<!-- no data -->
+							<app-custom-fields *ngIf="activity.commentDescription"
+								[data]="activity.commentDescription">
+							</app-custom-fields>
+						</ion-card>
+					</ion-col>
+					<!-- comment -->
+
 				</ion-row>
 			</ion-grid>
 			<!-- activity grid -->
 		</ion-card>
 	</ng-container>
 	<!-- data container -->
-	
+
 	<!-- empty row -->
 	<div id="dum-height"></div>
 	<!-- empty row -->

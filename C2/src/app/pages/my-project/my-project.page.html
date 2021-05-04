@@ -24,7 +24,7 @@
 		</ion-fab-button>
 	</ion-fab>
 	<!-- no data -->
-	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
+	<app-no-data [project]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
 	<!-- no data -->
 	<ng-container *ngIf="hasData">
 		<ion-card *ngFor="let project of projects">

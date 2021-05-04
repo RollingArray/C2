@@ -36,4 +36,6 @@ export class ApiUrls {
   public static readonly PROJECT_ACTIVITIES: string = ApiUrls.API_BASE_PATH + "/goal/activities/";
   public static readonly PROJECT_ACTIVITY_CRUD: string = ApiUrls.API_BASE_PATH + "/goal/activity/crud/";
 
+  public static readonly PROJECT_COMMENT_CRUD: string = ApiUrls.API_BASE_PATH + "/activity/comment/crud/";
+
 }

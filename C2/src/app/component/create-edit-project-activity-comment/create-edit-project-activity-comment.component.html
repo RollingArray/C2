@@ -1,0 +1,63 @@
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+	<ion-toolbar color="primary">
+		<ion-title>
+			{{ pageTitle }}
+		</ion-title>
+		<ion-buttons slot="start">
+			<ion-button fill="outline" (click)="cancelModal()">{{
+				stringKey.CANCEL
+				}}</ion-button>
+		</ion-buttons>
+		<ion-buttons slot="end">
+			<ion-button fill="outline" (click)="submit()">{{
+				stringKey.SAVE
+				}}</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="pageTitle" [info]="stringKey.COMMENT_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+
+	<!-- fab -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark" (click)="submit()">
+			<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- fab -->
+
+	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
+		<!-- activity name -->
+		<ion-card color="secondary">
+			<p>
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					{{ stringKey.FORM_INFO_COMMENT }}
+				</ion-item>
+			</p>
+			<ion-card lines="none" color="light">
+				<ion-item lines="none" color="light">
+					<ion-textarea rows = 13 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
+						formControlName="commentDescription" type="text">
+					</ion-textarea>
+				</ion-item>
+				<ion-card *ngIf="commentDescription.invalid && commentDescription.touched" color="warning">
+					<ion-item color="warning">
+						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+						{{ stringKey.FORM_VALIDATION_COMMENT }}
+					</ion-item>
+				</ion-card>
+			</ion-card>
+		</ion-card>
+		<!-- activity name -->
+		
+	</form>
+	<!-- empty row -->
+	<div id="dum-height"></div>
+	<!-- empty row -->
+</ion-content>

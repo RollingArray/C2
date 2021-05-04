@@ -173,14 +173,20 @@ export class LocalStorageService {
 	 */
 	getSelectedProjectFilter(projectId: string): Observable<FilterModel> {
 		const encryptedFilter = localStorage.getItem(`${LocalStoreKey.FILTER}`);
-		console.log(encryptedFilter);
-		const decryptedFilter = this.encryptionService.decryptData(encryptedFilter, projectId);
-		console.log(decryptedFilter);
-		const filterModel: FilterModel = JSON.parse(decryptedFilter);
-		
-		this.selectedProjectFilter$ = new BehaviorSubject<FilterModel>(filterModel);
-
-		return this.selectedProjectFilter$.asObservable();
+		if(encryptedFilter){
+			const decryptedFilter = this.encryptionService.decryptData(encryptedFilter, projectId);
+			const filterModel: FilterModel = JSON.parse(decryptedFilter);
+			this.selectedProjectFilter$ = new BehaviorSubject<FilterModel>(filterModel);
+			return this.selectedProjectFilter$.asObservable();
+		}
+		else{
+			const filterModel: FilterModel = {
+				userId: localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_ID}`),
+				projectId: localStorage.getItem(`${LocalStoreKey.SELECTED_PROJECT_ID}`),
+			}
+			this.selectedProjectFilter$ = new BehaviorSubject<FilterModel>(filterModel);
+			return this.selectedProjectFilter$.asObservable();
+		}
 	}
 
 }

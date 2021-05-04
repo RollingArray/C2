@@ -15,6 +15,7 @@ import { BreadcrumbModule } from 'src/app/component/breadcrumb/breadcrumb.compon
 import { CreateEditProjectActivityModule } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component.module';
 import { CreateEditProjectFilterModule } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component.module';
 import { ProjectFilterModule } from 'src/app/component/project-filter/project-filter.component.module';
+import { CreateEditProjectActivityCommentModule } from 'src/app/component/create-edit-project-activity-comment/create-edit-project-activity-comment.component.module';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     IonicModule,
     SharedModule,
     CreateEditProjectActivityModule,
+    CreateEditProjectActivityCommentModule,
     CreateEditProjectFilterModule,
     ProjectFilterModule,
     NoDataModule,

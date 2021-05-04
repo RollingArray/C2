@@ -1,8 +1,18 @@
 <ion-card class="card-no-shadow">
-  <p align="center">
-  <img src="assets/images/no_data.svg" />
-  </p>
-  <p align="center">
-    {{text}}
-  </p>
+	<p align="center">
+		<img src="assets/images/no_data.svg" *ngIf="basic"/>
+		<img src="assets/images/no_project.svg" *ngIf="project"/>
+		<img src="assets/images/no_goal.svg" *ngIf="goal"/>
+		<img src="assets/images/no_activity.svg" *ngIf="activity"/>
+		<img src="assets/images/no_comment.svg" *ngIf="comment"/>
+		<img src="assets/images/no_filter.svg" *ngIf="filter"/>
+		<img src="assets/images/no_sprint.svg" *ngIf="sprint"/>
+		<img src="assets/images/no_member.svg" *ngIf="member"/>
+		<img src="assets/images/no_reviewer.svg" *ngIf="reviewer"/>
+	</p>
+	<ion-text color="dark" align="center">
+		<h4>
+			{{ text }}
+		</h4>
+	</ion-text>
 </ion-card>

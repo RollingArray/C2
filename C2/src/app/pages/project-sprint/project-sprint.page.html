@@ -32,7 +32,7 @@
 		</ion-fab-button>
 	</ion-fab>
 	<!-- no data -->
-	<app-no-data *ngIf="!hasData" [text]="stringKey.NO_DATA_SPRINT"></app-no-data>
+	<app-no-data [sprint]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_SPRINT"></app-no-data>
 	<!-- no data -->
 	<ng-container *ngIf="hasData">
 		<ion-card *ngFor="let sprint of projectSprintModel?.projectSprints.data">

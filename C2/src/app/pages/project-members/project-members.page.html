@@ -38,7 +38,7 @@
 	<!-- fab -->
 
 	<!-- project admin -->
-	<ion-card color="medium">
+	<ion-card>
 		<!-- panel header -->
 		<app-panel-header [panelTitle]="stringKey.PROJECT_ADMIN" [panelIcon]="stringKey.ICON_ADMIN"
 			[panelColor]="stringKey.COLOR_PRIMARY" [isEventRequired]=false></app-panel-header>
@@ -47,7 +47,7 @@
 		<app-panel-info [title]="stringKey.PROJECT_ADMIN_INFO"></app-panel-info>
 
 		<!-- no data -->
-		<app-no-data *ngIf="!projectMemberModel?.projectAdministrator?.success"
+		<app-no-data [basic]=true *ngIf="!projectMemberModel?.projectAdministrator?.success"
 			[text]="stringKey.NO_DATA_PROJECT_ADMIN">
 		</app-no-data>
 		<!-- no data -->
@@ -69,7 +69,7 @@
 	</ion-card>
 	<!-- project admin -->
 	<!--  project member -->
-	<ion-card color="medium">
+	<ion-card>
 		<!-- panel header -->
 		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
 			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
@@ -81,7 +81,7 @@
 		<!-- info -->
 
 		<!-- no data -->
-		<app-no-data *ngIf="!projectMemberModel?.projectMembers?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
+		<app-no-data [member]=true *ngIf="!projectMemberModel?.projectMembers?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
 		</app-no-data>
 		<!-- no data -->
 
@@ -98,4 +98,35 @@
 		</ng-container>
 	</ion-card>
 	<!--  project member -->
+
+	<!--  project reviewer -->
+	<ion-card>
+		<!-- panel header -->
+		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
+			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
+		</app-panel-header>
+		<!-- panel header -->
+
+		<!-- info -->
+		<app-panel-info [title]="stringKey.PROJECT_MEMBER_INFO"></app-panel-info>
+		<!-- info -->
+
+		<!-- no data -->
+		<app-no-data [reviewer]=true *ngIf="!projectMemberModel?.projectMembers?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
+		</app-no-data>
+		<!-- no data -->
+
+		<ng-container *ngIf="projectMemberModel?.projectMembers?.success">
+			<ion-card *ngFor="
+					let projectMember of projectMemberModel?.projectMembers?.data
+        ">
+				<app-panel-header
+					[panelTitle]="getUserFullName(projectMember?.userFirstName,projectMember?.userLastName)"
+					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_SECONDARY"
+					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
+					(event)="openProjectMembersOptions(projectMember)"></app-panel-header>
+			</ion-card>
+		</ng-container>
+	</ion-card>
+	<!--  project reviewer -->
 </ion-content>

@@ -91,17 +91,6 @@ export class UpdatePasswordPage extends BaseFormComponent
 		}
 	}
 
-	public findInvalidControls() {
-		const invalid = [];
-		const controls = this.formGroup.controls;
-		for (const name in controls) {
-			if (controls[name].invalid) {
-				invalid.push(name);
-			}
-		}
-		return invalid;
-	}
-
 	async submitData() {
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
 

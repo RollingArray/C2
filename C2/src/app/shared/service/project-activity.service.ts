@@ -61,4 +61,13 @@ export class ProjectActivityService extends BaseService<ActivityModel> {
 	projectActivityCrud(activityModel: ActivityModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.PROJECT_ACTIVITY_CRUD}`, activityModel);
 	}
+
+	/**
+	 * Projects activity comment crud
+	 * @param activityModel 
+	 * @returns activity comment crud 
+	 */
+	projectActivityCommentCrud(activityModel: ActivityModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_COMMENT_CRUD}`, activityModel);
+	}
 }

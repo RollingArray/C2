@@ -4,6 +4,7 @@ export class Regex {
   public static readonly USER_NAME_PATTERN = /^[a-zA-Z]{3,200}$/;
   public static readonly USER_PATTERN = /^[a-zA-Z ]{3,200}$/;
   public static readonly DESCRIPTION_PATTERN = /^[a-zA-Z0-9 \[\]()-,^\/_\-\n]{5,400}$/;
+  public static readonly COMMENT_PATTERN = /^[a-zA-Z0-9 \[\]()-,^\/_\-\n]{5,1000}$/;
   public static readonly FLAT_STRING_PATTERN = /^[a-zA-Z \[\]^\/]{2,200}$/;
   public static readonly NUMBER_PATTERN = /^[0-9]*$/;
 	public static readonly FLOAT_NUMBER_PATTERN = /^[0-9.]*$/;

@@ -82,17 +82,6 @@ export class SignInPage extends BaseFormComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	public findInvalidControls() {
-		const invalid = [];
-		const controls = this.formGroup.controls;
-		for (const name in controls) {
-			if (controls[name].invalid) {
-				invalid.push(name);
-			}
-		}
-		return invalid;
-	}
-
 	// submit login
 	async submitData() {
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_3}`);

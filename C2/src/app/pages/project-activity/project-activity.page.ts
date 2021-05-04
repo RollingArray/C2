@@ -18,6 +18,7 @@ import { CreateEditProjectActivityComponent } from 'src/app/component/create-edi
 import { FilterModel } from 'src/app/shared/model/filter.model';
 import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component';
 import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measurement-type.enum';
+import { CreateEditProjectActivityCommentComponent } from 'src/app/component/create-edit-project-activity-comment/create-edit-project-activity-comment.component';
 
 
 @Component({
@@ -66,6 +67,11 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Filter model of project activity page
 	 */
 	private _filterModel: FilterModel;
+
+	/**
+	 * Filter exist of project activity page
+	 */
+	private _filterExist: boolean = false;
 
 	/**
 	 * Activity measurement type enum of project activity page
@@ -141,7 +147,22 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 		return this._filterModel;
 	}
 
-	private : FilterModel;
+	/**
+	 * Sets filter exist
+	 */
+	public set filterExist(value: boolean) {
+		this._filterExist = value;
+	}
+
+	/**
+	 * Gets filter exist
+	 */
+	public get filterExist(): boolean {
+		return this._filterExist;
+	}
+
+	
+	
 
 
 
@@ -209,12 +230,19 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 						this._projectActivityModel = baseModel.data;
 						await this.generateBreadcrumb();
 
-						if (this._projectActivityModel.projectActivities.success) {
-							this._activities = this._projectActivityModel.projectActivities.data
-							this._hasData = true;
+						if(this._projectActivityModel.filter){
+							this._filterExist = true;
+
+							if (this._projectActivityModel.projectActivities.success) {
+								this._activities = this._projectActivityModel.projectActivities.data
+								this._hasData = true;
+							}
+							else{
+								this._hasData = false;
+							}
 						}
 						else{
-							this._hasData = false;
+							this._filterExist = false;
 						}
 					}
 				}
@@ -333,6 +361,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 			.getSelectedProjectFilter(this._projectId)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async (data: FilterModel) => {
+				console.log(data);
 				this._filterModel = data;
 				if(this._filterModel){
 					this.loadData();
@@ -369,6 +398,120 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 		});
 
 		return await modal.present();
+	}
+
+	async openActivityCommentOptions(selectedActivity: ActivityModel){
+		const actionSheet = await this.actionSheetController.create({
+			header: this.stringKey.CHOOSE_YOUR_ACTION,
+			buttons: [
+				{
+					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_EDIT,
+					handler: () => {
+						this.editActivityComment(selectedActivity, `${OperationsEnum.Edit}`);
+					}
+				},
+				{
+					text: this.stringKey.CANCEL,
+					icon: this.stringKey.ICON_CANCEL,
+					handler: () => {
+						//
+					}
+				}
+			]
+		});
+		await actionSheet.present();
+	}
+
+	/**
+	 * Activities comment
+	 * @param activityModel 
+	 * @param operation 
+	 * @returns  
+	 */
+	async addActivityComment(activityModel: ActivityModel){
+		if(this._loggedInUser != activityModel.assigneeUserId){
+			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_USER)
+		}
+		else{
+			//activityModel.operationType = operation;
+			const passedModel: ActivityModel = {
+				userId: this._loggedInUser,
+				projectId: this._projectId,
+				assigneeUserId: activityModel.assigneeUserId,
+				activityId: activityModel.activityId,
+				commentDescription: activityModel.commentDescription,
+				operationType: `${OperationsEnum.Create}`
+			}
+
+			const modal = await this.modalController.create({
+				component: CreateEditProjectActivityCommentComponent,
+				componentProps: {
+					data: passedModel
+				}
+			});
+
+			modal.onDidDismiss().then(data => {
+
+				this._modalData = data.data;
+				if (this._modalData.cancelled) {
+					//do not refresh the page
+				} else {
+					//load data from network
+					this.loadData();
+				}
+			});
+
+			return await modal.present();
+		}
+	}
+
+	/**
+	 * Edits activity comment
+	 * @param activityModel 
+	 * @param operation 
+	 * @returns  
+	 */
+	async editActivityComment(activityModel: ActivityModel, operation: string){
+		if(this._loggedInUser != activityModel.assigneeUserId){
+			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_USER)
+		}
+		else{
+			const passedModel: ActivityModel = {
+				userId: this._loggedInUser,
+				projectId: this._projectId,
+				assigneeUserId: activityModel.assigneeUserId,
+				activityId: activityModel.activityId,
+				commentId: activityModel.commentId,
+				commentDescription: activityModel.commentDescription,
+				operationType: operation
+			}
+	
+			const modal = await this.modalController.create({
+				component: CreateEditProjectActivityCommentComponent,
+				componentProps: {
+					data: passedModel
+				}
+			});
+	
+			modal.onDidDismiss().then(data => {
+	
+				this._modalData = data.data;
+				if (this._modalData.cancelled) {
+					//do not refresh the page
+				} else {
+					//load data from network
+					this.loadData();
+				}
+			});
+	
+			return await modal.present();
+		}
+	}
+
+	commentHeader(activityModel: ActivityModel){
+		const fullName = this.getUserFullName(activityModel.assigneeUserFirstName, activityModel.assigneeUserLastName);
+		return `${this.stringKey.ASSIGNEE_COMMENT} - ${fullName}`;
 	}
 }
 

@@ -380,21 +380,6 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 		return this.formGroup.get("goalId");
 	}
 
-	/**
-	 * Finds invalid controls
-	 * @returns  
-	 */
-	public findInvalidControls() {
-		const invalid = [];
-		const controls = this.formGroup.controls;
-		for (const name in controls) {
-			if (controls[name].invalid) {
-				invalid.push(name);
-			}
-		}
-		return invalid;
-	}
-
 	// submit login
 	async submit() {
 		if (this.formGroup.invalid) {

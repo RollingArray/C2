@@ -32,7 +32,7 @@
     </ion-card>
   </form>
   <!-- no data -->
-  <app-no-data [basic]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_SEARCH"></app-no-data>
+  <app-no-data [user]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_SEARCH"></app-no-data>
   <!-- no data -->
   <ng-container *ngIf="hasData">
     <ion-card *ngFor="let user of users">

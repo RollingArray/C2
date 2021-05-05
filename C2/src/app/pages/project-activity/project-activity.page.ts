@@ -217,30 +217,51 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Loads data
 	 */
 	async loadData() {
+		// show loading
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
 
+		// make api call
 		this.projectActivityService
 			.getProjectActivities(this._filterModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
-					this.loadingService.dismiss();
+					//stop loading
+					await this.loadingService.dismiss();
+
+					// check received data
 					if (baseModel.success) {
 
+						// attach data to project active model
 						this._projectActivityModel = baseModel.data;
+
+						// generate breadcrumb
 						await this.generateBreadcrumb();
 
+						// check if the filter exist if data received
 						if(this._projectActivityModel.filter){
+
+							// show in ui
 							this._filterExist = true;
 
+							// check if any activities returned
 							if (this._projectActivityModel.projectActivities.success) {
+
+								// attach activities to returned data
 								this._activities = this._projectActivityModel.projectActivities.data
+
+								// removed no data from ui
 								this._hasData = true;
 							}
+
+							// keep no data ui
 							else{
+								
 								this._hasData = false;
 							}
 						}
+
+						// keep no filter ui
 						else{
 							this._filterExist = false;
 						}
@@ -507,11 +528,6 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	
 			return await modal.present();
 		}
-	}
-
-	commentHeader(activityModel: ActivityModel){
-		const fullName = this.getUserFullName(activityModel.assigneeUserFirstName, activityModel.assigneeUserLastName);
-		return `${this.stringKey.ASSIGNEE_COMMENT} - ${fullName}`;
 	}
 }
 

@@ -4,5 +4,6 @@ import { ProjectModel } from './project.model';
 export interface ProjectMemberModel {
     projectDetails ?: ProjectModel;
     projectAdministrator ?: ProjectUserTypeBaseModel;
-    projectMembers ?: ProjectUserTypeBaseModel;
+    projectAssignees ?: ProjectUserTypeBaseModel;
+    projectReviewers ?: ProjectUserTypeBaseModel;
 }

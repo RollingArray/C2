@@ -379,7 +379,7 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					this.loadingService.dismiss();
 					if (baseModel.success) {
 						this._projectSprints = baseModel.data.projectSprints.data;
-						this._projectUsers = baseModel.data.projectMembers.data;
+						this._projectUsers = baseModel.data.projectAssignees.data;
 						this._projectGoals = baseModel.data.projectGoals.data;
 					}
 				}

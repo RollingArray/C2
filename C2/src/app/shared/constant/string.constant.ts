@@ -347,7 +347,8 @@ export class StringKey {
 	public static readonly REQUEST: string = 'Request';
 	public static readonly REMOVE: string = 'Remove';
 	public static readonly ADD_USER_AS_ADMIN: string = 'Add as Admin';
-	public static readonly ADD_USER_AS_MEMBER: string = 'Add as Member';
+	public static readonly ADD_USER_AS_ASSIGNEE: string = 'Add as Assignee';
+	public static readonly ADD_USER_AS_REVIEWER: string = 'Add as Reviewer';
 	public static readonly CREDIBILITY: string = 'Credibility';
 
 	//message

@@ -1,21 +1,16 @@
-import { Component, OnInit, OnDestroy, Input, Injector, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit, OnDestroy, Injector, ElementRef, ViewChild } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
 import { SprintModel } from "src/app/shared/model/sprint.model";
 import { ModalData } from "src/app/shared/model/modal-data.model";
 import { AlertService } from "src/app/shared/service/alert.service";
 import { LoadingService } from "src/app/shared/service/loading.service";
 import { AnimationController, NavParams } from "@ionic/angular";
-import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
-import { ProjectSprintService } from 'src/app/shared/service/project-sprint.service';
-import { DatePipe } from '@angular/common';
 import { StringKey } from 'src/app/shared/constant/string.constant';
 import { ProjectModel } from 'src/app/shared/model/project.model';
-import { ProjectActivityService } from 'src/app/shared/service/project-activity.service';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { FilterModel } from 'src/app/shared/model/filter.model';
-import { ActivityMeasurementTypeEnum } from "src/app/shared/enum/activity-measurement-type.enum";
 import { UserModel } from "src/app/shared/model/user.model";
 import { GoalModel } from "src/app/shared/model/goal.model";
 import { ModuleEnum } from "src/app/shared/enum/module.enum";
@@ -283,7 +278,7 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 					this.loadingService.dismiss();
 					if (baseModel.success) {
 						this._projectSprints = baseModel.data.projectSprints.data;
-						this._projectUsers = baseModel.data.projectMembers.data;
+						this._projectUsers = baseModel.data.projectAssignees.data;
 						this._projectGoals = baseModel.data.projectGoals.data;
 					}
 				}
@@ -414,8 +409,6 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 	 * Submits data
 	 */
 	async submitData() {
-		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
-
 		const _filterModel: FilterModel = this.buildDataModelToPass();
 		
 		await this.localStorageService
@@ -423,7 +416,7 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async () => {
 				
-				//dismiss modal
+				// //dismiss modal
 				this._modalData = {
 					cancelled: false,
 					operationSubmitted: true

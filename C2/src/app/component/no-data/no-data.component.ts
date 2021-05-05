@@ -9,7 +9,7 @@ import { BaseViewComponent } from '../base/base-view.component';
 export class NoDataComponent extends BaseViewComponent implements OnInit {
 
   @Input() text;
-  @Input() basic = false;
+  @Input() user = false;
   @Input() project = false;
   @Input() comment = false;
   @Input() filter = false;

@@ -40,7 +40,7 @@
 	<!-- filter -->
 
 	<!-- no data -->
-	<app-no-data [activity]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
+	<app-no-data [activity]=true *ngIf="!hasData && filterExist" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>
 	<!-- no data -->
 
 	<!-- data container -->

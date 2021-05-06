@@ -103,17 +103,17 @@
 	<!--  project reviewer -->
 	<ion-card>
 		<!-- panel header -->
-		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
+		<app-panel-header [panelTitle]="stringKey.PROJECT_REVIEWER" [panelIcon]="stringKey.ICON_REVIEWER"
 			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
 		</app-panel-header>
 		<!-- panel header -->
 
 		<!-- info -->
-		<app-panel-info [title]="stringKey.PROJECT_MEMBER_INFO"></app-panel-info>
+		<app-panel-info [title]="stringKey.PROJECT_REVIEWER_INFO"></app-panel-info>
 		<!-- info -->
 
 		<!-- no data -->
-		<app-no-data [reviewer]=true *ngIf="!projectMemberModel?.projectReviewers?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
+		<app-no-data [reviewer]=true *ngIf="!projectMemberModel?.projectReviewers?.success" [text]="stringKey.NO_DATA_PROJECT_REVIEWER">
 		</app-no-data>
 		<!-- no data -->
 
@@ -123,7 +123,7 @@
         ">
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
-					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_SECONDARY"
+					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_SECONDARY"
 					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
 					(event)="openProjectMembersOptions(projectReviewer)"></app-panel-header>
 			</ion-card>

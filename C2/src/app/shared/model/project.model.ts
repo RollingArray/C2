@@ -9,5 +9,6 @@ export interface ProjectModel {
     projectDescription ?: string;
     requestFrom ?: string;
     userTypeId ?: string;
+    rawDataKeys ?: string[];
     operationType ?: string;
 }

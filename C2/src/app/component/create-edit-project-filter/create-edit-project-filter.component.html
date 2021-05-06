@@ -52,7 +52,7 @@
 		<ion-card color="secondary" (click)="openDropSelector(moduleEnum.member)" class="selector">
 			<ion-item color="secondary" lines="none">
 				<ion-icon [src]="stringKey.ICON_USER" slot="start"></ion-icon>
-				{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }} assignee
+				{{ stringKey.FORM_INFO_SELECT_ASSIGNEE }}
 			</ion-item>
 			<app-panel-header *ngIf="selectedUser"
 			[panelTitle]="getUserFullName(selectedUser.userFirstName, selectedUser.userLastName)"

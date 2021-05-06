@@ -21,7 +21,11 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectActivityPage
-  }
+  },
+  {
+		path: ":activityId/review",
+		loadChildren: () => import('../project-activity-review/project-activity-review.module').then( m => m.ProjectActivityReviewPageModule),
+	}
 ];
 
 @NgModule({

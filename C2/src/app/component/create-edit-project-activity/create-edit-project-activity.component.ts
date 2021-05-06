@@ -34,41 +34,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	_passedActivity: ActivityModel;
 
 	/**
-	 * Default sprint model of create edit project activity component
-	 */
-	_defaultSprintModel: SprintModel;
-
-	/**
-	 * Project sprints of create edit project activity component
-	 */
-	_projectSprints: SprintModel[];
-
-	/**
-	 * Project users of create edit project activity component
-	 */
-	_projectUsers: UserModel[];
-
-	/**
-	 * Project goals of create edit project activity component
-	 */
-	_projectGoals: GoalModel[];
-
-	/**
-	 * Selected sprint of create edit project activity component
-	 */
-	_selectedSprint: SprintModel;
-
-	/**
-	 * Selected user of create edit project activity component
-	 */
-	_selectedUser: UserModel = null;
-
-	/**
-	 * Selected goal of create edit project activity component
-	 */
-	_selectedGoal: GoalModel;
-
-	/**
 	 * Selected activity measurement type of create edit project activity component
 	 */
 	selectedActivityMeasurementType: ActivityMeasurementTypeEnum;
@@ -203,7 +168,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		super(injector);
 		this._passedActivity = this.navParams.get("data");
 		this.buildFrom();
-		this.loadData();
 	}
 
 	/**
@@ -360,32 +324,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		return activityWeight - this._previousActivityWeightDelta;
 	}
 	
-	/**
-	 * Loads data
-	 */
-	async loadData() {
-		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
-
-		const passedData: ProjectModel = {
-			projectId: this._passedActivity.projectId,
-			userId: this._passedActivity.userId
-		};
-
-		this.projectService
-			.getProjectRaw(passedData)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				(baseModel: BaseModel) => {
-					this.loadingService.dismiss();
-					if (baseModel.success) {
-						this._projectSprints = baseModel.data.projectSprints.data;
-						this._projectUsers = baseModel.data.projectAssignees.data;
-						this._projectGoals = baseModel.data.projectGoals.data;
-					}
-				}
-			);
-	}
-
 	/**
 	 * Gets activity name
 	 */
@@ -636,7 +574,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	cancelModal() {
 
-		this._passedActivity = this._defaultSprintModel;
 		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,

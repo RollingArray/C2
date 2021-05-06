@@ -363,6 +363,13 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 					}
 				},
 				{
+					text: this.stringKey.VIEW + ' ' + this.stringKey.REVIEW + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_VIEW,
+					handler: () => {
+						this.router.navigate([selectedActivity.activityId, 'review'], { relativeTo: this.activatedRoute });
+					}
+				},
+				{
 					text: this.stringKey.CANCEL,
 					icon: this.stringKey.ICON_CANCEL,
 					handler: () => {

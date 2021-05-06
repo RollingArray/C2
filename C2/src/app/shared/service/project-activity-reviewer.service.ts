@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Project activity reviewer service
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-06 11:49:59 
+ * Last modified  : 2021-05-06 21:47:54
+ */
+
+
 import { DataCommunicationService } from "./data-communication.service";
 import { AlertController } from "@ionic/angular";
 /**
@@ -13,16 +25,15 @@ import { BaseService } from "./base.service";
 
 // model
 import { BaseModel } from "../model/base.model";
-import { ProjectModel } from "../model/project.model";
 
 // constant
 import { ApiUrls } from "../constant/api-urls.constant";
-import { ActivityModel } from '../model/activity.model';
+import { ActivityReviewerModel } from "../model/activity-reviewer.model";
 
 @Injectable({
 	providedIn: "root"
 })
-export class ProjectActivityService extends BaseService<ActivityModel> {
+export class ProjectActivityReviewerService extends BaseService<ActivityReviewerModel> {
 	/**
 	 * 
 	 * @param httpClient 
@@ -45,38 +56,22 @@ export class ProjectActivityService extends BaseService<ActivityModel> {
 	}
 
 	/**
-	 * Gets project activities
-	 * @param projectModel 
-	 * @returns project activities 
-	 */
-	getProjectActivities(projectModel: ProjectModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_ACTIVITIES}`, projectModel);
-	}
-
-	/**
 	 * Projects activity crud
 	 * @param activityModel 
 	 * @returns activity crud 
 	 */
-	projectActivityCrud(activityModel: ActivityModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_ACTIVITY_CRUD}`, activityModel);
+	projectActivityReviewerCrud(activityReviewerModel: ActivityReviewerModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_REVIEWER_CRUD}`, activityReviewerModel);
 	}
 
 	/**
-	 * Projects activity comment crud
-	 * @param activityModel 
-	 * @returns activity comment crud 
+	 * Projects activity review update
+	 * @param activityReviewerModel 
+	 * @returns activity review update 
 	 */
-	projectActivityCommentCrud(activityModel: ActivityModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_COMMENT_CRUD}`, activityModel);
+	projectActivityReviewUpdate(activityReviewerModel: ActivityReviewerModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_REVIEW_UPDATE}`, activityReviewerModel);
 	}
 
-	/**
-	 * Gets project activity details
-	 * @param activityModel 
-	 * @returns project activity details 
-	 */
-	getProjectActivityDetails(activityModel: ActivityModel): Observable<BaseModel> {
-		return this.post(`${ApiUrls.PROJECT_ACTIVITY_DETAILS}`, activityModel);
-	}
+	
 }

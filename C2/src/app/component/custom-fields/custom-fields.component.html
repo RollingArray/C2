@@ -1,30 +1,38 @@
 <ion-item lines="none" *ngIf="description">
-  <ion-icon color="primary" slot="start" [src]="stringKey.ICON_DOCUMENT"></ion-icon>
-  <p>
-    {{ description }}
-  </p>
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+	<p>
+		{{ description }}
+	</p>
 </ion-item>
 <ion-item lines="none" *ngIf="sprintStartDate">
-  <ion-icon color="primary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
-  <p>
-    {{ sprintStartDate }}
-  </p>
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
+	<p>
+		{{ sprintStartDate }}
+	</p>
 </ion-item>
 <ion-item lines="none" *ngIf="sprintEndDate">
-  <ion-icon color="primary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
-  <p>
-    {{ sprintEndDate }}
-  </p>
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_CALENDER"></ion-icon>
+	<p>
+		{{ sprintEndDate }}
+	</p>
 </ion-item>
 <ion-item lines="none" *ngIf="weight">
-  <ion-icon color="primary" slot="start" [src]="stringKey.ICON_WEIGHT"></ion-icon>
-  <p>
-    {{ weight }}
-  </p>
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_WEIGHT"></ion-icon>
+	<p>
+		{{ weight }}
+	</p>
 </ion-item>
 <ion-item lines="none" *ngIf="data">
-  <ion-icon color="primary" slot="start" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-  <p>
-    {{ data }}
-  </p>
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+	<p>
+		{{ data }}
+	</p>
 </ion-item>
+
+<ion-item lines="none" *ngIf="noData">
+	<ion-icon color="primary" slot="start" [src]="stringKey.ICON_WARNING" color="warning"></ion-icon>
+	<p>
+		{{stringKey.NO_DATA}}
+	</p>
+</ion-item>
+

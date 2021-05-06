@@ -13,6 +13,7 @@ export class CustomFieldsComponent extends BaseViewComponent implements OnInit {
   @Input() sprintEndDate: string;
   @Input() weight: string;
   @Input() data: string;
+  @Input() noData: boolean = false;
 
   constructor(
     injector: Injector,

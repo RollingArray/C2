@@ -70,6 +70,7 @@ export class StringKey {
 	public static readonly UPDATE_GOAL: string = 'Update Goal';
 	public static readonly DELETE_GOAL: string = `Delete Goal`;
 	public static readonly ADD_COMMENT: string = 'Add Comment';
+	
 	public static readonly UPDATE_COMMENT: string = 'Update Comment';
 	public static readonly DELETE_COMMENT: string = `Delete Comment`;
 	public static readonly COMMENT_INFO: string = 'Document your activity progress';
@@ -85,7 +86,9 @@ export class StringKey {
 	public static readonly ACCUMULATED_MEASUREMENT_CRITERIA: string = 'Accumulated measurement criteria received over reviews';
 	public static readonly REVIEWS_RESULTING_PERFORMANCE: string = 'Reviews resulting performance';
 	public static readonly REVIEWS: string = 'Reviews';
+	public static readonly REVIEW_DETAILS: string = 'Review Detail(s)';
 	public static readonly CHOOSE_FILTER: string = 'Choose Filter';
+	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
 
 
 	public static readonly SELECT: string = 'Select';
@@ -96,16 +99,20 @@ export class StringKey {
 	public static readonly DELETE_DETAILS: string = 'Delete Details';
 	public static readonly VIEW_DETAILS: string = 'View Details';
 	public static readonly PROJECT_ADMIN: string = 'Project Administrator';
-	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are nominated by the project to run the project smoothly';
-	public static readonly PROJECT_MEMBER: string = 'Project Member(s)';
+	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are administrate by the project to run smoothly';
+	public static readonly PROJECT_MEMBER: string = 'Project Assignee(s)';
+	public static readonly PROJECT_REVIEWER: string = 'Project Reviewer(s)';
 	public static readonly PROJECT_DETAILS: string = 'Project Detail(s)';
-	public static readonly PROJECT_MEMBER_INFO: string = 'Project members are people in the project';
+	public static readonly PROJECT_MEMBER_INFO: string = 'Project Assignees are owner of a specific activity performed to achieve a Goal applicable to a project';
+	public static readonly PROJECT_REVIEWER_INFO: string = 'Project Reviewers reviews a specific activity to accomplish a goal';
 	public static readonly PROJECT_SPRINT: string = 'Project Sprint(s)';
 	public static readonly PROJECT_SPRINT_INFO: string = 'Sprint is a duration. Sprint needs a suitable name, start and end date';
 	public static readonly PROJECT_GOAL: string = 'Project Goal(s)';
 	public static readonly PROJECT_GOAL_INFO: string = 'Goal is simply what is to be achieved, no more and no less';
 	public static readonly PROJECT_ACTIVITY: string = 'Project Activity(s)';
 	public static readonly ACTIVITY_INFO: string = 'Activity is a measurable target which is performed to achieve a goal';
+	public static readonly ACTIVITY_REVIEW: string = 'Activity Review(s)';
+	public static readonly ACTIVITY_REVIEW_INFO: string = 'Review is a process of examining and auditing planned activities to identify whether the requirements can be fully addressed by the planned amount of work';
 
 
 	public static readonly ASSIGNEE: string = 'User Story(s)';
@@ -119,7 +126,7 @@ export class StringKey {
 	public static readonly CREATE_ACTIVITY: string = 'Create Activity';
 	public static readonly UPDATE_ACTIVITY: string = 'Update Activity';
 	public static readonly PROJECT_FILTER_INFO: string = 'Choose relevant Sprint, Goal and Assignee from the list of available details';
-
+	
 	public static readonly MEASUREMENT_TYPE_NUM: string = 'NUM';
 	public static readonly MEASUREMENT_TYPE_BOOL: string = 'BOOL';
 	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the activity measures based on the following numeric scale';
@@ -131,6 +138,7 @@ export class StringKey {
 	
 	public static readonly MEASUREMENT_TYPE: string = 'Measurement Parameter';
 	public static readonly ASSIGNEE_COMMENT: string = 'Assignee Comment';
+	public static readonly REVIEWER_COMMENT: string = 'Reviewer Comment';
 	public static readonly KPI: string = 'Key Performance Indicator';
 	public static readonly KPI_INFO: string = 'Key Performance Indicator is the Performance Indicator, which allows objectively evaluates the effectiveness of workflow';
 	public static readonly VIEW_USER_KPI: string = 'View Performance Matrix';
@@ -170,9 +178,11 @@ export class StringKey {
 	public static readonly UPDATE_PASSWORD_INFO: string = 'Use the reset code you have received in your email along with your registered email and new password to update your old password';
 	public static readonly SIGN_UP_INFO: string = 'Provide details to create your free account';
 	public static readonly CHOOSE_YOUR_ACTION: string = 'Choose Your Action';
+	public static readonly REVIEW: string = 'Review';
+	public static readonly REVIEWER: string = 'Reviewer';
 	public static readonly REVIEWER_NAME: string = 'Reviewer Name';
 	public static readonly REVIEWER_EMAIL: string = 'Email';
-	public static readonly ACHIEVED_RESULT_VALUE: string = 'Achieved Result value';
+	public static readonly ACHIEVED_RESULT: string = 'Achieved Result';
 	public static readonly TASK_MEASUREMENT_TYPE: string = 'Task Measurement Type';
 	public static readonly CRITERIA_POOR_VALUE: string = 'Criteria Poor Value';
 	public static readonly CRITERIA_OUTSTANDING_VALUE: string = 'Criteria Outstanding Value';
@@ -219,6 +229,7 @@ export class StringKey {
 	public static readonly FORM_INFO_SELECT_TASK_TYPE: string = 'Select relevant task type';
 	public static readonly FORM_INFO_SELECT_SPRINT: string = 'Select relevant Sprint';
 	public static readonly FORM_INFO_SELECT_GOAL: string = 'Select relevant Goal';
+	public static readonly FORM_INFO_SELECT_REVIEWER: string = 'Select relevant Reviewer';
 	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the activity';
 
 	public static readonly FORM_INFO_PERSONAL_DETAILS: string = 'Provide some of your personal details';
@@ -384,6 +395,7 @@ export class StringKey {
 	//error message
 	public static readonly NO_DATA_PROJECT_ADMIN: string = 'A project can not run without an administrator. Add a new administrator';
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
+	public static readonly NO_DATA_PROJECT_REVIEWER: string = 'An activity in a project needs to be reviewed by a reviewer, add a new reviewer';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
 	public static readonly NO_DATA_ACTIVITY: string = 'No Activity has been found. Play with filters to find an activity or add a new activity';
@@ -437,6 +449,8 @@ export class StringKey {
 	public static readonly ICON_SCALE: string = StringKey.ICON_BASE_PATH + "scale-measurement.svg";
 	public static readonly ICON_SLIDER: string = StringKey.ICON_BASE_PATH + "slider.svg";
 	public static readonly ICON_COMMENT: string = StringKey.ICON_BASE_PATH + "comment.svg";
+	public static readonly ICON_VERIFIED_RESULT: string = StringKey.ICON_BASE_PATH + "verified-result.svg";
+	public static readonly ICON_ACTIVITY_REVIEW: string = StringKey.ICON_BASE_PATH + "activity-reviews.svg";
 
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
@@ -463,8 +477,8 @@ export class StringKey {
 	public static readonly ICON_KPI_STORY: string = StringKey.ICON_BASE_PATH + "kpi-story.svg";
 	public static readonly ICON_SELECT: string = StringKey.ICON_BASE_PATH + "select.svg";
 	public static readonly ICON_WEIGHT: string = StringKey.ICON_BASE_PATH + "quantity.svg";
-	
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
+	
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";

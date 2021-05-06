@@ -267,7 +267,8 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 
 		const passedData: ProjectModel = {
 			projectId: this._filter.projectId,
-			userId: this._filter.userId
+			userId: this._filter.userId,
+			rawDataKeys: ['projectSprints', 'projectAssignees', 'projectGoals']
 		};
 
 		this.projectService

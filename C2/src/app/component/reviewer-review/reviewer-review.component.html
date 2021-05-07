@@ -1,0 +1,51 @@
+<ion-card>
+	<app-panel-header [panelTitle]="stringKey.REVIEW_DETAILS"
+		[panelIcon]="stringKey.ICON_ACTIVITY_REVIEW" [panelColor]="stringKey.COLOR_MEDIUM"
+	>
+	</app-panel-header>
+
+	<!-- no data -->
+	<app-no-data [reviewer]=true *ngIf="!hasData"
+		[text]="stringKey.NO_DATA_PROJECT_REVIEWER"></app-no-data>
+	<!-- no data -->
+
+	<!-- data -->
+	<div *ngIf="hasData">
+		<div *ngFor="let reviewer of activityReviews">
+			<app-panel-header [panelTitle]="getUserFullName(reviewer.reviewerUserFirstName, reviewer.reviewerUserLastName)" [panelIcon]="stringKey.ICON_REVIEWER"
+				[panelColor]="stringKey.COLOR_LIGHT" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
+				(event)="openReviewerOptions(reviewer)">
+			</app-panel-header>
+
+			<!-- result & comment -->
+			<ion-grid>
+				<ion-row>
+					<!-- measurement type -->
+					<ion-col size-lg="4" size-md="4" size-sm="4" size="12">
+						<ion-card>
+							<app-panel-header [panelTitle]="stringKey.VERIFIED_RESULT"
+								[panelIcon]="stringKey.ICON_VERIFIED_RESULT" [panelColor]="stringKey.COLOR_MEDIUM">
+							</app-panel-header>
+							<app-custom-fields *ngIf="reviewer.achievedResultValue" [data]="showResult(reviewer)"></app-custom-fields>
+							<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
+						</ion-card>
+					</ion-col>
+					<!-- measurement type -->
+	
+					<!-- weight -->
+					<ion-col size-lg="8" size-md="8" size-sm="8" size="12">
+						<ion-card>
+							<app-panel-header [panelTitle]="stringKey.REVIEWER_COMMENT" [panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_MEDIUM">
+							</app-panel-header>
+							<app-custom-fields *ngIf="reviewer.reviewerComment"  [data]="reviewer.reviewerComment"></app-custom-fields>
+							<app-custom-fields *ngIf="!reviewer.reviewerComment" [noData]=true></app-custom-fields>
+						</ion-card>
+					</ion-col>
+					<!-- weight -->
+				</ion-row>
+			</ion-grid>
+			<!-- result & comment -->
+		</div>
+	</div>
+	<!-- data -->
+</ion-card>

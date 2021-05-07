@@ -2,12 +2,9 @@ import { AlertService } from 'src/app/shared/service/alert.service';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
-import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
-import { NavParams } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { takeUntil } from 'rxjs/operators';
@@ -18,7 +15,6 @@ import { CreateEditProjectActivityComponent } from 'src/app/component/create-edi
 import { FilterModel } from 'src/app/shared/model/filter.model';
 import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component';
 import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measurement-type.enum';
-import { CreateEditProjectActivityCommentComponent } from 'src/app/component/create-edit-project-activity-comment/create-edit-project-activity-comment.component';
 
 
 @Component({
@@ -428,113 +424,6 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 		return await modal.present();
 	}
 
-	async openActivityCommentOptions(selectedActivity: ActivityModel){
-		const actionSheet = await this.actionSheetController.create({
-			header: this.stringKey.CHOOSE_YOUR_ACTION,
-			buttons: [
-				{
-					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_EDIT,
-					handler: () => {
-						this.editActivityComment(selectedActivity, `${OperationsEnum.Edit}`);
-					}
-				},
-				{
-					text: this.stringKey.CANCEL,
-					icon: this.stringKey.ICON_CANCEL,
-					handler: () => {
-						//
-					}
-				}
-			]
-		});
-		await actionSheet.present();
-	}
-
-	/**
-	 * Activities comment
-	 * @param activityModel 
-	 * @param operation 
-	 * @returns  
-	 */
-	async addActivityComment(activityModel: ActivityModel){
-		if(this._loggedInUser != activityModel.assigneeUserId){
-			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_USER)
-		}
-		else{
-			//activityModel.operationType = operation;
-			const passedModel: ActivityModel = {
-				userId: this._loggedInUser,
-				projectId: this._projectId,
-				assigneeUserId: activityModel.assigneeUserId,
-				activityId: activityModel.activityId,
-				commentDescription: activityModel.commentDescription,
-				operationType: `${OperationsEnum.Create}`
-			}
-
-			const modal = await this.modalController.create({
-				component: CreateEditProjectActivityCommentComponent,
-				componentProps: {
-					data: passedModel
-				}
-			});
-
-			modal.onDidDismiss().then(data => {
-
-				this._modalData = data.data;
-				if (this._modalData.cancelled) {
-					//do not refresh the page
-				} else {
-					//load data from network
-					this.loadData();
-				}
-			});
-
-			return await modal.present();
-		}
-	}
-
-	/**
-	 * Edits activity comment
-	 * @param activityModel 
-	 * @param operation 
-	 * @returns  
-	 */
-	async editActivityComment(activityModel: ActivityModel, operation: string){
-		if(this._loggedInUser != activityModel.assigneeUserId){
-			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_USER)
-		}
-		else{
-			const passedModel: ActivityModel = {
-				userId: this._loggedInUser,
-				projectId: this._projectId,
-				assigneeUserId: activityModel.assigneeUserId,
-				activityId: activityModel.activityId,
-				commentId: activityModel.commentId,
-				commentDescription: activityModel.commentDescription,
-				operationType: operation
-			}
 	
-			const modal = await this.modalController.create({
-				component: CreateEditProjectActivityCommentComponent,
-				componentProps: {
-					data: passedModel
-				}
-			});
-	
-			modal.onDidDismiss().then(data => {
-	
-				this._modalData = data.data;
-				if (this._modalData.cancelled) {
-					//do not refresh the page
-				} else {
-					//load data from network
-					this.loadData();
-				}
-			});
-	
-			return await modal.present();
-		}
-	}
 }
 

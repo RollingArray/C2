@@ -2,7 +2,7 @@
 <ion-header [appScrollTracker]="scrollArea">
 	<ion-toolbar color="primary">
 		<ion-title>
-			{{ pageTitle }}
+			{{ stringKey.UPDATE_REVIEW }}
 		</ion-title>
 		<ion-buttons slot="start">
 			<ion-button fill="outline" (click)="cancelModal()">{{
@@ -19,7 +19,7 @@
 <!-- header -->
 <ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
 	<!-- page title -->
-	<app-page-info-title [title]="pageTitle" [info]="stringKey.COMMENT_INFO">
+	<app-page-info-title [title]="stringKey.UPDATE_REVIEW" [info]="stringKey.REVIEW_INFO">
 	</app-page-info-title>
 	<!-- page title -->
 
@@ -32,53 +32,53 @@
 	<!-- fab -->
 
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
-		<!-- activity weight -->
+		<!-- activity fact -->
 		<ion-card color="secondary">
 			<p>
 				<ion-item color="secondary" lines="none">
 					<ion-icon [src]="stringKey.ICON_SLIDER" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ACTIVITY_WEIGHT }}
+					{{ stringKey.FORM_INFO_REVIEWER_ACTIVITY_ACHIEVED_FACT }}
 				</ion-item>
 			</p>
 			<ion-card lines="none" color="light">
-				
-				<ion-item lines="none" color="light">
+				<!-- toggle -->
+				<ion-item lines="none" color="light"
+					*ngIf="passedActivityReview.activityMeasurementType == activityMeasurementTypeEnum.Bool">
+					<ion-label slot="start">{{ stringKey.NOT_ACHIEVED }}</ion-label>
+					<ion-toggle color="primary" [(ngModel)]="isToggled" [ngModelOptions]="{ standalone: true }"
+						(ionChange)="onToggleBtnChange($event)"></ion-toggle>
+					<ion-label slot="end">{{ stringKey.ACHIEVED }}</ion-label>
+				</ion-item>
+				<!-- toggle -->
 
-					<ion-toggle 
-						[(ngModel)]="isToggled" [ngModelOptions]="{ standalone: true }"
-						*ngIf="passedActivityReview.activityMeasurementType == activityMeasurementTypeEnum.Bool" 
-						(ionChange)="onToggleBtnChange($event)"
-					></ion-toggle>
-
-					<ion-range 
-						*ngIf="passedActivityReview.activityMeasurementType == activityMeasurementTypeEnum.Num" 
-						formControlName="achievedResultValue" 
-						color="primary" 
-						[min]="passedActivityReview.criteriaPoorValue" 
-						[max]="passedActivityReview.criteriaOutstandingValue" 
-						step="1"
-					>
+				<!-- slider -->
+				<ion-item lines="none" color="light"
+					*ngIf="passedActivityReview.activityMeasurementType == activityMeasurementTypeEnum.Num">
+					<ion-range formControlName="achievedResultValue" color="primary"
+						[min]="passedActivityReview.criteriaPoorValue"
+						[max]="passedActivityReview.criteriaOutstandingValue" step="1">
 						<ion-label slot="start">{{passedActivityReview.criteriaPoorValue}}</ion-label>
-      					<ion-label slot="end">{{passedActivityReview.criteriaOutstandingValue}}</ion-label>
+						<ion-label slot="end">{{passedActivityReview.criteriaOutstandingValue}}</ion-label>
 					</ion-range>
 					<span class="percentage">{{achievedResultValue.value}}</span>
 					<span class="percentage">{{passedActivityReview.activityResultType}}</span>
 				</ion-item>
+				<!-- slider -->
 			</ion-card>
 		</ion-card>
-		<!-- activity weight -->
+		<!-- activity fact -->
 
 		<!-- activity name -->
 		<ion-card color="secondary">
 			<p>
 				<ion-item color="secondary" lines="none">
 					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_COMMENT }}
+					{{ stringKey.FORM_INFO_ACTIVITY_REVIEW_COMMENT }}
 				</ion-item>
 			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
-					<ion-textarea rows = 13 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
+					<ion-textarea rows=5 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
 						formControlName="reviewerComment" type="text">
 					</ion-textarea>
 				</ion-item>
@@ -91,7 +91,7 @@
 			</ion-card>
 		</ion-card>
 		<!-- activity name -->
-		
+
 	</form>
 	<!-- empty row -->
 	<div id="dum-height"></div>

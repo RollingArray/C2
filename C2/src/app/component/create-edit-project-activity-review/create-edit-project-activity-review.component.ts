@@ -169,16 +169,6 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 		}
 	}
 
-	
-
-	/**
-	 * Gets page title
-	 */
-	get pageTitle() {
-		let title: string;
-		return title;
-	}
-
 	/**
 	 * Builds data model to pass
 	 * @returns  
@@ -204,6 +194,7 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 	 * Submits create edit project activity component
 	 */
 	async submit() {
+		
 		if (this.formGroup.invalid) {
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_FIELDS}`

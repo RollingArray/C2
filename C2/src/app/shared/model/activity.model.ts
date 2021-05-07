@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-29 11:11:02 
- * Last modified  : 2021-05-06 20:19:46
+ * Last modified  : 2021-05-07 09:36:08
  */
 
 
@@ -35,6 +35,7 @@ export interface ActivityModel extends ProjectModel {
     characteristicsHigherBetter ?: number;
     commentId ?: string;
     commentDescription ?: string;
+    claimedResultValue ?: number;
     activityLocked ?: Boolean;
     activityReviewers ?: ActivityReviewerBaseModel
     operationType ?: string;

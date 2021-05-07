@@ -107,13 +107,7 @@ export class LocalStorageService {
 	removeActiveUser(): Observable<boolean> {
 		const observable$ = new BehaviorSubject<boolean>(false);
 
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_SESSION_ID}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_ID}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_FIRST_NAME}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_LAST_NAME}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_EMAIL}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_SECURITY_ANSWER_1}`);
-		localStorage.removeItem(`${LocalStoreKey.LOGGED_IN_USER_SECURITY_ANSWER_2}`);
+		localStorage.clear();
 
 		observable$.next(true);
 		return observable$.asObservable();

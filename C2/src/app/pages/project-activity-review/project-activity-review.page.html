@@ -68,160 +68,20 @@
 				<!-- weight -->
 
 				<!-- scale -->
-				<ion-col>
-					<ion-card>
-
-						<!-- title -->
-						<app-panel-header [panelTitle]="stringKey.ACTIVITY_MEASUREMENT_SCALE"
-							[panelIcon]="stringKey.ICON_SCALE" [panelColor]="stringKey.COLOR_MEDIUM"
-							eventIcon="stringKey.ICON_MORE">
-						</app-panel-header>
-						<!-- title -->
-
-						<!-- number -->
-						<app-custom-fields
-							*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num"
-							[data]="stringKey.MEASUREMENT_TYPE_NUM_INFO">
-						</app-custom-fields>
-						<!-- number -->
-
-						<!-- bool -->
-						<app-custom-fields
-							*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Bool"
-							[data]="stringKey.MEASUREMENT_TYPE_BOOL_INFO">
-						</app-custom-fields>
-						<!-- bool -->
-
-						<!-- number scale table -->
-						<div id="overflow-content"
-							*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num">
-							<table>
-								<tr>
-									<th>{{stringKey.POOR}}</th>
-									<th>{{stringKey.IMPROVEMENT}}</th>
-									<th>{{stringKey.EXPECTATION}}</th>
-									<th>{{stringKey.EXCEED}}</th>
-									<th>{{stringKey.OUTSTANDING}}</th>
-								</tr>
-								<tr>
-									<td colspan="5"></td>
-								</tr>
-								<tr>
-									<td>
-										{{stringKey.LESS_THAN}}
-										{{activity.criteriaPoorValue}}
-									</td>
-									<td>
-										{{stringKey.MORE_THAN_EQUAL}}
-										{{activity.criteriaPoorValue}},
-										{{stringKey.LESS_THAN}}
-										{{activity.criteriaImprovementValue}}
-									</td>
-									<td>
-										{{stringKey.MORE_THAN_EQUAL}}
-										{{activity.criteriaImprovementValue}},
-										{{stringKey.LESS_THAN}}
-										{{activity.criteriaExpectationValue}}
-									</td>
-									<td>
-										{{stringKey.MORE_THAN_EQUAL}}
-										{{activity.criteriaExpectationValue}},
-										{{stringKey.LESS_THAN}}
-										{{activity.criteriaExceedValue}}
-									</td>
-									<td>
-										{{stringKey.MORE_THAN_EQUAL}}
-										{{activity.criteriaExceedValue}},
-										{{stringKey.LESS_THAN_EQUAL}}
-										{{activity.criteriaOutstandingValue}}
-									</td>
-								</tr>
-								<tr>
-									<td colspan="5"></td>
-								</tr>
-							</table>
-						</div>
-						<!-- number scale table -->
-					</ion-card>
+				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+					<app-measurement-scale [activity] = "activity"></app-measurement-scale>
 				</ion-col>
 				<!-- scale -->
 
 				<!-- comment -->
 				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-					<ion-card>
-						<app-panel-header [panelTitle]="stringKey.ASSIGNEE_COMMENT"
-							[panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_MEDIUM"
-						>
-						</app-panel-header>
-
-						<!-- assignee -->
-						<app-panel-header [panelTitle]="getUserFullName(activity.assigneeUserFirstName, activity.assigneeUserLastName)" [panelIcon]="stringKey.ICON_USER"
-							[panelColor]="stringKey.COLOR_MEDIUM">
-						</app-panel-header>
-						<!-- assignee -->
-
-						<!-- no data -->
-						<app-no-data [comment]=true *ngIf="!activity.commentDescription"
-							[text]="stringKey.NO_DATA_COMMENT"></app-no-data>
-						<!-- no data -->
-						<app-custom-fields *ngIf="activity.commentDescription"
-							[data]="activity.commentDescription">
-						</app-custom-fields>
-					</ion-card>
+					<app-assignee-self-review [activity] = "activity" [allowAction]=true (event)="loadData()"></app-assignee-self-review>
 				</ion-col>
 				<!-- comment -->
 
 				<!-- reviewer -->
 				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-					<ion-card>
-						<app-panel-header [panelTitle]="stringKey.REVIEW_DETAILS"
-							[panelIcon]="stringKey.ICON_ACTIVITY_REVIEW" [panelColor]="stringKey.COLOR_MEDIUM"
-						>
-						</app-panel-header>
-
-						<!-- no data -->
-						<app-no-data [reviewer]=true *ngIf="!hasReviewsData"
-							[text]="stringKey.NO_DATA_PROJECT_REVIEWER"></app-no-data>
-						<!-- no data -->
-
-						<!-- data -->
-						<div *ngIf="hasReviewsData">
-							<div *ngFor="let reviewer of activityReviews">
-								<app-panel-header [panelTitle]="getUserFullName(reviewer.reviewerUserFirstName, reviewer.reviewerUserLastName)" [panelIcon]="stringKey.ICON_REVIEWER"
-									[panelColor]="stringKey.COLOR_LIGHT" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-									(event)="openReviewerOptions(reviewer)">
-								</app-panel-header>
-
-								<ion-grid>
-									<ion-row>
-										<!-- measurement type -->
-										<ion-col size-lg="4" size-md="4" size-sm="4" size="12">
-											<ion-card>
-												<app-panel-header [panelTitle]="stringKey.ACHIEVED_RESULT"
-													[panelIcon]="stringKey.ICON_VERIFIED_RESULT" [panelColor]="stringKey.COLOR_MEDIUM">
-												</app-panel-header>
-												<app-custom-fields *ngIf="reviewer.achievedResultValue" [data]="reviewer.achievedResultValue.toString()"></app-custom-fields>
-												<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
-											</ion-card>
-										</ion-col>
-										<!-- measurement type -->
-						
-										<!-- weight -->
-										<ion-col size-lg="8" size-md="8" size-sm="8" size="12">
-											<ion-card>
-												<app-panel-header [panelTitle]="stringKey.REVIEWER_COMMENT" [panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_MEDIUM">
-												</app-panel-header>
-												<app-custom-fields *ngIf="reviewer.reviewerComment"  [data]="reviewer.reviewerComment"></app-custom-fields>
-												<app-custom-fields *ngIf="!reviewer.reviewerComment" [noData]=true></app-custom-fields>
-											</ion-card>
-										</ion-col>
-										<!-- weight -->
-									</ion-row>
-								</ion-grid>
-							</div>
-						</div>
-						<!-- data -->
-					</ion-card>
+					<app-reviewer-review [activityReviews]="activityReviews" [hasData]="hasReviewsData" [allowAction]=true (event)="loadData()"></app-reviewer-review>
 				</ion-col>
 				<!-- reviewer -->
 

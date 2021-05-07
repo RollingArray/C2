@@ -32,12 +32,49 @@
 	<!-- fab -->
 
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
-		<!-- activity name -->
+		
+		<!-- claimed value -->
+		<ion-card color="secondary">
+			<p>
+				<ion-item color="secondary" lines="none">
+					<ion-icon [src]="stringKey.ICON_SLIDER" slot="start"></ion-icon>
+					{{ stringKey.FORM_INFO_ASSIGNEE_ACTIVITY_CLAIM_FACT }}
+				</ion-item>
+			</p>
+			<ion-card lines="none" color="light">
+				<!-- toggle -->
+				<ion-item lines="none" color="light"
+					*ngIf="passedActivity.activityMeasurementType == activityMeasurementTypeEnum.Bool">
+					<ion-label slot="start">{{ stringKey.NOT_ACHIEVED }}</ion-label>
+					<ion-toggle color="primary" [(ngModel)]="isToggled" [ngModelOptions]="{ standalone: true }"
+						(ionChange)="onToggleBtnChange($event)"></ion-toggle>
+					<ion-label slot="end">{{ stringKey.ACHIEVED }}</ion-label>
+				</ion-item>
+				<!-- toggle -->
+
+				<!-- slider -->
+				<ion-item lines="none" color="light"
+					*ngIf="passedActivity.activityMeasurementType == activityMeasurementTypeEnum.Num">
+					<ion-range formControlName="claimedResultValue" color="primary"
+						[min]="passedActivity.criteriaPoorValue"
+						[max]="passedActivity.criteriaOutstandingValue" step="1">
+						<ion-label slot="start">{{passedActivity.criteriaPoorValue}}</ion-label>
+						<ion-label slot="end">{{passedActivity.criteriaOutstandingValue}}</ion-label>
+					</ion-range>
+					<span class="percentage">{{claimedResultValue.value}}</span>
+					<span class="percentage">{{passedActivity.activityResultType}}</span>
+				</ion-item>
+				<!-- slider -->
+			</ion-card>
+		</ion-card>
+		<!-- claimed value -->
+
+		<!-- comment description -->
 		<ion-card color="secondary">
 			<p>
 				<ion-item color="secondary" lines="none">
 					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_COMMENT }}
+					{{ stringKey.FORM_INFO_ACTIVITY_ASSIGNEE_COMMENT }}
 				</ion-item>
 			</p>
 			<ion-card lines="none" color="light">
@@ -54,7 +91,7 @@
 				</ion-card>
 			</ion-card>
 		</ion-card>
-		<!-- activity name -->
+		<!-- comment description -->
 		
 	</form>
 	<!-- empty row -->

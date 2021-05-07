@@ -74,6 +74,8 @@ export class StringKey {
 	public static readonly UPDATE_COMMENT: string = 'Update Comment';
 	public static readonly DELETE_COMMENT: string = `Delete Comment`;
 	public static readonly COMMENT_INFO: string = 'Document your activity progress';
+	public static readonly REVIEW_INFO: string = 'Document your best judgement as a reviewer of how the activity has been performed';
+
 	public static readonly TASK_TYPE: string = 'Task Type(s)';
 	public static readonly TASK_TYPE_INFO: string = 'Task Type Defines The Category Of a Certain Type Of Work or Activity';
 	public static readonly CREATE_TASK_TYPE: string = 'Create Task Type';
@@ -137,6 +139,7 @@ export class StringKey {
 	public static readonly FORM_INFO_COMMENT: string = 'Provide details of the progress you have mede on the activity ';
 	
 	public static readonly MEASUREMENT_TYPE: string = 'Measurement Parameter';
+	public static readonly ASSIGNEE_SELF_REVIEW: string = 'Assignee Self Review';
 	public static readonly ASSIGNEE_COMMENT: string = 'Assignee Comment';
 	public static readonly REVIEWER_COMMENT: string = 'Reviewer Comment';
 	public static readonly KPI: string = 'Key Performance Indicator';
@@ -183,6 +186,7 @@ export class StringKey {
 	public static readonly REVIEWER_NAME: string = 'Reviewer Name';
 	public static readonly REVIEWER_EMAIL: string = 'Email';
 	public static readonly ACHIEVED_RESULT: string = 'Achieved Result';
+	public static readonly VERIFIED_RESULT: string = 'Verified Result';
 	public static readonly TASK_MEASUREMENT_TYPE: string = 'Task Measurement Type';
 	public static readonly CRITERIA_POOR_VALUE: string = 'Criteria Poor Value';
 	public static readonly CRITERIA_OUTSTANDING_VALUE: string = 'Criteria Outstanding Value';
@@ -208,6 +212,7 @@ export class StringKey {
 	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
 	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
 	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
+	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
 	
 
@@ -255,11 +260,12 @@ export class StringKey {
 	public static readonly FORM_INFO_TASK_NAME: string = 'Provide a suitable name for the task';
 	public static readonly FORM_INFO_TASK_DESCRIPTION: string = 'Provide a suitable description for the task';
 	public static readonly FORM_INFO_TASK_KEY_COMPLETION_INDICATOR: string = 'Provide a suitable description indicating the key completion parameters';
-	public static readonly FORM_INFO_TASK_ACHIEVED_FACT: string = 'Provide how much of the task has been achieved';
+	public static readonly FORM_INFO_REVIEWER_ACTIVITY_ACHIEVED_FACT: string = 'Provide actual fact of the result';
+	public static readonly FORM_INFO_ASSIGNEE_ACTIVITY_CLAIM_FACT: string = 'Provide the achieved result based on your self review';
 	public static readonly FORM_INFO_SELECT_TASK_REVIEWER: string = 'Select relevant reviewers to review this task, you may choose more than one reviewer(s)';
-	public static readonly FORM_INFO_ACHIEVED_RESULT_VALUE: string = 'Provide the achieved result based on your self review';
 	public static readonly FORM_INFO_REVIEWER_COMMENT: string = 'Provide suitable review comment';
-	public static readonly FORM_INFO_TASK_ASSIGNEE_COMMENT: string = 'Provide suitable comments which can be helpful for the reviewer';
+	public static readonly FORM_INFO_ACTIVITY_ASSIGNEE_COMMENT: string = 'Provide suitable comments which can be helpful for the reviewer';
+	public static readonly FORM_INFO_ACTIVITY_REVIEW_COMMENT: string = 'Provide suitable comments which can be helpful for the assignee to understand your review';
 
 	//form placeholder text
 	public static readonly FORM_PLACEHOLDER_USER: string = 'Alex';
@@ -357,6 +363,9 @@ export class StringKey {
 	public static readonly REJECT: string = 'Reject';
 	public static readonly REQUEST: string = 'Request';
 	public static readonly REMOVE: string = 'Remove';
+	public static readonly ACHIEVED: string = 'Achieved';
+	public static readonly NOT_ACHIEVED: string = 'Not Achieved';
+	
 	public static readonly ADD_USER_AS_ADMIN: string = 'Add as Admin';
 	public static readonly ADD_USER_AS_ASSIGNEE: string = 'Add as Assignee';
 	public static readonly ADD_USER_AS_REVIEWER: string = 'Add as Reviewer';
@@ -450,8 +459,10 @@ export class StringKey {
 	public static readonly ICON_SLIDER: string = StringKey.ICON_BASE_PATH + "slider.svg";
 	public static readonly ICON_COMMENT: string = StringKey.ICON_BASE_PATH + "comment.svg";
 	public static readonly ICON_VERIFIED_RESULT: string = StringKey.ICON_BASE_PATH + "verified-result.svg";
+	public static readonly ICON_CLAIM_RESULT: string = StringKey.ICON_BASE_PATH + "claim-result.svg";
 	public static readonly ICON_ACTIVITY_REVIEW: string = StringKey.ICON_BASE_PATH + "activity-reviews.svg";
-
+	public static readonly ICON_SELF_REVIEW: string = StringKey.ICON_BASE_PATH + "self-review.svg";
+	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
 	public static readonly ICON_NOTIFICATION: string = StringKey.ICON_BASE_PATH + "notifications.svg";
@@ -473,7 +484,6 @@ export class StringKey {
 	public static readonly ICON_REJECT: string = StringKey.ICON_BASE_PATH + "order-reject.svg";
 	public static readonly ICON_HELP: string = StringKey.ICON_BASE_PATH + "help.svg";
 	public static readonly ICON_DOCUMENT: string = StringKey.ICON_BASE_PATH + "document.svg";
-	public static readonly ICON_TASK_TYPE: string = StringKey.ICON_BASE_PATH + "task-type.svg";
 	public static readonly ICON_KPI_STORY: string = StringKey.ICON_BASE_PATH + "kpi-story.svg";
 	public static readonly ICON_SELECT: string = StringKey.ICON_BASE_PATH + "select.svg";
 	public static readonly ICON_WEIGHT: string = StringKey.ICON_BASE_PATH + "quantity.svg";

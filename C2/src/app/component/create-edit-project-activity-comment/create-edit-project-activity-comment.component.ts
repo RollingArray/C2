@@ -10,6 +10,7 @@ import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
 import { ProjectActivityService } from 'src/app/shared/service/project-activity.service';
 import { DatePipe } from '@angular/common';
+import { ActivityMeasurementTypeEnum } from "src/app/shared/enum/activity-measurement-type.enum";
 
 @Component({
 	selector: "app-create-edit-project-activity-comment",
@@ -32,6 +33,41 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	 * Modal data of create edit project activity component
 	 */
 	 private _modalData: ModalData;
+
+	 /**
+	 * Determines whether toggled is
+	 */
+	private _isToggled: boolean = false;
+
+	/**
+	 * Activity measurement type enum of create edit project activity component
+	 */
+	 activityMeasurementTypeEnum = ActivityMeasurementTypeEnum;
+
+	/**
+	 * Sets passed activity
+	 */
+	public set passedActivity(value: ActivityModel) {
+		this._passedActivity = value;
+	}
+
+	/**
+	 * Gets passed activity
+	 */
+	public get passedActivity(): ActivityModel {
+		return this._passedActivity;
+	}
+
+	public set isToggled(value: boolean) {
+		this._isToggled = value;
+	}
+
+	/**
+	 * Gets passed activity review
+	 */
+	public get isToggled(): boolean {
+		return this._isToggled;
+	}
 
 	/**
 	 * Creates an instance of create edit project activity component.
@@ -66,13 +102,19 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 		super.ngOnDestroy();
 	}
 
-	
 
 	/**
 	 * Gets activity description
 	 */
 	get commentDescription() {
 		return this.formGroup.get("commentDescription");
+	}
+
+	/**
+	 * Gets claimed result value
+	 */
+	get claimedResultValue() {
+		return this.formGroup.get("claimedResultValue");
 	}
 
 	/**
@@ -86,10 +128,20 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 					this.validators().required,
 					this.validators().pattern(this.regex.COMMENT_PATTERN),
 				]),
-			]
+			],
+
+			claimedResultValue: [
+				this._passedActivity.claimedResultValue,
+				this.validators().compose([
+					this.validators().required,
+					this.validators().pattern(this.regex.NUMBER_PATTERN),
+				]),
+			],
+			
 		});
 
 		this.setPassedValueToFrom();
+		this.mapToggle();
 	}
 
 	/**
@@ -98,6 +150,35 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	 private setPassedValueToFrom() {
 		const form = this.formGroup.value;
 		form.commentDescription = this._passedActivity.commentDescription;
+		form.claimedResultValue = this._passedActivity.claimedResultValue;
+	}
+
+	/**
+	 * Maps toggle
+	 */
+	 async mapToggle(){
+		if(this._passedActivity.activityMeasurementType == this.activityMeasurementTypeEnum.Bool){
+			if(this._passedActivity.claimedResultValue == 100){
+				this._isToggled = true;
+			}
+			else{
+				this._isToggled = false;
+			}
+		}
+	}
+
+	/**
+	 * Determines whether toggle btn change on
+	 * @param event 
+	 */
+	 onToggleBtnChange(event): void {
+		const val = this._isToggled;
+		if(val){
+			this.formGroup.controls.claimedResultValue.setValue(100);
+		}
+		else{
+			this.formGroup.controls.claimedResultValue.setValue(0);
+		}
 	}
 
 	/**
@@ -132,7 +213,9 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 			projectId: this._passedActivity.projectId,
 			activityId: this._passedActivity.activityId,
 			assigneeUserId: this._passedActivity.assigneeUserId,
+			commentId: this._passedActivity.commentId,
 			commentDescription: form.commentDescription,
+			claimedResultValue: form.claimedResultValue,
 			operationType: this._passedActivity.operationType,
 		};
 

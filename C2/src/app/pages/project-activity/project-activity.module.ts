@@ -16,6 +16,8 @@ import { CreateEditProjectActivityModule } from 'src/app/component/create-edit-p
 import { CreateEditProjectFilterModule } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component.module';
 import { ProjectFilterModule } from 'src/app/component/project-filter/project-filter.component.module';
 import { CreateEditProjectActivityCommentModule } from 'src/app/component/create-edit-project-activity-comment/create-edit-project-activity-comment.component.module';
+import { AssigneeSelfReviewModule } from 'src/app/component/assignee-self-review/assignee-self-review.component.module';
+import { MeasurementScaleModule } from 'src/app/component/measurement-scale/measurement-scale.component.module';
 
 const routes: Routes = [
   {
@@ -33,9 +35,9 @@ const routes: Routes = [
     CommonModule,
     IonicModule,
     SharedModule,
-    CreateEditProjectActivityModule,
-    CreateEditProjectActivityCommentModule,
     CreateEditProjectFilterModule,
+    AssigneeSelfReviewModule,
+    MeasurementScaleModule,
     ProjectFilterModule,
     NoDataModule,
     PageInfoTitleModule,

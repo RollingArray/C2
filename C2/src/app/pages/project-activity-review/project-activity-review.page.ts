@@ -111,19 +111,7 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 		return this._hasData;
 	}
 
-	/**
-	 * Sets whether has reviews data
-	 */
-	public set hasReviewsData(value: boolean) {
-		this._hasReviewsData = value;
-	}
-
-	/**
-	 * Gets whether has reviews data
-	 */
-	public get hasReviewsData(): boolean {
-		return this._hasReviewsData;
-	}
+	
 
 	/**
 	 * Sets activity
@@ -154,6 +142,20 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 	}
 
 	/**
+	 * Sets activity reviews
+	 */
+	 public set hasReviewsData(value: boolean) {
+		this._hasReviewsData = value;
+	}
+
+	/**
+	 * Gets activity reviews
+	 */
+	public get hasReviewsData(): boolean {
+		return this._hasReviewsData;
+	}
+
+	/**
 	 * Creates an instance of project activity review page.
 	 * @param injector 
 	 * @param localStorageService 
@@ -165,9 +167,7 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 		injector: Injector,
 		public localStorageService: LocalStorageService,
 		private projectActivityService: ProjectActivityService,
-		private loadingService: LoadingService,
-		private projectActivityReviewerService: ProjectActivityReviewerService,
-		private alertService: AlertService
+		private loadingService: LoadingService
 	) {
 		super(injector);
 	}
@@ -298,153 +298,5 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 
 		return await modal.present();
 	}
-
-	/**
-	 * Opens reviewer options
-	 * @param selectedActivity 
-	 */
-	async openReviewerOptions(selectedReviewer: ActivityReviewerModel) {
-		const actionSheet = await this.actionSheetController.create({
-			header: this.stringKey.CHOOSE_YOUR_ACTION,
-			buttons: [
-				{
-					text: this.stringKey.UPDATE + ' ' + this.stringKey.REVIEWER_COMMENT,
-					icon: this.stringKey.ICON_EDIT,
-					handler: () => {
-						this.addEditReview(selectedReviewer);
-					}
-				},
-				{
-					text: this.stringKey.DELETE + ' ' + this.stringKey.REVIEWER,
-					icon: this.stringKey.ICON_DELETE,
-					handler: () => {
-						this.delete(selectedReviewer);
-					}
-				},
-				{
-					text: this.stringKey.CANCEL,
-					icon: this.stringKey.ICON_CANCEL,
-					handler: () => {
-						//
-					}
-				}
-			]
-		});
-		await actionSheet.present();
-	}
-
-	/**
-	 * Adds edit review
-	 * @param selectedReviewer 
-	 */
-	async addEditReview(selectedReviewer: ActivityReviewerModel){
-		const passedModel: ActivityReviewerModel = {
-			userId: this._loggedInUser,
-			projectId: this._projectId,
-			activityId: this._activityId,
-			activityReviewId: selectedReviewer.activityReviewId,
-			achievedResultValue : selectedReviewer.achievedResultValue,
-			reviewerUserId : selectedReviewer.reviewerUserId,
-    		reviewerComment : selectedReviewer.reviewerComment,
-			activityMeasurementType: selectedReviewer.activityMeasurementType,
-			activityResultType: selectedReviewer.activityResultType,
-			criteriaPoorValue: selectedReviewer.criteriaPoorValue,
-			criteriaOutstandingValue: selectedReviewer.criteriaOutstandingValue,
-			operationType: `${OperationsEnum.Edit}`
-		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectActivityReviewComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
-
-		modal.onDidDismiss().then(data => {
-
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
-				this.loadData();
-			}
-		});
-
-		return await modal.present();
-	}
-	
-	/**
-	 * Deletes project activity review page
-	 * @param selectedReviewer 
-	 */
-	async delete(selectedReviewer: ActivityReviewerModel) {
-		const alertController = await this.alertController.create({
-			header: this.stringKey.CONFIRM_ACTION,
-			message: this.stringKey.ALERT_DELETE,
-			buttons: [
-				{
-					text: this.stringKey.CANCEL,
-					handler: () => {
-						//
-					}
-				}, {
-					text: this.stringKey.YES,
-					handler: async () => {
-						await this.deleteReviewer(selectedReviewer);
-					}
-				}
-			]
-		});
-
-		await alertController.present();
-	}
-
-	/**
-	 * Deletes reviewer
-	 * @param selectedReviewer 
-	 */
-	async deleteReviewer(selectedReviewer: ActivityReviewerModel) {
-		
-		// start loaded
-		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_6}`);
-
-		// build model
-		const passedData: ActivityReviewerModel = {
-			userId: this._loggedInUser,
-			projectId: this._projectId,
-			activityId: this._activityId,
-			activityReviewId: selectedReviewer.activityReviewId,
-			reviewerUserId:selectedReviewer.reviewerUserId,
-			operationType: OperationsEnum.Delete,
-		};
-
-		// call api
-		this.projectActivityReviewerService
-			.projectActivityReviewerCrud(passedData)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				async (baseModel: BaseModel) => {
-
-					// end loaded
-					await this.loadingService.dismiss();
-
-					// build
-					if (baseModel.success) {
-
-						// show toast
-						await this.presentToast(baseModel.message);
-
-						//load data
-						await this.loadData();
-					}
-				},
-				async (error) => {
-					//console.log(error);
-					await this.loadingService.dismiss();
-				}
-			);
-	}
-
-	
 }
 

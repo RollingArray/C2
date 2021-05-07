@@ -81,106 +81,13 @@
 
 					<!-- scale -->
 					<ion-col>
-						<ion-card>
-
-							<!-- title -->
-							<app-panel-header [panelTitle]="stringKey.ACTIVITY_MEASUREMENT_SCALE"
-								[panelIcon]="stringKey.ICON_SCALE" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
-							<!-- title -->
-
-							<!-- number -->
-							<app-custom-fields
-								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num"
-								[data]="stringKey.MEASUREMENT_TYPE_NUM_INFO">
-							</app-custom-fields>
-							<!-- number -->
-
-							<!-- bool -->
-							<app-custom-fields
-								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Bool"
-								[data]="stringKey.MEASUREMENT_TYPE_BOOL_INFO">
-							</app-custom-fields>
-							<!-- bool -->
-
-							<!-- number scale table -->
-							<div id="overflow-content"
-								*ngIf="activity.activityMeasurementType == activityMeasurementTypeEnum.Num">
-								<table>
-									<tr>
-										<th>{{stringKey.POOR}}</th>
-										<th>{{stringKey.IMPROVEMENT}}</th>
-										<th>{{stringKey.EXPECTATION}}</th>
-										<th>{{stringKey.EXCEED}}</th>
-										<th>{{stringKey.OUTSTANDING}}</th>
-									</tr>
-									<tr>
-										<td colspan="5"></td>
-									</tr>
-									<tr>
-										<td>
-											{{stringKey.LESS_THAN}}
-											{{activity.criteriaPoorValue}}
-										</td>
-										<td>
-											{{stringKey.MORE_THAN_EQUAL}}
-											{{activity.criteriaPoorValue}},
-											{{stringKey.LESS_THAN}}
-											{{activity.criteriaImprovementValue}}
-										</td>
-										<td>
-											{{stringKey.MORE_THAN_EQUAL}}
-											{{activity.criteriaImprovementValue}},
-											{{stringKey.LESS_THAN}}
-											{{activity.criteriaExpectationValue}}
-										</td>
-										<td>
-											{{stringKey.MORE_THAN_EQUAL}}
-											{{activity.criteriaExpectationValue}},
-											{{stringKey.LESS_THAN}}
-											{{activity.criteriaExceedValue}}
-										</td>
-										<td>
-											{{stringKey.MORE_THAN_EQUAL}}
-											{{activity.criteriaExceedValue}},
-											{{stringKey.LESS_THAN_EQUAL}}
-											{{activity.criteriaOutstandingValue}}
-										</td>
-									</tr>
-									<tr>
-										<td colspan="5"></td>
-									</tr>
-								</table>
-							</div>
-							<!-- number scale table -->
-						</ion-card>
+						<app-measurement-scale [activity] = "activity"></app-measurement-scale>
 					</ion-col>
 					<!-- scale -->
 
 					<!-- comment -->
 					<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-						<ion-card>
-							<app-panel-header [panelTitle]="stringKey.ASSIGNEE_COMMENT"
-								[panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_MEDIUM"
-								[eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-								(event)="openActivityCommentOptions(activity)">
-							</app-panel-header>
-
-							<!-- assignee -->
-							<app-panel-header [panelTitle]="getUserFullName(activity.assigneeUserFirstName, activity.assigneeUserLastName)" [panelIcon]="stringKey.ICON_USER"
-								[panelColor]="stringKey.COLOR_MEDIUM">
-							</app-panel-header>
-							<!-- assignee -->
- 
-							<!-- no data -->
-							<app-no-data [comment]=true *ngIf="!activity.commentDescription"
-								[text]="stringKey.NO_DATA_COMMENT" (click)="addActivityComment(activity)"></app-no-data>
-							<!-- no data -->
-							<app-custom-fields *ngIf="activity.commentDescription"
-								[data]="activity.commentDescription">
-							</app-custom-fields>
-						</ion-card>
+						<app-assignee-self-review [activity] = "activity" [allowAction]=false (event)="loadData()"></app-assignee-self-review>
 					</ion-col>
 					<!-- comment -->
 

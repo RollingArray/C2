@@ -1,0 +1,16 @@
+<ion-card>
+  <app-panel-header
+    [panelTitle]="panelTitle"
+    [panelIcon]="stringKey.ICON_PIE_CHART"
+    [panelColor]="stringKey.COLOR_SECONDARY"
+  ></app-panel-header>
+  <mwl-gauge
+    [max]="gaugeMax"
+    [dialStartAngle]="-90"
+    [dialEndAngle]="-90.001"
+    [label]="percentageValue"
+    [value]="gaugeValue"
+    [animated]="true"
+    [animationDuration]="1">
+  </mwl-gauge>
+</ion-card>

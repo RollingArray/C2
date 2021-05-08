@@ -16,17 +16,17 @@ import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { takeUntil } from 'rxjs/operators';
 import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
 import { CreateEditProjectUserComponent } from 'src/app/component/create-edit-project-user/create-edit-project-user.component';
-import { ProjectMemberService } from 'src/app/shared/service/project-member.service';
 import { UserModel } from 'src/app/shared/model/user.model';
 import { ProjectMemberModel } from 'src/app/shared/model/project-member.model';
+import { CredibilityIndexService } from 'src/app/shared/service/credibility-index.service';
 
 
 @Component({
 	selector: "project-users",
-	templateUrl: "./project-members.page.html",
-	styleUrls: ["./project-members.page.scss"]
+	templateUrl: "./credibility-index.page.html",
+	styleUrls: ["./credibility-index.page.scss"]
 })
-export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnDestroy {
+export class CredibilityIndexPage extends BaseViewComponent implements OnInit, OnDestroy {
 
 	/**
 	 * Modal data of project members page
@@ -90,7 +90,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	 * Creates an instance of project members page.
 	 * @param injector 
 	 * @param localStorageService 
-	 * @param projectMemberService 
+	 * @param CredibilityIndexervice 
 	 * @param loadingService 
 	 * @param platformHelper 
 	 * @param alertService 
@@ -98,7 +98,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	constructor(
 		injector: Injector,
 		public localStorageService: LocalStorageService,
-		private projectMemberService: ProjectMemberService,
+		private credibilityIndexService: CredibilityIndexService,
 		private loadingService: LoadingService,
 		private platformHelper: PlatformHelper,
 		private alertService: AlertService
@@ -111,8 +111,6 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 		await this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 		this._isApp = await this.platformHelper.isApp();
-		
-
 	}
 
 	// Lifecycle hook: ionViewDidEnter
@@ -130,7 +128,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	 */
 	async generateBreadcrumb(){
 		let projectName = this._projectMemberModel.projectDetails?.projectName;
-		this._breadCrumb = [projectName, this.stringKey.PROJECT_MEMBER];
+		this._breadCrumb = [projectName, this.stringKey.CREDIBILITY_INDEX];
 	}
 
 	/**
@@ -157,8 +155,8 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 
 		console.log(passedData);
 
-		this.projectMemberService
-			.getProjectMembers(passedData)
+		this.credibilityIndexService
+			.getCredibilityIndex(passedData)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -174,66 +172,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 			);
 	}
 
-	async changeUserRole(projectUserType: ProjectUserTypeModel, userType: string) {
-		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
-
-		// build data userModel
-		const passedData: ProjectModel = {
-			userId: this._loggedInUser,
-			addedUserId: projectUserType.userId,
-			projectId: projectUserType.projectId,
-			userTypeId: userType,
-			operationType: `${OperationsEnum.Edit}`
-		};
-
-		this.projectMemberService
-			.projectMemberCrud(passedData)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				async (baseModel: BaseModel) => {
-
-					await this.loadingService.dismiss();
-
-					// build
-					if (baseModel.success) {
-						await this.presentToast(baseModel.message);
-						await this.loadData();
-						// store active user
-					}
-				},
-				error => {
-					this.loadingService.dismiss();
-				}
-			);
-	}
-
-	async addProjectUser() {
-		const passedModel: ProjectModel = {
-			projectId: this.activatedRoute.snapshot.paramMap.get("projectId"),
-		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectUserComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
-
-		modal.onDidDismiss().then(data => {
-
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
-				this.loadData();
-			}
-		});
-
-		return await modal.present();
-	}
-
-	//openProjectMembersOptions
-	async openProjectMembersOptions(projectMember: UserModel) {
-		//
+	async goToCredibilityDetails(selectedUser: ProjectUserTypeModel){
+		this.router.navigate([selectedUser.userId, 'credibility'], { relativeTo: this.activatedRoute });
 	}
 }

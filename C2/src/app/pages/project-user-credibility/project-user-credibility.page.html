@@ -1,0 +1,75 @@
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+	<ion-toolbar color="primary">
+		<ion-title> {{stringKey.CREDIBILITY_INDEX}} </ion-title>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-buttons slot="end" (click)="loadData()">
+			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content #scrollArea scrollEvents="true">
+	<!-- page title -->
+	<app-page-info-title [title]="stringKey.CREDIBILITY_INDEX" [info]="stringKey.CREDIBILITY_INDEX_INFO">
+	</app-page-info-title>
+	<!-- page title -->
+	
+	<!-- breadcrumb -->
+	<app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
+	<!-- breadcrumb -->
+
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<!-- no data -->
+	<app-no-data *ngIf="!hasData" [credibility]=true [text]="stringKey.NO_DATA_CREDIBILITY"></app-no-data>
+	<!-- no data -->
+
+	<!-- credibility index -->
+	<ng-container *ngIf="hasData">
+		<ion-grid>
+			<ion-row>
+				<!-- user credibility score in %-->
+				<ion-col>
+					<app-performance-gauge [panelTitle]="stringKey.CREDIBILITY_SCORE_OUT_OF_100" [gaugeMax]="100"
+						[gaugeValue]="credibilityBase.credibilityScoreDetails.userCredibilityScore">
+					</app-performance-gauge>
+				</ion-col>
+				<!-- user credibility score out in %-->
+
+				<!-- user credibility score out of 5-->
+				<ion-col>
+					<app-performance-gauge [panelTitle]="stringKey.CREDIBILITY_SCORE_OUT_OF_5" [gaugeMax]="5"
+						[gaugeValue]="((credibilityBase.credibilityScoreDetails.userCredibilityScore / 100) * 5).toFixed(2)">
+					</app-performance-gauge>
+				</ion-col>
+				<!-- user credibility score out of 5-->
+			</ion-row>
+
+			<!-- Accumulated measurement criteria received over reviews -->
+			<ion-row>
+				<ion-col>
+					<app-performance-over-review [panelTitle]="stringKey.ACCUMULATED_MEASUREMENT_CRITERIA"
+						[performances]="credibilityBase.projectReviewDetails.data">
+					</app-performance-over-review>
+				</ion-col>
+			</ion-row>
+			<!-- Accumulated measurement criteria received over reviews -->
+
+			<!-- Reviews resulting performance -->
+			<ion-row>
+				<ion-col>
+					<app-review-over-performance [panelTitle]="stringKey.REVIEWS_RESULTING_PERFORMANCE"
+						[performances]="credibilityBase.projectReviewDetails.data">
+					</app-review-over-performance>
+				</ion-col>
+			</ion-row>
+			<!-- Reviews resulting performance -->
+		</ion-grid>
+	</ng-container>
+</ion-content>

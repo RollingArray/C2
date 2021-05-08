@@ -6,10 +6,11 @@
  * @desc [description]
  */
 import { BaseModel } from './base.model';
+import { ProjectModel } from './project.model';
 import { SearchModel } from './search.model';
 
-export interface UserModel extends BaseModel, SearchModel {
-		userId ?: string;
+export interface UserModel extends BaseModel, SearchModel, ProjectModel {
+    userId ?: string;
     userFirstName ?: string;
     userLastName ?: string;
     userPassword ?: string;
@@ -20,4 +21,5 @@ export interface UserModel extends BaseModel, SearchModel {
     userLoginType ?: string;
     userActivationCode ?: string;
     userPasswordResetCode ?: string;
+    userCredibilityScore ?: number;
 }

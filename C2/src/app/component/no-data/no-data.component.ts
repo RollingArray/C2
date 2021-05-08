@@ -18,6 +18,8 @@ export class NoDataComponent extends BaseViewComponent implements OnInit {
   @Input() sprint = false;
   @Input() member = false;
   @Input() reviewer = false;
+  @Input() diversity = false;
+  @Input() credibility = false;
 
   constructor(
     injector: Injector,

@@ -102,6 +102,7 @@ export class StringKey {
 	public static readonly VIEW_DETAILS: string = 'View Details';
 	public static readonly PROJECT_ADMIN: string = 'Project Administrator';
 	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are administrate by the project to run smoothly';
+	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
 	public static readonly PROJECT_MEMBER: string = 'Project Assignee(s)';
 	public static readonly PROJECT_REVIEWER: string = 'Project Reviewer(s)';
 	public static readonly PROJECT_DETAILS: string = 'Project Detail(s)';
@@ -145,7 +146,6 @@ export class StringKey {
 	public static readonly KPI: string = 'Key Performance Indicator';
 	public static readonly KPI_INFO: string = 'Key Performance Indicator is the Performance Indicator, which allows objectively evaluates the effectiveness of workflow';
 	public static readonly VIEW_USER_KPI: string = 'View Performance Matrix';
-	public static readonly VIEW_CREDIBILITY_INDEX: string = 'View Credibility Index';
 	public static readonly PERFORMANCE_MATRIX_FORM_INFO: string = 'Enter/update the following details to create/update a performance matrix';
 	public static readonly CREATE_PERFORMANCE_MATRIX: string = 'Create Performance Matrix';
 	public static readonly UPDATE_PERFORMANCE_MATRIX: string = 'Update Performance Matrix';
@@ -199,7 +199,7 @@ export class StringKey {
 	public static readonly ACTIVITY_MEASUREMENT_SCALE: string = 'Activity measurement scale';
 	public static readonly PERFORMANCE_IN_P: string = 'Performances in %';
 	public static readonly WEIGHTED_PERFORMANCE_IN_P: string = 'Weighted Performances in %';
-	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
+	
 	public static readonly CREDIBILITY_SCORE_OUT_OF_100: string = 'Credibility Score out of 100';
 	public static readonly CREDIBILITY_SCORE_OUT_OF_5: string = 'Credibility Score out of 5';
 	public static readonly CREDIBILITY_INDEX_INFO: string = 'Credibility index uses custom algorithm to the evaluate the feedback and arrive on the credibility score';
@@ -404,6 +404,9 @@ export class StringKey {
 	//error message
 	public static readonly NO_DATA_PROJECT_ADMIN: string = 'A project can not run without an administrator. Add a new administrator';
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
+	public static readonly NO_DATA_DIVERSITY: string = 'Diverse workforce is the key to a successful project. Add Members to the project and assign them Activities. C2 algorithm will generate Credibility Index for each Assignee based on the Reviews';
+	public static readonly NO_DATA_CREDIBILITY: string = 'Hold tight, we are looking for you data';
+	
 	public static readonly NO_DATA_PROJECT_REVIEWER: string = 'An activity in a project needs to be reviewed by a reviewer, add a new reviewer';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
@@ -462,6 +465,7 @@ export class StringKey {
 	public static readonly ICON_CLAIM_RESULT: string = StringKey.ICON_BASE_PATH + "claim-result.svg";
 	public static readonly ICON_ACTIVITY_REVIEW: string = StringKey.ICON_BASE_PATH + "activity-reviews.svg";
 	public static readonly ICON_SELF_REVIEW: string = StringKey.ICON_BASE_PATH + "self-review.svg";
+	public static readonly ICON_CREDIBILITY: string = StringKey.ICON_BASE_PATH + "credibility.svg";
 	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

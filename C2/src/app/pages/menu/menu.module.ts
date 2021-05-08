@@ -24,6 +24,10 @@ const routes: Routes = [
 				loadChildren: () => import('../no-access/no-access.module').then( m => m.NoAccessPageModule)
 			},
 			{
+				path: 'credibility-index',
+				loadChildren: () => import('../credibility-index/credibility-index.module').then(m => m.CredibilityIndexPageModule)
+			},
+			{
 				path: 'members',
 				loadChildren: () => import('../project-members/project-members.module').then(m => m.ProjectMembersPageModule)
 			},

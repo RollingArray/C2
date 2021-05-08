@@ -6,5 +6,6 @@ export interface ProjectUserTypeModel extends UserModel{
   projectId ?: string;
   projectUserTypeId ?: string;
   projectMemberTypeName ?: string;
+  userCredibilityScore ?: number;
   operationType ?: string;
 }

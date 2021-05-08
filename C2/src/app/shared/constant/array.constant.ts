@@ -12,6 +12,11 @@ export class ArrayKey {
 					icon: StringKey.ICON_PROJECT
 				},
 				{
+					title: StringKey.CREDIBILITY_INDEX,
+					url: ['credibility-index'],
+					icon: StringKey.ICON_CREDIBILITY
+				},
+				{
 					title: StringKey.PROJECT_SPRINT,
 					url: ['sprints'],
 					icon: StringKey.ICON_SPRINT

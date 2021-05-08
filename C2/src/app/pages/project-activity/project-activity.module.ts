@@ -36,6 +36,7 @@ const routes: Routes = [
     IonicModule,
     SharedModule,
     CreateEditProjectFilterModule,
+    CreateEditProjectActivityModule,
     AssigneeSelfReviewModule,
     MeasurementScaleModule,
     ProjectFilterModule,

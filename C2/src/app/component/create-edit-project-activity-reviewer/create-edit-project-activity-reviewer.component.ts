@@ -189,6 +189,7 @@ export class CreateEditProjectActivityReviewerComponent extends BaseFormComponen
 					this.loadingService.dismiss();
 					if (baseModel.success) {
 						this._projectReviewers = baseModel.data.projectReviewers.data;
+						console.log(this._projectReviewers);
 					}
 				}
 			);

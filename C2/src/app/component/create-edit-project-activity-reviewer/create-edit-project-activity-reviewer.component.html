@@ -63,6 +63,7 @@
 
 	<!-- reviewer drop selector -->
 	<ion-content #reviewerDropSelector>
+		
 		<ion-card *ngFor="let user of projectReviewers">
 			<app-panel-header [panelTitle]="getUserFullName(user.userFirstName, user.userLastName)"
 				[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_PRIMARY"

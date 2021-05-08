@@ -1,6 +1,6 @@
 
 img{
-    width: 50%;
+    height: 50vh;
 }
 
 ion-card{
@@ -9,4 +9,5 @@ ion-card{
 
 ion-text {
     padding: 10px;
+    text-align: center;
 }

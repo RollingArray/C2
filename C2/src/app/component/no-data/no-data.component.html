@@ -1,4 +1,9 @@
 <ion-card class="card-no-shadow">
+	<ion-text color="dark">
+		<h4>
+			{{ text }}
+		</h4>
+	</ion-text>
 	<p align="center">
 		<img src="assets/images/no_user.svg" *ngIf="user"/>
 		<img src="assets/images/no_project.svg" *ngIf="project"/>
@@ -10,9 +15,4 @@
 		<img src="assets/images/no_member.svg" *ngIf="member"/>
 		<img src="assets/images/no_reviewer.svg" *ngIf="reviewer"/>
 	</p>
-	<ion-text color="dark" align="center">
-		<h4>
-			{{ text }}
-		</h4>
-	</ion-text>
 </ion-card>

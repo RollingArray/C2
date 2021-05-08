@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { AssigneeSelfReviewModule } from "src/app/component/assignee-self-review/assignee-self-review.component.module";
 import { BreadcrumbModule } from "src/app/component/breadcrumb/breadcrumb.component.module";
+import { CreateEditProjectActivityReviewerModule } from "src/app/component/create-edit-project-activity-reviewer/create-edit-project-activity-reviewer.component.module";
 import { CustomFieldsModule } from "src/app/component/custom-fields/custom-fields-fields.component.module";
 import { MeasurementScaleModule } from "src/app/component/measurement-scale/measurement-scale.component.module";
 import { NoDataModule } from "src/app/component/no-data/no-data.component.module";
@@ -27,6 +28,7 @@ const routes: Routes = [
     CommonModule,
     IonicModule,
     SharedModule,
+    CreateEditProjectActivityReviewerModule,
     AssigneeSelfReviewModule,
     MeasurementScaleModule,
     ReviewerReviewModule,

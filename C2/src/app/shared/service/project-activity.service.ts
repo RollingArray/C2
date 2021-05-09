@@ -54,6 +54,23 @@ export class ProjectActivityService extends BaseService<ActivityModel> {
 	}
 
 	/**
+	 * Gets project my activities
+	 * @param projectModel 
+	 * @returns project my activities 
+	 */
+	getProjectMySpace(projectModel: ProjectModel, spaceType: string): Observable<BaseModel> {
+		let url = '';
+		if(spaceType == 'activity'){
+			url = `${ApiUrls.PROJECT_MY_ACTIVITIES}`;
+		}
+		else if(spaceType == 'review'){
+			url = `${ApiUrls.PROJECT_MY_REVIEWS}`;
+		}
+
+		return this.post(url, projectModel);
+	}
+
+	/**
 	 * Projects activity crud
 	 * @param activityModel 
 	 * @returns activity crud 

@@ -5,6 +5,7 @@ export interface ProjectModel {
     userId ?: string;
     addedUserId ?: string;
     assigneeUserId ?: string;
+    reviewerUserId ?: string;
     projectId ?: string;
     projectName ?: string;
     projectDescription ?: string;

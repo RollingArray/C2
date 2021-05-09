@@ -180,6 +180,10 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 		super.ngOnDestroy();
 	}
 
+	ionViewDidLeave(){
+		window.location.reload;
+	}
+
 	/**
 	 * Passed project id
 	 */
@@ -417,7 +421,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 				if (data) {
 					await this.loadingService
 						.dismiss()
-						.then(() => this.router.navigate(["/front"]));
+						.then(() => window.location.reload());
 				} else {
 					await this.loadingService.dismiss();
 				}

@@ -279,38 +279,40 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * @returns  
 	 */
 	async addProjectActivity() {
-		if(!this._filterModel){
+		if(!this._filterModel.sprintId){
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_SELECT}`
 			);
 		}
-		const passedModel: ActivityModel = {
-			userId: this._loggedInUser,
-			projectId: this._projectId,
-			assigneeUserId: this._filterModel.assigneeUserId,
-			sprintId: this._filterModel.sprintId,
-			goalId: this._filterModel.goalId,
-			operationType: `${OperationsEnum.Create}`
+		else{
+			const passedModel: ActivityModel = {
+				userId: this._loggedInUser,
+				projectId: this._projectId,
+				assigneeUserId: this._filterModel.assigneeUserId,
+				sprintId: this._filterModel.sprintId,
+				goalId: this._filterModel.goalId,
+				operationType: `${OperationsEnum.Create}`
+			}
+			const modal = await this.modalController.create({
+				component: CreateEditProjectActivityComponent,
+				componentProps: {
+					data: passedModel
+				}
+			});
+	
+			modal.onDidDismiss().then(data => {
+	
+				this._modalData = data.data;
+				if (this._modalData.cancelled) {
+					//do not refresh the page
+				} else {
+					//load data from network
+					this.loadData();
+				}
+			});
+	
+			return await modal.present();
 		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectActivityComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
-
-		modal.onDidDismiss().then(data => {
-
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
-				this.loadData();
-			}
-		});
-
-		return await modal.present();
 	}
 
 	/**

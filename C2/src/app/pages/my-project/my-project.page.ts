@@ -296,7 +296,7 @@ export class MyProjectPage extends BaseViewComponent {
 				if (data) {
 					await this.loadingService
 						.dismiss()
-						.then(() => this.router.navigate(["/front"]));
+						.then(() => window.location.reload());
 				} else {
 					await this.loadingService.dismiss();
 				}

@@ -61,8 +61,8 @@
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
 					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_SECONDARY"
-					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAdministrator)"></app-panel-header>
+					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
+					(event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)"></app-panel-header>
 				<!-- panel header -->
 
 			</ion-card>
@@ -93,8 +93,8 @@
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
 					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_SECONDARY"
-					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAssignee)"></app-panel-header>
+					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
+					(event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)"></app-panel-header>
 			</ion-card>
 		</ng-container>
 	</ion-card>
@@ -124,10 +124,15 @@
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
 					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_SECONDARY"
-					[eventIcon]="stringKey.ICON_MORE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectReviewer)"></app-panel-header>
+					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
+					(event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"></app-panel-header>
 			</ion-card>
 		</ng-container>
 	</ion-card>
 	<!--  project reviewer -->
+
+	<!-- empty row -->
+	<div id="dum-height"></div>
+	<!-- empty row -->
+	
 </ion-content>

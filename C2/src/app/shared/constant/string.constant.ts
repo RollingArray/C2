@@ -48,7 +48,8 @@ export class StringKey {
 	public static readonly NOT_ACTIVATED: string = 'Not yet activated your account ?';
 	public static readonly VERIFICATION_CODE: string = 'Account Verification Code';
 	public static readonly PASSWORD_RESET_CODE: string = 'Password Reset Code';
-	public static readonly SELECTED_PROJECT_SETTINGS: string = 'Selected Project Settings';
+	public static readonly SELECTED_PROJECT_SETTINGS: string = 'Project Space';
+	public static readonly MY_SPACE: string = 'My Space';
 
 	public static readonly SIGN_IN_INFO: string = 'Provide your registered email and password to login';
 	public static readonly WELCOME: string = 'Welcome';
@@ -89,7 +90,7 @@ export class StringKey {
 	public static readonly REVIEWS_RESULTING_PERFORMANCE: string = 'Verified Results over Reviews';
 	public static readonly REVIEWS: string = 'Review(s)';
 	public static readonly REVIEW_DETAILS: string = 'Review Detail(s)';
-	public static readonly CHOOSE_FILTER: string = 'Choose Filter';
+	public static readonly CHOOSE_FILTER: string = 'Choose Entity';
 	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
 
 
@@ -117,8 +118,9 @@ export class StringKey {
 	public static readonly ACTIVITY_INFO: string = 'Activity is a measurable target which is performed to achieve a goal';
 	public static readonly ACTIVITY_REVIEW: string = 'Activity Review(s)';
 	public static readonly ACTIVITY_REVIEW_INFO: string = 'Review is a process of examining and auditing planned activities to identify whether the requirements can be fully addressed by the planned amount of work';
-
-
+	public static readonly MY_ACTIVITY: string = 'My Activity(s)';
+	public static readonly MY_REVIEW: string = 'My Review(s)';
+	
 	public static readonly ASSIGNEE: string = 'User Story(s)';
 	public static readonly ASSIGNEE_INFO: string = 'Enter/update the following details to create/update a user story';
 	public static readonly CREATE_ASSIGNEE: string = 'Create User Story';
@@ -381,17 +383,17 @@ export class StringKey {
 	public static readonly API_REQUEST_MESSAGE_5: string = 'Signing Up  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_6: string = 'Deleting Detail(s)  .. Please Wait';
 
-	public static readonly TOKEN_EXPIRE: string = 'Oh No !! Your Authorization Has Expired. Please Authorize yourself';
-	public static readonly IN_APP_LOGIN_SUCCESS: string = 'Delighted To Get You Back, You Can Proceed !';
+	public static readonly TOKEN_EXPIRE: string = 'Oh No !! Your Authorization Has Expired. <b>Please Authorize yourself</b>';
+	public static readonly IN_APP_LOGIN_SUCCESS: string = 'Delighted To Get You Back, <b>You Can Proceed</b> !';
 	public static readonly CONFIRM_ACTION: string = 'Confirm Your Action !';
-	public static readonly CONFIRM_LOG_OUT: string = 'Do You Want To Sign Out';
+	public static readonly CONFIRM_LOG_OUT: string = 'Do You Want To <b>Sign Out</b>';
 	public static readonly MANDATORY_FIELDS: string = 'Do Not Keep Field(s) Blank';
 	public static readonly MANDATORY_SELECT: string = 'Select <b>Goal</b>, <b>Sprint</b> & <b>Assignee</b> to create an <b>Activity</b>';
-	public static readonly DELETE_CONFIRM: string = 'Are You Sure You Want To Delete';
+	public static readonly DELETE_CONFIRM: string = 'Are You Sure You Want To <b>Delete</b>';
 	public static readonly RESEND_ACTIVATION_CODE: string = 'Email Required For Resending Activation Code';
 	public static readonly ALLOW_NOTIFICATION: string = 'You did not allow us to send notifications, please allow to send notification from your app settings to receive update from your project';
-	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check measurement criteria range';
-	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review feedback classification';
+	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check <b>Measurement Criteria</b> Range';
+	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review <b>Feedback</b> classification';
 	public static readonly NUMBER_OF_REVIEWS: string = 'Number of reviews';
 	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is higher the better result. Toggle the switch to make the characteristics inverse, lower the better';
 	public static readonly MEASUREMENT_CRITERIA_CHARACTERISTICS: string = 'Measurement criteria characteristics';
@@ -418,7 +420,7 @@ export class StringKey {
 	public static readonly NO_DATA: string = 'No data available';
 	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
 	public static readonly NO_DATA_ADMIN: string = 'We did not find any pending request';
-	public static readonly NO_FILTER: string = 'Select Filter to refine your result';
+	public static readonly NO_FILTER: string = 'Select Entity to refine your result';
 
 	public static readonly WHAT_WE_ARE: string = 'What is C2';
 	public static readonly WHAT_WE_ARE_INFO_1: string = 'C2 is an open platform aiming to connect projects with the local suppliers. This platform will help adapt a systematic approach to order daily essentials from the local suppliers. It helps keep track of the orders and deliveries by suppliers. The aim is to aid the local suppliers to manage their orders and description the issues more effectively so they can do more business within the area.';
@@ -469,6 +471,8 @@ export class StringKey {
 	public static readonly ICON_SELF_REVIEW: string = StringKey.ICON_BASE_PATH + "self-review.svg";
 	public static readonly ICON_CREDIBILITY: string = StringKey.ICON_BASE_PATH + "credibility.svg";
 	public static readonly ICON_ACCORDION: string = StringKey.ICON_BASE_PATH + "accordion.svg";
+	public static readonly ICON_MY_ACTIVITY: string = StringKey.ICON_BASE_PATH + "my-activity.svg";
+	public static readonly ICON_MY_REVIEWS: string = StringKey.ICON_BASE_PATH + "my-reviews.svg";
 	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

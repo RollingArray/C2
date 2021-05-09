@@ -49,6 +49,11 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	private _projectMemberModel: ProjectMemberModel;
 
 	/**
+	 * Project model of project members page
+	 */
+	 userTypeEnum =  UserTypeEnum;
+
+	/**
 	 * Bread crumb of project members page
 	 */
 	private _breadCrumb : string[];
@@ -232,8 +237,61 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 		return await modal.present();
 	}
 
+	
 	//openProjectMembersOptions
-	async openProjectMembersOptions(projectMember: UserModel) {
-		//
+	async openProjectMembersOptions(projectMember: UserModel, userTypeEnum: UserTypeEnum) {
+
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: this.stringKey.ALERT_DELETE,
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, {
+					text: this.stringKey.YES,
+					handler: async () => {
+						// show loader
+						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+
+						// build data model
+						const passedData: ProjectModel = {
+							userId: this._loggedInUser,
+							addedUserId: projectMember.userId,
+							projectId: projectMember.projectId,
+							userTypeId: userTypeEnum,
+							operationType: OperationsEnum.Delete
+						};
+
+						// send api
+						this.projectMemberService
+							.projectMemberCrud(passedData)
+							.pipe(takeUntil(this.unsubscribe))
+							.subscribe(
+								async (baseModel: BaseModel) => {
+
+									// stop loader
+									await this.loadingService.dismiss();
+
+									//check if success response case back
+									if (baseModel.success) {
+										//toast api response
+										await this.presentToast(baseModel.message);
+										// load data
+										this.loadData();
+									}
+								},
+								error => {
+									this.loadingService.dismiss();
+								}
+							);
+					}
+				}
+			]
+		});
+
+		await alertController.present();
 	}
 }

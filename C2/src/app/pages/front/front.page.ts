@@ -45,7 +45,6 @@ export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
 				);
 		}
 	}
-
 	//activeUserId
 	async activeUserId() {
 		let activeUserId = "";

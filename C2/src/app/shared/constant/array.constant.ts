@@ -4,6 +4,21 @@ import { RouteModel } from '../model/route.model';
 export class ArrayKey {
 	public static readonly APP_PRIMARY_ROUTE_PAGES: RouteModel[] = [
 		{
+			title: StringKey.MY_SPACE,
+			children: [
+				{
+					title: StringKey.MY_ACTIVITY,
+					url: ['my','activity'],
+					icon: StringKey.ICON_MY_ACTIVITY
+				},
+				{
+					title: StringKey.MY_REVIEW,
+					url: ['my','review'],
+					icon: StringKey.ICON_MY_REVIEWS
+				},
+			]
+		},
+		{
 			title: StringKey.SELECTED_PROJECT_SETTINGS,
 			children: [
 				{

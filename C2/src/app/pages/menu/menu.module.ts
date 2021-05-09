@@ -20,6 +20,10 @@ const routes: Routes = [
 		component: MenuPage,
 		children: [
 			{
+				path: 'my/:spaceType',
+				loadChildren: () => import('../my-space/my-space.module').then(m => m.MySpacePageModule)
+			},
+			{
 				path: 'no-access',
 				loadChildren: () => import('../no-access/no-access.module').then( m => m.NoAccessPageModule)
 			},

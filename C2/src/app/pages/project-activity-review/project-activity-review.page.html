@@ -3,6 +3,7 @@
 	<ion-toolbar color="primary">
 		<ion-title> {{stringKey.ACTIVITY_REVIEW}} </ion-title>
 		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
 			<ion-back-button></ion-back-button>
 		</ion-buttons>
 		<ion-buttons slot="end" (click)="loadData()">
@@ -37,7 +38,7 @@
 	<ng-container *ngIf="hasData">
 		<!-- title -->
 		<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
-			[panelColor]="stringKey.COLOR_DARK">
+			[panelColor]="stringKey.COLOR_SECONDARY">
 		</app-panel-header>
 		<!-- title -->
 

@@ -85,9 +85,9 @@ export class StringKey {
 
 	public static readonly PROJECT_FORM_HEADER: string = 'Enter/update the following details to build your project';
 	public static readonly PROJECT_ADMIN_NOTE: string = 'Since you are creating/updating this project, you will be the default administrator of the project. You can add more administrator(s) to manage various activity(s) for your project';
-	public static readonly ACCUMULATED_MEASUREMENT_CRITERIA: string = 'Accumulated measurement criteria received over reviews';
-	public static readonly REVIEWS_RESULTING_PERFORMANCE: string = 'Reviews resulting performance';
-	public static readonly REVIEWS: string = 'Reviews';
+	public static readonly ACCUMULATED_MEASUREMENT_CRITERIA: string = 'Accumulated Verified Review Results over Feedback Criteria';
+	public static readonly REVIEWS_RESULTING_PERFORMANCE: string = 'Verified Results over Reviews';
+	public static readonly REVIEWS: string = 'Review(s)';
 	public static readonly REVIEW_DETAILS: string = 'Review Detail(s)';
 	public static readonly CHOOSE_FILTER: string = 'Choose Filter';
 	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
@@ -102,6 +102,7 @@ export class StringKey {
 	public static readonly VIEW_DETAILS: string = 'View Details';
 	public static readonly PROJECT_ADMIN: string = 'Project Administrator';
 	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are administrate by the project to run smoothly';
+	public static readonly CREDIBILITY_BOARD: string = 'Credibility Board';
 	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
 	public static readonly PROJECT_MEMBER: string = 'Project Assignee(s)';
 	public static readonly PROJECT_REVIEWER: string = 'Project Reviewer(s)';
@@ -200,9 +201,10 @@ export class StringKey {
 	public static readonly PERFORMANCE_IN_P: string = 'Performances in %';
 	public static readonly WEIGHTED_PERFORMANCE_IN_P: string = 'Weighted Performances in %';
 	
-	public static readonly CREDIBILITY_SCORE_OUT_OF_100: string = 'Credibility Score out of 100';
+	public static readonly CREDIBILITY_SCORE_OUT_OF_100: string = 'Credibility Score in %';
 	public static readonly CREDIBILITY_SCORE_OUT_OF_5: string = 'Credibility Score out of 5';
-	public static readonly CREDIBILITY_INDEX_INFO: string = 'Credibility index uses custom algorithm to the evaluate the feedback and arrive on the credibility score';
+	public static readonly CREDIBILITY_BOARD_INFO: string = 'We uses custom algorithm to the evaluate the feedback and arrive on the Credibility Score shown in Credibility Board';
+	public static readonly CREDIBILITY_INDEX_INFO: string = 'Each Feedback is analysed based on multiple factors to calculate this Credibility Score';
 	public static readonly FEEDBACK_ANALYSIS: string = 'Review feedback analysis';
 	public static readonly SEARCH_USER: string = 'Search User';
 	public static readonly SEARCH_USER_INFO: string = 'You can search any user by entering a matching string from the user first name / last name / email';
@@ -466,6 +468,7 @@ export class StringKey {
 	public static readonly ICON_ACTIVITY_REVIEW: string = StringKey.ICON_BASE_PATH + "activity-reviews.svg";
 	public static readonly ICON_SELF_REVIEW: string = StringKey.ICON_BASE_PATH + "self-review.svg";
 	public static readonly ICON_CREDIBILITY: string = StringKey.ICON_BASE_PATH + "credibility.svg";
+	public static readonly ICON_ACCORDION: string = StringKey.ICON_BASE_PATH + "accordion.svg";
 	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

@@ -48,52 +48,10 @@
 		<ion-card *ngFor="let activity of activities">
 			<!-- title -->
 			<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
-				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
+				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_VIEW" [isEventRequired]="true"
 				(event)="openActivityOptions(activity)">
 			</app-panel-header>
 			<!-- title -->
-
-			<!-- activity grid -->
-			<ion-grid>
-				<ion-row>
-					<!-- measurement type -->
-					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-						<ion-card>
-							<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE"
-								[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_MEDIUM"
-								eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
-							<app-custom-fields [data]="activity.activityResultType"></app-custom-fields>
-						</ion-card>
-					</ion-col>
-					<!-- measurement type -->
-
-					<!-- weight -->
-					<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-						<ion-card>
-							<app-panel-header [panelTitle]="stringKey.WEIGHT_IN_P" [panelIcon]="stringKey.ICON_WEIGHT"
-								[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
-							</app-panel-header>
-							<app-custom-fields [data]="activity.activityWeight.toString()"></app-custom-fields>
-						</ion-card>
-					</ion-col>
-					<!-- weight -->
-
-					<!-- scale -->
-					<ion-col>
-						<app-measurement-scale [activity] = "activity"></app-measurement-scale>
-					</ion-col>
-					<!-- scale -->
-
-					<!-- comment -->
-					<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-						<app-assignee-self-review [activity] = "activity" [allowAction]=false (event)="loadData()"></app-assignee-self-review>
-					</ion-col>
-					<!-- comment -->
-
-				</ion-row>
-			</ion-grid>
-			<!-- activity grid -->
 		</ion-card>
 	</ng-container>
 	<!-- data container -->

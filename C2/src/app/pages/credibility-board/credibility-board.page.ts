@@ -23,10 +23,10 @@ import { CredibilityIndexService } from 'src/app/shared/service/credibility-inde
 
 @Component({
 	selector: "project-users",
-	templateUrl: "./credibility-index.page.html",
-	styleUrls: ["./credibility-index.page.scss"]
+	templateUrl: "./credibility-board.page.html",
+	styleUrls: ["./credibility-board.page.scss"]
 })
-export class CredibilityIndexPage extends BaseViewComponent implements OnInit, OnDestroy {
+export class CredibilityBoardPage extends BaseViewComponent implements OnInit, OnDestroy {
 
 	/**
 	 * Modal data of project members page
@@ -90,7 +90,7 @@ export class CredibilityIndexPage extends BaseViewComponent implements OnInit, O
 	 * Creates an instance of project members page.
 	 * @param injector 
 	 * @param localStorageService 
-	 * @param CredibilityIndexervice 
+	 * @param Credibilityboardervice 
 	 * @param loadingService 
 	 * @param platformHelper 
 	 * @param alertService 
@@ -128,7 +128,7 @@ export class CredibilityIndexPage extends BaseViewComponent implements OnInit, O
 	 */
 	async generateBreadcrumb(){
 		let projectName = this._projectMemberModel.projectDetails?.projectName;
-		this._breadCrumb = [projectName, this.stringKey.CREDIBILITY_INDEX];
+		this._breadCrumb = [projectName, this.stringKey.CREDIBILITY_BOARD];
 	}
 
 	/**
@@ -144,7 +144,9 @@ export class CredibilityIndexPage extends BaseViewComponent implements OnInit, O
 			});
 	}
 
-	// load data
+	/**
+	 * Loads data
+	 */
 	async loadData() {
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
 
@@ -153,10 +155,8 @@ export class CredibilityIndexPage extends BaseViewComponent implements OnInit, O
 			userId: this._loggedInUser
 		};
 
-		console.log(passedData);
-
 		this.credibilityIndexService
-			.getCredibilityIndex(passedData)
+			.getCredibilityBoard(passedData)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -172,6 +172,10 @@ export class CredibilityIndexPage extends BaseViewComponent implements OnInit, O
 			);
 	}
 
+	/**
+	 * Go to credibility details
+	 * @param selectedUser 
+	 */
 	async goToCredibilityDetails(selectedUser: ProjectUserTypeModel){
 		this.router.navigate([selectedUser.userId, 'credibility'], { relativeTo: this.activatedRoute });
 	}

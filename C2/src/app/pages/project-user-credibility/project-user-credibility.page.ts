@@ -180,7 +180,7 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 	  */
 	  async generateBreadcrumb(){
 		 let projectName = this._credibilityBase.projectDetails?.projectName;
-		 this._breadCrumb = [projectName, this.stringKey.PROJECT_SPRINT];
+		 this._breadCrumb = [projectName, this.stringKey.CREDIBILITY_BOARD, this.stringKey.CREDIBILITY_INDEX];
 	 }
  
 	 /**

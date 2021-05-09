@@ -12,8 +12,8 @@ export class ArrayKey {
 					icon: StringKey.ICON_PROJECT
 				},
 				{
-					title: StringKey.CREDIBILITY_INDEX,
-					url: ['credibility-index'],
+					title: StringKey.CREDIBILITY_BOARD,
+					url: ['credibility-board'],
 					icon: StringKey.ICON_CREDIBILITY
 				},
 				{

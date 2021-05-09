@@ -50,11 +50,11 @@ export class CredibilityIndexService extends BaseService<ProjectModel> {
 	}
 
 	/**
-	 * Gets credibility index
+	 * Gets credibility board
 	 * @param projectModel 
-	 * @returns credibility index 
+	 * @returns credibility board 
 	 */
-	getCredibilityIndex(projectModel: ProjectModel): Observable<BaseModel> {
+	getCredibilityBoard(projectModel: ProjectModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.CREDIBILITY_INDEX}`, projectModel);
 	}
 

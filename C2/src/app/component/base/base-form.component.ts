@@ -130,7 +130,10 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 	 * @param lastName 
 	 * @returns  
 	 */
+	//get user full name
 	getUserFullName(firstName, lastName) {
-		return firstName + " " + lastName;
+		const firstNameCapitalized = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+		const lastNameCapitalized = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+		return firstNameCapitalized + " " + lastNameCapitalized;
 	}
 }

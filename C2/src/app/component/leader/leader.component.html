@@ -1,0 +1,23 @@
+<ion-card>
+	<ion-item lines="none">
+		<ion-avatar slot="start">
+			<span>
+				{{getUserNameInitials(leader?.userFirstName,leader?.userLastName)}}
+			</span>
+		</ion-avatar>
+		<ion-label>
+			<h1 class="leader-name">
+				{{getUserFullName(leader?.userFirstName,leader?.userLastName)}}
+			</h1>
+			<h3 class="leader-note">{{leader?.userEmail}}</h3>
+		</ion-label>
+		<span slot="end" class="score" *ngIf="showScore">
+			{{leader.userCredibilityScore}}
+		</span>
+		<span slot="end" class="review" *ngIf="showReviewsCount">
+			<span>{{reviews}}</span> {{stringKey.REVIEWS}}
+		</span>
+	</ion-item>
+	<ion-progress-bar color="dark" buffer="1" [value]="((leader.userCredibilityScore / 100) * 1).toFixed(2)">
+	</ion-progress-bar>
+</ion-card>

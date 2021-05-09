@@ -17,7 +17,7 @@
 	<app-page-info-title [title]="stringKey.CREDIBILITY_INDEX" [info]="stringKey.CREDIBILITY_INDEX_INFO">
 	</app-page-info-title>
 	<!-- page title -->
-	
+
 	<!-- breadcrumb -->
 	<app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
 	<!-- breadcrumb -->
@@ -32,6 +32,11 @@
 
 	<!-- credibility index -->
 	<ng-container *ngIf="hasData">
+		<app-leader 
+			[leader]="credibilityBase.credibilityScoreDetails" 
+			[showReviewsCount]=true
+			[reviews]="credibilityBase.projectReviewDetails.data.length"
+		></app-leader>
 		<ion-grid>
 			<ion-row>
 				<!-- user credibility score in %-->

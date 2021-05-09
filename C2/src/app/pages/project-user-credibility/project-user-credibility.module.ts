@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { BreadcrumbModule } from "src/app/component/breadcrumb/breadcrumb.component.module";
 import { CustomFieldsModule } from "src/app/component/custom-fields/custom-fields-fields.component.module";
+import { LeaderModule } from "src/app/component/leader/leader.component.module";
 import { NoDataModule } from "src/app/component/no-data/no-data.component.module";
 import { PageInfoTitleModule } from "src/app/component/page-info-title/page-info-title.component.module";
 import { PanelHeaderModule } from "src/app/component/panel-header/panel-header.component.module";
@@ -28,6 +29,7 @@ const routes: Routes = [
     SharedModule,
     NoDataModule,
     PageInfoTitleModule,
+    LeaderModule,
     PanelHeaderModule,
     PanelInfoModule,
     CustomFieldsModule,

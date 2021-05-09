@@ -1,7 +1,7 @@
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
 	<ion-toolbar color="primary">
-		<ion-title> {{stringKey.CREDIBILITY_INDEX}} </ion-title>
+		<ion-title> {{stringKey.CREDIBILITY_BOARD}} </ion-title>
 		<ion-buttons slot="start">
 			<ion-menu-button></ion-menu-button>
 		</ion-buttons>
@@ -15,7 +15,7 @@
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
 	<!-- page title -->
-	<app-page-info-title [title]="stringKey.CREDIBILITY_INDEX" [info]="stringKey.CREDIBILITY_INDEX_INFO">
+	<app-page-info-title [title]="stringKey.CREDIBILITY_BOARD" [info]="stringKey.CREDIBILITY_BOARD_INFO">
 	</app-page-info-title>
 	<!-- page title -->
 
@@ -35,24 +35,7 @@
 	<!-- no data -->
 
 	<ng-container *ngIf="projectMemberModel?.projectAssignees?.success">
-		<ion-card *ngFor="let projectAssignee of projectMemberModel?.projectAssignees?.data" (click)="goToCredibilityDetails(projectAssignee)">
-			<ion-item>
-				<ion-avatar slot="start">
-					<img [src]="stringKey.ICON_USER" />
-				</ion-avatar>
-				<ion-label>
-					<h1>
-						{{getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)}}
-					</h1>
-					<h3>{{projectAssignee?.userEmail}}</h3>
-				</ion-label>
-				<ion-note slot="end" color="secondary">
-					<h1>
-						{{projectAssignee.userCredibilityScore}}
-					</h1>
-				</ion-note>
-			</ion-item>
-		</ion-card>
+		<app-leader [showScore]=true [leader]="projectAssignee" *ngFor="let projectAssignee of projectMemberModel?.projectAssignees?.data" (click)="goToCredibilityDetails(projectAssignee)"></app-leader>
 	</ng-container>
 	<!--  project member -->
 </ion-content>

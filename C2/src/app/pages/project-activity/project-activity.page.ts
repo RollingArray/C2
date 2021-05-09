@@ -348,33 +348,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * @param selectedActivity 
 	 */
 	async openActivityOptions(selectedActivity: ActivityModel) {
-		const actionSheet = await this.actionSheetController.create({
-			header: this.stringKey.CHOOSE_YOUR_ACTION,
-			buttons: [
-				{
-					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_EDIT,
-					handler: () => {
-						this.editProjectActivity(selectedActivity, `${OperationsEnum.Edit}`);
-					}
-				},
-				{
-					text: this.stringKey.VIEW + ' ' + this.stringKey.REVIEW + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_VIEW,
-					handler: () => {
-						this.router.navigate([selectedActivity.activityId, 'review'], { relativeTo: this.activatedRoute });
-					}
-				},
-				{
-					text: this.stringKey.CANCEL,
-					icon: this.stringKey.ICON_CANCEL,
-					handler: () => {
-						//
-					}
-				}
-			]
-		});
-		await actionSheet.present();
+		this.router.navigate([selectedActivity.activityId, 'review'], { relativeTo: this.activatedRoute });
 	}
 
 	/**

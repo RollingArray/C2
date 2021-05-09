@@ -4,17 +4,18 @@ import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { BreadcrumbModule } from "src/app/component/breadcrumb/breadcrumb.component.module";
 import { CreateEditProjectUserModule } from "src/app/component/create-edit-project-user/create-edit-project-user.component.module";
+import { LeaderModule } from "src/app/component/leader/leader.component.module";
 import { NoDataModule } from "src/app/component/no-data/no-data.component.module";
 import { PageInfoTitleModule } from "src/app/component/page-info-title/page-info-title.component.module";
 import { PanelHeaderModule } from "src/app/component/panel-header/panel-header.component.module";
 import { PanelInfoModule } from "src/app/component/panel-info/panel-info.component.module";
 import { SharedModule } from "src/app/shared/module/shared.module";
-import { CredibilityIndexPage } from "./credibility-index.page";
+import { CredibilityBoardPage } from "./credibility-Board.page";
 
 const routes: Routes = [
   {
     path: '',
-    component: CredibilityIndexPage
+    component: CredibilityBoardPage
   },
   {
 		path: ":assigneeId/credibility",
@@ -28,6 +29,7 @@ const routes: Routes = [
     IonicModule,
     SharedModule,
     CreateEditProjectUserModule,
+    LeaderModule,
     NoDataModule,
     PageInfoTitleModule,
     PanelHeaderModule,
@@ -35,6 +37,6 @@ const routes: Routes = [
     BreadcrumbModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CredibilityIndexPage]
+  declarations: [CredibilityBoardPage]
 })
-export class CredibilityIndexPageModule {}
+export class CredibilityBoardPageModule {}

@@ -12,5 +12,8 @@ export interface ProjectModel {
     requestFrom ?: string;
     userTypeId ?: string;
     rawDataKeys ?: string[];
+    projectAdministrator ?: ProjectUserTypeBaseModel;
+    projectAssignees ?: ProjectUserTypeBaseModel;
+    projectReviewers ?: ProjectUserTypeBaseModel;
     operationType ?: string;
 }

@@ -27,20 +27,38 @@
 	<app-no-data [project]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
 	<!-- no data -->
 	<ng-container *ngIf="hasData">
-		<ion-card *ngFor="let project of projects">
-			<app-panel-header [panelTitle]="project.projectName" [panelIcon]="stringKey.ICON_PROJECT"
-				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-				(event)="openProjectOptions(project)"></app-panel-header>
-			<app-custom-fields [description]="project.projectDescription">
-			</app-custom-fields>
-		</ion-card>
+		<ion-grid>
+			<ion-row>
+				<ion-col size-lg="6" size-md="6" size-sm="6" size="12" *ngFor="let project of projects">
+					<ion-card>
+						<app-panel-header [panelTitle]="project.projectName" [panelIcon]="stringKey.ICON_PROJECT"
+							[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE"
+							[isEventRequired]="true" (event)="openProjectOptions(project)"></app-panel-header>
+						<app-custom-fields [description]="project.projectDescription">
+						</app-custom-fields>
+						<div>
+							<ion-avatar *ngFor="let user of project.projectAdministrator.data">
+								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
+							</ion-avatar>
+							<ion-avatar *ngFor="let user of project.projectAssignees.data">
+								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
+							</ion-avatar>
+							<ion-avatar *ngFor="let user of project.projectReviewers.data">
+								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
+							</ion-avatar>
+						</div>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
 	</ng-container>
 
 	<!-- empty row -->
 	<div id="dum-height"></div>
 	<!-- empty row -->
-	
-</ion-content>	
+
+</ion-content>
 <ion-footer>
 	<app-panel-header [panelTitle]="loggedInUserName" [panelIcon]="stringKey.ICON_USER"
 		[panelColor]="stringKey.COLOR_SECONDARY" [eventIcon]="stringKey.ICON_LOGOUT" [isEventRequired]="true"

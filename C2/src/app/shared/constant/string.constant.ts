@@ -215,6 +215,7 @@ export class StringKey {
 	//alert
 	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
 	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
+	public static readonly ALERT_DELETE_PROJECT: string = 'This will permanently <strong>delete</strong> the project and all associated data';
 	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
 	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';

@@ -84,43 +84,49 @@ export class IntroComponent extends BaseViewComponent implements OnInit  {
 			{
 				title: this.stringKey.INTRO_SLIDE_1_TITLE,
 				info: this.stringKey.INTRO_SLIDE_1_INFO,
-				imageName: "intro_slide_1",
+				imageName: "no_project",
 				buttonText: this.stringKey.SKIP_INTRO,
 			},
 			{
 				title: this.stringKey.INTRO_SLIDE_2_TITLE,
 				info: this.stringKey.INTRO_SLIDE_2_INFO,
-				imageName: "intro_slide_2",
+				imageName: "no_member",
 				buttonText: this.stringKey.SKIP_INTRO,
 			},
 			{
 				title: this.stringKey.INTRO_SLIDE_3_TITLE,
 				info: this.stringKey.INTRO_SLIDE_3_INFO,
-				imageName: "intro_slide_3",
+				imageName: "no_sprint",
 				buttonText: this.stringKey.SKIP_INTRO,
 			},
 			{
 				title: this.stringKey.INTRO_SLIDE_4_TITLE,
 				info: this.stringKey.INTRO_SLIDE_4_INFO,
-				imageName: "intro_slide_4",
+				imageName: "no_goal",
 				buttonText: this.stringKey.SKIP_INTRO,
 			},
 			{
 				title: this.stringKey.INTRO_SLIDE_5_TITLE,
 				info: this.stringKey.INTRO_SLIDE_5_INFO,
-				imageName: "intro_slide_5",
+				imageName: "no_activity",
 				buttonText: this.stringKey.SKIP_INTRO,
 			},
 			{
 				title: this.stringKey.INTRO_SLIDE_6_TITLE,
 				info: this.stringKey.INTRO_SLIDE_6_INFO,
-				imageName: "intro_slide_6",
+				imageName: "no_diversity",
+				buttonText: this.stringKey.GOT_IT_CONTINUE,
+			},
+			{
+				title: this.stringKey.INTRO_SLIDE_6_TITLE,
+				info: this.stringKey.INTRO_SLIDE_6_INFO,
+				imageName: "no_credibility",
 				buttonText: this.stringKey.GOT_IT_CONTINUE,
 			},
 		];
 
 		this.showNext = true;
 		this.showPrevious = false;
-		this.sliderLength = 6;
+		this.sliderLength = this.slideArray.length;
 	}
 }

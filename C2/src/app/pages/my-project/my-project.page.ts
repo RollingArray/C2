@@ -266,6 +266,13 @@ export class MyProjectPage extends BaseViewComponent {
 					}
 				},
 				{
+					text: this.stringKey.DELETE + ' ' + this.stringKey.PROJECT_DETAIL,
+					icon: this.stringKey.ICON_DELETE,
+					handler: () => {
+						this.deleteProject(selectedProject);
+					}
+				},
+				{
 					text: this.stringKey.VIEW + ' ' + this.stringKey.PROJECT_DETAILS,
 					icon: this.stringKey.ICON_VIEW,
 					handler: () => {
@@ -282,6 +289,57 @@ export class MyProjectPage extends BaseViewComponent {
 			]
 		});
 		await actionSheet.present();
+	}
+
+	async deleteProject(project: ProjectModel) {
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: this.stringKey.ALERT_DELETE_PROJECT,
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, {
+					text: this.stringKey.YES,
+					handler: async () => {
+						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+
+						const crudProject: ProjectModel = {
+							userId : this._loggedInUser,
+							projectId : project.projectId,
+							projectName : project.projectName,
+							projectDescription : project.projectDescription,
+							operationType : `${OperationsEnum.Delete}`,
+						}
+
+						this.projectService
+							.crudProject(crudProject)
+							.pipe(takeUntil(this.unsubscribe))
+							.subscribe(
+								async (baseModel: BaseModel) => {
+									await this.loadingService.dismiss();
+
+									// build
+									if (baseModel.success) {
+										await this.presentToast(baseModel.message);
+										
+										// store active user
+										await this.loadData();
+									}
+								},
+								async (error) => {
+									//console.log(error);
+									await this.loadingService.dismiss();
+								}
+							);
+					}
+				}
+			]
+		});
+
+		await alertController.present();
 	}
 
 	// logout user

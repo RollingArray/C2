@@ -37,7 +37,7 @@
 	<ng-container *ngIf="hasData">
 		<ion-card *ngFor="let sprint of projectSprintModel?.projectSprints.data">
 			<app-panel-header [panelTitle]="sprint.sprintName" [panelIcon]="stringKey.ICON_DURATION"
-				[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
+				[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
 				(event)="openSprintOptions(sprint)"></app-panel-header>
 			<app-custom-fields [sprintStartDate]="sprint.sprintStartDate" [sprintEndDate]="sprint.sprintEndDate">
 			</app-custom-fields>

@@ -41,7 +41,7 @@
 	<ion-card>
 		<!-- panel header -->
 		<app-panel-header [panelTitle]="stringKey.PROJECT_ADMIN" [panelIcon]="stringKey.ICON_ADMIN"
-			[panelColor]="stringKey.COLOR_PRIMARY" [isEventRequired]=false></app-panel-header>
+			[panelColor]="stringKey.COLOR_MEDIUM" [isEventRequired]=false></app-panel-header>
 		<!-- panel header -->
 		<!-- info -->
 		<app-panel-info [title]="stringKey.PROJECT_ADMIN_INFO"></app-panel-info>
@@ -60,7 +60,7 @@
 				<!-- panel header -->
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
-					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_SECONDARY"
+					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
 					(event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)"></app-panel-header>
 				<!-- panel header -->
@@ -73,7 +73,7 @@
 	<ion-card>
 		<!-- panel header -->
 		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
-			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
+			[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
 		</app-panel-header>
 		<!-- panel header -->
 
@@ -92,7 +92,7 @@
         ">
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
-					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_SECONDARY"
+					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
 					(event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)"></app-panel-header>
 			</ion-card>
@@ -104,7 +104,7 @@
 	<ion-card>
 		<!-- panel header -->
 		<app-panel-header [panelTitle]="stringKey.PROJECT_REVIEWER" [panelIcon]="stringKey.ICON_REVIEWER"
-			[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
+			[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
 		</app-panel-header>
 		<!-- panel header -->
 
@@ -123,7 +123,7 @@
         ">
 				<app-panel-header
 					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
-					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_SECONDARY"
+					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
 					(event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"></app-panel-header>
 			</ion-card>

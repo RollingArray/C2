@@ -115,7 +115,6 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 
 	// Lifecycle hook: ionViewDidEnter
 	async ionViewDidEnter() {
-		
 		await this.loadData();
 	}
 
@@ -149,12 +148,11 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 	 */
 	async loadData() {
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
-
+		
 		const passedData: ProjectModel = {
 			projectId: this._projectId,
 			userId: this._loggedInUser
 		};
-
 		this.credibilityIndexService
 			.getCredibilityBoard(passedData)
 			.pipe(takeUntil(this.unsubscribe))

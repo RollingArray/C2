@@ -171,6 +171,9 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 						 this._credibilityBase = baseModel.data;
 						 await this.generateBreadcrumb();
 					 }
+					 else{
+						 console.log(baseModel);
+					 }
 				 }
 			 );
 	 }

@@ -193,6 +193,14 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 						if(this._projectSprintModel.projectSprints.success){
 							this._hasData = true;
 						}
+						else{
+							this.errorMessage = this.stringKey.NO_DATA_SPRINT;
+							
+						}
+					}
+					else{
+						console.log(baseModel.error.message);
+						this.errorMessage = baseModel.error.message;
 					}
 				}
 			);

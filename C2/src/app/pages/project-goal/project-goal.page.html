@@ -32,7 +32,7 @@
 		</ion-fab-button>
 	</ion-fab>
 	<!-- no data -->
-	<app-no-data [goal]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_GOAL"></app-no-data>
+	<app-no-data [goal]=true *ngIf="!hasData" [text]="errorMessage"></app-no-data>
 	<!-- no data -->
 	<ng-container *ngIf="hasData">
 		<ion-card *ngFor="let goal of projectGoalModel?.projectGoals.data">

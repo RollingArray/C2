@@ -187,7 +187,14 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 						if(this._projectGoalModel.projectGoals.success){
 							this._hasData = true;
 						}
+						else{
+							this.errorMessage = this.stringKey.NO_DATA_GOAL;
+						}
 					}
+					else{
+						this.errorMessage = baseModel.error.message;
+					}
+
 				}
 			);
 	}

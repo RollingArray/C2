@@ -105,6 +105,7 @@ export class StringKey {
 	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are administrate by the project to run smoothly';
 	public static readonly CREDIBILITY_BOARD: string = 'Credibility Board';
 	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
+	public static readonly PROJECT_MEMBERS: string = 'Project Member(s)';
 	public static readonly PROJECT_MEMBER: string = 'Project Assignee(s)';
 	public static readonly PROJECT_REVIEWER: string = 'Project Reviewer(s)';
 	public static readonly PROJECT_DETAILS: string = 'Project Detail(s)';
@@ -474,6 +475,7 @@ export class StringKey {
 	public static readonly ICON_ACCORDION: string = StringKey.ICON_BASE_PATH + "accordion.svg";
 	public static readonly ICON_MY_ACTIVITY: string = StringKey.ICON_BASE_PATH + "my-activity.svg";
 	public static readonly ICON_MY_REVIEWS: string = StringKey.ICON_BASE_PATH + "my-reviews.svg";
+	public static readonly ICON_MEMBERS: string = StringKey.ICON_BASE_PATH + "members.svg";
 	
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";

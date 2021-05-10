@@ -3,34 +3,35 @@
 		<ion-menu contentId="content" type="overlay">
 			<ion-header lines="none" class="ion-no-border">
 				<ion-menu-toggle auto-hide="false">
-					<ion-item color="semi-dark" lines="none" (click)="viewProfile()">
+					<ion-item color="pitch-dark" lines="none" (click)="viewProfile()">
 						<div class="fav-icon1">
 							<img src="assets/images/app_avatar.svg" />
 						</div>
-						<ion-item color="semi-dark" lines="none" class="segment">
+						<ion-item color="pitch-dark" lines="none" class="segment">
 							<h2>{{loggedInUser}}</h2>
 						</ion-item>
 					</ion-item>
 				</ion-menu-toggle>
 			</ion-header>
 
-			<ion-content color="semi-dark-gradient">
+			<ion-content color="primary-gradient">
+				<!-- <div>$nbsp;<br><br></div> -->
 				<ion-menu-toggle auto-hide="false">
 					<ion-card (click)="gotoMyProjects()">
-						<ion-item color="secondary" lines="none">
+						<ion-item color="primary" lines="none">
 							<ion-icon slot="start" name="arrow-back-outline"></ion-icon>
 							<ion-label> {{stringKey.MY_PROJECT}} </ion-label>
 						</ion-item>
 					</ion-card>
 
-					<ion-card *ngFor="let p of pages" color="secondary">
-						<ion-item color="secondary" lines="none">
+					<ion-card *ngFor="let p of pages" color="pitch-dark">
+						<ion-item color="pitch-dark" lines="none">
 							<ion-icon [src]="stringKey.ICON_MENU" slot="start"></ion-icon>
 							<ion-label> {{ p.title }} </ion-label>
 						</ion-item>
 						<ion-menu-toggle auto-hide="false">
-							<ion-card *ngFor="let eachSubMenu of p.children" color="tertiary">
-								<ion-item lines="none" color="dark" (click)="gotoPage(eachSubMenu)"
+							<ion-card *ngFor="let eachSubMenu of p.children">
+								<ion-item lines="none" color="primary" (click)="gotoPage(eachSubMenu)"
 									routerDirection="root" routerLinkActive="active">
 									<ion-icon slot="start" [src]="eachSubMenu.icon"></ion-icon>
 									{{ eachSubMenu.title }}
@@ -41,11 +42,11 @@
 				</ion-menu-toggle>
 			</ion-content>
 			<ion-footer>
-				<ion-toolbar color="primary">
+				<ion-toolbar color="primary-gradient">
 					<ion-grid>
 						<ion-row>
 							<ion-col>
-								<ion-button expand="block" color="dark" (click)="presentLogoutAlertConfirm()">
+								<ion-button class="footer-button" size="default" expand="block" color="primary" (click)="presentLogoutAlertConfirm()">
 									<ion-icon [src]="stringKey.ICON_LOGOUT"></ion-icon>
 									<ion-label>&nbsp; {{stringKey.LOGOUT}} </ion-label>
 								</ion-button>

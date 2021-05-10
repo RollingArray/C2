@@ -22,9 +22,9 @@ export class ArrayKey {
 			title: StringKey.SELECTED_PROJECT_SETTINGS,
 			children: [
 				{
-					title: StringKey.PROJECT_MEMBER,
+					title: StringKey.PROJECT_MEMBERS,
 					url: ['members'],
-					icon: StringKey.ICON_PROJECT
+					icon: StringKey.ICON_MEMBERS
 				},
 				{
 					title: StringKey.CREDIBILITY_BOARD,

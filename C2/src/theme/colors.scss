@@ -50,3 +50,12 @@
   --ion-color-shade: var(--ion-color-semi-dark-gradient-shade) !important;
   --ion-color-tint: var(--ion-color-semi-dark-gradient-tint) !important;
 }
+
+.ion-color-pitch-dark {
+  --ion-color-base: var(--ion-color-pitch-dark) !important;
+  --ion-color-base-rgb: var(--ion-color-pitch-dark-rgb) !important;
+  --ion-color-contrast: var(--ion-color-pitch-dark-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-pitch-dark-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-pitch-dark-shade) !important;
+  --ion-color-tint: var(--ion-color-pitch-dark-tint) !important;
+}

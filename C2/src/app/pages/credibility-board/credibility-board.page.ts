@@ -115,7 +115,7 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 
 	// Lifecycle hook: ionViewDidEnter
 	async ionViewDidEnter() {
-		await this.loadData();
+		//await this.loadData();
 	}
 
 	ngOnDestroy() {
@@ -162,6 +162,13 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 					if (baseModel.success) {
 						this._projectMemberModel = baseModel.data;
 						await this.generateBreadcrumb();
+						if(this._projectMemberModel?.projectAssignees?.success)
+						{
+							//
+						}
+						else{
+							this.errorMessage = this.stringKey.NO_DATA_DIVERSITY;
+						}
 					}
 					else{
 						this.errorMessage = baseModel.error.message;

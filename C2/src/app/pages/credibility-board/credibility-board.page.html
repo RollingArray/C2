@@ -29,8 +29,7 @@
 
 	<!--  project member -->
 	<!-- no data -->
-	<app-no-data [diversity]=true  *ngIf="!projectMemberModel?.projectAssignees?.success"
-		[text]="stringKey.NO_DATA_DIVERSITY">
+	<app-no-data [diversity]=true  *ngIf="!projectMemberModel?.projectAssignees?.success" [text]="errorMessage">
 	</app-no-data>
 	<!-- no data -->
 

@@ -170,9 +170,12 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 						
 						 this._credibilityBase = baseModel.data;
 						 await this.generateBreadcrumb();
+
+						 this.errorMessage = this.stringKey.NO_DATA_CREDIBILITY;
 					 }
 					 else{
 						 console.log(baseModel);
+						 this.errorMessage = baseModel.error.message
 					 }
 				 }
 			 );

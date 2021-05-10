@@ -262,6 +262,10 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 							this._filterExist = false;
 						}
 					}
+					else{
+						this.errorMessage = baseModel.error.message;
+						this.noAccess = true;
+					}
 				}
 			);
 	}

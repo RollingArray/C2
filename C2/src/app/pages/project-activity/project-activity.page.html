@@ -34,10 +34,14 @@
 	<!-- refresh btn -->
 
 	<!-- filter -->
-	<ion-card (click)="openFilter()">
+	<ion-card (click)="openFilter()" *ngIf="!noAccess">
 		<app-project-filter [filter]="filterModel" [filterExist]="filterExist"></app-project-filter>
 	</ion-card>
 	<!-- filter -->
+
+	<!-- no data -->
+	<app-no-data [activity]=true *ngIf="noAccess" [text]="errorMessage"></app-no-data>
+	<!-- no data -->
 
 	<!-- no data -->
 	<app-no-data [activity]=true *ngIf="!hasData && filterExist" [text]="stringKey.NO_DATA_ACTIVITY"></app-no-data>

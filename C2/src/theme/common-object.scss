@@ -9,6 +9,23 @@
  * Last modified  : 2021-05-04 17:16:26
  */
 
+/* Change autocomplete styles in WebKit */
+
+//  Change Autocomplete Styles in WebKit Browsers
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #323433;
+  -webkit-box-shadow: 0 0 0px 1000px #eaeaeb inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
 ion-card {
   border-radius: 8px;
@@ -51,7 +68,8 @@ th:last-child {
   border-right: 0px;
 }
 
-td, th {
+td,
+th {
   white-space: nowrap;
   overflow: hidden;
 }
@@ -71,18 +89,15 @@ td:last-child {
   border-right: 0px;
 }
 
-#dum-height
-{
+#dum-height {
   height: 70px;
 }
 
-#overflow-content{
-  overflow-x: auto
+#overflow-content {
+  overflow-x: auto;
 }
 
-
-
-.footer-button{
+.footer-button {
   height: 45px;
   // width: 100px;
   font-size: 20px;
@@ -90,10 +105,9 @@ td:last-child {
   --border-radius: 10px;
 }
 
-.inline-button{
+.inline-button {
   height: 45px;
   // width: 100px;
   font-size: 20px;
   margin: 10px;
-
 }

@@ -38,7 +38,7 @@ export class StringKey {
 	public static readonly DETAILS: string = 'Detail(s)';
 	public static readonly MY_PROFILE: string = 'My Profile';
 	public static readonly MY_PROFILE_INFO: string = 'You may wish to update any of your personal details';
-	public static readonly SIGN_IN: string = 'Login';
+	public static readonly SIGN_IN: string = 'Sign In';
 	public static readonly EMAIL: string = 'Email';
 	public static readonly PASSWORD: string = 'Password';
 	public static readonly FIRST_NAME: string = 'First Name';
@@ -506,6 +506,10 @@ export class StringKey {
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";
+
+	public static readonly IMAGE_BASE_PATH: string = "assets/images/";
+	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
+	
 	
 
 	public static readonly COLOR_PRIMARY: string = "primary";

@@ -1,56 +1,34 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar color="primary">
-    <!-- empty -->
-  </ion-toolbar>
-</ion-header>
 <ion-content lines="none" color="primary-gradient">
-  <p align="center">
-    <img src="assets/images/app_icon.svg" />
-  </p>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="ion-text-center app_name">
-          <h1>{{stringKey.APP_NAME}}</h1>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div class="ion-text-center app_tag_line" color="light">
-          {{stringKey.APP_TAG_LINE}}
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+	<ion-grid lines="none">
+		<ion-row justify-content-center lines="none">
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+				<img src="assets/images/app_landing.svg" />
+			</ion-col>
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+				<ion-button expand="block" color="secondary" [routerLink]="['/sign-in']">
+					<ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
+					<ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
+				</ion-button>
+			</ion-col>
+
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+
+				<h2>
+					Already have an account?
+				</h2>
+				
+			</ion-col>
+
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+				<ion-button expand="block" color="primary" [routerLink]="['/sign-up']">
+					<ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
+					&nbsp; {{stringKey.SIGN_UP}}
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
-<ion-footer class="ion-no-border">
-  <ion-toolbar color="dark" class="ion-no-border">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button
-            size="default"
-            expand="block"
-            color="primary"
-            [routerLink]="['/sign-up']"
-          >
-            <ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
-            <ion-label>&nbsp; {{stringKey.SIGN_UP}} </ion-label>
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button
-            size="default"
-            expand="block"
-            color="primary"
-            [routerLink]="['/sign-in']"
-          >
-            <ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
-            <ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>

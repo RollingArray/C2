@@ -21,6 +21,7 @@ import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measur
 import { ActivityReviewerModel } from 'src/app/shared/model/activity-reviewer.model';
 import { ProjectActivityReviewerService } from 'src/app/shared/service/project-activity-reviewer.service';
 import { CreateEditProjectActivityReviewComponent } from 'src/app/component/create-edit-project-activity-review/create-edit-project-activity-review.component';
+import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
 
 @Component({
 	selector: "project-users",
@@ -267,6 +268,36 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 		this._breadCrumb = [projectName, this.stringKey.PROJECT_ACTIVITY];
 	}
 
+	/**
+	 * Edits project activity
+	 * @param activityModel 
+	 * @returns  
+	 */
+	 async editProjectActivity(activityModel: ActivityModel) {
+		activityModel.userId = this._loggedInUser;
+		activityModel.projectId = this._projectId;
+		activityModel.operationType = OperationsEnum.Edit;
+
+		const modal = await this.modalController.create({
+			component: CreateEditProjectActivityComponent,
+			componentProps: {
+				data: activityModel
+			}
+		});
+
+		modal.onDidDismiss().then(data => {
+			this._modalData = data.data;
+			if (this._modalData.cancelled) {
+				//do not refresh the page
+			} else {
+				//load data from network
+				this.loadData();
+			}
+		});
+
+		return await modal.present();
+	}
+	
 	/**
 	 * Adds reviewer
 	 * @returns  

@@ -26,10 +26,10 @@
 					<app-panel-header [panelTitle]="stringKey.ACHIEVED_RESULT" [panelIcon]="stringKey.ICON_CLAIM_RESULT"
 						[panelColor]="stringKey.COLOR_MEDIUM">
 					</app-panel-header>
-					<app-custom-fields *ngIf="activity.criteriaOutstandingValue"
+					<app-custom-fields *ngIf="activity.claimedResultValue"
 						[data]="showResult(activity)">
 					</app-custom-fields>
-					<ion-card *ngIf="activity.criteriaOutstandingValue">
+					<ion-card *ngIf="activity.claimedResultValue">
 						<ion-progress-bar color="secondary" [value]="((activity.claimedResultValue / activity.criteriaOutstandingValue) * 1)"></ion-progress-bar>
 					</ion-card>
 					<app-custom-fields *ngIf="!activity.claimedResultValue" [noData]=true></app-custom-fields>

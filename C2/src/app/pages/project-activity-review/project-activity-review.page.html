@@ -38,7 +38,7 @@
 	<ng-container *ngIf="hasData">
 		<!-- title -->
 		<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
-			[panelColor]="stringKey.COLOR_SECONDARY">
+			[panelColor]="stringKey.COLOR_SECONDARY" [eventIcon]="stringKey.ICON_EDIT" [isEventRequired]="true" (click)="editProjectActivity(activity)">
 		</app-panel-header>
 		<!-- title -->
 
@@ -50,7 +50,7 @@
 					<ion-card>
 						<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE"
 							[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_MEDIUM"
-							eventIcon="stringKey.ICON_MORE">
+							>
 						</app-panel-header>
 						<app-custom-fields [data]="activity.activityResultType"></app-custom-fields>
 					</ion-card>

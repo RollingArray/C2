@@ -27,10 +27,10 @@
 								[panelIcon]="stringKey.ICON_VERIFIED_RESULT" [panelColor]="stringKey.COLOR_MEDIUM">
 							</app-panel-header>
 							<app-custom-fields *ngIf="reviewer.achievedResultValue" [data]="showResult(reviewer)"></app-custom-fields>
-							<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
-							<ion-card>
-								<ion-progress-bar *ngIf="reviewer.achievedResultValue" color="secondary" [value]="((reviewer.achievedResultValue / reviewer.criteriaOutstandingValue) * 1)"></ion-progress-bar>
+							<ion-card *ngIf="reviewer.achievedResultValue">
+								<ion-progress-bar color="secondary" [value]="((reviewer.achievedResultValue / reviewer.criteriaOutstandingValue) * 1)"></ion-progress-bar>
 							</ion-card>
+							<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
 						</ion-card>
 					</ion-col>
 					<!-- measurement type -->

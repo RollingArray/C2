@@ -5,6 +5,12 @@
 		<ion-buttons slot="end" (click)="loadData()">
 			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
 		</ion-buttons>
+		<ion-buttons slot="start" (click)="loadData()">
+			
+			<ion-avatar slot="">
+				<img [src]="stringKey.IMAGE_ICON" />
+			</ion-avatar>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <!-- header -->
@@ -23,6 +29,15 @@
 			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
 		</ion-fab-button>
 	</ion-fab>
+
+	<!-- user -->
+	<ion-card>
+		<app-panel-header [panelTitle]="loggedInUserName" [panelIcon]="stringKey.ICON_USER"
+			[panelColor]="stringKey.COLOR_DARK" [eventIcon]="stringKey.ICON_LOGOUT" [isEventRequired]="true"
+			(event)="logout()"></app-panel-header>
+	</ion-card>
+	<!-- user -->
+
 	<!-- no data -->
 	<app-no-data [project]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
 	<!-- no data -->
@@ -37,30 +52,17 @@
 						<app-custom-fields [description]="project.projectDescription">
 						</app-custom-fields>
 						<div>
-							<ion-avatar *ngFor="let user of project.projectAdministrator.data">
-								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
-							</ion-avatar>
-							<ion-avatar *ngFor="let user of project.projectAssignees.data">
-								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
-							</ion-avatar>
-							<ion-avatar *ngFor="let user of project.projectReviewers.data">
-								<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
-							</ion-avatar>
+							<app-avatar [user]="user" [icon]="stringKey.ICON_STAR" *ngFor="let user of project.projectReviewers.data"></app-avatar>
+							<app-avatar [user]="user" [icon]="stringKey.ICON_PEN" *ngFor="let user of project.projectAssignees.data"></app-avatar>
+							<app-avatar [user]="user" [icon]="stringKey.ICON_COG" *ngFor="let user of project.projectAdministrator.data"></app-avatar>
 						</div>
 					</ion-card>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-
 	</ng-container>
 
 	<!-- empty row -->
 	<div id="dum-height"></div>
 	<!-- empty row -->
-
 </ion-content>
-<ion-footer>
-	<app-panel-header [panelTitle]="loggedInUserName" [panelIcon]="stringKey.ICON_USER"
-		[panelColor]="stringKey.COLOR_SECONDARY" [eventIcon]="stringKey.ICON_LOGOUT" [isEventRequired]="true"
-		(event)="logout()"></app-panel-header>
-</ion-footer>

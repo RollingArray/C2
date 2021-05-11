@@ -4,10 +4,10 @@
 			<ion-header lines="none" class="ion-no-border">
 				<ion-menu-toggle auto-hide="false">
 					<ion-item color="pitch-dark" lines="none" (click)="viewProfile()">
-						<div class="fav-icon1">
-							<img src="assets/images/app_avatar.svg" />
+						<div class="fav-icon1 top-gap">
+							<img height="100" [src]="stringKey.IMAGE_AVATAR" />
 						</div>
-						<ion-item color="pitch-dark" lines="none" class="segment">
+						<ion-item color="pitch-dark " lines="none" class="segment top-gap">
 							<h2>{{loggedInUser}}</h2>
 						</ion-item>
 					</ion-item>

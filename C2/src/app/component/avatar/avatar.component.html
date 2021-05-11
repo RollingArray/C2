@@ -1,0 +1,6 @@
+<ion-avatar>
+	<span>{{getUserNameInitials(user?.userFirstName,user?.userLastName)}}</span>
+	<div class="type" *ngIf="icon">
+		<ion-icon slot="start" [src]="icon"></ion-icon>
+	</div>
+</ion-avatar>

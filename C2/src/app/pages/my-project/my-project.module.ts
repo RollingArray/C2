@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { AvatarModule } from 'src/app/component/avatar/avatar.component.module';
 import { CreateEditProjectModule } from 'src/app/component/create-edit-project/create-edit-project.module';
 import { CustomFieldsModule } from 'src/app/component/custom-fields/custom-fields-fields.component.module';
 import { NoDataModule } from 'src/app/component/no-data/no-data.component.module';
@@ -33,6 +34,7 @@ const routes: Routes = [
     PanelHeaderModule,
     PanelInfoModule,
     CustomFieldsModule,
+    AvatarModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MyProjectPage]

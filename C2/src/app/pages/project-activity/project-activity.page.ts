@@ -192,6 +192,7 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	ngOnInit() {
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
+		this.errorMessage = this.stringKey.NO_DATA_ACTIVITY;
 		this.getSelectProjectFilter();
 	}
 

@@ -59,6 +59,7 @@
         ">
 				<!-- panel header -->
 				<app-panel-header
+					[user]="projectAdministrator"
 					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
 					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
@@ -91,6 +92,7 @@
 					let projectAssignee of projectMemberModel?.projectAssignees?.data
         ">
 				<app-panel-header
+					[user]="projectAssignee"
 					[panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
 					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
@@ -122,6 +124,7 @@
 					let projectReviewer of projectMemberModel?.projectReviewers?.data
         ">
 				<app-panel-header
+					[user]="projectReviewer"
 					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
 					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_LIGHT"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true

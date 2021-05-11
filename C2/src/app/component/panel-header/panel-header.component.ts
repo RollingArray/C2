@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, Injector } from '@angul
 })
 export class PanelHeaderComponent extends BaseViewComponent implements OnInit {
 
+  @Input() user;
   @Input() panelTitle;
   @Input() panelIcon;
   @Input() panelColor;

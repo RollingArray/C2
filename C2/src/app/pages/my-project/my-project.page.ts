@@ -74,7 +74,7 @@ export class MyProjectPage extends BaseViewComponent {
      * @return {string}
      */
 	public get loggedInUserName(): string {
-		return this._loggedInUserName;
+		return `Welcome, ${this._loggedInUserName}`;
 	}
 
 	

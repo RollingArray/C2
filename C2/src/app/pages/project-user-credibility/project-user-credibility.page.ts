@@ -131,6 +131,7 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 		 this.activeUserId();
 		 this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 		 this._assigneeId = this.activatedRoute.snapshot.paramMap.get("assigneeId");
+		 this.errorMessage = this.stringKey.NO_DATA_CREDIBILITY;
 	 }
  
 	 /**

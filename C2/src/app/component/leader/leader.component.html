@@ -1,10 +1,6 @@
 <ion-card>
 	<ion-item lines="none">
-		<ion-avatar slot="start">
-			<span>
-				{{getUserNameInitials(leader?.userFirstName,leader?.userLastName)}}
-			</span>
-		</ion-avatar>
+		<app-avatar [user]="leader" [icon]="stringKey.ICON_PEN"></app-avatar>
 		<ion-label>
 			<h1 class="leader-name">
 				{{getUserFullName(leader?.userFirstName,leader?.userLastName)}}

@@ -1,6 +1,6 @@
 export class StringKey {
 	public static readonly APP_NAME: string = 'C2';
-	public static readonly APP_TAG_LINE: string = 'Build Your Credibility Index';
+	public static readonly APP_TAG_LINE: string = 'Bring Equality In Diverse Workforce';
 	public static readonly APP_VERSION: string = '6.2.0';
 	public static readonly APP_BUNDLE_ID: string = 'in.co.rollingarray.c2';
 	public static readonly FCM_SENDER_KEY: string = '736974848102';
@@ -35,6 +35,7 @@ export class StringKey {
 	public static readonly MORE_THAN_EQUAL: string = "≥";
 	public static readonly LESS_THAN_EQUAL: string = "≤";
 
+	public static readonly HAVE_ACCOUNT: string = 'Already have an account?';
 	public static readonly DETAILS: string = 'Detail(s)';
 	public static readonly MY_PROFILE: string = 'My Profile';
 	public static readonly MY_PROFILE_INFO: string = 'You may wish to update any of your personal details';
@@ -476,7 +477,10 @@ export class StringKey {
 	public static readonly ICON_MY_ACTIVITY: string = StringKey.ICON_BASE_PATH + "my-activity.svg";
 	public static readonly ICON_MY_REVIEWS: string = StringKey.ICON_BASE_PATH + "my-reviews.svg";
 	public static readonly ICON_MEMBERS: string = StringKey.ICON_BASE_PATH + "members.svg";
-	
+	public static readonly ICON_STAR: string = StringKey.ICON_BASE_PATH + "star.svg";
+	public static readonly ICON_COG: string = StringKey.ICON_BASE_PATH + "cog.svg";
+	public static readonly ICON_PEN: string = StringKey.ICON_BASE_PATH + "pen.svg";
+
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
 	public static readonly ICON_NOTIFICATION: string = StringKey.ICON_BASE_PATH + "notifications.svg";
@@ -511,8 +515,8 @@ export class StringKey {
 
 	public static readonly IMAGE_BASE_PATH: string = "assets/images/";
 	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
-	
-	
+	public static readonly IMAGE_LANDING: string = StringKey.IMAGE_BASE_PATH + "app_landing.svg";
+	public static readonly IMAGE_AVATAR: string = StringKey.IMAGE_BASE_PATH + "app_avatar.svg";
 
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";

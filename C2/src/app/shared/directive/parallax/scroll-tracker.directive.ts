@@ -49,6 +49,7 @@ export class ScrollTrackerDirective implements OnInit, OnDestroy {
 			this.renderer.addClass(this.element.nativeElement, 'ion-no-border');
 			this.renderer.setAttribute(this.element.nativeElement.querySelector('ion-toolbar'), 'color', 'primary');
 		});
+		this.hidden = false;
 	}
 
 	show() {
@@ -56,7 +57,7 @@ export class ScrollTrackerDirective implements OnInit, OnDestroy {
 			this.renderer.setStyle(this.element.nativeElement, "transition", "2s linear");
 			this.renderer.setStyle(this.element.nativeElement.querySelector('ion-title'), "opacity", "1");
 			this.renderer.removeClass(this.element.nativeElement, 'ion-no-border');
-			this.renderer.setAttribute(this.element.nativeElement.querySelector('ion-toolbar'), 'color', 'semi-dark');
+			this.renderer.setAttribute(this.element.nativeElement.querySelector('ion-toolbar'), 'color', 'primary');
 		});
 
 		this.hidden = true;

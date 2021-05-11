@@ -152,6 +152,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	ngOnInit() {
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
+		this.errorMessage = this.stringKey.NO_DATA_SPRINT;
 	}
 
 	/**

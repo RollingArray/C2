@@ -1,5 +1,6 @@
 <ion-item [color]="panelColor" lines="none" (click)="onPanelTap()" *ngIf="!isNoIcon">
-	<ion-icon [src]="panelIcon"></ion-icon>
+	<app-avatar [user]="user" *ngIf="user"></app-avatar>
+	<ion-icon [src]="panelIcon" *ngIf="!user"></ion-icon>
 	<p>
 		<b>
 			{{ panelTitle }}

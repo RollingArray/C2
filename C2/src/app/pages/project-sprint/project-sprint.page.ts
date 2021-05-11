@@ -200,7 +200,6 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 						}
 					}
 					else{
-						console.log(baseModel.error.message);
 						this.errorMessage = baseModel.error.message;
 					}
 				}

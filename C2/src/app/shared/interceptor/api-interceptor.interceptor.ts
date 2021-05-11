@@ -26,8 +26,6 @@ export class ApiInterceptor implements HttpInterceptor {
 
 		// if tken available add it as auth header
 		if (currentUserToken) {
-			//console.log(currentUserToken);
-
 			request = request.clone({
 				setHeaders: {
 					Auth: `${currentUserToken}`

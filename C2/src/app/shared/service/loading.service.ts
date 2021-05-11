@@ -36,7 +36,7 @@ export class LoadingService {
 		return await this.loadingController
 			.dismiss()
 			.then(() => {
-        //console.log("loading controller dismissed");
+				//
       });
 	}
 }

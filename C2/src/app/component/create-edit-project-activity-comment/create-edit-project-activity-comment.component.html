@@ -32,7 +32,7 @@
 	<!-- fab -->
 
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
-		
+
 		<!-- claimed value -->
 		<ion-card color="secondary">
 			<p>
@@ -55,14 +55,30 @@
 				<!-- slider -->
 				<ion-item lines="none" color="light"
 					*ngIf="passedActivity.activityMeasurementType == activityMeasurementTypeEnum.Num">
+
+					<!-- slider high to low  -->
 					<ion-range formControlName="claimedResultValue" color="primary"
-						[min]="passedActivity.criteriaPoorValue"
-						[max]="passedActivity.criteriaOutstandingValue" step="1">
+						[min]="passedActivity.criteriaPoorValue" [max]="passedActivity.criteriaOutstandingValue"
+						step="1" *ngIf="characteristicsHigherBetter">
 						<ion-label slot="start">{{passedActivity.criteriaPoorValue}}</ion-label>
 						<ion-label slot="end">{{passedActivity.criteriaOutstandingValue}}</ion-label>
 					</ion-range>
+					<!-- slider high to low  -->
+
+					<!-- slider low to high  -->
+					<ion-range formControlName="claimedResultValue" color="primary"
+						[min]="passedActivity.criteriaOutstandingValue" [max]="passedActivity.criteriaPoorValue"
+						step="1" *ngIf="!characteristicsHigherBetter">
+						<ion-label slot="start">{{passedActivity.criteriaOutstandingValue}}</ion-label>
+						<ion-label slot="end">{{passedActivity.criteriaPoorValue}}</ion-label>
+					</ion-range>
+					<!-- slider low to high  -->
+
+					<!-- end result  -->
 					<span class="percentage">{{claimedResultValue.value}}</span>
-					<span class="percentage">{{passedActivity.activityResultType}}</span>
+					<span class="percentage">&nbsp; {{passedActivity.activityResultType}}</span>
+					<!-- end result  -->
+
 				</ion-item>
 				<!-- slider -->
 			</ion-card>
@@ -79,7 +95,7 @@
 			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
-					<ion-textarea rows = 13 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
+					<ion-textarea rows=13 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
 						formControlName="commentDescription" type="text">
 					</ion-textarea>
 				</ion-item>
@@ -92,7 +108,7 @@
 			</ion-card>
 		</ion-card>
 		<!-- comment description -->
-		
+
 	</form>
 	<!-- empty row -->
 	<div id="dum-height"></div>

@@ -153,7 +153,6 @@ export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

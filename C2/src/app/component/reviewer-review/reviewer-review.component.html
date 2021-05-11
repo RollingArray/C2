@@ -28,7 +28,7 @@
 							</app-panel-header>
 							<app-custom-fields *ngIf="reviewer.achievedResultValue" [data]="showResult(reviewer)"></app-custom-fields>
 							<ion-card *ngIf="reviewer.achievedResultValue">
-								<ion-progress-bar color="secondary" [value]="((reviewer.achievedResultValue / reviewer.criteriaOutstandingValue) * 1)"></ion-progress-bar>
+								<app-work-progress [activity]="reviewer" [resultValue]="reviewer.achievedResultValue"></app-work-progress>
 							</ion-card>
 							<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
 						</ion-card>

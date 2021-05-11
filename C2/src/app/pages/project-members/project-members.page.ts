@@ -160,8 +160,6 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 			userId: this._loggedInUser
 		};
 
-		console.log(passedData);
-
 		this.projectMemberService
 			.getProjectMembers(passedData)
 			.pipe(takeUntil(this.unsubscribe))

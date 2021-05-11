@@ -68,6 +68,8 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 	}
 
+
+
 	/**
 	* on destroy
 	*/
@@ -118,7 +120,13 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editActivityComment(selectedActivity, `${OperationsEnum.Edit}`);
+						if(selectedActivity.commentId){
+							this.editActivityComment(selectedActivity, `${OperationsEnum.Edit}`);
+						}
+						else{
+							this.addActivityComment(selectedActivity);
+						}
+						
 					}
 				},
 				{
@@ -156,6 +164,7 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 				activityResultType: activityModel.activityResultType,
 				criteriaPoorValue: activityModel.criteriaPoorValue,
 				criteriaOutstandingValue: activityModel.criteriaOutstandingValue,
+				characteristicsHigherBetter: activityModel.characteristicsHigherBetter,
 				operationType: `${OperationsEnum.Create}`
 			}
 
@@ -205,6 +214,7 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 				activityResultType: activityModel.activityResultType,
 				criteriaPoorValue: activityModel.criteriaPoorValue,
 				criteriaOutstandingValue: activityModel.criteriaOutstandingValue,
+				characteristicsHigherBetter: activityModel.characteristicsHigherBetter,
 				operationType: operation
 			}
 

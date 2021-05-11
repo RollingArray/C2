@@ -30,7 +30,7 @@
 						[data]="showResult(activity)">
 					</app-custom-fields>
 					<ion-card *ngIf="activity.claimedResultValue">
-						<ion-progress-bar color="secondary" [value]="((activity.claimedResultValue / activity.criteriaOutstandingValue) * 1)"></ion-progress-bar>
+						<app-work-progress [activity]="activity" [resultValue]="activity.claimedResultValue"></app-work-progress>
 					</ion-card>
 					<app-custom-fields *ngIf="!activity.claimedResultValue" [noData]=true></app-custom-fields>
 				</ion-card>

@@ -139,7 +139,6 @@ export class AccountActivationPage extends BaseFormComponent
 						}
 					},
 					(error) => {
-						//console.log(error);
 						this.loadingService.dismiss();
 					}
 				);

@@ -93,11 +93,9 @@ export abstract class BaseService<T extends BaseModel> {
 	 * @returns post 
 	 */
 	public post(url: string, data: T): Observable<T> {
-		console.log(url);
-		console.log(JSON.stringify(data));
 		const apiData = this.httpClient.post<T>(url, data).pipe(
 			map((response: BaseModel) => {
-				console.log(JSON.stringify(response));
+				
 				//if response has success true
 				if (response.success) {
 					//success block

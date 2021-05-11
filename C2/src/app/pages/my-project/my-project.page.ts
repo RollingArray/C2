@@ -330,7 +330,6 @@ export class MyProjectPage extends BaseViewComponent {
 									}
 								},
 								async (error) => {
-									//console.log(error);
 									await this.loadingService.dismiss();
 								}
 							);

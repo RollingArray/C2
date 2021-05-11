@@ -6,6 +6,7 @@ import { PanelHeaderModule } from '../panel-header/panel-header.component.module
 import { CustomFieldsModule } from '../custom-fields/custom-fields-fields.component.module';
 import { NoDataModule } from '../no-data/no-data.component.module';
 import { CreateEditProjectActivityCommentModule } from '../create-edit-project-activity-comment/create-edit-project-activity-comment.component.module';
+import { WorkProgressModule } from '../work-progress/work-progress.component.module';
 
 @NgModule({
 	imports: [
@@ -14,6 +15,7 @@ import { CreateEditProjectActivityCommentModule } from '../create-edit-project-a
 		PanelHeaderModule, 
 		CustomFieldsModule, 
 		NoDataModule,
+		WorkProgressModule,
 		CreateEditProjectActivityCommentModule
 	],
 	declarations: [AssigneeSelfReviewComponent],

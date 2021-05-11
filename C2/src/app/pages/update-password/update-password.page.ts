@@ -116,7 +116,6 @@ export class UpdatePasswordPage extends BaseFormComponent
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

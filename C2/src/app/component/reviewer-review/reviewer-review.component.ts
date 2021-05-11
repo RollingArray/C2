@@ -179,6 +179,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 				activityResultType: selectedReviewer.activityResultType,
 				criteriaPoorValue: selectedReviewer.criteriaPoorValue,
 				criteriaOutstandingValue: selectedReviewer.criteriaOutstandingValue,
+				characteristicsHigherBetter: selectedReviewer.characteristicsHigherBetter,
 				operationType: `${OperationsEnum.Edit}`
 			}
 			const modal = await this.modalController.create({
@@ -269,7 +270,6 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 					}
 				},
 				async (error) => {
-					//console.log(error);
 					await this.loadingService.dismiss();
 				}
 			);

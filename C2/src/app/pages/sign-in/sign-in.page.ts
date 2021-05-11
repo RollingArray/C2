@@ -120,7 +120,6 @@ export class SignInPage extends BaseFormComponent implements OnInit, OnDestroy {
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

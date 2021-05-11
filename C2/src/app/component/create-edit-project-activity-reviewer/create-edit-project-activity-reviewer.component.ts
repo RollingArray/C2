@@ -151,7 +151,6 @@ export class CreateEditProjectActivityReviewerComponent extends BaseFormComponen
 	) {
 		super(injector);
 		this._activityReviewer = this.navParams.get("data");
-		console.log(this._activityReviewer);
 		this.buildFrom();
 		this.loadData();
 	}
@@ -189,7 +188,6 @@ export class CreateEditProjectActivityReviewerComponent extends BaseFormComponen
 					this.loadingService.dismiss();
 					if (baseModel.success) {
 						this._projectReviewers = baseModel.data.projectReviewers.data;
-						console.log(this._projectReviewers);
 					}
 				}
 			);
@@ -286,7 +284,6 @@ export class CreateEditProjectActivityReviewerComponent extends BaseFormComponen
 					}
 				},
 				async (error) => {
-					//console.log(error);
 					await this.loadingService.dismiss();
 				}
 			);

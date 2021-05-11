@@ -241,7 +241,6 @@ export class CreateEditProjectFilterComponent extends BaseFormComponent
 	) {
 		super(injector);
 		this._filter = this.navParams.get("data");
-		console.log(this._filter);
 		this.buildFrom();
 		this.loadData();
 	}

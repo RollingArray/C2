@@ -47,6 +47,11 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 	private _isToggled: boolean = false;
 
 	/**
+	 * Characteristics higher better of create edit project activity comment component
+	 */
+	 private _characteristicsHigherBetter : boolean = false;
+
+	/**
 	 * Sets passed activity review
 	 */
 	public set passedActivityReview(value: ActivityReviewerModel) {
@@ -69,6 +74,20 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 	 */
 	public get isToggled(): boolean {
 		return this._isToggled;
+	}
+
+	/**
+	 * Sets characteristics higher better
+	 */
+	 public set characteristicsHigherBetter(value: boolean) {
+		this._characteristicsHigherBetter = value;
+	}
+
+	/**
+	 * Gets characteristics higher better
+	 */
+	public get characteristicsHigherBetter(): boolean {
+		return this._characteristicsHigherBetter;
 	}
 
 	
@@ -97,6 +116,9 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 	  */
 	ngOnInit() {
 		this._passedActivityReview = this.navParams.get("data");
+		console.log(this._passedActivityReview);
+		this._characteristicsHigherBetter = this._passedActivityReview.characteristicsHigherBetter.toString() == "1" ? true : false; 
+		
 		this.buildFrom();
 	}
 
@@ -271,7 +293,6 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

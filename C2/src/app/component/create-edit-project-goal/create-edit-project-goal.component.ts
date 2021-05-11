@@ -242,7 +242,6 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

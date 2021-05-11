@@ -320,7 +320,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 * @returns  
 	 */
 	async calculateWeightDelta(activityWeight: number){
-		//console.log(`${this._previousActivityWeightDelta} - ${activityWeight}`);
 		return activityWeight - this._previousActivityWeightDelta;
 	}
 	
@@ -391,9 +390,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 * Submits create edit project activity component
 	 */
 	async submit() {
-		console.log(this.findInvalidControls());
-		console.log(this.formGroup.value);
-
 		if (this.formGroup.invalid) {
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_FIELDS}`
@@ -501,7 +497,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	onToggleBtnChange(event): void {
 		const val = this._characteristicsHigherBetter;
-		console.log(val);
 	}
 
 	/**
@@ -563,7 +558,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);
@@ -611,7 +605,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	private activeDropSelector(dropSelectorType: ModuleEnum) {
 		this.dropSelectorBackdrop.nativeElement.hidden = false;
-		console.log(dropSelectorType);
 		switch (dropSelectorType) {
 			case ModuleEnum.measurementType:
 				this._dropSelectorTitle = `${this.stringKey.SELECT} ${ModuleEnum.measurementType}`;

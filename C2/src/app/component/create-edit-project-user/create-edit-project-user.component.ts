@@ -131,7 +131,6 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	) {
 		super(injector);
 		this._projectModel = this.navParams.get("data");
-		console.log(JSON.stringify(this._projectModel));
 		this._loggedInUser = this.localStorageService.currentActiveUserId$.getValue();
 	}
 

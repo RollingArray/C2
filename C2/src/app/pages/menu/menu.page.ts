@@ -332,7 +332,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

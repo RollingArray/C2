@@ -366,7 +366,6 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 			.getSelectedProjectFilter(this._projectId)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async (data: FilterModel) => {
-				console.log(data);
 				this._filterModel = data;
 				if(this._filterModel){
 					this.loadData();

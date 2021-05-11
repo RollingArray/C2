@@ -272,8 +272,7 @@ export class MySpacePage extends BaseViewComponent implements OnInit, OnDestroy 
 
 							// attach activities to returned data
 							this._activities = this._projectActivityModel.projectActivities.data;
-							console.log(this._activities);
-
+							
 							// removed no data from ui
 							this._hasData = true;
 						}
@@ -293,7 +292,6 @@ export class MySpacePage extends BaseViewComponent implements OnInit, OnDestroy 
 	 * @param selectedActivity 
 	 */
 	async openActivityOptions(selectedActivity: ActivityModel) {
-		console.log("a");
 		this.router.navigate([selectedActivity.activityId, 'review'], { relativeTo: this.activatedRoute });
 	}
 }

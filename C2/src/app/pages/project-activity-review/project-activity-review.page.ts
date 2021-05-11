@@ -20,7 +20,6 @@ import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-
 import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measurement-type.enum';
 import { ActivityReviewerModel } from 'src/app/shared/model/activity-reviewer.model';
 import { ProjectActivityReviewerService } from 'src/app/shared/service/project-activity-reviewer.service';
-import { CreateEditProjectActivityReviewComponent } from 'src/app/component/create-edit-project-activity-review/create-edit-project-activity-review.component';
 import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
 
 @Component({

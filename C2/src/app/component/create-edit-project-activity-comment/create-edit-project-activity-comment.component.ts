@@ -45,6 +45,11 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	 activityMeasurementTypeEnum = ActivityMeasurementTypeEnum;
 
 	/**
+	 * Characteristics higher better of create edit project activity comment component
+	 */
+	private _characteristicsHigherBetter : boolean = false;
+
+	/**
 	 * Sets passed activity
 	 */
 	public set passedActivity(value: ActivityModel) {
@@ -70,6 +75,22 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	}
 
 	/**
+	 * Sets characteristics higher better
+	 */
+	public set characteristicsHigherBetter(value: boolean) {
+		this._characteristicsHigherBetter = value;
+	}
+
+	/**
+	 * Gets characteristics higher better
+	 */
+	public get characteristicsHigherBetter(): boolean {
+		return this._characteristicsHigherBetter;
+	}
+
+	
+
+	/**
 	 * Creates an instance of create edit project activity component.
 	 * @param injector 
 	 * @param alertService 
@@ -92,6 +113,7 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	  */
 	ngOnInit() {
 		this._passedActivity = this.navParams.get("data");
+		this._characteristicsHigherBetter = this._passedActivity.characteristicsHigherBetter.toString() == "1" ? true : false; 
 		this.buildFrom();
 	}
 
@@ -226,8 +248,6 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 	 * Submits create edit project activity component
 	 */
 	async submit() {
-		console.log(this.findInvalidControls());
-		
 		if (this.formGroup.invalid) {
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_FIELDS}`
@@ -309,7 +329,6 @@ export class CreateEditProjectActivityCommentComponent extends BaseFormComponent
 					}
 				},
 				(error) => {
-					//console.log(error);
 					this.loadingService.dismiss();
 				}
 			);

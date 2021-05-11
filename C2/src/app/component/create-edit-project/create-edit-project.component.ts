@@ -190,7 +190,6 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 					}
 				},
 				async (error) => {
-					//console.log(error);
 					await this.loadingService.dismiss();
 				}
 			);

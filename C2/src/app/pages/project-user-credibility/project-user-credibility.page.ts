@@ -175,7 +175,6 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 						 this.errorMessage = this.stringKey.NO_DATA_CREDIBILITY;
 					 }
 					 else{
-						 console.log(baseModel);
 						 this.errorMessage = baseModel.error.message
 					 }
 				 }

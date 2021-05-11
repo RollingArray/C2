@@ -7,23 +7,29 @@ export class StringKey {
 
 	// page text
 
-	public static readonly INTRO_SLIDE_1_TITLE: string = 'Build Your Project';
-	public static readonly INTRO_SLIDE_1_INFO: string = 'Project is a group of people living in a certain area on this earth. Create, manage your project and add members to it';
+	public static readonly INTRO_SLIDE_1_TITLE: string = 'Tangible Output';
+	public static readonly INTRO_SLIDE_1_INFO: string = 'Create your project to work upon certain deliverables';
 
-	public static readonly INTRO_SLIDE_2_TITLE: string = 'My Local Supplier';
-	public static readonly INTRO_SLIDE_2_INFO: string = 'A project needs daily essential services to live. You can add any local supplier of essential services to your project or register yourself as a local supplier to a project';
+	public static readonly INTRO_SLIDE_2_TITLE: string = 'Gather A Team';
+	public static readonly INTRO_SLIDE_2_INFO: string = 'Work with your team mates, assign review their activities';
 
-	public static readonly INTRO_SLIDE_3_TITLE: string = 'My Order To Supplier';
-	public static readonly INTRO_SLIDE_3_INFO: string = 'Order your daily essentials from the project suppliers, track till the order reaches your hand';
+	public static readonly INTRO_SLIDE_3_TITLE: string = 'Plan Sprint';
+	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a sprint duration';
 
-	public static readonly INTRO_SLIDE_4_TITLE: string = 'My Order From Project';
-	public static readonly INTRO_SLIDE_4_INFO: string = 'As a supplier, manage your orders from various project members. Track the order till delivery and if any dispute';
+	public static readonly INTRO_SLIDE_4_TITLE: string = 'Lets Work Towards A Goal';
+	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your Goal and work towards them along with your team';
 
-	public static readonly INTRO_SLIDE_5_TITLE: string = 'Project Administration';
-	public static readonly INTRO_SLIDE_5_INFO: string = 'Administrate various project and supplier request, moderate who can access what';
+	public static readonly INTRO_SLIDE_5_TITLE: string = 'Bulls Eye';
+	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign measurable deliverables around a goal to team';
 
-	public static readonly INTRO_SLIDE_6_TITLE: string = 'Notification';
-	public static readonly INTRO_SLIDE_6_INFO: string = 'Receive notifications on project and supplier activities';
+	public static readonly INTRO_SLIDE_6_TITLE: string = 'Reviews Are Important';
+	public static readonly INTRO_SLIDE_6_INFO: string = 'Get unbiased opinion about the deliverables form by adding multiple reviewers';
+
+	public static readonly INTRO_SLIDE_7_TITLE: string = 'Algorithm Diversity';
+	public static readonly INTRO_SLIDE_7_INFO: string = 'Get credibility score irrespective of gender, race and bias about an team mate solely based on the work done in the part and reviews';
+	
+	public static readonly INTRO_SLIDE_8_TITLE: string = 'Welcome Opportunity';
+	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the new opportunity to the fittest';
 
 	public static readonly FACEBOOK: string = "Facebook";
 	public static readonly TWITTER: string = "Twitter";

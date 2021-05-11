@@ -114,12 +114,18 @@ export class IntroComponent extends BaseViewComponent implements OnInit  {
 			{
 				title: this.stringKey.INTRO_SLIDE_6_TITLE,
 				info: this.stringKey.INTRO_SLIDE_6_INFO,
+				imageName: "no_reviewer",
+				buttonText: this.stringKey.GOT_IT_CONTINUE,
+			},
+			{
+				title: this.stringKey.INTRO_SLIDE_7_TITLE,
+				info: this.stringKey.INTRO_SLIDE_7_INFO,
 				imageName: "no_diversity",
 				buttonText: this.stringKey.GOT_IT_CONTINUE,
 			},
 			{
-				title: this.stringKey.INTRO_SLIDE_6_TITLE,
-				info: this.stringKey.INTRO_SLIDE_6_INFO,
+				title: this.stringKey.INTRO_SLIDE_8_TITLE,
+				info: this.stringKey.INTRO_SLIDE_8_INFO,
 				imageName: "no_credibility",
 				buttonText: this.stringKey.GOT_IT_CONTINUE,
 			},

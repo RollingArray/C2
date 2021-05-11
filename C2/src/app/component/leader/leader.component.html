@@ -7,8 +7,11 @@
 			</h1>
 			<h3 class="leader-note">{{leader?.userEmail}}</h3>
 		</ion-label>
-		<span slot="end" class="score" *ngIf="showScore">
+		<span slot="end" class="score" *ngIf="showScore && leader.userCredibilityScore">
 			{{leader.userCredibilityScore}}
+		</span>
+		<span slot="end" class="score" *ngIf="showScore && !leader.userCredibilityScore">
+			{{stringKey.NO_DATA_SHORT}}
 		</span>
 		<span slot="end" class="review" *ngIf="showReviewsCount">
 			<span>{{reviews}}</span> {{stringKey.REVIEWS}}

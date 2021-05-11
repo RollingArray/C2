@@ -427,6 +427,7 @@ export class StringKey {
 	public static readonly NO_DATA_COMMENT: string = 'No Comment has been found. If you have started working on the activity, it would be ideal to document your progress in the comment';
 	public static readonly NO_DATA_MY_PROJECT: string = 'You do not have any project yet, you may create a new project here';
 	public static readonly NO_DATA: string = 'No data available';
+	public static readonly NO_DATA_SHORT: string = 'No data';
 	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
 	public static readonly NO_DATA_ADMIN: string = 'We did not find any pending request';
 	public static readonly NO_FILTER: string = 'Select Entity to refine your result';

@@ -116,7 +116,7 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 
 	// Lifecycle hook: ionViewDidEnter
 	async ionViewDidEnter() {
-		//await this.loadData();
+		await this.loadData();
 	}
 
 	ngOnDestroy() {
@@ -183,6 +183,11 @@ export class CredibilityBoardPage extends BaseViewComponent implements OnInit, O
 	 * @param selectedUser 
 	 */
 	async goToCredibilityDetails(selectedUser: ProjectUserTypeModel){
-		this.router.navigate([selectedUser.userId, 'credibility'], { relativeTo: this.activatedRoute });
+		if(selectedUser.userCredibilityScore){
+			this.router.navigate([selectedUser.userId, 'credibility'], { relativeTo: this.activatedRoute });
+		}
+		else{
+			this.alertService.presentBasicAlert(this.stringKey.NO_DATA);
+		}
 	}
 }

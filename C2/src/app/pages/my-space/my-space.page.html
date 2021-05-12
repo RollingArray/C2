@@ -34,11 +34,12 @@
 	<!-- data container -->
 	<ng-container *ngIf="hasData">
 		<ion-card *ngFor="let activity of activities">
+			<app-activity-short-view [activity]="activity" (click)="openActivityOptions(activity)"></app-activity-short-view>
 			<!-- title -->
-			<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
+			<!-- <app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
 				[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_VIEW" [isEventRequired]="true"
 				(event)="openActivityOptions(activity)">
-			</app-panel-header>
+			</app-panel-header> -->
 			<!-- title -->
 		</ion-card>
 	</ng-container>

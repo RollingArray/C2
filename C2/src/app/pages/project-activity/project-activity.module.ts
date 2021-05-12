@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { ActivityShortViewModule } from 'src/app/component/activity-short-view/activity-short-view.component.module';
 import { AssigneeSelfReviewModule } from 'src/app/component/assignee-self-review/assignee-self-review.component.module';
 import { BreadcrumbModule } from 'src/app/component/breadcrumb/breadcrumb.component.module';
 import { CreateEditProjectActivityModule } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component.module';
@@ -43,6 +44,7 @@ const routes: Routes = [
     PanelInfoModule,
     BreadcrumbModule,
     CustomFieldsModule,
+    ActivityShortViewModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProjectActivityPage]

@@ -18,6 +18,7 @@ export interface ActivityModel extends ProjectModel {
 
     activityId ?: string;
     sprintId ?: string;
+    sprintName ?: string;
     goalId ?: string;
     assigneeUserId ?: string;
     assigneeUserFirstName ?: string;

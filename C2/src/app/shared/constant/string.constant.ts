@@ -8,28 +8,28 @@ export class StringKey {
 	// page text
 
 	public static readonly INTRO_SLIDE_1_TITLE: string = 'Tangible Output';
-	public static readonly INTRO_SLIDE_1_INFO: string = 'Create your project to work upon certain deliverables';
+	public static readonly INTRO_SLIDE_1_INFO: string = 'Create your Project to work upon certain Deliverables';
 
 	public static readonly INTRO_SLIDE_2_TITLE: string = 'Gather A Team';
-	public static readonly INTRO_SLIDE_2_INFO: string = 'Work with your team mates, assign review their activities';
+	public static readonly INTRO_SLIDE_2_INFO: string = 'Work with your Team, assign review their Activities';
 
 	public static readonly INTRO_SLIDE_3_TITLE: string = 'Plan Sprint';
-	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a sprint duration';
+	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a Sprint';
 
 	public static readonly INTRO_SLIDE_4_TITLE: string = 'Lets Work Towards A Goal';
-	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your Goal and work towards them along with your team';
+	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your Goal and work towards them along with your Team';
 
 	public static readonly INTRO_SLIDE_5_TITLE: string = 'Bulls Eye';
-	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign measurable deliverables around a goal to team';
+	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign Measurable deliverables around a Goal to team mates';
 
 	public static readonly INTRO_SLIDE_6_TITLE: string = 'Reviews Are Important';
-	public static readonly INTRO_SLIDE_6_INFO: string = 'Get unbiased opinion about the deliverables form by adding multiple reviewers';
+	public static readonly INTRO_SLIDE_6_INFO: string = 'Get Unbiased opinion about the deliverables by reviewing through multiple reviewers';
 
 	public static readonly INTRO_SLIDE_7_TITLE: string = 'Algorithm Diversity';
-	public static readonly INTRO_SLIDE_7_INFO: string = 'Get credibility score irrespective of gender, race and bias about an team mate solely based on the work done in the part and reviews';
+	public static readonly INTRO_SLIDE_7_INFO: string = 'Get Credibility score irrespective of gender, race and bias about a team mate solely based on the work done in the past and reviews';
 	
 	public static readonly INTRO_SLIDE_8_TITLE: string = 'Welcome Opportunity';
-	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the new opportunity to the fittest';
+	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the new opportunity to the Fittest';
 
 	public static readonly FACEBOOK: string = "Facebook";
 	public static readonly TWITTER: string = "Twitter";
@@ -64,7 +64,7 @@ export class StringKey {
 	public static readonly MY_ORDER: string = 'My Order(s)';
 	public static readonly MY_ORDER_INFO: string = 'Find all order(s) for a member';
 	public static readonly MY_PROJECT: string = 'My Project(s)';
-	public static readonly MY_PROJECT_INFO: string = 'If you have joined any project(s), you will find those list of project(s) here. If you have not joined any project, go to search page to find or create a new project';
+	public static readonly MY_PROJECT_INFO: string = 'Find Projects you are Administrating or acting as an Reviewer or involved as an active Assignee';
 	public static readonly PROJECT_DETAIL: string = 'Project Details';
 	public static readonly PROJECT_DETAIL_INFO: string = 'Find Project details such as administrator(s), member(s), supplier(s)';
 	public static readonly CREATE_PROJECT: string = 'Create Project';

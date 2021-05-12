@@ -1,8 +1,8 @@
 {
   "name": "C2",
   "short_name": "C2",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#161716",
+  "background_color": "#161716",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

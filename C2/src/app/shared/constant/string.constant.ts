@@ -419,7 +419,8 @@ export class StringKey {
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
 	public static readonly NO_DATA_DIVERSITY: string = 'Diverse workforce is the key to a successful project. Add Members to the project and assign them Activities. C2 algorithm will generate Credibility Index for each Assignee based on the Reviews';
 	public static readonly NO_DATA_CREDIBILITY: string = 'Hold tight, we are looking for you data';
-	
+	public static readonly HOLD_TIGHT: string = 'Hold tight, we are looking for your data';
+
 	public static readonly NO_DATA_PROJECT_REVIEWER: string = 'An activity in a project needs to be reviewed by a reviewer, add a new reviewer';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';

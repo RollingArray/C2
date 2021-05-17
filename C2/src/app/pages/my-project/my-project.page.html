@@ -1,3 +1,16 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary My project html view
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-17 14:56:50 
+ * Last modified  : 2021-05-17 15:32:00
+ */
+-->
+
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
 	<ion-toolbar color="primary">
@@ -39,28 +52,41 @@
 	<!-- user -->
 
 	<!-- no data -->
-	<app-no-data [project]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_MY_PROJECT"></app-no-data>
+	<app-no-data [project]=true *ngIf="!hasData" [text]="errorMessage"></app-no-data>
 	<!-- no data -->
+
+	<!-- data container -->
 	<ng-container *ngIf="hasData">
 		<ion-grid>
 			<ion-row>
 				<ion-col size-lg="6" size-md="6" size-sm="6" size="12" *ngFor="let project of projects">
 					<ion-card>
+						<!-- project header -->
 						<app-panel-header [panelTitle]="project.projectName" [panelIcon]="stringKey.ICON_PROJECT"
 							[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE"
-							[isEventRequired]="true" (event)="openProjectOptions(project)"></app-panel-header>
+							[isEventRequired]="true" (event)="openProjectOptions(project)">
+						</app-panel-header>
+						<!-- project header -->
+
+						<!-- project description -->
 						<app-custom-fields [description]="project.projectDescription">
 						</app-custom-fields>
-						<div>
+						<!-- project description -->
+						
+						<!-- user types -->
+						<div class="users">
 							<app-avatar [user]="user" [icon]="stringKey.ICON_STAR" *ngFor="let user of project.projectReviewers.data"></app-avatar>
 							<app-avatar [user]="user" [icon]="stringKey.ICON_PEN" *ngFor="let user of project.projectAssignees.data"></app-avatar>
 							<app-avatar [user]="user" [icon]="stringKey.ICON_COG" *ngFor="let user of project.projectAdministrator.data"></app-avatar>
 						</div>
+						<!-- user types -->
+
 					</ion-card>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</ng-container>
+	<!-- data container -->
 
 	<!-- empty row -->
 	<div id="dum-height"></div>

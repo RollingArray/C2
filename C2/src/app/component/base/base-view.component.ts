@@ -37,7 +37,7 @@ export abstract class BaseViewComponent implements OnInit, OnDestroy {
 	public platform: Platform;
 	public subscription: Subscription = new Subscription();
 	public unsubscribe = new Subject<void>();
-	public errorMessage: string;
+	public errorMessage: string = StringKey.HOLD_TIGHT;
 	public noAccess: boolean = false;
 
 	readonly stringKey = StringKey;

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-05-17 14:41:55
+ * Last modified  : 2021-05-17 15:31:13
  */
 
 
@@ -47,40 +47,40 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Determines whether data has
 	 */
-	private _hasData: boolean;
+	private _hasData: boolean = false;
 
 	/**
 	 * Logged in user of my project page
 	 */
-	private _loggedInUser: string;	
+	private _loggedInUser: string;
 
 	/**
 	 * Logged in user name of my project page
 	 */
-	private _loggedInUserName: string;	
+	private _loggedInUserName: string;
 
 	/**
-     * Getter projects
-     * @return {ProjectModel[]}
-     */
+	 * Getter projects
+	 * @return {ProjectModel[]}
+	 */
 	public get projects(): ProjectModel[] {
 		return this._projects;
 	}
 
-    /**
-     * Getter hasData
-     * @return {boolean}
-     */
+	/**
+	 * Getter hasData
+	 * @return {boolean}
+	 */
 	public get hasData(): boolean {
 		return this._hasData;
 	}
 
-    /**
-     * Getter loggedInUserName
-     * @return {string}
-     */
+	/**
+	 * Getter loggedInUserName
+	 * @return {string}
+	 */
 	public get loggedInUserName(): string {
-		return `Welcome, ${this._loggedInUserName}`;
+		return `${this.stringKey.WELCOME}, ${this._loggedInUserName}`;
 	}
 
 	/**
@@ -117,12 +117,11 @@ export class MyProjectPage extends BaseViewComponent {
 	 * on init
 	 */
 	ngOnInit() {
-		this._hasData = false;
 		this.getCurrentUserId();
 		this.getCurrentUserName();
 		this.loadData();
 	}
-	
+
 	/**
 	 * Ions view will enter
 	 */
@@ -161,7 +160,7 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Gets current user
 	 */
-	 async getCurrentUserId() {
+	async getCurrentUserId() {
 
 		this.localStorageService
 			.getActiveUserId()
@@ -174,7 +173,7 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Gets current user
 	 */
-	 async getCurrentUserName() {
+	async getCurrentUserName() {
 
 		this.localStorageService
 			.getActiveUserName()
@@ -188,7 +187,6 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Loads data
 	 */
 	async loadData() {
-		console.log(this._projects);
 		//loading start
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_1}`);
 
@@ -202,7 +200,7 @@ export class MyProjectPage extends BaseViewComponent {
 			.getUserProject(this._projectModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async (baseModel: BaseModel) => {
-				
+
 				//stop loading
 				await this.loadingService.dismiss();
 
@@ -212,6 +210,9 @@ export class MyProjectPage extends BaseViewComponent {
 					//assign data to model
 					this._hasData = true;
 					this._projects = baseModel.data.data;
+				}
+				else{
+					this.errorMessage = this.stringKey.NO_DATA_MY_PROJECT;
 				}
 			});
 	}
@@ -347,32 +348,43 @@ export class MyProjectPage extends BaseViewComponent {
 				}, {
 					text: this.stringKey.YES,
 					handler: async () => {
+
+						//loading start
 						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
 
+						//build data
 						const crudProject: ProjectModel = {
-							userId : this._loggedInUser,
-							projectId : project.projectId,
-							projectName : project.projectName,
-							projectDescription : project.projectDescription,
-							operationType : `${OperationsEnum.Delete}`,
+							userId: this._loggedInUser,
+							projectId: project.projectId,
+							projectName: project.projectName,
+							projectDescription: project.projectDescription,
+							operationType: `${OperationsEnum.Delete}`,
 						}
 
+						//send api
 						this.projectService
 							.crudProject(crudProject)
 							.pipe(takeUntil(this.unsubscribe))
 							.subscribe(
 								async (baseModel: BaseModel) => {
+
+									// dismiss loader
 									await this.loadingService.dismiss();
 
-									// build
+									// check is model return success
 									if (baseModel.success) {
+
+										// show toast
 										await this.presentToast(baseModel.message);
-										
-										// store active user
+
+										// load data to ui
 										await this.loadData();
 									}
 								},
+
+								// if error
 								async (error) => {
+									// dismiss loader
 									await this.loadingService.dismiss();
 								}
 							);
@@ -381,6 +393,7 @@ export class MyProjectPage extends BaseViewComponent {
 			]
 		});
 
+		// present alert
 		await alertController.present();
 	}
 
@@ -388,20 +401,60 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Logouts my project page
 	 */
 	async logout() {
-		await this.loadingService.present(
-			`${this.stringKey.API_REQUEST_MESSAGE_5}`
-		);
-		await this.localStorageService
-			.removeActiveUser()
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (data: boolean) => {
-				if (data) {
-					await this.loadingService
-						.dismiss()
-						.then(() => window.location.reload());
-				} else {
-					await this.loadingService.dismiss();
+
+		// open alert
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: this.stringKey.CONFIRM_LOG_OUT,
+			buttons: [
+				
+				// if user cancel
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, 
+
+				// if user want to proceed
+				{
+					text: this.stringKey.YES,
+					handler: async () => {
+
+						// start loader
+						await this.loadingService.present(
+							`${this.stringKey.API_REQUEST_MESSAGE_5}`
+						);
+
+						// remove any user data from local storage
+						await this.localStorageService
+							.removeActiveUser()
+							.pipe(takeUntil(this.unsubscribe))
+							.subscribe(async (data: boolean) => {
+
+								// on success
+								if (data) {
+
+									// dismiss loader
+									await this.loadingService
+										.dismiss()
+										.then(() => {
+
+											// reload window to reset any in memory cached data reflected over UI
+											window.location.reload();
+									});
+
+								} else {
+									// dismiss loader
+									await this.loadingService.dismiss();
+								}
+							});
+					}
 				}
-			});
+			]
+		});
+
+		// present alert
+		await alertController.present();
 	}
 }

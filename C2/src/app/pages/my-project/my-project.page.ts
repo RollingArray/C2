@@ -259,6 +259,13 @@ export class MyProjectPage extends BaseViewComponent {
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
 			buttons: [
 				{
+					text: this.stringKey.VIEW + ' ' + this.stringKey.PROJECT_DETAILS,
+					icon: this.stringKey.ICON_VIEW,
+					handler: () => {
+						this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+					}
+				},
+				{
 					text: this.stringKey.EDIT + ' ' + this.stringKey.PROJECT_DETAIL,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
@@ -270,13 +277,6 @@ export class MyProjectPage extends BaseViewComponent {
 					icon: this.stringKey.ICON_DELETE,
 					handler: () => {
 						this.deleteProject(selectedProject);
-					}
-				},
-				{
-					text: this.stringKey.VIEW + ' ' + this.stringKey.PROJECT_DETAILS,
-					icon: this.stringKey.ICON_VIEW,
-					handler: () => {
-						this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
 					}
 				},
 				{

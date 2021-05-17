@@ -1,18 +1,42 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Loading controller service
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-17 12:21:36 
+ * Last modified  : 2021-05-17 12:23:40
+ */
+
+
 import { Injectable } from "@angular/core";
 import { LoadingController } from "@ionic/angular";
 
 @Injectable({
-  providedIn: "root"
+	providedIn: "root"
 })
 export class LoadingService {
-	isLoading = false;
+	/**
+	 * Determines whether loading is
+	 */
+	private _isLoading = false;
 
-	constructor(public loadingController: LoadingController) {}
+	/**
+	 * Creates an instance of loading service.
+	 * @param loadingController 
+	 */
+	constructor(public loadingController: LoadingController) { }
 
-	// present loading controller
+	/**
+	 * Presents loading service
+	 * @param message 
+	 * @returns  
+	 */
 	async present(message: string) {
-		this.isLoading = true;
-		return await this.loadingController
+		this._isLoading = true;
+		this.loadingController
 			.create({
 				message,
 				duration: 5000
@@ -21,22 +45,29 @@ export class LoadingService {
 				response
 					.present()
 					.then(() => {
-						if (!this.isLoading) {
+						if (!this._isLoading) {
 							response
 								.dismiss()
-								.then(() => console.log("abort presenting"));
+								.then(() => {
+									// loading present
+								});
 						}
 					});
 			});
 	}
 
-	//dismiss loading controller
+	/**
+	 * Dismiss loading service
+	 */
 	async dismiss() {
-		this.isLoading = false;
-		return await this.loadingController
-			.dismiss()
-			.then(() => {
-				//
-      });
+
+		this.loadingController.getTop().then(() => {
+			this._isLoading = false;
+			this.loadingController
+				.dismiss()
+				.then(() => {
+					// loading dismiss
+				});
+		});
 	}
 }

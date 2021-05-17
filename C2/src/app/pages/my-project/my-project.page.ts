@@ -1,7 +1,17 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary My project page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-17 12:29:14 
+ * Last modified  : 2021-05-17 14:41:55
+ */
+
+
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
-import { PageInfoTitleComponent } from './../../component/page-info-title/page-info-title.component';
-import { Component, ViewChild, Injector } from '@angular/core';
-import { NoDataComponent } from 'src/app/component/no-data/no-data.component';
+import { Component, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
@@ -10,8 +20,6 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { CreateEditProjectComponent } from 'src/app/component/create-edit-project/create-edit-project.component';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
-import { DisableBackService } from 'src/app/shared/service/disable-back.service';
-import { NavParams } from '@ionic/angular';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -51,8 +59,6 @@ export class MyProjectPage extends BaseViewComponent {
 	 */
 	private _loggedInUserName: string;	
 
-	
-
 	/**
      * Getter projects
      * @return {ProjectModel[]}
@@ -77,9 +83,6 @@ export class MyProjectPage extends BaseViewComponent {
 		return `Welcome, ${this._loggedInUserName}`;
 	}
 
-	
-
-
 	/**
 	 * Sets projects
 	 */
@@ -94,22 +97,18 @@ export class MyProjectPage extends BaseViewComponent {
 		this._hasData = value;
 	}
 
-	
-
 	/**
 	 * Creates an instance of my project page.
 	 * @param injector 
 	 * @param projectService 
 	 * @param loadingService 
 	 * @param localStorageService 
-	 * @param disableBackService 
 	 */
 	constructor(
 		injector: Injector,
 		private projectService: ProjectService,
 		public loadingService: LoadingService,
-		public localStorageService: LocalStorageService,
-		private disableBackService: DisableBackService,
+		public localStorageService: LocalStorageService
 	) {
 		super(injector);
 	}
@@ -118,20 +117,43 @@ export class MyProjectPage extends BaseViewComponent {
 	 * on init
 	 */
 	ngOnInit() {
-		//
-	}
-	
-	/**
-	 * Ions view did enter
-	 */
-	ionViewDidEnter() {
 		this._hasData = false;
 		this.getCurrentUserId();
 		this.getCurrentUserName();
 		this.loadData();
 	}
+	
+	/**
+	 * Ions view will enter
+	 */
+	ionViewWillEnter() {
+		//
+	}
 
-	// Lifecycle hook: ngOnDestroy
+	/**
+	 * Ions view did leave
+	 */
+	ionViewDidLeave() {
+		//
+	}
+
+	/**
+	 * Ions view will leave
+	 */
+	ionViewWillLeave() {
+		//
+	}
+
+	/**
+	 * Ions view did enter
+	 */
+	ionViewDidEnter() {
+		//
+	}
+
+	/**
+	 * on destroy
+	 */
 	ngOnDestroy() {
 		super.ngOnDestroy();
 	}
@@ -162,8 +184,11 @@ export class MyProjectPage extends BaseViewComponent {
 			});
 	}
 
-	// load data
+	/**
+	 * Loads data
+	 */
 	async loadData() {
+		console.log(this._projects);
 		//loading start
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_1}`);
 
@@ -177,7 +202,7 @@ export class MyProjectPage extends BaseViewComponent {
 			.getUserProject(this._projectModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async (baseModel: BaseModel) => {
-
+				
 				//stop loading
 				await this.loadingService.dismiss();
 
@@ -191,7 +216,10 @@ export class MyProjectPage extends BaseViewComponent {
 			});
 	}
 
-	// add Project
+	/**
+	 * Adds project
+	 * @returns  
+	 */
 	async addProject() {
 		this.buildDataModelToPass();
 		const modal = await this.modalController.create({
@@ -214,6 +242,11 @@ export class MyProjectPage extends BaseViewComponent {
 		return await modal.present();
 	}
 
+	/**
+	 * Edits project
+	 * @param project 
+	 * @returns  
+	 */
 	async editProject(project: ProjectModel) {
 		project.userId = this._loggedInUser;
 		project.operationType = `${OperationsEnum.Edit}`;
@@ -238,6 +271,9 @@ export class MyProjectPage extends BaseViewComponent {
 		return await modal.present();
 	}
 
+	/**
+	 * Builds data model to pass
+	 */
 	private buildDataModelToPass() {
 		this._projectModel.userId = this._loggedInUser;
 		this._projectModel.projectName = '';
@@ -245,7 +281,10 @@ export class MyProjectPage extends BaseViewComponent {
 		this._projectModel.operationType = `${OperationsEnum.Create}`;
 	}
 
-	//open project options
+	/**
+	 * Opens project options
+	 * @param selectedProject 
+	 */
 	async openProjectOptions(selectedProject: ProjectModel) {
 
 		await this.localStorageService
@@ -291,6 +330,10 @@ export class MyProjectPage extends BaseViewComponent {
 		await actionSheet.present();
 	}
 
+	/**
+	 * Deletes project
+	 * @param project 
+	 */
 	async deleteProject(project: ProjectModel) {
 		const alertController = await this.alertController.create({
 			header: this.stringKey.CONFIRM_ACTION,
@@ -341,7 +384,9 @@ export class MyProjectPage extends BaseViewComponent {
 		await alertController.present();
 	}
 
-	// logout user
+	/**
+	 * Logouts my project page
+	 */
 	async logout() {
 		await this.loadingService.present(
 			`${this.stringKey.API_REQUEST_MESSAGE_5}`

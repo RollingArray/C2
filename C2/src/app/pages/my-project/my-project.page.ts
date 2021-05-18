@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-05-18 09:55:27
+ * Last modified  : 2021-05-18 19:10:06
  */
 
 
@@ -19,7 +19,7 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { takeUntil } from 'rxjs/operators';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
-import { CredComponentEnum } from 'src/app/shared/enum/crud-component.enum';
+import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
 
 @Component({
 	selector: "app-my-project",
@@ -220,7 +220,7 @@ export class MyProjectPage extends BaseViewComponent {
 		}
 
 		// open modal view
-		this.commonCrudService.openModalWithCreateOperation(projectModel, CredComponentEnum.CRUD_PROJECT);
+		this.commonCrudService.openModalWithCreateOperation(projectModel, CrudComponentEnum.CRUD_PROJECT);
 
 		// work with return object, reload data
 		this.commonCrudService.loadDataUponModalClose.subscribe(value => {
@@ -237,7 +237,7 @@ export class MyProjectPage extends BaseViewComponent {
 	 */
 	async editProject(projectModel: ProjectModel) {
 		// open modal view
-		this.commonCrudService.openModalWithEditOperation(projectModel, CredComponentEnum.CRUD_PROJECT);
+		this.commonCrudService.openModalWithEditOperation(projectModel, CrudComponentEnum.CRUD_PROJECT);
 
 		// work with return object, reload data
 		this.commonCrudService.loadDataUponModalClose.subscribe(success => {

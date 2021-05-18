@@ -1,3 +1,14 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary My project page module
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:10:17 
+ * Last modified  : 2021-05-18 19:10:54
+ */
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -5,13 +16,13 @@ import { IonicModule } from '@ionic/angular';
 import { AvatarModule } from 'src/app/component/avatar/avatar.component.module';
 import { CreateEditProjectModule } from 'src/app/component/create-edit-project/create-edit-project.module';
 import { CustomFieldsModule } from 'src/app/component/custom-fields/custom-fields-fields.component.module';
+import { NextStepModule } from 'src/app/component/next-step/next-step.component.module';
 import { NoDataModule } from 'src/app/component/no-data/no-data.component.module';
 import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info-title.component.module';
 import { PanelHeaderModule } from 'src/app/component/panel-header/panel-header.component.module';
 import { PanelInfoModule } from 'src/app/component/panel-info/panel-info.component.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
-import { UserService } from 'src/app/shared/service/user.service';
 import { MyProjectPage } from './my-project.page';
 
 const routes: Routes = [
@@ -37,6 +48,7 @@ const routes: Routes = [
     PanelInfoModule,
     CustomFieldsModule,
     AvatarModule,
+    NextStepModule,
     RouterModule.forChild(routes)
   ],
   providers:[

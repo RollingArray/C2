@@ -1,4 +1,17 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Global string key
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:16:27 
+ * Last modified  : 2021-05-18 19:16:44
+ */
+
+
 export class StringKey {
+
 	public static readonly APP_NAME: string = 'C2';
 	public static readonly APP_TAG_LINE: string = 'Bring Equality In Diverse Workforce';
 	public static readonly APP_VERSION: string = '6.2.0';
@@ -343,6 +356,14 @@ export class StringKey {
 	// form placeholder
 	public static readonly FORM_PLACE_PASSWORD: string = 'Your App Password';
 
+	//next step
+	public static readonly NS_PROJECT_1: string =  'Go to <b>Project Details</b> from more option available in top right corner of each project';
+	public static readonly NS_PROJECT_2: string =  'Add new <b>Assignees</b> and <b>Reviewers</b> from Project Member(s) menu available in main menu inside Project Details';
+	public static readonly NS_PROJECT_3: string =  'Create New <b>Goals</b> from Project Goal(s) menu available in main menu inside Project Details';
+	public static readonly NS_PROJECT_4: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
+	public static readonly NS_PROJECT_5: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
+	public static readonly NS_PROJECT_6: string =  'Post Review of the Activity, view assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
+
 	//button
 	public static readonly SEND: string = 'Send';
 	public static readonly GET_IT: string = 'Get It';
@@ -525,6 +546,8 @@ export class StringKey {
 	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
 	public static readonly IMAGE_LANDING: string = StringKey.IMAGE_BASE_PATH + "app_landing.svg";
 	public static readonly IMAGE_AVATAR: string = StringKey.IMAGE_BASE_PATH + "app_avatar.svg";
+
+	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
 
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";

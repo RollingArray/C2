@@ -1,7 +1,22 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Global array key
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:15:29 
+ * Last modified  : 2021-05-18 19:16:07
+ */
+
+
 import { StringKey } from 'src/app/shared/constant/string.constant';
 import { RouteModel } from '../model/route.model';
 
 export class ArrayKey {
+	/**
+	 * App primary route pages of array key
+	 */
 	public static readonly APP_PRIMARY_ROUTE_PAGES: RouteModel[] = [
 		{
 			title: StringKey.MY_SPACE,
@@ -46,76 +61,24 @@ export class ArrayKey {
 					url: ['activities'],
 					icon: StringKey.ICON_ACTIVITY
 				},
-				// {
-				// 	title: StringKey.TASK_TYPE,
-				// 	url: ['task','types'],
-				// 	icon: StringKey.ICON_PROJECT
-				// },
-				// {
-				// 	title: StringKey.USER_STORY,
-				// 	url: ['user','story'],
-				// 	icon: StringKey.ICON_PROJECT
-				// },
-				// {
-				// 	title: StringKey.TASK_MEASUREMENT_CRITERIA,
-				// 	url: ['task','measurement','criteria'],
-				// 	icon: StringKey.ICON_PROJECT
-				// },
 			]
 		},
-	]
+	];
+
+	/**
+	 * Next step of array key
+	 */
+	public static readonly NEXT_STEP = {
+		crudProject: {
+			image: StringKey.IMAGE_PROJECT_DONE,
+			steps: [
+				StringKey.NS_PROJECT_1,
+				StringKey.NS_PROJECT_2,
+				StringKey.NS_PROJECT_3,
+				StringKey.NS_PROJECT_4,
+				StringKey.NS_PROJECT_5,
+				StringKey.NS_PROJECT_6,
+			]
+		}
+	}
 }
-
-
-
-// buttons: [
-// 	{
-// 		text: StringKey.EDIT + ' ' + StringKey.PROJECT_DETAIL,
-// 		icon: StringKey.ICON_EDIT,
-// 		handler: () => {
-// 			this.editProject(selectedProject);
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.PROJECT_MEMBER,
-// 		icon: StringKey.ICON_VIEW,
-// 		handler: () => {
-// 			this.router.navigate([selectedProject.projectId, 'members'], { relativeTo: this.activatedRoute });
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.PROJECT_SPRINT,
-// 		icon: StringKey.ICON_VIEW,
-// 		handler: () => {
-// 			this.router.navigate([selectedProject.projectId, 'sprints'], { relativeTo: this.activatedRoute });
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.TASK_TYPE,
-// 		icon: StringKey.ICON_VIEW,
-// 		handler: () => {
-// 			this.router.navigate([selectedProject.projectId, 'task', 'types'], { relativeTo: this.activatedRoute });
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.USER_STORY,
-// 		icon: StringKey.ICON_VIEW,
-// 		handler: () => {
-// 			this.router.navigate([selectedProject.projectId, 'user', 'story'], { relativeTo: this.activatedRoute });
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.TASK_MEASUREMENT_CRITERIA,
-// 		icon: StringKey.ICON_VIEW,
-// 		handler: () => {
-// 			this.router.navigate([selectedProject.projectId, 'task', 'measurement', 'criteria'], { relativeTo: this.activatedRoute });
-// 		}
-// 	},
-// 	{
-// 		text: StringKey.CANCEL,
-// 		icon: StringKey.ICON_CANCEL,
-// 		handler: () => {
-// 			//
-// 		}
-// 	}
-// ]

@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Create edit project component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:11:18 
+ * Last modified  : 2021-05-18 19:11:41
+ */
+
+
 import { Component, OnInit, OnDestroy, Input, Injector } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
 import { ProjectModel } from "src/app/shared/model/project.model";
@@ -26,11 +38,6 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	 * Passed project of create edit project component
 	 */
 	private _passedProject: ProjectModel;
-
-	/**
-	 * Default project model of create edit project component
-	 */
-	private _defaultProjectModel: ProjectModel;
 
 	/**
 	 * Modal data of create edit project component
@@ -182,6 +189,7 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
+							returnMessage: baseModel.message
 						};
 
 						await this.presentToast(baseModel.message);

@@ -1,0 +1,65 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary next step component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:12:58 
+ * Last modified  : 2021-05-18 19:15:17
+ */
+ -->
+
+
+<!-- header -->
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="end">
+			<ion-button (click)="gotIt()">
+				{{stringKey.OK}}
+				<ion-icon slot="end" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<!-- header -->
+
+<!-- content -->
+<ion-content fullscreen class="ion-padding" lines="none">
+	<ion-grid lines="none">
+		<!-- nest step module image -->
+		<p align="center" class="swiper-slide">
+			<img [src]="nextStepModule.image" />
+		</p>
+		<!-- nest step module image -->
+
+		<!-- nest step -->
+		<ion-row justify-content-center lines="none">
+			<ion-col align-self-center size-md="12" size-lg="12" size-xs="12" lines="none">
+				<div class="slide">
+
+					<!-- message from crud controller -->
+					<div class="message">{{message}} !!</div>
+					<!-- message from crud controller -->
+
+					<!-- steps -->
+					<div class="steps">
+						<h3 color="secondary">What's Next ?</h3>
+						<ion-card *ngFor="let step of nextStepModule.steps">
+							<div class="step-indicator">
+								<ion-icon color="dark" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+							</div>
+							<div class="step-text" [innerHTML]="step"></div>
+						</ion-card>
+					</div>
+					<!-- steps -->
+				</div>
+			</ion-col>
+		</ion-row>
+		<!-- nest step -->
+		
+	</ion-grid>
+</ion-content>
+<!-- content -->

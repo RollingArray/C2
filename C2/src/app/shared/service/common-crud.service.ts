@@ -1,17 +1,28 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Common crud service
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-05-18 19:05:59 
+ * Last modified  : 2021-05-18 19:09:31
+ */
+
+
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CreateEditProjectGoalComponent } from 'src/app/component/create-edit-project-goal/create-edit-project-goal.component';
 import { CreateEditProjectSprintComponent } from 'src/app/component/create-edit-project-sprint/create-edit-project-sprint.component';
 import { CreateEditProjectComponent } from 'src/app/component/create-edit-project/create-edit-project.component';
+import { NextStepComponent } from 'src/app/component/next-step/next-step.component';
 import { StringKey } from '../constant/string.constant';
-import { CredComponentEnum } from '../enum/crud-component.enum';
+import { CrudComponentEnum } from '../enum/crud-component.enum';
 import { OperationsEnum } from '../enum/operations.enum';
 import { BaseModel } from '../model/base.model';
 import { ModalData } from '../model/modal-data.model';
-import { OperatingUserModel } from '../model/operating-user.model';
-import { ProjectModel } from '../model/project.model';
 import { BaseService } from './base.service';
 import { LoadingService } from './loading.service';
 import { LocalStorageService } from './local-storage.service';
@@ -77,13 +88,13 @@ export class CommonCrudService<T extends BaseModel> {
 	 * @param componentType
 	 * @returns
 	 */
-	getCrudComponent(componentType: CredComponentEnum) {
+	getCrudComponent(componentType: CrudComponentEnum) {
 		switch (componentType) {
-			case CredComponentEnum.CRUD_PROJECT:
+			case CrudComponentEnum.CRUD_PROJECT:
 				return CreateEditProjectComponent;
-			case CredComponentEnum.CRUD_GOAL:
+			case CrudComponentEnum.CRUD_GOAL:
 				return CreateEditProjectGoalComponent;
-			case CredComponentEnum.CRUD_SPRINT:
+			case CrudComponentEnum.CRUD_SPRINT:
 				return CreateEditProjectSprintComponent;
 			default:
 				break;
@@ -112,13 +123,13 @@ export class CommonCrudService<T extends BaseModel> {
 	 * @param componentType 
 	 * @returns  
 	 */
-	async openModalWithCreateOperation(data: T, componentType: CredComponentEnum) {
-
+	async openModalWithCreateOperation(data: T, componentType: CrudComponentEnum) {
 		const modal = await this.modalController.create({
 			component: this.getCrudComponent(componentType),
 			componentProps: {
 				data: this.operatingUser(data, OperationsEnum.Create),
 			},
+			backdropDismiss:false
 		});
 
 		modal.onDidDismiss().then((data) => {
@@ -126,8 +137,8 @@ export class CommonCrudService<T extends BaseModel> {
 			if (this._modalData.cancelled) {
 				//do not refresh the page
 			} else {
-				//load data from network
-				this.loadDataUponModalClose.next(true);
+				// open whats next
+				this.openNextStep(componentType, this._modalData.returnMessage);
 			}
 		});
 
@@ -140,12 +151,13 @@ export class CommonCrudService<T extends BaseModel> {
 	 * @param componentType
 	 * @returns
 	 */
-	async openModalWithEditOperation(data: T, componentType: CredComponentEnum) {
+	async openModalWithEditOperation(data: T, componentType: CrudComponentEnum) {
 		const modal = await this.modalController.create({
 			component: this.getCrudComponent(componentType),
 			componentProps: {
 				data: this.operatingUser(data, OperationsEnum.Edit),
 			},
+			backdropDismiss: false
 		});
 
 		modal.onDidDismiss().then((data) => {
@@ -219,6 +231,35 @@ export class CommonCrudService<T extends BaseModel> {
 
 		// present alert
 		await alertController.present();
+	}
+
+	/**
+	 * Opens next step
+	 * @param componentType 
+	 * @returns  
+	 */
+	async openNextStep(componentType: CrudComponentEnum, message: string) {
+
+		const modal = await this.modalController.create({
+			component: NextStepComponent,
+			componentProps: {
+				componentType: componentType,
+				message: message
+			},
+			backdropDismiss: false
+		});
+
+		modal.onDidDismiss().then((data) => {
+			this._modalData = data.data;
+			if (this._modalData.cancelled) {
+				//do not refresh the page
+			} else {
+				//load data from network
+				this.loadDataUponModalClose.next(true);
+			}
+		});
+
+		return await modal.present();
 	}
 
 	/**

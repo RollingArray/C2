@@ -10,6 +10,8 @@ import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info
 import { PanelHeaderModule } from 'src/app/component/panel-header/panel-header.component.module';
 import { PanelInfoModule } from 'src/app/component/panel-info/panel-info.component.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
+import { UserService } from 'src/app/shared/service/user.service';
 import { MyProjectPage } from './my-project.page';
 
 const routes: Routes = [
@@ -36,6 +38,9 @@ const routes: Routes = [
     CustomFieldsModule,
     AvatarModule,
     RouterModule.forChild(routes)
+  ],
+  providers:[
+    CommonCrudService
   ],
   declarations: [MyProjectPage]
 })

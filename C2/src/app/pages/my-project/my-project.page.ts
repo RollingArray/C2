@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-05-17 15:31:13
+ * Last modified  : 2021-05-18 09:55:27
  */
 
 
@@ -14,13 +14,12 @@ import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
-import { ModalData } from 'src/app/shared/model/modal-data.model';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
-import { CreateEditProjectComponent } from 'src/app/component/create-edit-project/create-edit-project.component';
-import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { takeUntil } from 'rxjs/operators';
+import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
+import { CredComponentEnum } from 'src/app/shared/enum/crud-component.enum';
 
 @Component({
 	selector: "app-my-project",
@@ -30,19 +29,9 @@ import { takeUntil } from 'rxjs/operators';
 export class MyProjectPage extends BaseViewComponent {
 
 	/**
-	 * Project model of my project page
-	 */
-	private _projectModel: ProjectModel;
-
-	/**
 	 * Projects  of my project page
 	 */
 	private _projects: ProjectModel[];
-
-	/**
-	 * Modal data of my project page
-	 */
-	private _modalData: ModalData;
 
 	/**
 	 * Determines whether data has
@@ -108,7 +97,8 @@ export class MyProjectPage extends BaseViewComponent {
 		injector: Injector,
 		private projectService: ProjectService,
 		public loadingService: LoadingService,
-		public localStorageService: LocalStorageService
+		public localStorageService: LocalStorageService,
+		public commonCrudService: CommonCrudService<ProjectModel>,
 	) {
 		super(injector);
 	}
@@ -191,13 +181,13 @@ export class MyProjectPage extends BaseViewComponent {
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_1}`);
 
 		//build pass post data
-		this._projectModel = {
+		const projectModel: ProjectModel = {
 			userId: this._loggedInUser
 		};
 
 		//send api response
 		this.projectService
-			.getUserProject(this._projectModel)
+			.getUserProject(projectModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async (baseModel: BaseModel) => {
 
@@ -211,7 +201,7 @@ export class MyProjectPage extends BaseViewComponent {
 					this._hasData = true;
 					this._projects = baseModel.data.data;
 				}
-				else{
+				else {
 					this.errorMessage = this.stringKey.NO_DATA_MY_PROJECT;
 				}
 			});
@@ -222,25 +212,22 @@ export class MyProjectPage extends BaseViewComponent {
 	 * @returns  
 	 */
 	async addProject() {
-		this.buildDataModelToPass();
-		const modal = await this.modalController.create({
-			component: CreateEditProjectComponent,
-			componentProps: {
-				data: this._projectModel
-			}
-		});
 
-		modal.onDidDismiss().then(data => {
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// build empty project model
+		const projectModel: ProjectModel = {
+			projectName : '',
+			projectDescription : '',
+		}
+
+		// open modal view
+		this.commonCrudService.openModalWithCreateOperation(projectModel, CredComponentEnum.CRUD_PROJECT);
+
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(value => {
+			if (value === true) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
 	/**
@@ -248,38 +235,33 @@ export class MyProjectPage extends BaseViewComponent {
 	 * @param project 
 	 * @returns  
 	 */
-	async editProject(project: ProjectModel) {
-		project.userId = this._loggedInUser;
-		project.operationType = `${OperationsEnum.Edit}`;
+	async editProject(projectModel: ProjectModel) {
+		// open modal view
+		this.commonCrudService.openModalWithEditOperation(projectModel, CredComponentEnum.CRUD_PROJECT);
 
-		const modal = await this.modalController.create({
-			component: CreateEditProjectComponent,
-			componentProps: {
-				data: project
-			}
-		});
-
-		modal.onDidDismiss().then(data => {
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(success => {
+			if (success) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
 	/**
-	 * Builds data model to pass
+	 * Deletes project
+	 * @param project 
 	 */
-	private buildDataModelToPass() {
-		this._projectModel.userId = this._loggedInUser;
-		this._projectModel.projectName = '';
-		this._projectModel.projectDescription = '';
-		this._projectModel.operationType = `${OperationsEnum.Create}`;
+	 async deleteProject(projectModel: ProjectModel) {
+
+		// initiate delete operation
+		this.commonCrudService.deleteOperation(projectModel, this.projectService, "crudProject", this.stringKey.ALERT_DELETE_PROJECT);
+		
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success => {
+			if (success) {
+				this.loadData();
+			}
+		});
 	}
 
 	/**
@@ -331,130 +313,12 @@ export class MyProjectPage extends BaseViewComponent {
 		await actionSheet.present();
 	}
 
-	/**
-	 * Deletes project
-	 * @param project 
-	 */
-	async deleteProject(project: ProjectModel) {
-		const alertController = await this.alertController.create({
-			header: this.stringKey.CONFIRM_ACTION,
-			message: this.stringKey.ALERT_DELETE_PROJECT,
-			buttons: [
-				{
-					text: this.stringKey.CANCEL,
-					handler: () => {
-						//
-					}
-				}, {
-					text: this.stringKey.YES,
-					handler: async () => {
-
-						//loading start
-						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
-
-						//build data
-						const crudProject: ProjectModel = {
-							userId: this._loggedInUser,
-							projectId: project.projectId,
-							projectName: project.projectName,
-							projectDescription: project.projectDescription,
-							operationType: `${OperationsEnum.Delete}`,
-						}
-
-						//send api
-						this.projectService
-							.crudProject(crudProject)
-							.pipe(takeUntil(this.unsubscribe))
-							.subscribe(
-								async (baseModel: BaseModel) => {
-
-									// dismiss loader
-									await this.loadingService.dismiss();
-
-									// check is model return success
-									if (baseModel.success) {
-
-										// show toast
-										await this.presentToast(baseModel.message);
-
-										// load data to ui
-										await this.loadData();
-									}
-								},
-
-								// if error
-								async (error) => {
-									// dismiss loader
-									await this.loadingService.dismiss();
-								}
-							);
-					}
-				}
-			]
-		});
-
-		// present alert
-		await alertController.present();
-	}
+	
 
 	/**
 	 * Logouts my project page
 	 */
 	async logout() {
-
-		// open alert
-		const alertController = await this.alertController.create({
-			header: this.stringKey.CONFIRM_ACTION,
-			message: this.stringKey.CONFIRM_LOG_OUT,
-			buttons: [
-				
-				// if user cancel
-				{
-					text: this.stringKey.CANCEL,
-					handler: () => {
-						//
-					}
-				}, 
-
-				// if user want to proceed
-				{
-					text: this.stringKey.YES,
-					handler: async () => {
-
-						// start loader
-						await this.loadingService.present(
-							`${this.stringKey.API_REQUEST_MESSAGE_5}`
-						);
-
-						// remove any user data from local storage
-						await this.localStorageService
-							.removeActiveUser()
-							.pipe(takeUntil(this.unsubscribe))
-							.subscribe(async (data: boolean) => {
-
-								// on success
-								if (data) {
-
-									// dismiss loader
-									await this.loadingService
-										.dismiss()
-										.then(() => {
-
-											// reload window to reset any in memory cached data reflected over UI
-											window.location.reload();
-									});
-
-								} else {
-									// dismiss loader
-									await this.loadingService.dismiss();
-								}
-							});
-					}
-				}
-			]
-		});
-
-		// present alert
-		await alertController.present();
+		this.commonCrudService.logoutUser();
 	}
 }

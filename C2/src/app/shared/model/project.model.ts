@@ -1,8 +1,8 @@
+import { OperatingUserModel } from './operating-user.model';
 import { ProjectUserTypeBaseModel } from './project-user-type-base.model';
 
 
-export interface ProjectModel {
-    userId ?: string;
+export interface ProjectModel extends OperatingUserModel {
     addedUserId ?: string;
     assigneeUserId ?: string;
     reviewerUserId ?: string;
@@ -15,5 +15,4 @@ export interface ProjectModel {
     projectAdministrator ?: ProjectUserTypeBaseModel;
     projectAssignees ?: ProjectUserTypeBaseModel;
     projectReviewers ?: ProjectUserTypeBaseModel;
-    operationType ?: string;
 }

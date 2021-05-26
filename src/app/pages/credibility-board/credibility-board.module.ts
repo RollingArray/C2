@@ -10,7 +10,8 @@ import { PageInfoTitleModule } from "src/app/component/page-info-title/page-info
 import { PanelHeaderModule } from "src/app/component/panel-header/panel-header.component.module";
 import { PanelInfoModule } from "src/app/component/panel-info/panel-info.component.module";
 import { SharedModule } from "src/app/shared/module/shared.module";
-import { CredibilityBoardPage } from "./credibility-Board.page";
+import { CredibilityBoardPage } from "./credibility-board.page";
+
 
 const routes: Routes = [
   {

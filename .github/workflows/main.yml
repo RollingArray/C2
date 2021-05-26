@@ -28,11 +28,10 @@ jobs:
     - name: Use Node.js 14 LTS
       uses: actions/setup-node@v2
       with:
-        repository: C2-client-app/C2
         node-version: '14'
       
     - name: Install NPM Modules
-      run: npm install
+      run: cd C2 & npm install
 
     - name: Build Project
       run: npm run build --prod

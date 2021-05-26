@@ -34,7 +34,7 @@ jobs:
     #   run: cd C2
     
     - name: Install NPM Modules
-      run: npm install --base-href /C2/
+      run: npm install --base-href /C2-client-app/C2
 
     - name: Build Project
       run: npm run build --prod

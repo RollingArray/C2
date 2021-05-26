@@ -42,6 +42,6 @@ jobs:
         server: ${{ secrets.C2_DEV_UI_SERVER }}
         username: ${{ secrets.C2_DEV_UI_USER }}
         password: ${{ secrets.C2_DEV_UI_PASS }}
-        local-dir: ./www/
+        # local-dir: ./www/
         server-dir: ${{ secrets.C2_DEV_UI_SERVER_PATH }}
         dangerous-clean-slate: true

@@ -29,9 +29,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-      
-    # - name: CD C2
-    #   run: cd C2
     
     - name: Install NPM Modules
       run: npm install

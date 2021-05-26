@@ -30,11 +30,11 @@ jobs:
       with:
         node-version: '14'
       
-    - name: CD C2
-      run: cd C2
+    # - name: CD C2
+    #   run: cd C2
     
     - name: Install NPM Modules
-      run: npm install
+      run: npm install --base-href /C2/
 
     - name: Build Project
       run: npm run build --prod

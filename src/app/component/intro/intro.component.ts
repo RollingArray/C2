@@ -82,6 +82,12 @@ export class IntroComponent extends BaseViewComponent implements OnInit  {
 	ngOnInit() {
 		this.slideArray = [
 			{
+				title: this.stringKey.INTRO_SLIDE_0_TITLE,
+				info: this.stringKey.INTRO_SLIDE_0_INFO,
+				imageName: "inclusion",
+				buttonText: this.stringKey.SKIP_INTRO,
+			},
+			{
 				title: this.stringKey.INTRO_SLIDE_1_TITLE,
 				info: this.stringKey.INTRO_SLIDE_1_INFO,
 				imageName: "no_project",

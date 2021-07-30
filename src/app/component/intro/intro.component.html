@@ -20,7 +20,7 @@
 					<ion-col align-self-center size-md="12" size-lg="12" size-xs="12" lines="none">
 						<div class="slide">
 							<h2 color="dark"><b>{{slide.title}}</b></h2>
-							<p>{{slide.info}}</p>
+							<p [innerHTML]="slide.info"></p>
 							<ion-button color="primary" (click)="endIntro()">
 								{{slide.buttonText}}
 								<ion-icon slot="end" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>

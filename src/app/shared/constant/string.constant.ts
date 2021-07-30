@@ -20,29 +20,32 @@ export class StringKey {
 
 	// page text
 
-	public static readonly INTRO_SLIDE_1_TITLE: string = 'Tangible Output';
-	public static readonly INTRO_SLIDE_1_INFO: string = 'Create your Project to work upon certain Deliverables';
+	public static readonly INTRO_SLIDE_0_TITLE: string = 'Bring Equality In Diversity';
+	public static readonly INTRO_SLIDE_0_INFO: string = 'Bring <b>Equally opportunities</b> regardless of their race, age, gender, disability, culture or anything else that they might be discriminated against';
+
+	public static readonly INTRO_SLIDE_1_TITLE: string = 'Design Tangible Output';
+	public static readonly INTRO_SLIDE_1_INFO: string = 'Create your Project to work upon <b>Deliverables</b>';
 
 	public static readonly INTRO_SLIDE_2_TITLE: string = 'Gather A Team';
-	public static readonly INTRO_SLIDE_2_INFO: string = 'Work with your Team, assign review their Activities';
+	public static readonly INTRO_SLIDE_2_INFO: string = 'Work with your Team, assign <b>Activities</b>';
 
 	public static readonly INTRO_SLIDE_3_TITLE: string = 'Plan Sprint';
-	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a Sprint';
+	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a <b>Sprint</b>';
 
 	public static readonly INTRO_SLIDE_4_TITLE: string = 'Lets Work Towards A Goal';
-	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your Goal and work towards them along with your Team';
+	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your <b>Goal</b> and work towards them along with your Team';
 
 	public static readonly INTRO_SLIDE_5_TITLE: string = 'Bulls Eye';
-	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign Measurable deliverables around a Goal to team mates';
+	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign <b>Measurable</b> deliverables around a Goal to team mates';
 
 	public static readonly INTRO_SLIDE_6_TITLE: string = 'Reviews Are Important';
-	public static readonly INTRO_SLIDE_6_INFO: string = 'Get Unbiased opinion about the deliverables by reviewing through multiple reviewers';
+	public static readonly INTRO_SLIDE_6_INFO: string = 'Get <b>Unbiased opinion</b> about the deliverables by reviewing through multiple <b>Reviewers</b>';
 
 	public static readonly INTRO_SLIDE_7_TITLE: string = 'Algorithm Diversity';
-	public static readonly INTRO_SLIDE_7_INFO: string = 'Get Credibility score irrespective of gender, race and bias about a team mate solely based on the work done in the past and reviews';
+	public static readonly INTRO_SLIDE_7_INFO: string = 'Get <b>Credibility score</b> irrespective of gender, race and bias about a team mate solely based on the work done in the past and reviews';
 	
 	public static readonly INTRO_SLIDE_8_TITLE: string = 'Welcome Opportunity';
-	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the new opportunity to the Fittest';
+	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the <b>New opportunity</b> to the <b>Fittest</b>';
 
 	public static readonly FACEBOOK: string = "Facebook";
 	public static readonly TWITTER: string = "Twitter";
@@ -548,6 +551,7 @@ export class StringKey {
 	public static readonly IMAGE_AVATAR: string = StringKey.IMAGE_BASE_PATH + "app_avatar.svg";
 
 	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
+	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
 
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";

@@ -1,20 +1,31 @@
-import { AlertService } from 'src/app/shared/service/alert.service';
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project goal page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-08-09 20:29:05 
+ * Last modified  : 2021-08-09 20:29:23
+ */
+
+
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
-import { NavParams } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { takeUntil } from 'rxjs/operators';
 import { ProjectGoalService } from 'src/app/shared/service/project-goal.service';
-import { CreateEditProjectGoalComponent } from 'src/app/component/create-edit-project-goal/create-edit-project-goal.component';
 import { GoalModel } from 'src/app/shared/model/goal.model';
 import { ProjectGoalModel } from 'src/app/shared/model/project-goal.model';
+import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
+import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
 
 
 @Component({
@@ -123,6 +134,7 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 		public localStorageService: LocalStorageService,
 		private projectGoalService: ProjectGoalService,
 		private loadingService: LoadingService,
+		public commonCrudService: CommonCrudService<GoalModel>,
 	) {
 		super(injector);
 	}
@@ -209,66 +221,72 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 	}
 
 	/**
-	 * Adds project goal
+	 * Adds project
 	 * @returns  
 	 */
-	async addProjectGoal() {
+	 async addProjectGoal() {
+
+		// build empty project model
 		const passedModel: GoalModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
 			operationType: `${OperationsEnum.Create}`
 		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectGoalComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
 
-		modal.onDidDismiss().then(data => {
+		// open modal view
+		this.commonCrudService.openModalWithCreateOperation(passedModel, CrudComponentEnum.CRUD_GOAL);
 
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(value => {
+			if (value === true) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
 	/**
-	 * Edits project goal
-	 * @param goalModel 
+	 * Edits project
+	 * @param project 
 	 * @returns  
 	 */
-	async editProjectGoal(goalModel: GoalModel, operation: string) {
+	async editProjectGoal(goalModel: GoalModel)
+	{
 		goalModel.userId = this._loggedInUser;
 		goalModel.projectId = this._projectId;
-		goalModel.operationType = operation;
+		goalModel.operationType = `${OperationsEnum.Delete}`;
 
-		const modal = await this.modalController.create({
-			component: CreateEditProjectGoalComponent,
-			componentProps: {
-				data: goalModel
-			}
-		});
+		// open modal view
+		this.commonCrudService.openModalWithEditOperation(goalModel, CrudComponentEnum.CRUD_GOAL);
 
-		modal.onDidDismiss().then(data => {
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(success => {
+			if (success) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
+	/**
+	 * Deletes project
+	 * @param project 
+	 */
+	 async deleteProjectGoal(goalModel: GoalModel) {
+
+		goalModel.userId = this._loggedInUser;
+		goalModel.projectId = this._projectId;
+		goalModel.operationType = `${OperationsEnum.Edit}`;
+		 
+		// initiate delete operation
+		this.commonCrudService.deleteOperation(goalModel, this.projectGoalService, CrudComponentEnum.CRUD_GOAL, this.stringKey.ALERT_DELETE_PROJECT_GOAL);
+		
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success => {
+			if (success) {
+				this.loadData();
+			}
+		});
+	 }
+	
 	/**
 	 * Opens goal options
 	 * @param selectedGoal 
@@ -281,7 +299,14 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectGoal(selectedGoal, `${OperationsEnum.Edit}`);
+						this.editProjectGoal(selectedGoal);
+					}
+				},
+				{
+					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_EDIT,
+					handler: () => {
+						this.deleteProjectGoal(selectedGoal);
 					}
 				},
 				{

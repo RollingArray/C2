@@ -54,11 +54,11 @@ export class ProjectGoalService extends BaseService<GoalModel> {
 	}
 
 	/**
-	 * Projects goal crud
+	 * Cruds goal
 	 * @param goalModel 
-	 * @returns goal crud 
+	 * @returns goal 
 	 */
-	projectGoalCrud(goalModel: GoalModel): Observable<BaseModel> {
+	crudGoal(goalModel: GoalModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.PROJECT_GOAL_CRUD}`, goalModel);
 	}
 }

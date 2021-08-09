@@ -1,49 +1,82 @@
 <!-- header -->
-<ion-header [appScrollTracker] = 'scrollArea'>
-  <ion-toolbar color="primary">
-    <ion-title>
-      {{stringKey.SEARCH_USER}}
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="solid" color="dark" slot="end" (click)="cancelModal()">{{
-          stringKey.CLOSE
-      }}</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header [appScrollTracker]="scrollArea">
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{ stringKey.SEARCH_USER }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button
+                fill="solid"
+                color="dark"
+                slot="end"
+                (click)="cancelModal()"
+                >{{ stringKey.CLOSE }}</ion-button
+            >
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
-  <!-- page title -->
-  <app-page-info-title [title]="stringKey.SEARCH_USER" [info]="stringKey.SEARCH_USER_INFO"></app-page-info-title>
-  <!-- page title -->
-  <form>
-    <ion-card>
-      <ion-card-content>
-        <!-- supplier name -->
-        <ion-list>
-          <ion-item lines="none">
-            <ion-icon color="tertiary" slot="start" [src]="stringKey.ICON_SEARCH"></ion-icon>
-            <ion-input [placeholder] = "stringKey.FORM_PLACEHOLDER_USER" type="text" [(ngModel)]="search" name="search"></ion-input>
-            <ion-button slot="end" (click)="searchUser()">Search</ion-button>
-          </ion-item>
-        </ion-list>
-        <!-- Project name -->
-      </ion-card-content>
-    </ion-card>
-  </form>
-  <!-- no data -->
-  <app-no-data [user]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_SEARCH"></app-no-data>
-  <!-- no data -->
-  <ng-container *ngIf="hasData">
-    <ion-card *ngFor="let user of users">
-      <app-panel-header 
-        [panelTitle] = "user.userFirstName + ' '+ user.userLastName"
-        [panelIcon] = "stringKey.ICON_USER" 
-        [panelColor] = "stringKey.COLOR_PRIMARY"
-        [eventIcon] = "stringKey.ICON_MORE"
-        [isEventRequired] = true
-        (event)="openUserOptions(user)" 
-      ></app-panel-header>
-    </ion-card>
-  </ng-container>
+    <!-- page title -->
+    <app-page-info-title
+        [title]="stringKey.SEARCH_USER"
+        [info]="stringKey.SEARCH_USER_INFO"
+    ></app-page-info-title>
+    <!-- page title -->
+    <form>
+        <ion-card>
+            <ion-card-content>
+                <!-- supplier name -->
+                <ion-list>
+                    <ion-item lines="none">
+                        <ion-icon
+                            color="tertiary"
+                            slot="start"
+                            [src]="stringKey.ICON_SEARCH"
+                        ></ion-icon>
+                        <ion-input
+                            [placeholder]="stringKey.FORM_PLACEHOLDER_USER"
+                            type="text"
+                            [(ngModel)]="search"
+                            name="search"
+                        ></ion-input>
+                        <ion-button
+                            slot="end"
+                            fill="solid"
+                            color="dark"
+                            (click)="searchUser()"
+                            >Search</ion-button
+                        >
+                    </ion-item>
+                </ion-list>
+                <!-- Project name -->
+            </ion-card-content>
+        </ion-card>
+    </form>
+    <!-- no data -->
+    <app-no-data
+        [user]="true"
+        *ngIf="!hasData"
+        [text]="stringKey.NO_DATA_SEARCH"
+    ></app-no-data>
+    <!-- no data -->
+    <!-- no data -->
+    <app-no-data
+        [user]="true"
+        *ngIf="hasData"
+        [text]="stringKey.NO_DATA_SEARCH"
+    ></app-no-data>
+    <!-- no data -->
+    <ng-container *ngIf="hasData">
+        <ion-card *ngFor="let user of users">
+            <app-panel-header
+                [panelTitle]="user.userFirstName + ' ' + user.userLastName"
+                [panelIcon]="stringKey.ICON_USER"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+                [eventIcon]="stringKey.ICON_MORE"
+                [isEventRequired]="true"
+                (event)="openUserOptions(user)"
+            ></app-panel-header>
+        </ion-card>
+    </ng-container>
 </ion-content>

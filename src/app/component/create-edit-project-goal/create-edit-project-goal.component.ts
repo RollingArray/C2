@@ -217,7 +217,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 		const crudGoal: GoalModel = this.buildDataModelToPass();
 
 		this.projectGoalService
-			.projectGoalCrud(crudGoal)
+			.crudGoal(crudGoal)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -229,6 +229,7 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
+							returnMessage: baseModel.message
 						};
 
 						await this.presentToast(baseModel.message);
@@ -236,10 +237,10 @@ export class CreateEditProjectGoalComponent extends BaseFormComponent implements
 						this.dismissModal();
 					}
 
-					// cancel model if operation delete
-					if (this._passedGoal.operationType === OperationsEnum.Delete) {
-						this.cancelModal()
-					}
+					// // cancel model if operation delete
+					// if (this._passedGoal.operationType === OperationsEnum.Delete) {
+					// 	this.cancelModal()
+					// }
 				},
 				(error) => {
 					this.loadingService.dismiss();

@@ -248,7 +248,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 		const crudSprint: SprintModel = this.buildDataModelToPass();
 
 		this.projectSprintService
-			.projectSprintCrud(crudSprint)
+			.crudSprint(crudSprint)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
 				async (baseModel: BaseModel) => {
@@ -259,6 +259,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
+							returnMessage: baseModel.message
 						};
 
 						await this.presentToast(baseModel.message);

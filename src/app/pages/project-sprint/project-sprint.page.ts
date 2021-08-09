@@ -21,6 +21,8 @@ import { ProjectSprintService } from 'src/app/shared/service/project-sprint.serv
 import { CreateEditProjectSprintComponent } from 'src/app/component/create-edit-project-sprint/create-edit-project-sprint.component';
 import { SprintModel } from 'src/app/shared/model/sprint.model';
 import { ProjectSprintModel } from 'src/app/shared/model/project-sprint.model';
+import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
+import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
 
 
 @Component({
@@ -129,6 +131,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 		public localStorageService: LocalStorageService,
 		private projectSprintService: ProjectSprintService,
 		private loadingService: LoadingService,
+		public commonCrudService: CommonCrudService<SprintModel>,
 	) {
 		super(injector);
 	}
@@ -216,67 +219,71 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 
 	/**
 	 * Adds project sprint
-	 * @returns  
 	 */
 	async addProjectSprint() {
+
+		// build empty project model
 		const passedModel: SprintModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
 			operationType: `${OperationsEnum.Create}`
 		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectSprintComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
 
-		modal.onDidDismiss().then(data => {
+		// open modal view
+		this.commonCrudService.openModalWithCreateOperation(passedModel, CrudComponentEnum.CRUD_SPRINT);
 
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(value => {
+			if (value === true) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
 	/**
 	 * Edits project sprint
 	 * @param sprintModel 
-	 * @returns  
 	 */
-	async editProjectSprint(sprintModel: SprintModel, operation: string) {
+	async editProjectSprint(sprintModel: SprintModel)
+	{
 		sprintModel.userId = this._loggedInUser;
 		sprintModel.projectId = this._projectId;
-		sprintModel.operationType = operation;
+		sprintModel.operationType = `${OperationsEnum.Delete}`;
 
-		const modal = await this.modalController.create({
-			component: CreateEditProjectSprintComponent,
-			componentProps: {
-				data: sprintModel
-			}
-		});
+		// open modal view
+		this.commonCrudService.openModalWithEditOperation(sprintModel, CrudComponentEnum.CRUD_SPRINT);
 
-		modal.onDidDismiss().then(data => {
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponModalClose.subscribe(success => {
+			if (success) {
 				this.loadData();
 			}
 		});
-
-		return await modal.present();
 	}
 
 	/**
-	 * Opens sprint options
+	 * Deletes project sprint
+	 * @param sprintModel 
+	 */
+	async deleteProjectSprint(sprintModel: SprintModel) {
+
+		sprintModel.userId = this._loggedInUser;
+		sprintModel.projectId = this._projectId;
+		sprintModel.operationType = `${OperationsEnum.Edit}`;
+		 
+		// initiate delete operation
+		this.commonCrudService.deleteOperation(sprintModel, this.projectSprintService, CrudComponentEnum.CRUD_SPRINT, this.stringKey.ALERT_DELETE_PROJECT_SPRINT);
+		
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success => {
+			if (success) {
+				this.loadData();
+			}
+		});
+	 }
+	
+	/**
+	 * Opens goal options
 	 * @param selectedSprint 
 	 */
 	async openSprintOptions(selectedSprint: SprintModel) {
@@ -287,7 +294,14 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 					text: this.stringKey.EDIT + ' ' + this.stringKey.DETAILS,
 					icon: this.stringKey.ICON_EDIT,
 					handler: () => {
-						this.editProjectSprint(selectedSprint, `${OperationsEnum.Edit}`);
+						this.editProjectSprint(selectedSprint);
+					}
+				},
+				{
+					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
+					icon: this.stringKey.ICON_EDIT,
+					handler: () => {
+						this.deleteProjectSprint(selectedSprint);
 					}
 				},
 				{

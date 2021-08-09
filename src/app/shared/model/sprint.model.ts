@@ -2,10 +2,11 @@
  * @author Ranjoy Sen
  */
 
- import { ProjectModel } from './project.model';
+ import { OperatingUserModel } from './operating-user.model';
+import { ProjectModel } from './project.model';
  import { UserPerformanceMatrixModel } from './user-performance-matrix.model';
  
- export interface SprintModel extends ProjectModel {
+ export interface SprintModel extends ProjectModel, OperatingUserModel {
      sprintId ?: string;
      sprintName ?: string;
      sprintStartDate ?: string;

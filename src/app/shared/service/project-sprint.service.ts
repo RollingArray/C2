@@ -40,11 +40,21 @@ export class ProjectSprintService extends BaseService<SprintModel> {
 		);
 	}
 
+	/**
+	 * Gets project sprints
+	 * @param projectModel 
+	 * @returns project sprints 
+	 */
 	getProjectSprints(projectModel: ProjectModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.PROJECT_SPRINTS}`, projectModel);
 	}
 
-	projectSprintCrud(sprintModel: SprintModel): Observable<BaseModel> {
+	/**
+	 * Cruds sprint
+	 * @param sprintModel 
+	 * @returns sprint 
+	 */
+	crudSprint(sprintModel: SprintModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.PROJECT_SPRINT_CRUD}`, sprintModel);
 	}
 }

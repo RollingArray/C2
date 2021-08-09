@@ -6,6 +6,8 @@
 	"scripts": {
 		"ng": "ng",
 		"start-local": "ionic serve --port 8000",
+		"start-dev": "ionic serve --configuration=dev --port 8000",
+		"start-prod": "ionic serve --configuration=production --port 8000",
 		"build-local-dev": "ionic build --configuration=dev",
 		"build-local-prod": "ionic build --configuration=prod",
 		"build-dev": "ng build --configuration=dev",

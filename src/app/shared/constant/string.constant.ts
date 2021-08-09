@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-08-06 21:07:36
+ * Last modified  : 2021-08-09 20:21:22
  */
 
 
@@ -241,6 +241,8 @@ export class StringKey {
 	public static readonly ALERT_UNSAVED_CHANGES: string = 'You have unsaved change(s), would you like to cancel';
 	public static readonly ALERT_DELETE: string = 'Would you like to <strong>delete</strong> !!! We will check dependency before deleting';
 	public static readonly ALERT_DELETE_PROJECT: string = 'This will permanently <strong>delete</strong> the project and all associated data';
+	public static readonly ALERT_DELETE_PROJECT_GOAL: string = 'This will permanently <strong>delete</strong> the goal, we will check the dependency before deleting';
+	public static readonly ALERT_DELETE_PROJECT_SPRINT: string = 'This will permanently <strong>delete</strong> the sprint, we will check the dependency before deleting';
 	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
 	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
@@ -367,6 +369,17 @@ export class StringKey {
 	public static readonly NS_PROJECT_4: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
 	public static readonly NS_PROJECT_5: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
 	public static readonly NS_PROJECT_6: string =  'Post Review of the Activity, view assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
+
+	public static readonly NS_GOAL_1: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
+	public static readonly NS_GOAL_2: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
+	public static readonly NS_GOAL_3: string = 'As a reviewer, post Review on the <b>Activity</b>';
+	public static readonly NS_GOAL_4: string =  'View assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
+
+	public static readonly NS_SPRINT_1: string =  'Create New <b>Goals</b> from Project Goal(s) menu available in main menu inside Project Details';
+	public static readonly NS_SPRINT_2: string =  'Create New <b>Activities</b> to achieve a <b>Goal</b> in a <b>Sprint</b> and add <b>Assignees</b> and <b>Reviewers</b> to it';
+	public static readonly NS_SPRINT_3: string = 'As a reviewer, post Review on the <b>Activity</b>';
+	public static readonly NS_SPRINT_4: string =  'View assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
+
 
 	//tool tip
 	public static readonly TOOL_TIP_IS_A: string = 'is a';
@@ -566,6 +579,8 @@ export class StringKey {
 	public static readonly IMAGE_AVATAR: string = StringKey.IMAGE_BASE_PATH + "app_avatar.svg";
 
 	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
+	public static readonly IMAGE_GOAL_DONE: string = StringKey.IMAGE_BASE_PATH + "goal_done.svg";
+	public static readonly IMAGE_SPRINT_DONE: string = StringKey.IMAGE_BASE_PATH + "sprint_done.svg";
 	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
 	
 

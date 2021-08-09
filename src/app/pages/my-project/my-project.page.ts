@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-08-09 15:18:30
+ * Last modified  : 2021-08-09 19:18:58
  */
 
 
@@ -218,6 +218,17 @@ export class MyProjectPage extends BaseViewComponent {
 	}
 
 	/**
+	 * Next step
+	 * @param projectModel 
+	 */
+	 nextStep(projectModel: ProjectModel)
+	 {
+		 this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+	 }
+ 
+	
+	
+	/**
 	 * Adds project
 	 * @returns  
 	 */
@@ -238,15 +249,6 @@ export class MyProjectPage extends BaseViewComponent {
 				this.loadData();
 			}
 		});
-	}
-
-	/**
-	 * Next step
-	 * @param projectModel 
-	 */
-	nextStep(projectModel: ProjectModel)
-	{
-		this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
 	}
 
 	/**

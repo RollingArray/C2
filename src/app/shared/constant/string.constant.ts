@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-05-18 19:16:44
+ * Last modified  : 2021-08-06 21:07:36
  */
 
 
@@ -73,7 +73,8 @@ export class StringKey {
 	public static readonly PASSWORD_RESET_CODE: string = 'Password Reset Code';
 	public static readonly SELECTED_PROJECT_SETTINGS: string = 'Project Space';
 	public static readonly MY_SPACE: string = 'My Space';
-
+	public static readonly GO: string = 'Go';
+	public static readonly NEXT: string = 'What\'s Next';
 	public static readonly SIGN_IN_INFO: string = 'Provide your registered email and password to login';
 	public static readonly WELCOME: string = 'Welcome';
 	public static readonly VERSION: string = 'Version';
@@ -367,6 +368,18 @@ export class StringKey {
 	public static readonly NS_PROJECT_5: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
 	public static readonly NS_PROJECT_6: string =  'Post Review of the Activity, view assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
 
+	//tool tip
+	public static readonly TOOL_TIP_IS_A: string = 'is a';
+	public static readonly TOOL_TIP_IS_AN: string = 'is an';
+	public static readonly TOOL_TIP_IN: string = 'in';
+	public static readonly TOOL_TIP_IS_REVIEWER: string = 'reviewer';
+	public static readonly TOOL_TIP_IS_ASSIGNEE: string = 'assignee';
+	public static readonly TOOL_TIP_IS_ADMIN: string = 'administrator';
+	public static readonly TOOL_TIP_PROJECT: string = 'project';
+	public static readonly TOOL_TIP_PROJECT_REVIEWER: string = 'Project Reviewer';
+	public static readonly TOOL_TIP_PROJECT_ASSIGNEE: string = 'Project Assignee';
+	public static readonly TOOL_TIP_PROJECT_ADMIN: string = 'Project Administrator';
+	
 	//button
 	public static readonly SEND: string = 'Send';
 	public static readonly GET_IT: string = 'Get It';
@@ -402,6 +415,7 @@ export class StringKey {
 	public static readonly REMOVE: string = 'Remove';
 	public static readonly ACHIEVED: string = 'Achieved';
 	public static readonly NOT_ACHIEVED: string = 'Not Achieved';
+	public static readonly EDIT_PROFILE: string = 'Edit Profile';
 	
 	public static readonly ADD_USER_AS_ADMIN: string = 'Add as Admin';
 	public static readonly ADD_USER_AS_ASSIGNEE: string = 'Add as Assignee';
@@ -437,7 +451,7 @@ export class StringKey {
 	public static readonly CHOOSE_PROJECT: string = 'Select a project from My Project to see this details !';
 	public static readonly TASK_REVIEWERS: string = 'Task Reviewer(s)';
 	public static readonly REVIEW_RESULT: string = 'Review Result';
-
+	
 	//error message
 	public static readonly NO_DATA_PROJECT_ADMIN: string = 'A project can not run without an administrator. Add a new administrator';
 	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
@@ -544,6 +558,7 @@ export class StringKey {
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";
+	public static readonly IMAGE_AVATAR_A: string = StringKey.ICON_BASE_PATH + "avatar-a.svg";
 
 	public static readonly IMAGE_BASE_PATH: string = "assets/images/";
 	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
@@ -552,6 +567,7 @@ export class StringKey {
 
 	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
 	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
+	
 
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";

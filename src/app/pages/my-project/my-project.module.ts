@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:10:17 
- * Last modified  : 2021-05-18 19:10:54
+ * Last modified  : 2021-08-06 20:01:53
  */
 
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,8 @@ import { NoDataModule } from 'src/app/component/no-data/no-data.component.module
 import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info-title.component.module';
 import { PanelHeaderModule } from 'src/app/component/panel-header/panel-header.component.module';
 import { PanelInfoModule } from 'src/app/component/panel-info/panel-info.component.module';
+import { ToolTipModule } from 'src/app/component/tool-tip/tool-tip.module';
+import { UserProfileModule } from 'src/app/component/user-profile/user-profile.component.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
 import { MyProjectPage } from './my-project.page';
@@ -49,6 +51,8 @@ const routes: Routes = [
     CustomFieldsModule,
     AvatarModule,
     NextStepModule,
+    ToolTipModule,
+    UserProfileModule,
     RouterModule.forChild(routes)
   ],
   providers:[

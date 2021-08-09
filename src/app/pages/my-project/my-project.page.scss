@@ -1,6 +1,23 @@
+.log-in-avatar{
+    margin: 20px;
+}
+.vertical-center{
+    display: flex!important;
+     align-content: left!important;
+     align-items: center!important;
+}
 .users{
     //border-color: ;
     border-top: 2px solid var(--ion-color-light); 
     padding: 5px; 
     margin: 5px;
+}
+
+.go{
+    float: right;
+    margin-right: 10px;
+}
+
+app-avatar{
+    cursor: pointer;
 }

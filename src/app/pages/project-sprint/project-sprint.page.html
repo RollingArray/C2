@@ -1,46 +1,63 @@
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
-	<ion-toolbar color="primary">
-		<ion-title> {{stringKey.PROJECT_SPRINT}} </ion-title>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-buttons slot="end" (click)="loadData()">
-			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
-		</ion-buttons>
-	</ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title> {{stringKey.PROJECT_SPRINT}} </ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end" (click)="loadData()">
+            <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="stringKey.PROJECT_SPRINT" [info]="stringKey.PROJECT_SPRINT_INFO">
-	</app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title
+        [title]="stringKey.PROJECT_SPRINT"
+        [info]="stringKey.PROJECT_SPRINT_INFO"
+    >
+    </app-page-info-title>
+    <!-- page title -->
 
-	<!-- breadcrumb -->
-	<app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
-	<!-- breadcrumb -->
+    <!-- breadcrumb -->
+    <app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
+    <!-- breadcrumb -->
 
-	<!-- refresh btn -->
-	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content></ion-refresher-content>
-	</ion-refresher>
-	<!-- refresh btn -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark" (click)="addProjectSprint()">
-			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
-	<!-- no data -->
-	<app-no-data [sprint]=true *ngIf="!hasData" [text]="errorMessage"></app-no-data>
-	<!-- no data -->
-	<ng-container *ngIf="hasData">
-		<ion-card *ngFor="let sprint of projectSprintModel?.projectSprints.data">
-			<app-panel-header [panelTitle]="sprint.sprintName" [panelIcon]="stringKey.ICON_DURATION"
-				[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-				(event)="openSprintOptions(sprint)"></app-panel-header>
-			<app-custom-fields [sprintStartDate]="sprint.sprintStartDate" [sprintEndDate]="sprint.sprintEndDate">
-			</app-custom-fields>
-		</ion-card>
-	</ng-container>
+    <!-- refresh btn -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- refresh btn -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button color="dark" (click)="addProjectSprint()">
+            <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <!-- no data -->
+    <app-no-data
+        [sprint]="true"
+        *ngIf="!hasData"
+        [text]="errorMessage"
+    ></app-no-data>
+    <!-- no data -->
+    <ng-container *ngIf="hasData">
+        <ion-card
+            *ngFor="let sprint of projectSprintModel?.projectSprints.data"
+        >
+            <app-panel-header
+                [panelTitle]="sprint.sprintName"
+                [panelIcon]="stringKey.ICON_DURATION"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+                [eventIcon]="stringKey.ICON_MORE"
+                [isEventRequired]="true"
+                (event)="openSprintOptions(sprint)"
+            ></app-panel-header>
+            <app-custom-fields
+                [sprintStartDate]="sprint.sprintStartDate"
+                [sprintEndDate]="sprint.sprintEndDate"
+            >
+            </app-custom-fields>
+        </ion-card>
+    </ng-container>
 </ion-content>

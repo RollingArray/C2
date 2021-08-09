@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-05-18 19:10:06
+ * Last modified  : 2021-08-09 15:18:30
  */
 
 
@@ -20,6 +20,10 @@ import { LocalStorageService } from 'src/app/shared/service/local-storage.servic
 import { takeUntil } from 'rxjs/operators';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
 import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
+import { ToolTipService } from 'src/app/shared/service/tool-tip.service';
+import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
+import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
+import { UserProfileComponent } from 'src/app/component/user-profile/user-profile.component';
 
 @Component({
 	selector: "app-my-project",
@@ -47,6 +51,11 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Logged in user name of my project page
 	 */
 	private _loggedInUserName: string;
+
+	/**
+	 * User type enum of my project page
+	 */
+	readonly userTypeEnum = UserTypeEnum;
 
 	/**
 	 * Getter projects
@@ -99,6 +108,7 @@ export class MyProjectPage extends BaseViewComponent {
 		public loadingService: LoadingService,
 		public localStorageService: LocalStorageService,
 		public commonCrudService: CommonCrudService<ProjectModel>,
+		public toolTipService: ToolTipService,
 	) {
 		super(injector);
 	}
@@ -231,6 +241,15 @@ export class MyProjectPage extends BaseViewComponent {
 	}
 
 	/**
+	 * Next step
+	 * @param projectModel 
+	 */
+	nextStep(projectModel: ProjectModel)
+	{
+		this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+	}
+
+	/**
 	 * Edits project
 	 * @param project 
 	 * @returns  
@@ -284,7 +303,7 @@ export class MyProjectPage extends BaseViewComponent {
 					text: this.stringKey.VIEW + ' ' + this.stringKey.PROJECT_DETAILS,
 					icon: this.stringKey.ICON_VIEW,
 					handler: () => {
-						this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+						this.goProjectDetails(selectedProject);
 					}
 				},
 				{
@@ -313,12 +332,115 @@ export class MyProjectPage extends BaseViewComponent {
 		await actionSheet.present();
 	}
 
-	
+	/**
+	 * Go project details
+	 * @param selectedProject 
+	 */
+	goProjectDetails(selectedProject: ProjectModel)
+	{
+		this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+	}
 
 	/**
 	 * Logouts my project page
 	 */
 	async logout() {
 		this.commonCrudService.logoutUser();
+	}
+
+	/**
+	 * Avatars tool tip
+	 * @param userTypeEnum 
+	 * @param projectName 
+	 * @param projectUserTypeModel 
+	 * @param event 
+	 */
+	avatarToolTip(userTypeEnum: UserTypeEnum, projectName: string, projectUserTypeModel: ProjectUserTypeModel, event: any)
+	{
+		let title = `${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}`;
+		let subTitle = '';
+		
+		switch (userTypeEnum) {
+			case UserTypeEnum.Reviewer:
+				subTitle = `
+							<b>${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}</b> 
+							${this.stringKey.TOOL_TIP_IS_A} 
+							<b>${this.stringKey.TOOL_TIP_IS_REVIEWER}</b>
+							${this.stringKey.TOOL_TIP_IN} 
+							<b>${projectName}</b> 
+							${this.stringKey.TOOL_TIP_PROJECT}`;
+				
+				break;
+			case UserTypeEnum.Administrator:
+				subTitle = `
+							<b>${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}</b> 
+							${this.stringKey.TOOL_TIP_IS_AN} 
+							<b>${this.stringKey.TOOL_TIP_IS_ADMIN}</b>
+							${this.stringKey.TOOL_TIP_IN} 
+							<b>${projectName}</b> 
+							${this.stringKey.TOOL_TIP_PROJECT}`;
+				
+			break;
+			case UserTypeEnum.Assignee:
+				subTitle = `
+							<b>${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}</b> 
+							${this.stringKey.TOOL_TIP_IS_AN} 
+							<b>${this.stringKey.TOOL_TIP_IS_ASSIGNEE}</b>
+							${this.stringKey.TOOL_TIP_IN} 
+							<b>${projectName}</b> 
+							${this.stringKey.TOOL_TIP_PROJECT}`;
+				break;
+		
+			default:
+				break;
+		}
+		this.toolTipService.presentToolTipToast(title, subTitle, event);
+	}
+
+	/**
+	 * Views profile
+	 * @returns  
+	 */
+	async viewProfile() {
+		const modal = await this.modalController.create({
+			component: UserProfileComponent,
+			componentProps: {
+				data: {},
+			},
+		});
+
+		modal.onDidDismiss().then((data) => {
+			//
+		});
+
+		return await modal.present();
+	}
+
+	/**
+	 * Opens project options
+	 * @param selectedProject 
+	 */
+	 async openLoggedInUserOptions() {
+
+		const actionSheet = await this.actionSheetController.create({
+			header: this.stringKey.CHOOSE_YOUR_ACTION,
+			buttons: [
+				{
+					text: this.stringKey.MY_PROFILE,
+					icon: this.stringKey.ICON_EDIT,
+					handler: () => {
+						this.viewProfile();
+					}
+				},
+				{
+					text: this.stringKey.LOGOUT,
+					icon: this.stringKey.ICON_LOGOUT,
+					handler: () => {
+						this.logout();
+					}
+				}
+			]
+		});
+		await actionSheet.present();
 	}
 }

@@ -7,88 +7,148 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 14:56:50 
- * Last modified  : 2021-05-17 15:32:00
+ * Last modified  : 2021-08-09 16:28:32
  */
 -->
 
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
-	<ion-toolbar color="primary">
-		<ion-title> {{stringKey.MY_PROJECT}} </ion-title>
-		<ion-buttons slot="end" (click)="loadData()">
-			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
-		</ion-buttons>
-		<ion-buttons slot="start" (click)="loadData()">
-			
-			<ion-avatar slot="">
-				<img [src]="stringKey.IMAGE_ICON" />
-			</ion-avatar>
-		</ion-buttons>
-	</ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title> {{stringKey.MY_PROJECT}} </ion-title>
+        <ion-buttons slot="end" (click)="loadData()">
+            <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+        </ion-buttons>
+        <ion-buttons slot="start" (click)="loadData()">
+            <ion-avatar slot="">
+                <img [src]="stringKey.IMAGE_ICON" />
+            </ion-avatar>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="stringKey.MY_PROJECT" [info]="stringKey.MY_PROJECT_INFO"></app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title
+        [title]="stringKey.MY_PROJECT"
+        [info]="stringKey.MY_PROJECT_INFO"
+    ></app-page-info-title>
+    <!-- page title -->
 
-	<!-- refresh btn -->
-	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content></ion-refresher-content>
-	</ion-refresher>
-	<!-- refresh btn -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark" (click)="addProject()">
-			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
+    <!-- refresh btn -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- refresh btn -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button color="dark" (click)="addProject()">
+            <ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 
-	<!-- user -->
+    <!-- user -->
+    
 	<ion-card>
-		<app-panel-header [panelTitle]="loggedInUserName" [panelIcon]="stringKey.ICON_USER"
-			[panelColor]="stringKey.COLOR_DARK" [eventIcon]="stringKey.ICON_LOGOUT" [isEventRequired]="true"
-			(event)="logout()"></app-panel-header>
-	</ion-card>
-	<!-- user -->
+        <app-panel-header
+            [panelTitle]="loggedInUserName"
+            [isLargeIcon]="true"
+            [panelIcon]="stringKey.IMAGE_AVATAR_A"
+            [panelColor]="stringKey.COLOR_MEDIUM"
+            [eventIcon]="stringKey.ICON_MORE"
+            [isEventRequired]="true"
+            (event)="openLoggedInUserOptions()"
+        ></app-panel-header>
+    </ion-card>
+    <!-- user -->
 
-	<!-- no data -->
-	<app-no-data [project]=true *ngIf="!hasData" [text]="errorMessage"></app-no-data>
-	<!-- no data -->
+    <!-- no data -->
+    <app-no-data
+        [project]="true"
+        *ngIf="!hasData"
+        [text]="errorMessage"
+    ></app-no-data>
+    <!-- no data -->
 
-	<!-- data container -->
-	<ng-container *ngIf="hasData">
-		<ion-grid>
-			<ion-row>
-				<ion-col size-lg="6" size-md="6" size-sm="6" size="12" *ngFor="let project of projects">
-					<ion-card>
-						<!-- project header -->
-						<app-panel-header [panelTitle]="project.projectName" [panelIcon]="stringKey.ICON_PROJECT"
-							[panelColor]="stringKey.COLOR_PRIMARY" [eventIcon]="stringKey.ICON_MORE"
-							[isEventRequired]="true" (event)="openProjectOptions(project)">
-						</app-panel-header>
-						<!-- project header -->
+    <!-- data container -->
+    <ng-container *ngIf="hasData">
+        <ion-grid>
+            <ion-row>
+                <ion-col
+                    size-lg="6"
+                    size-md="6"
+                    size-sm="6"
+                    size="12"
+                    *ngFor="let project of projects"
+                >
+                    <ion-card>
+                        <!-- project header -->
+                        <app-panel-header
+                            [panelTitle]="project.projectName"
+                            [panelIcon]="stringKey.ICON_PROJECT"
+                            [panelColor]="stringKey.COLOR_MEDIUM"
+                            [eventIcon]="stringKey.ICON_MORE"
+                            [isEventRequired]="true"
+                            (event)="openProjectOptions(project)"
+                        >
+                        </app-panel-header>
+                        <!-- project header -->
 
 						<!-- project description -->
-						<app-custom-fields [description]="project.projectDescription">
+						<app-custom-fields
+							[description]="project.projectDescription"
+						>
 						</app-custom-fields>
 						<!-- project description -->
 						
-						<!-- user types -->
-						<div class="users">
-							<app-avatar [user]="user" [icon]="stringKey.ICON_STAR" *ngFor="let user of project.projectReviewers.data"></app-avatar>
-							<app-avatar [user]="user" [icon]="stringKey.ICON_PEN" *ngFor="let user of project.projectAssignees.data"></app-avatar>
-							<app-avatar [user]="user" [icon]="stringKey.ICON_COG" *ngFor="let user of project.projectAdministrator.data"></app-avatar>
-						</div>
-						<!-- user types -->
+						<ion-grid>
+							<ion-row>
+								
+								<ion-col>
+									<ion-button color="primary" class="go" (click)="goProjectDetails(project)">
+										{{stringKey.GO}}
+										&nbsp;&nbsp;
+										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+									</ion-button>
+									<ion-button color="primary" class="go" (click)="nextStep(project)">
+										{{stringKey.NEXT}}
+										&nbsp;&nbsp;
+										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+									</ion-button>
+								</ion-col>
+								
+							</ion-row>
+						</ion-grid>
+                        
 
-					</ion-card>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ng-container>
-	<!-- data container -->
+                        <!-- user types -->
+                        <div class="users">
+                            <app-avatar
+								(click)="avatarToolTip(userTypeEnum.Reviewer ,project.projectName, user, $event)"
+                                [user]="user"
+                                [icon]="stringKey.ICON_STAR"
+                                *ngFor="let user of project.projectReviewers.data"
+                            ></app-avatar>
+                            <app-avatar
+								(click)="avatarToolTip(userTypeEnum.Assignee ,project.projectName, user, $event)"
+                                [user]="user"
+                                [icon]="stringKey.ICON_PEN"
+                                *ngFor="let user of project.projectAssignees.data"
+                            ></app-avatar>
+                            <app-avatar
+								(click)="avatarToolTip(userTypeEnum.Administrator ,project.projectName, user, $event)"
+                                [user]="user"
+                                [icon]="stringKey.ICON_COG"
+                                *ngFor="let user of project.projectAdministrator.data"
+                            ></app-avatar>
+                        </div>
+                        <!-- user types -->
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-container>
+    <!-- data container -->
 
-	<!-- empty row -->
-	<div id="dum-height"></div>
-	<!-- empty row -->
+    <!-- empty row -->
+    <div id="dum-height"></div>
+    <!-- empty row -->
 </ion-content>

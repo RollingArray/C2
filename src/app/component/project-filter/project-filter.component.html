@@ -1,38 +1,64 @@
-<app-panel-header [panelTitle]="stringKey.CHOOSE_FILTER" [panelIcon]="stringKey.ICON_FILTER"
-	[panelColor]="stringKey.COLOR_SENARY" [eventIcon]="stringKey.ICON_ACTIVATE" [isEventRequired]="true">
+<app-panel-header
+    [panelTitle]="stringKey.CHOOSE_FILTER"
+    [panelIcon]="stringKey.ICON_FILTER"
+    [panelColor]="stringKey.COLOR_MEDIUM"
+    [eventIcon]="stringKey.ICON_ACTIVATE"
+    [isEventRequired]="true"
+>
 </app-panel-header>
 
 <!-- no data -->
-<app-no-data [filter]=true *ngIf="!filterExist" [text]="stringKey.NO_FILTER"></app-no-data>
-<!-- no data -->	
+<app-no-data
+    [filter]="true"
+    *ngIf="!filterExist"
+    [text]="stringKey.NO_FILTER"
+></app-no-data>
+<!-- no data -->
 
 <ion-grid color="medium" *ngIf="filterExist">
-	<ion-row>
-		<ion-col size="12">
-			<!-- select goal -->
-			<ion-card class="selector">
-				<app-panel-header [panelTitle]="filter.goalName" [panelIcon]="stringKey.ICON_GOAL"
-					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
-			</ion-card>
-			<!-- select goal -->
-		</ion-col>
+    <ion-row>
+        <ion-col size="12">
+            <!-- select goal -->
+            <ion-card class="selector">
+                <app-panel-header
+                    [panelTitle]="filter.goalName"
+                    [panelIcon]="stringKey.ICON_GOAL"
+                    [panelColor]="stringKey.COLOR_INFO"
+                    [isEventRequired]="false"
+                ></app-panel-header>
+            </ion-card>
+            <!-- select goal -->
+        </ion-col>
 
-		<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-			<!-- select sprint -->
-			<ion-card class="selector">
-				<app-panel-header [panelTitle]="filter.sprintName" [panelIcon]="stringKey.ICON_SPRINT"
-					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
-			</ion-card>
-			<!-- select sprint -->
-		</ion-col>
+        <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <!-- select sprint -->
+            <ion-card class="selector">
+                <app-panel-header
+                    [panelTitle]="filter.sprintName"
+                    [panelIcon]="stringKey.ICON_SPRINT"
+                    [panelColor]="stringKey.COLOR_INFO"
+                    [isEventRequired]="false"
+                ></app-panel-header>
+            </ion-card>
+            <!-- select sprint -->
+        </ion-col>
 
-		<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-			<!-- select member -->
-			<ion-card class="selector">
-				<app-panel-header [panelTitle]="getUserFullName(filter.userFirstName, filter.userLastName)" [panelIcon]="stringKey.ICON_USER"
-					[panelColor]="stringKey.COLOR_INFO" [isEventRequired]="false"></app-panel-header>
-			</ion-card>
-			<!-- select member -->
-		</ion-col>
-	</ion-row>
+        <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <!-- select member -->
+            <ion-card class="selector">
+                <app-panel-header
+                    [panelTitle]="
+                        getUserFullName(
+                            filter.userFirstName,
+                            filter.userLastName
+                        )
+                    "
+                    [panelIcon]="stringKey.ICON_USER"
+                    [panelColor]="stringKey.COLOR_INFO"
+                    [isEventRequired]="false"
+                ></app-panel-header>
+            </ion-card>
+            <!-- select member -->
+        </ion-col>
+    </ion-row>
 </ion-grid>

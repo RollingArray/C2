@@ -1,0 +1,22 @@
+<!--
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Tool Tip component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-08-06 18:56:24 
+ * Last modified  : 2021-08-06 19:24:52
+ */
+-->
+
+<ion-content>
+    <div class="title">
+        {{ toolTip.title }}
+    </div>
+    <div class="sub-title" [innerHTML]="toolTip.subTitle"></div>
+    <ion-button class="float-button width-60-p" (click)="gotIt()">{{
+        stringKey.OK
+    }}</ion-button>
+</ion-content>

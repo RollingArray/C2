@@ -1,0 +1,35 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Tool Tip component template style
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-08-06 18:55:58 
+ * Last modified  : 2021-08-06 19:54:54
+ */
+
+.title{
+    position: relative;
+    align-items: flex-end;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ion-color-light); 
+    color: var(--ion-color-dark);
+}
+
+.sub-title{
+    position: relative;
+    align-items: flex-end;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    margin: 15px;
+}
+
+ion-button{
+    margin: 15px;
+}

@@ -23,6 +23,7 @@ import { SprintModel } from 'src/app/shared/model/sprint.model';
 import { ProjectSprintModel } from 'src/app/shared/model/project-sprint.model';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
 import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
+import { SprintStatusEnum } from 'src/app/shared/enum/sprint-status.enum';
 
 
 @Component({
@@ -66,6 +67,16 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	 * Project sprint model of project sprint page
 	 */
 	private _projectSprintModel: ProjectSprintModel;
+
+	/**
+	 * Sprint status enum of project sprint page
+	 */
+	readonly sprintStatusEnum = SprintStatusEnum;
+
+	/**
+	 * Operations enum of project sprint page
+	 */
+	readonly operationsEnum = OperationsEnum;
 
 	/**
 	 * Sets bread crumb
@@ -226,6 +237,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 		const passedModel: SprintModel = {
 			userId: this._loggedInUser,
 			projectId: this._projectId,
+			sprintStatus: SprintStatusEnum.Future,
 			operationType: `${OperationsEnum.Create}`
 		}
 
@@ -246,12 +258,15 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	 */
 	async editProjectSprint(sprintModel: SprintModel)
 	{
-		sprintModel.userId = this._loggedInUser;
-		sprintModel.projectId = this._projectId;
-		sprintModel.operationType = `${OperationsEnum.Delete}`;
+		const updatedSprint: SprintModel = {
+			...sprintModel,
+			userId: this._loggedInUser,
+			projectId: this._projectId,
+			operationType: `${OperationsEnum.Delete}`
+		};
 
 		// open modal view
-		this.commonCrudService.openModalWithEditOperation(sprintModel, CrudComponentEnum.CRUD_SPRINT);
+		this.commonCrudService.openModalWithEditOperation(updatedSprint, CrudComponentEnum.CRUD_SPRINT);
 
 		// work with return object, reload data
 		this.commonCrudService.loadDataUponModalClose.subscribe(success => {
@@ -262,14 +277,43 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	}
 
 	/**
+	 * Unders the hood edit project sprint
+	 * @param sprintModel 
+	 * @param sprintStatus 
+	 */
+	async underTheHoodEditProjectSprint(sprintModel: SprintModel, sprintStatus: SprintStatusEnum, operation: OperationsEnum) {
+
+		const updatedSprint: SprintModel = {
+			...sprintModel,
+			userId: this._loggedInUser,
+			sprintStatus: sprintStatus,
+			projectId: this._projectId,
+			operationType: operation
+		};
+		 
+		// initiate delete operation
+		this.commonCrudService.underTheHoodEditOperation(updatedSprint, this.projectSprintService, CrudComponentEnum.CRUD_SPRINT, this.stringKey.CHANGE_SPRINT_STATUS, operation);
+		
+		// work with return object, reload data
+		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success => {
+			if (success) {
+				this.loadData();
+			}
+		});
+	 }
+	
+	/**
 	 * Deletes project sprint
 	 * @param sprintModel 
 	 */
 	async deleteProjectSprint(sprintModel: SprintModel) {
 
-		sprintModel.userId = this._loggedInUser;
-		sprintModel.projectId = this._projectId;
-		sprintModel.operationType = `${OperationsEnum.Edit}`;
+		const updatedSprint: SprintModel = {
+			...sprintModel,
+			userId: this._loggedInUser,
+			projectId: this._projectId,
+			operationType: `${OperationsEnum.Delete}`
+		};
 		 
 		// initiate delete operation
 		this.commonCrudService.deleteOperation(sprintModel, this.projectSprintService, CrudComponentEnum.CRUD_SPRINT, this.stringKey.ALERT_DELETE_PROJECT_SPRINT);
@@ -280,7 +324,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 				this.loadData();
 			}
 		});
-	 }
+	}
 	
 	/**
 	 * Opens goal options

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:05:59 
- * Last modified  : 2021-08-09 20:04:54
+ * Last modified  : 2021-08-10 17:55:23
  */
 
 
@@ -199,6 +199,67 @@ export class CommonCrudService<T extends BaseModel> {
 						//send api
 						service
 						[apiMethodName](this.operatingUser(data, OperationsEnum.Delete))
+							.pipe(take(1))
+							.subscribe(
+								async (baseModel: BaseModel) => {
+
+									// dismiss loader
+									await this.loadingService.dismiss();
+
+									// check is model return success
+									if (baseModel.success) {
+
+										// show toast
+										await this.toastService.presentToast(baseModel.message);
+
+										// load data to ui
+										//load data from network
+										this.loadDataUponObjectDeleted.next(true);
+									}
+								},
+
+								// if error
+								async (error) => {
+									// dismiss loader
+									await this.loadingService.dismiss();
+								}
+							);
+					}
+				}
+			]
+		});
+
+		// present alert
+		await alertController.present();
+	}
+
+	/**
+	 * Unders the hood edit operation
+	 * @param data 
+	 * @param service 
+	 * @param apiMethodName 
+	 * @param deleteMessage 
+	 */
+	async underTheHoodEditOperation(data: T, service: BaseService<T>, apiMethodName: string, message: string, operation: OperationsEnum) {
+		const alertController = await this.alertController.create({
+			header: this.stringKey.CONFIRM_ACTION,
+			message: message,
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					handler: () => {
+						//
+					}
+				}, {
+					text: this.stringKey.YES,
+					handler: async () => {
+
+						//loading start
+						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+
+						//send api
+						service
+						[apiMethodName](this.operatingUser(data, operation))
 							.pipe(take(1))
 							.subscribe(
 								async (baseModel: BaseModel) => {

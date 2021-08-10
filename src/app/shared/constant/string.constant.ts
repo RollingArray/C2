@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-08-09 20:21:22
+ * Last modified  : 2021-08-10 19:51:14
  */
 
 
@@ -90,11 +90,15 @@ export class StringKey {
 	public static readonly CREATE_SPRINT: string = 'Create Sprint';
 	public static readonly UPDATE_SPRINT: string = 'Update Sprint';
 	public static readonly DELETE_SPRINT: string = 'Delete Sprint';
+	public static readonly START_SPRINT: string = 'Start Sprint';
+	public static readonly RESUME_SPRINT: string = 'Resume Sprint';
+	public static readonly END_SPRINT: string = 'End Sprint';
 	public static readonly GOAL_DETAIL_INFO: string = 'Provide following details to the goal';
 	public static readonly CREATE_GOAL: string = 'Create Goal';
 	public static readonly UPDATE_GOAL: string = 'Update Goal';
 	public static readonly DELETE_GOAL: string = `Delete Goal`;
 	public static readonly ADD_COMMENT: string = 'Add Comment';
+	public static readonly STATUS: string = 'Status';
 	
 	public static readonly UPDATE_COMMENT: string = 'Update Comment';
 	public static readonly DELETE_COMMENT: string = `Delete Comment`;
@@ -246,6 +250,7 @@ export class StringKey {
 	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
 	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
+	public static readonly CHANGE_SPRINT_STATUS: string = 'Do you want to change the status of the sprint';
 	
 
 	//form info
@@ -565,6 +570,8 @@ export class StringKey {
 	public static readonly ICON_SELECT: string = StringKey.ICON_BASE_PATH + "select.svg";
 	public static readonly ICON_WEIGHT: string = StringKey.ICON_BASE_PATH + "quantity.svg";
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
+	public static readonly ICON_START: string = StringKey.ICON_BASE_PATH + "start.svg";
+	public static readonly ICON_STOP: string = StringKey.ICON_BASE_PATH + "stop.svg";
 	
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";

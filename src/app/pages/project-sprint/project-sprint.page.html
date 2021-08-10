@@ -53,11 +53,108 @@
                 [isEventRequired]="true"
                 (event)="openSprintOptions(sprint)"
             ></app-panel-header>
-            <app-custom-fields
-                [sprintStartDate]="sprint.sprintStartDate"
-                [sprintEndDate]="sprint.sprintEndDate"
-            >
-            </app-custom-fields>
+
+            <!-- sprint start end status -->
+            <ion-grid>
+                <ion-row>
+                    <ion-col
+                        size-lg="9"
+                        size-md="9"
+                        size-xl="9"
+                        size-sm="12"
+                        size-xs="12"
+                    >
+                        <app-custom-fields
+                            [sprintStartDate]="sprint.sprintStartDate"
+                            [sprintEndDate]="sprint.sprintEndDate"
+                        >
+                        </app-custom-fields>
+                    </ion-col>
+                    <ion-col
+                        size-lg="3"
+                        size-md="3"
+                        size-xl="3"
+                        size-sm="12"
+                        size-xs="12"
+                    >
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col
+                                    size-lg="12"
+                                    size-md="12"
+                                    size-xl="12"
+                                    size-sm="6"
+                                    size-xs="6"
+                                >
+                                    <ion-button
+                                        color="success"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Active"
+                                    >
+                                        {{stringKey.STATUS}}
+                                        &nbsp; <ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon> &nbsp;
+                                        {{sprint.sprintStatus}}
+                                    </ion-button>
+                                    <ion-button
+                                        color="semi-dark"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Future"
+                                    >
+                                        {{stringKey.STATUS}}
+                                        &nbsp; <ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon> &nbsp;
+                                        {{sprint.sprintStatus}}
+                                    </ion-button>
+                                    <ion-button
+                                        color="warning"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Closed"
+                                    >
+                                        {{stringKey.STATUS}} 
+                                        &nbsp; <ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon> &nbsp;
+                                        {{sprint.sprintStatus}}
+                                    </ion-button>
+                                </ion-col>
+                                <ion-col
+                                    size-lg="12"
+                                    size-md="12"
+                                    size-xl="12"
+                                    size-sm="6"
+                                    size-xs="6"
+                                >
+                                    <ion-button
+                                        color="dark"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Active"
+                                        (click)="underTheHoodEditProjectSprint(sprint, sprintStatusEnum.Closed, operationsEnum.Stop)"
+                                    >
+                                        <ion-icon [src]="stringKey.ICON_STOP"></ion-icon> &nbsp; 
+                                        {{stringKey.END_SPRINT}}
+                                    </ion-button>
+                                    <ion-button
+                                        color="dark"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Future"
+                                        (click)="underTheHoodEditProjectSprint(sprint, sprintStatusEnum.Active, operationsEnum.Start)"
+                                    >
+                                        <ion-icon [src]="stringKey.ICON_START"></ion-icon> &nbsp; 
+                                        {{stringKey.START_SPRINT}}
+                                    </ion-button>
+                                    <ion-button
+                                        color="dark"
+                                        expand="block"
+                                        *ngIf="sprint.sprintStatus === sprintStatusEnum.Closed"
+                                        (click)="underTheHoodEditProjectSprint(sprint, sprintStatusEnum.Active, operationsEnum.Start)"
+                                    >
+                                        <ion-icon [src]="stringKey.ICON_START"></ion-icon> &nbsp; 
+                                        {{stringKey.RESUME_SPRINT}}
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <!-- sprint start end status -->
         </ion-card>
     </ng-container>
 </ion-content>

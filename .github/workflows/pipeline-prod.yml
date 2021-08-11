@@ -1,24 +1,24 @@
 #
 # © Rolling Array https://rollingarray.co.in/
 #
-# @summary Deploy C2 STAGE app on STAGE branch push 
+# @summary Deploy C2 PROD app on PROD branch push 
 # @author code@rollingarray.co.in
 #
 # Created at     : 2021-05-26 10:42:18 
 # Last modified  : 2021-05-26 10:45:16
 #
 
-name: Deploy C2 STAGE app on STAGE branch push
+name: Deploy C2 PROD app on PROD branch push
 
 on: 
   push:
     branches: 
-      - staging
+      - main
       
 jobs:
   web-deploy:
 
-    name: Deploy C2 Client Staging
+    name: Deploy C2 Client Prod
     runs-on: ubuntu-latest
 
     steps:
@@ -39,9 +39,9 @@ jobs:
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ${{ secrets.C2_STAGE_FTP_SERVER }}
-        username: ${{ secrets.C2_STAGE_FTP_USERNAME }}
-        password: ${{ secrets.C2_STAGE_FTP_PASSWORD }}
+        server: ${{ secrets.C2_PROD_FTP_SERVER }}
+        username: ${{ secrets.C2_PROD_FTP_USERNAME }}
+        password: ${{ secrets.C2_PROD_FTP_PASSWORD }}
         local-dir: ./www/
-        server-dir: ${{ secrets.C2_STAGE_SERVER_DEPLOYMENT_PATH }}
+        server-dir: ${{ secrets.C2_PROD_SERVER_DEPLOYMENT_PATH }}
         dangerous-clean-slate: true

@@ -1,19 +1,19 @@
 #
 # © Rolling Array https://rollingarray.co.in/
 #
-# @summary Deploy C2 DEV app on DEV branch push 
+# @summary Deploy C2 STAGE app on STAGE branch push 
 # @author code@rollingarray.co.in
 #
 # Created at     : 2021-05-26 10:42:18 
 # Last modified  : 2021-05-26 10:45:16
 #
 
-name: Deploy C2 DEV app on DEV branch push
+name: Deploy C2 STAGE app on STAGE branch push
 
 on: 
   push:
     branches: 
-      - dev
+      - stage
       
 jobs:
   web-deploy:
@@ -34,14 +34,14 @@ jobs:
       run: npm install
 
     - name: Build Project
-      run: npm run build-dev
+      run: npm run build-stage
     
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ${{ secrets.C2_DEV_UI_SERVER }}
-        username: ${{ secrets.C2_DEV_UI_USER }}
-        password: ${{ secrets.C2_DEV_UI_PASS }}
+        server: ${{ secrets.C2_STAGE_FTP_SERVER }}
+        username: ${{ secrets.C2_STAGE_FTP_USERNAME }}
+        password: ${{ secrets.C2_STAGE_FTP_PASSWORD }}
         local-dir: ./www/
-        server-dir: ${{ secrets.C2_DEV_UI_SERVER_PATH }}
+        server-dir: ${{ secrets.C2_STAGE_SERVER_DEPLOYMENT_PATH }}
         dangerous-clean-slate: true

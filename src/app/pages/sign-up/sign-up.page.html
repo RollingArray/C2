@@ -2,8 +2,8 @@
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<ion-grid lines="none">
 			<ion-row justify-content-center lines="none">
-				<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
-					offset-sm="4" lines="none">
+				<ion-col align-self-center size="12" size-lg="8" size-md="8" size-sm="8" offset-lg="2" offset-md="2"
+					offset-sm="2" lines="none">
 					<!-- app icon -->
 					<img [src]="stringKey.IMAGE_ICON" />
 					<!-- app icon -->
@@ -12,6 +12,43 @@
 					<app-page-info-title [title]="stringKey.SIGN_UP" [info]="stringKey.SIGN_UP_INFO">
 					</app-page-info-title>
 					<!-- page title -->
+
+					<!-- email -->
+					<ion-card color="secondary">
+						<ion-item color="secondary" lines="none">
+							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
+							<p>{{stringKey.FORM_INFO_CREDENTIAL_DETAILS}}</p>
+						</ion-item>
+						
+						<ion-card lines="none" color="light">
+							<ion-item lines="none" color="light">
+								<ion-label position="floating">{{stringKey.EMAIL}}</ion-label>
+								<ion-input autocomplete="off" [placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_EMAIL"
+									formControlName="userEmail" type="text" value="">
+								</ion-input>
+							</ion-item>
+							<ion-card *ngIf="userEmail.invalid && userEmail.touched" color="warning">
+								<ion-item color="warning">
+									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
+									{{stringKey.FORM_VALIDATION_EMAIL}}
+								</ion-item>
+							</ion-card>
+						</ion-card>
+					</ion-card>
+					<!-- email -->
+
+					<!-- password -->
+					<ion-card color="semi-dark">
+						<ion-item color="semi-dark" lines="none">
+							<ion-icon [src]="stringKey.ICON_INFO"></ion-icon>
+							<p [innerHtml]="stringKey.FORM_INFO_PASSWORD_LESS"></p>
+							<ion-button class="inline-button" expand="block" color="primary" slot="end" (click)="lernaMorePasswordLess()">{{stringKey.LEARN_MORE}}</ion-button>
+						</ion-item>
+						
+					</ion-card>
+					<!-- password -->
+
+					<!-- personal details -->
 					<ion-card color="secondary">
 						<ion-item color="secondary" lines="none">
 							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
@@ -53,85 +90,8 @@
 						</ion-card>
 						<!-- last name -->
 					</ion-card>
-					<ion-card color="secondary">
-						<ion-item color="secondary" lines="none">
-							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
-							<p>{{stringKey.FORM_INFO_CREDENTIAL_DETAILS}}</p>
-						</ion-item>
-						<!-- email -->
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.EMAIL}}</ion-label>
-								<ion-input autocomplete="off" [placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_EMAIL"
-									formControlName="userEmail" type="text" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userEmail.invalid && userEmail.touched" color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_EMAIL}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-						<!-- email -->
-						<!-- password -->
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.PASSWORD}}</ion-label>
-								<ion-input autocomplete="off" formControlName="userPassword" type="password" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userPassword.invalid && userPassword.touched" color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_PASSWORD}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-						<!-- password -->
-					</ion-card>
-					<ion-card color="secondary">
-						<ion-item color="secondary" lines="none">
-							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
-							<p>{{stringKey.FORM_INFO_SECURITY_DETAILS}}</p>
-						</ion-item>
-						<!-- security Q 1 -->
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.SECURITY_Q_1}}</ion-label>
-								<ion-input autocomplete="off"
-									[placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_SECURITY_Q_1"
-									formControlName="userSecurityAnswer1" type="text" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userSecurityAnswer1.invalid && userSecurityAnswer1.touched"
-								color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_SECURITY_QUESTION}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-						<!-- security Q 1 -->
-						<!-- security Q 2 -->
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.SECURITY_Q_2}}</ion-label>
-								<ion-input autocomplete="off"
-									[placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_SECURITY_Q_2"
-									formControlName="userSecurityAnswer2" type="text" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userSecurityAnswer2.invalid && userSecurityAnswer2.touched"
-								color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_SECURITY_QUESTION}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-						<!-- security Q 2 -->
-					</ion-card>
+					<!-- personal details -->
+
 				</ion-col>
 			</ion-row>
 		</ion-grid>

@@ -19,7 +19,8 @@ export interface UserModel extends BaseModel, SearchModel, ProjectModel {
     userSecurityAnswer2 ?: string;
     userPlatform ?: string;
     userLoginType ?: string;
-    userActivationCode ?: string;
+    userActivationCode?: string;
+    userVerificationCode ?: string;
     userPasswordResetCode ?: string;
     userCredibilityScore ?: number;
 }

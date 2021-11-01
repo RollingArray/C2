@@ -10,6 +10,7 @@ import { NavParams } from "@ionic/angular";
 import { LocalStorageService } from "src/app/shared/service/local-storage.service";
 import { BaseModel } from "src/app/shared/model/base.model";
 import { takeUntil } from "rxjs/operators";
+import { AvatarService } from "src/app/shared/service/avatar.service";
 
 @Component({
 	selector: "app-user-profile",
@@ -24,6 +25,11 @@ export class UserProfileComponent extends BaseFormComponent
 	ifFormActive: boolean;
 	isApp = true;
 
+	get avatar()
+	{
+		return this.avatarService.avatar(this.userModel.userFirstName);
+	}
+
 	constructor(
 		injector: Injector,
 		private alertService: AlertService,
@@ -31,7 +37,8 @@ export class UserProfileComponent extends BaseFormComponent
 		private loadingService: LoadingService,
 		public navParams: NavParams,
 		private localStorageService: LocalStorageService,
-		private platformHelper: PlatformHelper
+		private platformHelper: PlatformHelper,
+		private avatarService: AvatarService
 	) {
 		super(injector);
 		this.ifFormActive = false;
@@ -55,8 +62,6 @@ export class UserProfileComponent extends BaseFormComponent
 		form.userFirstName = this.userModel.userFirstName;
 		form.userLastName = this.userModel.userLastName;
 		form.userEmail = this.userModel.userEmail;
-		form.userSecurityAnswer1 = this.userModel.userSecurityAnswer1;
-		form.userSecurityAnswer2 = this.userModel.userSecurityAnswer2;
 
 		this.formGroup.disable();
 	}
@@ -83,20 +88,6 @@ export class UserProfileComponent extends BaseFormComponent
 					this.validators().pattern(this.regex.EMAIL_PATTERN),
 				]),
 			],
-			userSecurityAnswer1: [
-				this.userModel.userSecurityAnswer1,
-				this.validators().compose([
-					this.validators().required,
-					this.validators().pattern(this.regex.USER_PATTERN),
-				]),
-			],
-			userSecurityAnswer2: [
-				this.userModel.userSecurityAnswer2,
-				this.validators().compose([
-					this.validators().required,
-					this.validators().pattern(this.regex.USER_PATTERN),
-				]),
-			],
 		});
 
 		this.setPassedValueToFrom();
@@ -113,14 +104,6 @@ export class UserProfileComponent extends BaseFormComponent
 
 	get userEmail() {
 		return this.formGroup.get("userEmail");
-	}
-
-	get userSecurityAnswer1() {
-		return this.formGroup.get("userSecurityAnswer1");
-	}
-
-	get userSecurityAnswer2() {
-		return this.formGroup.get("userSecurityAnswer2");
 	}
 
 	async edit() {
@@ -148,8 +131,6 @@ export class UserProfileComponent extends BaseFormComponent
 		this.userModel.userFirstName = form.userFirstName;
 		this.userModel.userLastName = form.userLastName;
 		this.userModel.userEmail = form.userEmail;
-		this.userModel.userSecurityAnswer1 = form.userSecurityAnswer1;
-		this.userModel.userSecurityAnswer2 = form.userSecurityAnswer2;
 
 		//send api response
 		this.userService
@@ -161,9 +142,10 @@ export class UserProfileComponent extends BaseFormComponent
 					await this.loadingService.dismiss();
 
 					//check if success response case back
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 						await this.localStorageService
-							.setActiveUserDetails(this.userModel)
+							.updateActiveUserDetails(this.userModel)
 							.pipe(takeUntil(this.unsubscribe))
 							.subscribe(async () => {
 								//model response when modal close
@@ -203,9 +185,14 @@ export class UserProfileComponent extends BaseFormComponent
 		this.modalController.dismiss(this.modalData).then(() => {});
 	}
 
-	ngOnInit() {}
+	ngOnInit()
+	{
+		
+	}
 
 	ngOnDestroy() {
 		super.ngOnDestroy();
 	}
+
+	
 }

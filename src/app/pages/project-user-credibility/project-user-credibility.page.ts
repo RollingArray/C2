@@ -164,11 +164,13 @@ export class ProjectUserCredibilityPage extends BaseViewComponent implements OnI
 			 .getCredibilityIndexDetails(passedData)
 			 .pipe(takeUntil(this.unsubscribe))
 			 .subscribe(
-				 async (baseModel: BaseModel) => {
+				 async (baseModel: BaseModel) =>
+				 {
+					 
 					 this.loadingService.dismiss();
 					 if (baseModel.success) {
 						this._hasData = true;
-						
+						console.log(baseModel.data);
 						 this._credibilityBase = baseModel.data;
 						 await this.generateBreadcrumb();
 

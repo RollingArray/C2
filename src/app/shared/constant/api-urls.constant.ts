@@ -23,8 +23,8 @@ export class ApiUrls {
 	public static readonly PROJECT_RAW: string = ApiUrls.API_BASE_PATH + "/project/raw/";
 
 	public static readonly PROJECT_MEMBERS: string = ApiUrls.API_BASE_PATH + "/project/members/";
-	public static readonly CREDIBILITY_INDEX: string = ApiUrls.API_BASE_PATH + "/credibility/index/";
-	public static readonly CREDIBILITY_INDEX_DETAILS: string = ApiUrls.API_BASE_PATH + "/credibility/index/details/";
+	public static readonly CREDIBILITY_INDEX: string = ApiUrls.API_BASE_PATH + "/project/credibility/index/";
+	public static readonly CREDIBILITY_INDEX_DETAILS: string = ApiUrls.API_BASE_PATH + "/assignee/credibility/index/details/";
 	
 	public static readonly SEARCH_PROJECT: string = ApiUrls.API_BASE_PATH + "/search/project/";
 	public static readonly PROJECT_MEMBER_CRUD: string = ApiUrls.API_BASE_PATH + "/project/member/crud/";

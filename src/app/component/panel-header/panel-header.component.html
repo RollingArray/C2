@@ -1,6 +1,6 @@
 <ion-item [color]="panelColor" lines="none" (click)="onPanelTap()" *ngIf="!isNoIcon && !isLargeIcon">
-	<!-- <app-avatar [user]="user" *ngIf="user"></app-avatar> -->
-	<ion-icon [src]="panelIcon" *ngIf="!user"></ion-icon>
+	<app-avatar [user]="user" *ngIf="user"></app-avatar>
+	<!-- <ion-icon [src]="panelIcon" *ngIf="!user"></ion-icon> -->
 	<p>
 		<b>
 			{{ panelTitle }}
@@ -9,8 +9,8 @@
 	<ion-icon slot="end" [src]="eventIcon" color="dark" *ngIf="isEventRequired"></ion-icon>
 </ion-item>
 <ion-item  *ngIf="!isNoIcon && isLargeIcon" [color]="panelColor" lines="none" (click)="onPanelTap()">
-	<!-- <app-avatar [user]="user" *ngIf="user"></app-avatar> -->
-	<ion-icon class="avatar" [src]="panelIcon" *ngIf="!user"></ion-icon>
+	<app-avatar [user]="user" *ngIf="user"></app-avatar>
+	<!-- <ion-icon class="avatar" [src]="panelIcon" *ngIf="!user"></ion-icon> -->
 	<p>
 		<b>
 			{{ panelTitle }}

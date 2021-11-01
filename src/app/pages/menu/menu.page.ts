@@ -1,11 +1,17 @@
-import { takeUntil } from 'rxjs/operators';
 /**
- * @author Ranjoy Sen
- * @email ranjoy.sen@mindtree.com
- * @create date 2020-05-04 12:45:05
- * @modify date 2020-05-04 12:45:05
- * @desc [description]
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Menu page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-01 20:47:46 
+ * Last modified  : 2021-11-01 20:47:46 
  */
+
+
+import { takeUntil } from 'rxjs/operators';
 import { ArrayKey } from "src/app/shared/constant/array.constant";
 import { Component, OnInit, OnDestroy, Injector } from "@angular/core";
 import { BaseViewComponent } from "src/app/component/base/base-view.component";
@@ -22,8 +28,7 @@ import { MenuController } from "@ionic/angular";
 import { UserService } from 'src/app/shared/service/user.service';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
-import { AlertService } from 'src/app/shared/service/alert.service';
-import { ProjectService } from 'src/app/shared/service/project.service';
+import { AvatarService } from 'src/app/shared/service/avatar.service';
 
 @Component({
 	selector: "app-menu",
@@ -79,8 +84,17 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Gets logged in user
 	 */
-	public get loggedInUser(): string {
-		return this._loggedInUser;
+	public get loggedInUser(): string
+	{
+		let loggedInUserName = '';
+		this.localStorageService
+			.getActiveUserName()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: string) => {
+				loggedInUserName = data;
+			});
+		
+		return loggedInUserName;
 	}
 
 	/**
@@ -119,6 +133,23 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	}
 
 	/**
+	 * Gets avatar
+	 */
+	 get avatar()
+	 {
+		 let avatar = '';
+		 this.localStorageService
+			 .getActiveUser()
+			 .pipe(takeUntil(this.unsubscribe))
+			 .subscribe((data: UserModel) => {
+				 avatar =  this.avatarService.avatar(data.userFirstName);
+			 });
+		 
+		 return avatar;
+	 }
+	
+
+	/**
 	 * Creates an instance of menu page.
 	 * @param injector 
 	 * @param alertService 
@@ -130,13 +161,12 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 */
 	constructor(
 		injector: Injector,
-		private alertService: AlertService,
 		private menuController: MenuController,
 		private localStorageService: LocalStorageService,
 		private loadingService: LoadingService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
-		private projectService: ProjectService
+		private avatarService: AvatarService
 	) {
 		super(injector);
 	}

@@ -16,7 +16,8 @@ export class PanelHeaderComponent extends BaseViewComponent implements OnInit {
   @Input() isEventRequired : boolean;
   @Input() isNoIcon : boolean;
   @Input() isExpand: boolean = false;;
-  @Input() isLargeIcon : boolean = false;;
+  @Input() isLargeIcon: boolean = false;;
+  @Input() isInitials: boolean = false;
   @Input() panelSubHead;
   @Output() event = new EventEmitter();
 

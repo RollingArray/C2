@@ -5,7 +5,7 @@
 # @author code@rollingarray.co.in
 #
 # Created at     : 2021-05-26 10:42:18 
-# Last modified  : 2021-11-03 21:18:38
+# Last modified  : 2021-11-04 07:41:51
 #
 
 name: Deploy C2 DEV app on DEV branch push
@@ -24,6 +24,10 @@ jobs:
       name: dev
       url: https://c2.dev.rollingarray.co.in/
 
+    # Start stage
+
+
+    # Use template with parameters
     steps:
     - name: Get latest code
       uses: actions/checkout@v2.3.2
@@ -49,5 +53,5 @@ jobs:
         username: ${{ secrets.FTP_USERNAME}}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./www/
-        server-dir: ${{ secrets.FTP_DEPLOYMENT_PATH }}
+        server-dir: /
         dangerous-clean-slate: true

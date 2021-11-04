@@ -1,0 +1,53 @@
+#
+# © Rolling Array https://rollingarray.co.in/
+#
+# @summary Deploy C2 PROD app on PROD branch push 
+# @author code@rollingarray.co.in
+#
+# Created at     : 2021-05-26 10:42:18 
+# Last modified  : 2021-11-04 07:50:42
+#
+
+name: Deploy C2 PROD app on PROD branch push
+
+on: 
+  push:
+    branches: 
+      - prod
+      
+jobs:
+  web-deploy:
+
+    name: Deploy C2 Client Prod
+    runs-on: ubuntu-latest
+    environment:
+      name: stage
+      url: https://c2.rollingarray.co.in/
+
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2.3.2
+
+    - name: Use Node.js 14 LTS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    
+    - name: Install NPM Modules
+      run: npm install
+
+    - name: Build Project
+      run: npm run build-prod
+
+    - name: Directory Permissions
+      run: chmod -R 777 ./www/
+    
+    - name: Sync Files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_SERVER}}
+        username: ${{ secrets.FTP_USERNAME}}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./www/
+        server-dir: /
+        dangerous-clean-slate: true

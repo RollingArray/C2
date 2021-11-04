@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Menu page module
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-01 20:47:46 
+ * Last modified  : 2021-11-01 20:48:31
+ */
+
 import { UserProfileModule } from './../../component/user-profile/user-profile.component.module';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";

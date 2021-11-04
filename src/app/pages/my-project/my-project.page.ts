@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-08-09 19:18:58
+ * Last modified  : 2021-11-01 09:35:15
  */
 
 
@@ -24,6 +24,8 @@ import { ToolTipService } from 'src/app/shared/service/tool-tip.service';
 import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { UserProfileComponent } from 'src/app/component/user-profile/user-profile.component';
+import { AvatarService } from 'src/app/shared/service/avatar.service';
+import { UserModel } from 'src/app/shared/model/user.model';
 
 @Component({
 	selector: "app-my-project",
@@ -77,8 +79,16 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Getter loggedInUserName
 	 * @return {string}
 	 */
-	public get loggedInUserName(): string {
-		return `${this.stringKey.WELCOME}, ${this._loggedInUserName}`;
+	public get loggedInUserName(): string
+	{
+		let loggedInUserName = '';
+		this.localStorageService
+			.getActiveUserName()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: string) => {
+				loggedInUserName = data;
+			});
+		return `${this.stringKey.WELCOME}, ${loggedInUserName}`;
 	}
 
 	/**
@@ -96,6 +106,22 @@ export class MyProjectPage extends BaseViewComponent {
 	}
 
 	/**
+	 * Gets avatar
+	 */
+	get avatar()
+	{
+		let avatar = '';
+		this.localStorageService
+			.getActiveUser()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: UserModel) => {
+				avatar =  this.avatarService.avatar(data.userFirstName);
+			});
+		
+		return avatar;
+	}
+
+	/**
 	 * Creates an instance of my project page.
 	 * @param injector 
 	 * @param projectService 
@@ -109,6 +135,7 @@ export class MyProjectPage extends BaseViewComponent {
 		public localStorageService: LocalStorageService,
 		public commonCrudService: CommonCrudService<ProjectModel>,
 		public toolTipService: ToolTipService,
+		private avatarService: AvatarService
 	) {
 		super(injector);
 	}
@@ -118,7 +145,6 @@ export class MyProjectPage extends BaseViewComponent {
 	 */
 	ngOnInit() {
 		this.getCurrentUserId();
-		this.getCurrentUserName();
 		this.loadData();
 	}
 
@@ -167,19 +193,6 @@ export class MyProjectPage extends BaseViewComponent {
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe((data: string) => {
 				this._loggedInUser = data;
-			});
-	}
-
-	/**
-	 * Gets current user
-	 */
-	async getCurrentUserName() {
-
-		this.localStorageService
-			.getActiveUserName()
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
-				this._loggedInUserName = data;
 			});
 	}
 

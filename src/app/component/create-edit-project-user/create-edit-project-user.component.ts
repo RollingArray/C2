@@ -158,14 +158,16 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	/**
 	 * Searches user
 	 */
-	async searchUser() {
+	async searchUser()
+	{
+		
 		//start load
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
 
 		//build model
 		this._userModel = {
 			userId: this._loggedInUser,
-			searchKey: this._search,
+			searchKey: this._search ? this._search : '',
 		};
 
 		//send response

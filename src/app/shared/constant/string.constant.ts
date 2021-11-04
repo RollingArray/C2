@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-08-09 20:21:22
+ * Last modified  : 2021-10-31 20:51:14
  */
 
 
@@ -75,7 +75,8 @@ export class StringKey {
 	public static readonly MY_SPACE: string = 'My Space';
 	public static readonly GO: string = 'Go';
 	public static readonly NEXT: string = 'What\'s Next';
-	public static readonly SIGN_IN_INFO: string = 'Provide your registered email and password to login';
+	public static readonly SIGN_IN_INFO: string = 'Provide your email address you have used while creating the account, and we will send you a verification code in your email. Use the code to sign in';
+	
 	public static readonly WELCOME: string = 'Welcome';
 	public static readonly VERSION: string = 'Version';
 	public static readonly MY_ORDER: string = 'My Order(s)';
@@ -90,11 +91,16 @@ export class StringKey {
 	public static readonly CREATE_SPRINT: string = 'Create Sprint';
 	public static readonly UPDATE_SPRINT: string = 'Update Sprint';
 	public static readonly DELETE_SPRINT: string = 'Delete Sprint';
+	public static readonly START_SPRINT: string = 'Start Sprint';
+	public static readonly RESUME_SPRINT: string = 'Resume Sprint';
+	public static readonly END_SPRINT: string = 'End Sprint';
 	public static readonly GOAL_DETAIL_INFO: string = 'Provide following details to the goal';
 	public static readonly CREATE_GOAL: string = 'Create Goal';
 	public static readonly UPDATE_GOAL: string = 'Update Goal';
 	public static readonly DELETE_GOAL: string = `Delete Goal`;
 	public static readonly ADD_COMMENT: string = 'Add Comment';
+	public static readonly LEARN_MORE: string = 'Learn More';
+	public static readonly STATUS: string = 'Status';
 	
 	public static readonly UPDATE_COMMENT: string = 'Update Comment';
 	public static readonly DELETE_COMMENT: string = `Delete Comment`;
@@ -117,7 +123,16 @@ export class StringKey {
 	public static readonly CHOOSE_FILTER: string = 'Choose Entity';
 	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
 
-
+	public static readonly PASS_LESS_AUTH: string = 'Password-less Authentication';
+	public static readonly PASS_LESS_INFO_HEADER_1: string = 'What Is Password-less Authentication?';
+	public static readonly PASS_LESS_INFO_1: string = 'Password-less authentication is a method of verifying users’ identities without the use of passwords or any other memorized secret.Instead of passwords, identity can be verified based on a “possession factor”, which is an object that uniquely identifies the user (e.g. a one-time password generator, a registered mobile device, or a hardware token) or an “inherent factor” like a person’s biometric signature (e.g. fingerprint, face, retina, etc.). Unlike possession or inherent factors, authentication that is based on something the user knows (such as a password, passphrase, or PIN code) is susceptible to easy theft, sharing by users, and requires constant management and handling by both users and IT managers.'
+	public static readonly PASS_LESS_INFO_HEADER_2: string = 'Why Password-less Authentication Is Better than a Password';
+	public static readonly PASS_LESS_INFO_2: string = 'Password-less authentication creates a smoother experience than traditional username and password (U/P) authentication for both you and your users (that can be more secure if it relies on WebAuthn). Not only does this save you money, but it can even lead to an increase in sales in some cases.'
+	public static readonly PASS_LESS_INFO_HEADER_3: string = 'How C2 leverage Password-less Authentication';
+	public static readonly PASS_LESS_INFO_3_1: string = 'C2 works with a no-password system, because our users appreciate not having to remember another password, especially when on mobile.';
+	public static readonly PASS_LESS_INFO_3_2: string = 'While creating new account, use an active email to create an account. System will send an OTP to the email.'
+	public static readonly PASS_LESS_INFO_3_3: string = 'Use the OTP provided in email to verify your account.'
+	
 	public static readonly SELECT: string = 'Select';
 	public static readonly NAME: string = 'Name';
 	public static readonly PROJECT: string = 'Project(s)';
@@ -202,7 +217,8 @@ export class StringKey {
 	public static readonly FORGOT_PASSWORD: string = 'Forgot your password';
 	public static readonly NEW_PASSWORD: string = 'New password';
 	public static readonly ACCOUNT_ACTIVATION: string = 'Account Activation';
-	public static readonly ACCOUNT_ACTIVATION_INFO: string = 'We have send you a verification code in your registered email. Use the code to activate your account';
+	public static readonly ACCOUNT_VERIFICATION: string = 'Account Verification';
+	public static readonly ACCOUNT_ACTIVATION_INFO: string = 'We have send you a verification code in your registered email. Use the code to verify your account';
 	public static readonly LOST_VERIFICATION_CODE: string = 'Lost verification code';
 	public static readonly ALREADY_ACTIVE: string = 'Already active';
 	public static readonly RESET_PASSWORD_CODE_INFO: string = 'We will send you a password reset code on the email you provide below. Use the code to reset your password';
@@ -246,6 +262,7 @@ export class StringKey {
 	public static readonly ALERT_NO_SAME_USER: string = 'Comments can be submitted by only assignee';
 	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
+	public static readonly CHANGE_SPRINT_STATUS: string = 'Do you want to change the status of the sprint';
 	
 
 	//form info
@@ -269,11 +286,15 @@ export class StringKey {
 	public static readonly FORM_INFO_SELECT_REVIEWER: string = 'Select relevant Reviewer';
 	public static readonly FORM_INFO_MEASUREMENT_TYPE: string = 'Select the primary parameter to measure the activity';
 
+	public static readonly FORM_INFO_ACCOUNT_ACTIVATION: string = 'Provide the verification code you have received in your email';
 	public static readonly FORM_INFO_PERSONAL_DETAILS: string = 'Provide some of your personal details';
 	public static readonly FORM_INFO_CREDENTIAL_DETAILS: string = 'Provide your credential, we will use this while you sign in';
+	public static readonly FORM_INFO_CREDENTIAL_EMAIL: string = 'Provide your registered email';
+	public static readonly FORM_INFO_PASSWORD_LESS: string = '<b>C2</b> works with a password-less system';
 	public static readonly FORM_INFO_SECURITY_DETAILS: string = 'Answer these security question, we will use this to identify you if you wish to reset your password';
 	public static readonly FORM_INFO_PROFILE_PERSONAL_DETAILS: string = 'Your personal details';
 	public static readonly FORM_INFO_PROFILE_CREDENTIAL_DETAILS: string = 'Your credential, you use this email to sign in';
+	public static readonly FORM_INFO_CHOOSE_AVATAR: string = 'Choose your avatar';
 	public static readonly FORM_INFO_PROFILE_SECURITY_DETAILS: string = 'You answer to the security question, we will use this to identify you if you forget your password';
 
 	public static readonly FORM_INFO_CRITERIA_POOR_VALUE: string = 'Will be considered poor if less than mentioned value';
@@ -307,6 +328,7 @@ export class StringKey {
 	public static readonly FORM_PLACEHOLDER_PROFILE_LAST_NAME: string = 'Bains';
 	public static readonly FORM_PLACEHOLDER_PROFILE_SECURITY_Q_1: string = 'City';
 	public static readonly FORM_PLACEHOLDER_PROFILE_SECURITY_Q_2: string = 'Lara Smith';
+	public static readonly FORM_PLACEHOLDER_CODE: string = '837f7016';
 
 	public static readonly FORM_PLACEHOLDER_PROJECT_NAME: string = 'Finance Blaze';
 	public static readonly FORM_PLACEHOLDER_PROJECT_DESCRIPTION: string = 'Finance For Blaze';
@@ -565,6 +587,8 @@ export class StringKey {
 	public static readonly ICON_SELECT: string = StringKey.ICON_BASE_PATH + "select.svg";
 	public static readonly ICON_WEIGHT: string = StringKey.ICON_BASE_PATH + "quantity.svg";
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
+	public static readonly ICON_START: string = StringKey.ICON_BASE_PATH + "start.svg";
+	public static readonly ICON_STOP: string = StringKey.ICON_BASE_PATH + "stop.svg";
 	
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
@@ -572,6 +596,11 @@ export class StringKey {
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";
 	public static readonly IMAGE_AVATAR_A: string = StringKey.ICON_BASE_PATH + "avatar-a.svg";
+	public static readonly IMAGE_AVATAR_B: string = StringKey.ICON_BASE_PATH + "avatar-b.svg";
+	public static readonly IMAGE_AVATAR_C: string = StringKey.ICON_BASE_PATH + "avatar-c.svg";
+	public static readonly IMAGE_AVATAR_D: string = StringKey.ICON_BASE_PATH + "avatar-d.svg";
+	public static readonly IMAGE_AVATAR_E: string = StringKey.ICON_BASE_PATH + "avatar-e.svg";
+	public static readonly IMAGE_AVATAR_F: string = StringKey.ICON_BASE_PATH + "avatar-f.svg";
 
 	public static readonly IMAGE_BASE_PATH: string = "assets/images/";
 	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
@@ -582,6 +611,8 @@ export class StringKey {
 	public static readonly IMAGE_GOAL_DONE: string = StringKey.IMAGE_BASE_PATH + "goal_done.svg";
 	public static readonly IMAGE_SPRINT_DONE: string = StringKey.IMAGE_BASE_PATH + "sprint_done.svg";
 	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
+	public static readonly IMAGE_PASSWORD_LESS: string = StringKey.IMAGE_BASE_PATH + "password_less.svg";
+	
 	
 
 	public static readonly COLOR_PRIMARY: string = "primary";

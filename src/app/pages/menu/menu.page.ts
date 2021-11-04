@@ -1,11 +1,17 @@
-import { takeUntil } from 'rxjs/operators';
 /**
- * @author Ranjoy Sen
- * @email ranjoy.sen@mindtree.com
- * @create date 2020-05-04 12:45:05
- * @modify date 2020-05-04 12:45:05
- * @desc [description]
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Menu page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-01 20:47:46 
+ * Last modified  : 2021-11-03 20:22:58
  */
+
+
+import { takeUntil } from 'rxjs/operators';
 import { ArrayKey } from "src/app/shared/constant/array.constant";
 import { Component, OnInit, OnDestroy, Injector } from "@angular/core";
 import { BaseViewComponent } from "src/app/component/base/base-view.component";
@@ -22,15 +28,16 @@ import { MenuController } from "@ionic/angular";
 import { UserService } from 'src/app/shared/service/user.service';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
-import { AlertService } from 'src/app/shared/service/alert.service';
-import { ProjectService } from 'src/app/shared/service/project.service';
+import { AvatarService } from 'src/app/shared/service/avatar.service';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
 	selector: "app-menu",
 	templateUrl: "./menu.page.html",
 	styleUrls: ["./menu.page.scss"],
 })
-export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
+export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
+{
 	/**
 	 * User model of menu page
 	 */
@@ -79,44 +86,77 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Gets logged in user
 	 */
-	public get loggedInUser(): string {
-		return this._loggedInUser;
+	public get loggedInUser(): string
+	{
+		let loggedInUserName = '';
+		this.localStorageService
+			.getActiveUserName()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: string) =>
+			{
+				loggedInUserName = data;
+			});
+
+		return loggedInUserName;
 	}
 
 	/**
 	 * Gets pages
 	 */
-	public get pages(): RouteModel[] {
+	public get pages(): RouteModel[]
+	{
 		return this._pages;
 	}
 
 	/**
 	 * Gets whether has data
 	 */
-	public get hasData(): boolean {
+	public get hasData(): boolean
+	{
 		return this._hasData;
 	}
 
 	/**
 	 * Sets logged in user
 	 */
-	public set loggedInUser(value: string) {
+	public set loggedInUser(value: string)
+	{
 		this._loggedInUser = value;
 	}
 
 	/**
 	 * Sets pages
 	 */
-	public set pages(value: RouteModel[]) {
+	public set pages(value: RouteModel[])
+	{
 		this._pages = value;
 	}
 
 	/**
 	 * Sets whether has data
 	 */
-	public set hasData(value: boolean) {
+	public set hasData(value: boolean)
+	{
 		this._hasData = value;
 	}
+
+	/**
+	 * Gets avatar
+	 */
+	get avatar()
+	{
+		let avatar = '';
+		this.localStorageService
+			.getActiveUser()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: UserModel) =>
+			{
+				avatar = this.avatarService.avatar(data.userFirstName);
+			});
+
+		return avatar;
+	}
+
 
 	/**
 	 * Creates an instance of menu page.
@@ -130,35 +170,40 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 */
 	constructor(
 		injector: Injector,
-		private alertService: AlertService,
+		private swUpdate: SwUpdate,
 		private menuController: MenuController,
 		private localStorageService: LocalStorageService,
 		private loadingService: LoadingService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
-		private projectService: ProjectService
-	) {
+		private avatarService: AvatarService
+	)
+	{
 		super(injector);
 	}
 
 	/**
 	 * Registers back button
 	 */
-	async registerBackButton() {
+	async registerBackButton()
+	{
 		this.platform.backButton
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async () => {
+			.subscribe(async () =>
+			{
 				await this.logout();
 			});
 	}
 
 	// Lifecycle hook: ngOnInit
-	async ngOnInit() {
-		//
+	async ngOnInit()
+	{
+		this.checkIfAppUpdateAvailable();
 	}
 
 	// Lifecycle hook: ionViewDidEnter
-	async ionViewDidEnter() {
+	async ionViewDidEnter()
+	{
 
 		await this.passedProjectId();
 
@@ -176,34 +221,60 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * on destroy
 	 */
-	ngOnDestroy() {
+	ngOnDestroy()
+	{
 		super.ngOnDestroy();
 	}
 
-	ionViewDidLeave(){
+	ionViewDidLeave()
+	{
 		window.location.reload;
 	}
 
 	/**
 	 * Passed project id
 	 */
-	async passedProjectId() {
+	async passedProjectId()
+	{
 		this.activatedRoute.params
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(params => {
+			.subscribe(params =>
+			{
 				this._projectId = params.projectId;
 			});
 	}
 
 	/**
+	 * Checks if app update available
+	 */
+	async checkIfAppUpdateAvailable()
+	{
+
+		if (this.swUpdate.isEnabled)
+		{
+			this.swUpdate.available.subscribe(() =>
+			{
+				let versionUpdateMessage = `New version is available. Load New Version?`;
+
+				if (confirm(versionUpdateMessage))
+				{
+					window.location.reload();
+				}
+			});
+		}
+	}
+
+	/**
 	 * Gets current user
 	 */
-	async getCurrentUser() {
+	async getCurrentUser()
+	{
 
 		this.localStorageService
 			.getActiveUserName()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				this._loggedInUser = data;
 			});
 
@@ -214,11 +285,13 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 * Actives user id
 	 * @returns  
 	 */
-	async activeUserId() {
+	async activeUserId()
+	{
 		this.localStorageService
 			.getActiveUserId()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				this._loggedInUserId = data;
 			});
 	}
@@ -227,12 +300,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 * Actives user email
 	 * @returns  
 	 */
-	async activeUserEmail() {
+	async activeUserEmail()
+	{
 		let activeUserEmail = "";
 		const observable = this.localStorageService
 			.getActiveUserEmail()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				activeUserEmail = data;
 			});
 		return activeUserEmail;
@@ -241,12 +316,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Gets select project
 	 */
-	 async getSelectProject() {
-		
+	async getSelectProject()
+	{
+
 		this.localStorageService
 			.getSelectedProject()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (data: ProjectModel) => {
+			.subscribe(async (data: ProjectModel) =>
+			{
 				this._selectedProject = data.projectName;
 			});
 	}
@@ -254,13 +331,16 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * invalid session
 	 */
-	async ifInvalidSession() {
+	async ifInvalidSession()
+	{
 		this.dataCommunicationService
 			.getMessage()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((dataCommunicationModel: DataCommunicationModel) => {
+			.subscribe((dataCommunicationModel: DataCommunicationModel) =>
+			{
 				//if the api response comes with invalid session, prompt user to re-sign in
-				if (dataCommunicationModel.message === "INVALID_SESSION") {
+				if (dataCommunicationModel.message === "INVALID_SESSION")
+				{
 					this.promptUserToLoginInApp();
 				}
 			});
@@ -270,7 +350,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Prompts user to login in app
 	 */
-	async promptUserToLoginInApp() {
+	async promptUserToLoginInApp()
+	{
 		const alert = await this.alertController.create({
 			header: `${StringKey.APP_NAME}`,
 			message: `${StringKey.TOKEN_EXPIRE}`,
@@ -283,7 +364,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 			buttons: [
 				{
 					text: `${StringKey.AUTHORIZE_ME}`,
-					handler: async (data) => {
+					handler: async (data) =>
+					{
 						this._userModel = {
 							userEmail: await this.activeUserEmail(),
 							userPassword: data.userPassword,
@@ -302,7 +384,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Determines whether app login in
 	 */
-	async inAppLogin() {
+	async inAppLogin()
+	{
 		await this.loadingService.present(
 			`${StringKey.API_REQUEST_MESSAGE_1}`
 		);
@@ -310,7 +393,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 			.signIn(this._userModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
-				async (baseModel: BaseModel) => {
+				async (baseModel: BaseModel) =>
+				{
 					//dismiss loader
 					await this.loadingService.dismiss();
 
@@ -321,17 +405,20 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 					};
 
 					// if success
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 						//update token
 						await this.localStorageService
 							.setActiveUser(this._userModel)
 							.pipe(takeUntil(this.unsubscribe))
-							.subscribe(async () => {
+							.subscribe(async () =>
+							{
 								await this.presentInAppLoginAlert();
 							});
 					}
 				},
-				(error) => {
+				(error) =>
+				{
 					this.loadingService.dismiss();
 				}
 			);
@@ -340,14 +427,16 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Presents in app login alert
 	 */
-	async presentInAppLoginAlert() {
+	async presentInAppLoginAlert()
+	{
 		const alert = await this.alertController.create({
 			header: `${StringKey.APP_NAME}`,
 			message: `${StringKey.IN_APP_LOGIN_SUCCESS}`,
 			buttons: [
 				{
 					text: `${StringKey.SURE}`,
-					handler: () => {
+					handler: () =>
+					{
 						// no handler required
 					},
 				},
@@ -359,7 +448,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Presents logout alert confirm
 	 */
-	async presentLogoutAlertConfirm() {
+	async presentLogoutAlertConfirm()
+	{
 		const alert = await this.alertController.create({
 			header: `${StringKey.CONFIRM_ACTION}`,
 			message: `${StringKey.CONFIRM_LOG_OUT}`,
@@ -371,7 +461,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 				},
 				{
 					text: `${StringKey.YES}`,
-					handler: async () => {
+					handler: async () =>
+					{
 						//close the side menu and log out
 						this.menuController.close();
 						await this.logout();
@@ -386,7 +477,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 * Views profile
 	 * @returns  
 	 */
-	async viewProfile() {
+	async viewProfile()
+	{
 		const modal = await this.modalController.create({
 			component: UserProfileComponent,
 			componentProps: {
@@ -394,11 +486,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 			},
 		});
 
-		modal.onDidDismiss().then((data) => {
+		modal.onDidDismiss().then((data) =>
+		{
 			this._modalData = data.data;
-			if (this._modalData.cancelled) {
+			if (this._modalData.cancelled)
+			{
 				//do not refresh the page
-			} else {
+			} else
+			{
 				this._loggedInUser = this.localStorageService.currentActiveUserName$.getValue();
 			}
 		});
@@ -409,19 +504,23 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Logouts menu page
 	 */
-	async logout() {
+	async logout()
+	{
 		await this.loadingService.present(
 			`${StringKey.API_REQUEST_MESSAGE_5}`
 		);
 		await this.localStorageService
 			.removeActiveUser()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (data: boolean) => {
-				if (data) {
+			.subscribe(async (data: boolean) =>
+			{
+				if (data)
+				{
 					await this.loadingService
 						.dismiss()
 						.then(() => window.location.reload());
-				} else {
+				} else
+				{
 					await this.loadingService.dismiss();
 				}
 			});
@@ -430,7 +529,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	/**
 	 * Goto my projects
 	 */
-	async gotoMyProjects() {
+	async gotoMyProjects()
+	{
 		this.router.navigate(["/my-project"]);
 	}
 
@@ -438,7 +538,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 	 * Goto page
 	 * @param routeChildrenModel 
 	 */
-	async gotoPage(routeChildrenModel: RouteChildrenModel) {
+	async gotoPage(routeChildrenModel: RouteChildrenModel)
+	{
 
 		await this.getSelectProject();
 
@@ -448,7 +549,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy {
 		constructUrl.push(this._projectId);
 		constructUrl.push('go');
 
-		for (const url of routeChildrenModel.url) {
+		for (const url of routeChildrenModel.url)
+		{
 			constructUrl.push(url);
 		}
 		this.router.navigate(constructUrl);

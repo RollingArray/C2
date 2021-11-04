@@ -66,6 +66,32 @@
 							"serviceWorker": true,
 							"ngswConfigPath": "ngsw-config.json"
 						},
+						"stage": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.stage.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								}
+							],
+							"serviceWorker": true,
+							"ngswConfigPath": "ngsw-config.json"
+						},
 						"production": {
 							"fileReplacements": [
 								{
@@ -104,6 +130,9 @@
 					"configurations": {
 						"dev": {
 							"browserTarget": "app:build:dev"
+						},
+						"stage": {
+							"browserTarget": "app:build:stage"
 						},
 						"production": {
 							"browserTarget": "app:build:production"
@@ -169,6 +198,9 @@
 						"dev": {
 							"devServerTarget": "app:serve:dev"
 						},
+						"stage": {
+							"devServerTarget": "app:serve:stage"
+						},
 						"production": {
 							"devServerTarget": "app:serve:production"
 						},
@@ -186,6 +218,9 @@
 						"dev": {
 							"browserTarget": "app:build:dev"
 						},
+						"stage": {
+							"browserTarget": "app:build:stage"
+						},
 						"production": {
 							"browserTarget": "app:build:production"
 						}
@@ -199,7 +234,11 @@
 					},
 					"configurations": {
 						"dev": {
-							"cordovaBuildTarget": "app:ionic-cordova-build:deb",
+							"cordovaBuildTarget": "app:ionic-cordova-build:dev",
+							"devServerTarget": "app:serve:dev"
+						},
+						"stage": {
+							"cordovaBuildTarget": "app:ionic-cordova-build:stage",
 							"devServerTarget": "app:serve:dev"
 						},
 						"production": {

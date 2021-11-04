@@ -29,8 +29,8 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
 	},
 	{
-		path: "account-activation",
-		loadChildren: () => import('./pages/account-activation/account-activation.module').then( m => m.AccountActivationPageModule)
+		path: "account-verification",
+		loadChildren: () => import('./pages/account-verification/account-verification.module').then( m => m.AccountVerificationPageModule)
 	},
 	{ 	
 		path: 'my-project', 

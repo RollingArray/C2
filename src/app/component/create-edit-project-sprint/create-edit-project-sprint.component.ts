@@ -195,6 +195,7 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 			sprintName: form.sprintName,
 			sprintStartDate: this.transformDate(form.sprintStartDate),
 			sprintEndDate: this.transformDate(form.sprintEndDate),
+			sprintStatus: this._passedSprint.sprintStatus,
 			operationType: this._passedSprint.operationType,
 		};
 

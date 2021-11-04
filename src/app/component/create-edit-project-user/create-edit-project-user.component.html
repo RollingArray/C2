@@ -60,13 +60,7 @@
         [text]="stringKey.NO_DATA_SEARCH"
     ></app-no-data>
     <!-- no data -->
-    <!-- no data -->
-    <app-no-data
-        [user]="true"
-        *ngIf="hasData"
-        [text]="stringKey.NO_DATA_SEARCH"
-    ></app-no-data>
-    <!-- no data -->
+
     <ng-container *ngIf="hasData">
         <ion-card *ngFor="let user of users">
             <app-panel-header

@@ -1,23 +1,38 @@
-<ion-content lines="none" color="primary">
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Account activation page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-10-31 14:25:52 
+ * Last modified  : 2021-10-31 16:39:40
+ */
+ -->
+<ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<ion-grid lines="none">
 			<ion-row justify-content-center lines="none">
-				<ion-col align-self-center size="12" size-lg="8" size-md="8" size-sm="8" offset-lg="2" offset-md="2"
-					offset-sm="2" lines="none">
+				<ion-col align-self-center align-self-center size="12" size-lg="8" size-md="8" size-sm="8" offset-lg="2" offset-md="2"
+				offset-sm="2" lines="none">
+
 					<!-- app icon -->
 					<img [src]="stringKey.IMAGE_ICON" />
 					<!-- app icon -->
-					
+
 					<!-- page title -->
-					<app-page-info-title [title]="stringKey.SIGN_UP" [info]="stringKey.SIGN_UP_INFO">
+					<app-page-info-title [title]="stringKey.ACCOUNT_VERIFICATION" [info]="stringKey.ACCOUNT_ACTIVATION_INFO">
 					</app-page-info-title>
 					<!-- page title -->
 
 					<!-- email -->
+					
 					<ion-card color="secondary">
 						<ion-item color="secondary" lines="none">
 							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
-							<p>{{stringKey.FORM_INFO_CREDENTIAL_DETAILS}}</p>
+							<p>{{stringKey.FORM_INFO_CREDENTIAL_EMAIL}}</p>
 						</ion-item>
 						
 						<ion-card lines="none" color="light">
@@ -37,67 +52,46 @@
 					</ion-card>
 					<!-- email -->
 
-					<!-- password -->
-					<ion-card color="semi-dark">
-						<ion-item color="semi-dark" lines="none">
-							<ion-icon [src]="stringKey.ICON_INFO"></ion-icon>
-							<p [innerHtml]="stringKey.FORM_INFO_PASSWORD_LESS"></p>
-							<ion-button class="inline-button" expand="block" color="primary" slot="end" (click)="lernaMorePasswordLess()">{{stringKey.LEARN_MORE}}</ion-button>
-						</ion-item>
-						
-					</ion-card>
-					<!-- password -->
-
-					<!-- personal details -->
+					<!-- code -->
 					<ion-card color="secondary">
 						<ion-item color="secondary" lines="none">
 							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
-							<p>{{stringKey.FORM_INFO_PERSONAL_DETAILS}}</p>
+							<p>{{stringKey.FORM_INFO_ACCOUNT_ACTIVATION}}</p>
 						</ion-item>
-
-						<!-- first name -->
+						
 						<ion-card lines="none" color="light">
 							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.FIRST_NAME}}</ion-label>
-								<ion-input autocomplete="off"
-									[placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_FIRST_NAME"
-									formControlName="userFirstName" type="text" value="">
+								<ion-label position="floating">{{stringKey.VERIFICATION_CODE}}</ion-label>
+								<ion-input autocomplete="off" [placeholder]="stringKey.FORM_PLACEHOLDER_CODE"
+									formControlName="userVerificationCode" type="text" value="">
 								</ion-input>
 							</ion-item>
-							<ion-card *ngIf="userFirstName.invalid && userFirstName.touched" color="warning">
+							<ion-card *ngIf="userVerificationCode.invalid && userVerificationCode.touched" color="warning">
 								<ion-item color="warning">
 									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_USER_NAME}}
+									{{stringKey.FORM_VALIDATION_VERIFICATION_CODE}}
 								</ion-item>
 							</ion-card>
 						</ion-card>
-						<!-- first name -->
-						<!-- last name -->
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.LAST_NAME}}</ion-label>
-								<ion-input autocomplete="off"
-									[placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_LAST_NAME"
-									formControlName="userLastName" type="text" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userLastName.invalid && userLastName.touched" color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_USER_NAME}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-						<!-- last name -->
 					</ion-card>
-					<!-- personal details -->
+					<!-- code -->
+
+					<!-- lost verification code -->
+					<ion-card color="semi-dark">
+						<ion-item color="semi-dark" lines="none">
+							<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+							<p [innerHtml]="stringKey.LOST_VERIFICATION_CODE"></p>
+							<ion-button class="inline-button" expand="block" color="primary" slot="end" (click)="resendVerificationCode()">{{stringKey.RESEND}}</ion-button>
+						</ion-item>
+						
+					</ion-card>
+					<!-- lost verification code -->
 
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</form>
 </ion-content>
-
 <ion-footer>
 	<ion-toolbar color="primary-gradient">
 		<ion-grid>
@@ -110,8 +104,8 @@
 				</ion-col>
 				<ion-col>
 					<ion-button class="footer-button" size="default" expand="block" color="tertiary" (click)="submit()">
-						<ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
-						<ion-label>&nbsp; {{stringKey.SIGN_UP}} </ion-label>
+						<ion-icon [src]="stringKey.ICON_ACTIVATE"></ion-icon>
+						<ion-label>&nbsp; {{stringKey.ACTIVATE}} </ion-label>
 					</ion-button>
 				</ion-col>
 			</ion-row>

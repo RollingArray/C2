@@ -16,7 +16,7 @@ on:
       - dev
       
 jobs:
-  web-deploy:
+  deploy:
 
     name: Deploy C2 Client Dev
     runs-on: ubuntu-latest
@@ -61,3 +61,18 @@ jobs:
         local-dir: ./dist/
         server-dir: /
         dangerous-clean-slate: true
+        
+  post-deploy:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Run migrations and seeders, clear cache for views, config and routes
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd /home4/rolli3oh/public_html/c2/ui/dev/
+            unzip -qq ./result.zip
+            rm -f result.zip
+          host: https://rollingarray.co.in/
+          user: c2_rsa
+          key: ${{ secrets.PRIVATE_KEY }}

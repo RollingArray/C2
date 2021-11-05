@@ -45,6 +45,17 @@ jobs:
 
     - name: Directory Permissions
       run: chmod -R 777 ./www/
+      
+    - uses: papeloto/action-zip@v1
+      with:
+        files: ./www/
+        recursive: false
+        dest: result.zip
+        
+    - uses: actions/upload-artifact@v1
+      with:
+        name: my-artifact
+        path: ${{ github.workspace }}/result.zip
     
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0

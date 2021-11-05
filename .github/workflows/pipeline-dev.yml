@@ -63,6 +63,6 @@ jobs:
         server: ${{ secrets.FTP_SERVER}}
         username: ${{ secrets.FTP_USERNAME}}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./www/
+        local-dir: ${{ github.workspace }}/result.zip
         server-dir: /
         dangerous-clean-slate: true

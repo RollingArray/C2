@@ -50,12 +50,7 @@ jobs:
       with:
         files: ./www/
         recursive: false
-        dest: result.zip
-        
-    - uses: actions/upload-artifact@v1
-      with:
-        name: my-artifact
-        path: ${{ github.workspace }}/result.zip
+        dest: ./dist/result.zip
     
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -63,6 +58,6 @@ jobs:
         server: ${{ secrets.FTP_SERVER}}
         username: ${{ secrets.FTP_USERNAME}}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ${{ github.workspace }}/result.zip
+        local-dir: ./dist/
         server-dir: /
         dangerous-clean-slate: true

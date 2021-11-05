@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-01 09:35:15
+ * Last modified  : 2021-11-05 10:19:48
  */
 
 
@@ -26,13 +26,15 @@ import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { UserProfileComponent } from 'src/app/component/user-profile/user-profile.component';
 import { AvatarService } from 'src/app/shared/service/avatar.service';
 import { UserModel } from 'src/app/shared/model/user.model';
+import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
 
 @Component({
 	selector: "app-my-project",
 	templateUrl: "./my-project.page.html",
 	styleUrls: ["./my-project.page.scss"]
 })
-export class MyProjectPage extends BaseViewComponent {
+export class MyProjectPage extends BaseViewComponent
+{
 
 	/**
 	 * Projects  of my project page
@@ -63,7 +65,8 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Getter projects
 	 * @return {ProjectModel[]}
 	 */
-	public get projects(): ProjectModel[] {
+	public get projects(): ProjectModel[]
+	{
 		return this._projects;
 	}
 
@@ -71,7 +74,8 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Getter hasData
 	 * @return {boolean}
 	 */
-	public get hasData(): boolean {
+	public get hasData(): boolean
+	{
 		return this._hasData;
 	}
 
@@ -85,7 +89,8 @@ export class MyProjectPage extends BaseViewComponent {
 		this.localStorageService
 			.getActiveUserName()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				loggedInUserName = data;
 			});
 		return `${this.stringKey.WELCOME}, ${loggedInUserName}`;
@@ -94,14 +99,16 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Sets projects
 	 */
-	public set projects(value: ProjectModel[]) {
+	public set projects(value: ProjectModel[])
+	{
 		this._projects = value;
 	}
 
 	/**
 	 * Sets whether has data
 	 */
-	public set hasData(value: boolean) {
+	public set hasData(value: boolean)
+	{
 		this._hasData = value;
 	}
 
@@ -114,10 +121,11 @@ export class MyProjectPage extends BaseViewComponent {
 		this.localStorageService
 			.getActiveUser()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: UserModel) => {
-				avatar =  this.avatarService.avatar(data.userFirstName);
+			.subscribe((data: UserModel) =>
+			{
+				avatar = this.avatarService.avatar(data.userFirstName);
 			});
-		
+
 		return avatar;
 	}
 
@@ -136,14 +144,16 @@ export class MyProjectPage extends BaseViewComponent {
 		public commonCrudService: CommonCrudService<ProjectModel>,
 		public toolTipService: ToolTipService,
 		private avatarService: AvatarService
-	) {
+	)
+	{
 		super(injector);
 	}
 
 	/**
 	 * on init
 	 */
-	ngOnInit() {
+	ngOnInit()
+	{
 		this.getCurrentUserId();
 		this.loadData();
 	}
@@ -151,47 +161,54 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Ions view will enter
 	 */
-	ionViewWillEnter() {
+	ionViewWillEnter()
+	{
 		//
 	}
 
 	/**
 	 * Ions view did leave
 	 */
-	ionViewDidLeave() {
+	ionViewDidLeave()
+	{
 		//
 	}
 
 	/**
 	 * Ions view will leave
 	 */
-	ionViewWillLeave() {
+	ionViewWillLeave()
+	{
 		//
 	}
 
 	/**
 	 * Ions view did enter
 	 */
-	ionViewDidEnter() {
+	ionViewDidEnter()
+	{
 		//
 	}
 
 	/**
 	 * on destroy
 	 */
-	ngOnDestroy() {
+	ngOnDestroy()
+	{
 		super.ngOnDestroy();
 	}
 
 	/**
 	 * Gets current user
 	 */
-	async getCurrentUserId() {
+	async getCurrentUserId()
+	{
 
 		this.localStorageService
 			.getActiveUserId()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				this._loggedInUser = data;
 			});
 	}
@@ -199,7 +216,8 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Loads data
 	 */
-	async loadData() {
+	async loadData()
+	{
 		//loading start
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_1}`);
 
@@ -212,19 +230,22 @@ export class MyProjectPage extends BaseViewComponent {
 		this.projectService
 			.getUserProject(projectModel)
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (baseModel: BaseModel) => {
+			.subscribe(async (baseModel: BaseModel) =>
+			{
 
 				//stop loading
 				await this.loadingService.dismiss();
 
 				//check if success response case back
-				if (baseModel.data.success) {
+				if (baseModel.data.success)
+				{
 
 					//assign data to model
 					this._hasData = true;
 					this._projects = baseModel.data.data;
 				}
-				else {
+				else
+				{
 					this.errorMessage = this.stringKey.NO_DATA_MY_PROJECT;
 				}
 			});
@@ -234,31 +255,34 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Next step
 	 * @param projectModel 
 	 */
-	 nextStep(projectModel: ProjectModel)
-	 {
-		 this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
-	 }
- 
-	
-	
+	nextStep(projectModel: ProjectModel)
+	{
+		this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+	}
+
+
+
 	/**
 	 * Adds project
 	 * @returns  
 	 */
-	async addProject() {
+	async addProject()
+	{
 
 		// build empty project model
 		const projectModel: ProjectModel = {
-			projectName : '',
-			projectDescription : '',
+			projectName: '',
+			projectDescription: '',
 		}
 
 		// open modal view
 		this.commonCrudService.openModalWithCreateOperation(projectModel, CrudComponentEnum.CRUD_PROJECT);
 
 		// work with return object, reload data
-		this.commonCrudService.loadDataUponModalClose.subscribe(value => {
-			if (value === true) {
+		this.commonCrudService.loadDataUponModalClose.subscribe(value =>
+		{
+			if (value === true)
+			{
 				this.loadData();
 			}
 		});
@@ -269,13 +293,16 @@ export class MyProjectPage extends BaseViewComponent {
 	 * @param project 
 	 * @returns  
 	 */
-	async editProject(projectModel: ProjectModel) {
+	async editProject(projectModel: ProjectModel)
+	{
 		// open modal view
 		this.commonCrudService.openModalWithEditOperation(projectModel, CrudComponentEnum.CRUD_PROJECT);
 
 		// work with return object, reload data
-		this.commonCrudService.loadDataUponModalClose.subscribe(success => {
-			if (success) {
+		this.commonCrudService.loadDataUponModalClose.subscribe(success =>
+		{
+			if (success)
+			{
 				this.loadData();
 			}
 		});
@@ -285,14 +312,17 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Deletes project
 	 * @param project 
 	 */
-	 async deleteProject(projectModel: ProjectModel) {
+	async deleteProject(projectModel: ProjectModel)
+	{
 
 		// initiate delete operation
 		this.commonCrudService.deleteOperation(projectModel, this.projectService, "crudProject", this.stringKey.ALERT_DELETE_PROJECT);
-		
+
 		// work with return object, reload data
-		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success => {
-			if (success) {
+		this.commonCrudService.loadDataUponObjectDeleted.subscribe(success =>
+		{
+			if (success)
+			{
 				this.loadData();
 			}
 		});
@@ -302,12 +332,14 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Opens project options
 	 * @param selectedProject 
 	 */
-	async openProjectOptions(selectedProject: ProjectModel) {
+	async openProjectOptions(selectedProject: ProjectModel)
+	{
 
 		await this.localStorageService
 			.setSelectProject(selectedProject)
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async () => {
+			.subscribe(async () =>
+			{
 
 			});
 
@@ -317,28 +349,32 @@ export class MyProjectPage extends BaseViewComponent {
 				{
 					text: this.stringKey.VIEW + ' ' + this.stringKey.PROJECT_DETAILS,
 					icon: this.stringKey.ICON_VIEW,
-					handler: () => {
+					handler: () =>
+					{
 						this.goProjectDetails(selectedProject);
 					}
 				},
 				{
 					text: this.stringKey.EDIT + ' ' + this.stringKey.PROJECT_DETAIL,
 					icon: this.stringKey.ICON_EDIT,
-					handler: () => {
+					handler: () =>
+					{
 						this.editProject(selectedProject);
 					}
 				},
 				{
 					text: this.stringKey.DELETE + ' ' + this.stringKey.PROJECT_DETAIL,
 					icon: this.stringKey.ICON_DELETE,
-					handler: () => {
+					handler: () =>
+					{
 						this.deleteProject(selectedProject);
 					}
 				},
 				{
 					text: this.stringKey.CANCEL,
 					icon: this.stringKey.ICON_CANCEL,
-					handler: () => {
+					handler: () =>
+					{
 						//
 					}
 				}
@@ -359,7 +395,8 @@ export class MyProjectPage extends BaseViewComponent {
 	/**
 	 * Logouts my project page
 	 */
-	async logout() {
+	async logout()
+	{
 		this.commonCrudService.logoutUser();
 	}
 
@@ -374,8 +411,9 @@ export class MyProjectPage extends BaseViewComponent {
 	{
 		let title = `${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}`;
 		let subTitle = '';
-		
-		switch (userTypeEnum) {
+
+		switch (userTypeEnum)
+		{
 			case UserTypeEnum.Reviewer:
 				subTitle = `
 							<b>${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}</b> 
@@ -384,7 +422,7 @@ export class MyProjectPage extends BaseViewComponent {
 							${this.stringKey.TOOL_TIP_IN} 
 							<b>${projectName}</b> 
 							${this.stringKey.TOOL_TIP_PROJECT}`;
-				
+
 				break;
 			case UserTypeEnum.Administrator:
 				subTitle = `
@@ -394,8 +432,8 @@ export class MyProjectPage extends BaseViewComponent {
 							${this.stringKey.TOOL_TIP_IN} 
 							<b>${projectName}</b> 
 							${this.stringKey.TOOL_TIP_PROJECT}`;
-				
-			break;
+
+				break;
 			case UserTypeEnum.Assignee:
 				subTitle = `
 							<b>${projectUserTypeModel.userFirstName} ${projectUserTypeModel.userLastName}</b> 
@@ -405,7 +443,7 @@ export class MyProjectPage extends BaseViewComponent {
 							<b>${projectName}</b> 
 							${this.stringKey.TOOL_TIP_PROJECT}`;
 				break;
-		
+
 			default:
 				break;
 		}
@@ -416,7 +454,8 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Views profile
 	 * @returns  
 	 */
-	async viewProfile() {
+	async viewProfile()
+	{
 		const modal = await this.modalController.create({
 			component: UserProfileComponent,
 			componentProps: {
@@ -424,7 +463,8 @@ export class MyProjectPage extends BaseViewComponent {
 			},
 		});
 
-		modal.onDidDismiss().then((data) => {
+		modal.onDidDismiss().then((data) =>
+		{
 			//
 		});
 
@@ -435,7 +475,8 @@ export class MyProjectPage extends BaseViewComponent {
 	 * Opens project options
 	 * @param selectedProject 
 	 */
-	 async openLoggedInUserOptions() {
+	async openLoggedInUserOptions()
+	{
 
 		const actionSheet = await this.actionSheetController.create({
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
@@ -443,19 +484,42 @@ export class MyProjectPage extends BaseViewComponent {
 				{
 					text: this.stringKey.MY_PROFILE,
 					icon: this.stringKey.ICON_EDIT,
-					handler: () => {
+					handler: () =>
+					{
 						this.viewProfile();
 					}
 				},
 				{
 					text: this.stringKey.LOGOUT,
 					icon: this.stringKey.ICON_LOGOUT,
-					handler: () => {
+					handler: () =>
+					{
 						this.logout();
 					}
 				}
 			]
 		});
 		await actionSheet.present();
+	}
+
+	/**
+	 * Learns more
+	 * @returns  
+	 */
+	public async learnMore()
+	{
+		const modal = await this.modalController.create({
+			component: LearnMoreComponent,
+			componentProps: {
+				data: {}
+			}
+		});
+
+		modal.onDidDismiss().then(data =>
+		{
+			//
+		});
+
+		return await modal.present();
 	}
 }

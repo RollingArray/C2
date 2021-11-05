@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-01 20:48:31
+ * Last modified  : 2021-11-05 11:39:21
  */
 
 import { UserProfileModule } from './../../component/user-profile/user-profile.component.module';
@@ -20,6 +20,7 @@ import { IonicModule } from "@ionic/angular";
 
 import { MenuPage } from "./menu.page";
 import { NoDataModule } from 'src/app/component/no-data/no-data.component.module';
+import { LearnMoreModule } from 'src/app/component/learn-more/learn-more.module';
 
 const routes: Routes = [
 	{
@@ -71,6 +72,7 @@ const routes: Routes = [
 		IonicModule,
 		UserProfileModule,
 		NoDataModule,
+		LearnMoreModule,
 		RouterModule.forChild(routes)
 	],
 	declarations: [MenuPage]

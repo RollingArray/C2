@@ -17,16 +17,16 @@
 			</ion-col>
 			<!-- app tag -->
 			
-			<!-- sign in -->
+			<!-- sign up -->
 			<ion-col class="tag-gap" align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none">
-				<ion-button expand="block" color="secondary" [routerLink]="['/sign-in']">
-					<ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
-					<ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
+				<ion-button expand="block" color="primary" [routerLink]="['/sign-up']">
+					<ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
+					&nbsp; {{stringKey.SIGN_UP}}
 				</ion-button>
 			</ion-col>
-			<!-- sign in -->
-
+			<!-- sign up -->
+			
 			<!-- hav account -->
 			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none">
@@ -36,15 +36,16 @@
 			</ion-col>
 			<!-- hav account -->
 
-			<!-- sign up -->
-			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+			<!-- sign in -->
+			<ion-col  align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none">
-				<ion-button expand="block" color="primary" [routerLink]="['/sign-up']">
-					<ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
-					&nbsp; {{stringKey.SIGN_UP}}
+				<ion-button expand="block" color="secondary" [routerLink]="['/sign-in']">
+					<ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
+					<ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
 				</ion-button>
 			</ion-col>
-			<!-- sign up -->
+			<!-- sign in -->
+			
 		</ion-row>
 	</ion-grid>
 </ion-content>

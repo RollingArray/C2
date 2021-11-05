@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-01 20:48:10
+ * Last modified  : 2021-11-05 11:41:50
  */
  -->
 <ion-app>
@@ -31,20 +31,20 @@
 			<ion-content color="primary-gradient">
 				<!-- <div>$nbsp;<br><br></div> -->
 				<ion-menu-toggle auto-hide="false">
-					<ion-card (click)="gotoMyProjects()">
+					<ion-card class="cursor-pointer" (click)="gotoMyProjects()">
 						<ion-item color="primary" lines="none">
 							<ion-icon slot="start" name="arrow-back-outline"></ion-icon>
 							<ion-label> {{stringKey.MY_PROJECT}} </ion-label>
 						</ion-item>
 					</ion-card>
 
-					<ion-card *ngFor="let p of pages" color="pitch-dark">
+					<ion-card class="cursor-pointer" *ngFor="let p of pages" color="pitch-dark">
 						<ion-item color="pitch-dark" lines="none">
 							<ion-icon [src]="stringKey.ICON_MENU" slot="start"></ion-icon>
 							<ion-label> {{ p.title }} </ion-label>
 						</ion-item>
 						<ion-menu-toggle auto-hide="false">
-							<ion-card *ngFor="let eachSubMenu of p.children">
+							<ion-card class="cursor-pointer" *ngFor="let eachSubMenu of p.children">
 								<ion-item lines="none" color="primary" (click)="gotoPage(eachSubMenu)"
 									routerDirection="root" routerLinkActive="active">
 									<ion-icon slot="start" [src]="eachSubMenu.icon"></ion-icon>
@@ -63,6 +63,12 @@
 								<ion-button class="footer-button" size="default" expand="block" color="primary" (click)="presentLogoutAlertConfirm()">
 									<ion-icon [src]="stringKey.ICON_LOGOUT"></ion-icon>
 									<ion-label>&nbsp; {{stringKey.LOGOUT}} </ion-label>
+								</ion-button>
+							</ion-col>
+							<ion-col>
+								<ion-button class="footer-button" size="default" expand="block" color="primary" (click)="learnMore()">
+									<ion-icon [src]="stringKey.ICON_LEARN"></ion-icon>
+									<ion-label>&nbsp; {{stringKey.LEARN}} </ion-label>
 								</ion-button>
 							</ion-col>
 						</ion-row>

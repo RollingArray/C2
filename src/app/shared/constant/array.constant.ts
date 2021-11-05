@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:15:29 
- * Last modified  : 2021-08-09 20:12:54
+ * Last modified  : 2021-11-05 11:43:46
  */
 
 
@@ -18,6 +18,16 @@ export class ArrayKey {
 	 * App primary route pages of array key
 	 */
 	public static readonly APP_PRIMARY_ROUTE_PAGES: RouteModel[] = [
+		{
+			title: StringKey.CREDIBILITY,
+			children: [
+				{
+					title: StringKey.CREDIBILITY_BOARD,
+					url: ['credibility-board'],
+					icon: StringKey.ICON_CREDIBILITY
+				},
+			]
+		},
 		{
 			title: StringKey.MY_SPACE,
 			children: [
@@ -40,11 +50,6 @@ export class ArrayKey {
 					title: StringKey.PROJECT_MEMBERS,
 					url: ['members'],
 					icon: StringKey.ICON_MEMBERS
-				},
-				{
-					title: StringKey.CREDIBILITY_BOARD,
-					url: ['credibility-board'],
-					icon: StringKey.ICON_CREDIBILITY
 				},
 				{
 					title: StringKey.PROJECT_SPRINT,

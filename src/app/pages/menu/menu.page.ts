@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-03 20:22:58
+ * Last modified  : 2021-11-05 11:39:23
  */
 
 
@@ -30,6 +30,7 @@ import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
 import { AvatarService } from 'src/app/shared/service/avatar.service';
 import { SwUpdate } from '@angular/service-worker';
+import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
 
 @Component({
 	selector: "app-menu",
@@ -555,4 +556,25 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		}
 		this.router.navigate(constructUrl);
 	}
+
+	/**
+	 * Learns more
+	 * @returns  
+	 */
+	 public async learnMore()
+	 {
+		 const modal = await this.modalController.create({
+			 component: LearnMoreComponent,
+			 componentProps: {
+				 data: {}
+			 }
+		 });
+ 
+		 modal.onDidDismiss().then(data =>
+		 {
+			 //
+		 });
+ 
+		 return await modal.present();
+	 }
 }

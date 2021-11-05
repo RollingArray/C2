@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-01 10:20:26
+ * Last modified  : 2021-11-05 11:26:43
  */
 
 /* Change autocomplete styles in WebKit */
@@ -125,4 +125,9 @@ td:last-child {
 }
 .text-justify{
   text-align: justify;
+}
+
+.cursor-pointer
+{
+  cursor: pointer;
 }

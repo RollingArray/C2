@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:10:17 
- * Last modified  : 2021-08-06 20:01:53
+ * Last modified  : 2021-11-05 10:19:16
  */
 
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,7 @@ import { IonicModule } from '@ionic/angular';
 import { AvatarModule } from 'src/app/component/avatar/avatar.component.module';
 import { CreateEditProjectModule } from 'src/app/component/create-edit-project/create-edit-project.module';
 import { CustomFieldsModule } from 'src/app/component/custom-fields/custom-fields-fields.component.module';
+import { LearnMoreModule } from 'src/app/component/learn-more/learn-more.module';
 import { NextStepModule } from 'src/app/component/next-step/next-step.component.module';
 import { NoDataModule } from 'src/app/component/no-data/no-data.component.module';
 import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info-title.component.module';
@@ -53,6 +54,7 @@ const routes: Routes = [
     NextStepModule,
     ToolTipModule,
     UserProfileModule,
+    LearnMoreModule,
     RouterModule.forChild(routes)
   ],
   providers:[

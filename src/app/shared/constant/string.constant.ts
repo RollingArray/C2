@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-10-31 20:51:14
+ * Last modified  : 2021-11-05 11:44:05
  */
 
 
@@ -507,8 +507,8 @@ export class StringKey {
 	public static readonly NO_FILTER: string = 'Select Entity to refine your result';
 
 	public static readonly WHAT_WE_ARE: string = 'What is C2';
-	public static readonly WHAT_WE_ARE_INFO_1: string = 'C2 is an open platform aiming to connect projects with the local suppliers. This platform will help adapt a systematic approach to order daily essentials from the local suppliers. It helps keep track of the orders and deliveries by suppliers. The aim is to aid the local suppliers to manage their orders and description the issues more effectively so they can do more business within the area.';
-	public static readonly WHAT_WE_ARE_INFO_2: string = 'We do not own a supplier or any product. We do not hold any responsibility for the transactions happening between the project and the suppliers';
+	public static readonly WHAT_WE_ARE_INFO_1: string = 'C2 is a platform designed to nullify any bias in terms of race, age, gender, disability and culture when treating a workforce and provide measurable matrix for a best fit person to grab a new opportunities';
+	public static readonly WHAT_WE_ARE_INFO_2: string = 'C2 has the power to generate meaningful credibility metric for each individual team member by analysing the feedbacks provided by the reviewers of the deliverables';
 	public static readonly COPYRIGHT: string = '© Copyright';
 	public static readonly OWNER_EMAIL: string = 'rollingarray.co.in';
 	public static readonly SUPPORT_EMAIL: string = 'support@rollingarray.co.in';
@@ -517,7 +517,7 @@ export class StringKey {
 	public static readonly T_N_C_INFO: string = 'Read how we set the rights and responsibilities of anyone using the site / app';
 	public static readonly P_P: string = 'Privacy Policy';
 	public static readonly P_P_INFO: string = 'Read how we collect, store, protect, and utilize personal data provided by the users';
-	public static readonly FAQ: string = 'How can we help you ?';
+	public static readonly FAQ: string = 'Explore more about C2 on Help Center';
 	public static readonly FAQ_INFO: string = 'Read our FAQ to het answers to your questions';
 	public static readonly FAQ_Q_2: string = 'Are you officially supporting any shopping online site or any supplier or a project';
 	public static readonly FAQ_A_2: string = 'No, we do not';

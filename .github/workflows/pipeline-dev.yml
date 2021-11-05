@@ -73,6 +73,6 @@ jobs:
             cd /home4/rolli3oh/public_html/c2/ui/dev/
             unzip -qq ./result.zip
             rm -f result.zip
-          host: https://rollingarray.co.in/
+          host: rollingarray.co.in
           user: c2_rsa
           key: ${{ secrets.PRIVATE_KEY }}

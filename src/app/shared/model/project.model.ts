@@ -14,5 +14,6 @@ export interface ProjectModel extends OperatingUserModel {
     rawDataKeys ?: string[];
     projectAdministrator ?: ProjectUserTypeBaseModel;
     projectAssignees ?: ProjectUserTypeBaseModel;
-    projectReviewers ?: ProjectUserTypeBaseModel;
+    projectReviewers?: ProjectUserTypeBaseModel;
+    projectUserTypeId ?: string;
 }

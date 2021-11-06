@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-05 11:44:05
+ * Last modified  : 2021-11-06 21:39:56
  */
 
 
@@ -385,13 +385,15 @@ export class StringKey {
 	public static readonly FORM_PLACE_PASSWORD: string = 'Your App Password';
 
 	//next step
-	public static readonly NS_PROJECT_1: string =  'Go to <b>Project Details</b> from more option available in top right corner of each project';
-	public static readonly NS_PROJECT_2: string =  'Add new <b>Assignees</b> and <b>Reviewers</b> from Project Member(s) menu available in main menu inside Project Details';
-	public static readonly NS_PROJECT_3: string =  'Create New <b>Goals</b> from Project Goal(s) menu available in main menu inside Project Details';
-	public static readonly NS_PROJECT_4: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
-	public static readonly NS_PROJECT_5: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
-	public static readonly NS_PROJECT_6: string =  'Post Review of the Activity, view assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
-
+	public static readonly NS_PROJECT_1: string = 'Add new <b>Assignee</b> to the project for activity assignment</b>';
+	public static readonly NS_PROJECT_2: string =  'Add new <b>Reviewer</b> to the project to review activities</b>';
+	public static readonly NS_PROJECT_3: string =  'Create new <b>Goal</b> to achieve a desired outcome (performance goal)';
+	public static readonly NS_PROJECT_4: string =  'Create new <b>Sprint</b> where a development team can works to complete specific milestones';
+	public static readonly NS_PROJECT_5: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint. Add Assignees and Reviewers to it';
+	public static readonly NS_PROJECT_6: string = 'View <b>Credibility Index</b> of the assignee\'s from Credibility Board';
+	public static readonly NS_PROJECT_7: string =  'View <b>Activity(s)</b> assigned to you and provide self comments';
+	public static readonly NS_PROJECT_8: string = 'View <b>Review(s)</b> assigned to you and provide self comments';
+	
 	public static readonly NS_GOAL_1: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
 	public static readonly NS_GOAL_2: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
 	public static readonly NS_GOAL_3: string = 'As a reviewer, post Review on the <b>Activity</b>';

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:15:29 
- * Last modified  : 2021-11-05 11:43:46
+ * Last modified  : 2021-11-06 21:40:53
  */
 
 
@@ -77,30 +77,107 @@ export class ArrayKey {
 		crudProject: {
 			image: StringKey.IMAGE_PROJECT_DONE,
 			steps: [
-				StringKey.NS_PROJECT_1,
-				StringKey.NS_PROJECT_2,
-				StringKey.NS_PROJECT_3,
-				StringKey.NS_PROJECT_4,
-				StringKey.NS_PROJECT_5,
-				StringKey.NS_PROJECT_6,
+				{
+					title: StringKey.NS_PROJECT_1,
+					url: ['members'],
+					icon: StringKey.ICON_MEMBERS
+				},
+				{
+					title: StringKey.NS_PROJECT_2,
+					url: ['members'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_PROJECT_3,
+					url: ['goals'],
+					icon: StringKey.ICON_GOAL
+				},
+				{
+					title: StringKey.NS_PROJECT_4,
+					url: ['sprints'],
+					icon: StringKey.ICON_SPRINT
+				},
+				{
+					title: StringKey.NS_PROJECT_5,
+					url: ['activities'],
+					icon: StringKey.ICON_ACTIVITY
+				},
+				{
+					title: StringKey.NS_PROJECT_6,
+					url: ['credibility-board'],
+					icon: StringKey.ICON_CREDIBILITY
+				},
+			]
+		},
+		crudProjectReviewer: {
+			image: StringKey.IMAGE_PROJECT_DONE,
+			steps: [
+				{
+					title: StringKey.NS_PROJECT_7,
+					url: ['my','activity'],
+					icon: StringKey.ICON_ACTIVITY
+				}
+			]
+		},
+		crudProjectAssignee: {
+			image: StringKey.IMAGE_PROJECT_DONE,
+			steps: [
+				{
+					title: StringKey.NS_PROJECT_8,
+					url: ['my','review'],
+					icon: StringKey.ICON_ACTIVITY
+				}
 			]
 		},
 		crudGoal: {
 			image: StringKey.IMAGE_GOAL_DONE,
 			steps: [
-				StringKey.NS_GOAL_1,
-				StringKey.NS_GOAL_2,
-				StringKey.NS_GOAL_3,
-				StringKey.NS_GOAL_4,
+				
+				{
+					title: StringKey.NS_GOAL_1,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_GOAL_2,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_GOAL_3,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_GOAL_4,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
 			]
 		},
 		crudSprint: {
 			image: StringKey.IMAGE_SPRINT_DONE,
 			steps: [
-				StringKey.NS_SPRINT_1,
-				StringKey.NS_SPRINT_2,
-				StringKey.NS_SPRINT_3,
-				StringKey.NS_SPRINT_4,
+				{
+					title: StringKey.NS_SPRINT_1,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_SPRINT_2,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_SPRINT_3,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+				{
+					title: StringKey.NS_SPRINT_4,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
 			]
 		}
 	}

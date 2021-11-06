@@ -4,14 +4,9 @@
 		<ion-title>
 			{{ pageTitle }}
 		</ion-title>
-		<ion-buttons slot="start">
-			<ion-button fill="solid" color="dark" (click)="cancelModal()">{{
-				stringKey.CANCEL
-				}}</ion-button>
-		</ion-buttons>
 		<ion-buttons slot="end">
-			<ion-button fill="solid" color="dark" (click)="submit()">{{
-				stringKey.SAVE
+			<ion-button mode="ios" fill="outline" color="dark" (click)="cancelModal()">{{
+				stringKey.CANCEL
 				}}</ion-button>
 		</ion-buttons>
 	</ion-toolbar>

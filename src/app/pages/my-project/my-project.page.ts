@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-06 15:47:35
+ * Last modified  : 2021-11-06 21:50:33
  */
 
 
@@ -262,7 +262,23 @@ export class MyProjectPage extends BaseViewComponent
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async () =>
 			{
-				this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+				switch (projectModel.projectUserTypeId)
+				{
+					case UserTypeEnum.Administrator:
+						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+						break;
+					
+					case UserTypeEnum.Reviewer:
+						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT_REVIEWER, projectModel.projectName);
+						break;
+					
+					case UserTypeEnum.Assignee:
+						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT_ASSIGNMENT, projectModel.projectName);
+						break;
+
+					default:
+						break;
+				}
 			});
 		
 	}

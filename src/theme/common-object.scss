@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-05 11:26:43
+ * Last modified  : 2021-11-06 19:36:30
  */
 
 /* Change autocomplete styles in WebKit */
@@ -25,6 +25,11 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: #323433;
   -webkit-box-shadow: 0 0 0px 1000px #eaeaeb inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* popover*/
+.popover-arrow.sc-ion-popover-ios::after{
+  background-color: var(--ion-color-primary) !important;
 }
 
 ion-card {
@@ -130,4 +135,14 @@ td:last-child {
 .cursor-pointer
 {
   cursor: pointer;
+}
+
+.float-right
+{
+  float: right; 
+}
+
+.float-left
+{
+  float: left; 
 }

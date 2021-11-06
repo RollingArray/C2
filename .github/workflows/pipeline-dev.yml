@@ -19,16 +19,13 @@ jobs:
   post-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Directory Permissions
-        run: sudo apt-get install sshpass
-      
-      - name: Directory Permissions
-        run: sshpass -p "2Z#J#$Xj5c1?" ssh -oHostKeyAlgorithms=+ssh-dss rolli3oh@rollingarray.co.in
-        
-      - name: Directory Permissions
-        run: cd /home4/rolli3oh/public_html/c2/ui/dev/
-      
-      - name: Directory Permissions
-        run: unzip -qq ./result.zip
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: rollingarray.co.in
+          username: rolli3oh
+          password: 2Z#J#$Xj5c1?
+          port: 22
+          script: whoami
       
       

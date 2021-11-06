@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-05 10:19:48
+ * Last modified  : 2021-11-06 15:47:35
  */
 
 
@@ -255,9 +255,16 @@ export class MyProjectPage extends BaseViewComponent
 	 * Next step
 	 * @param projectModel 
 	 */
-	nextStep(projectModel: ProjectModel)
+	async nextStep(projectModel: ProjectModel)
 	{
-		this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+		await this.localStorageService
+			.setSelectProject(projectModel)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(async () =>
+			{
+				this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
+			});
+		
 	}
 
 
@@ -334,15 +341,6 @@ export class MyProjectPage extends BaseViewComponent
 	 */
 	async openProjectOptions(selectedProject: ProjectModel)
 	{
-
-		await this.localStorageService
-			.setSelectProject(selectedProject)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async () =>
-			{
-
-			});
-
 		const actionSheet = await this.actionSheetController.create({
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
 			buttons: [
@@ -387,9 +385,15 @@ export class MyProjectPage extends BaseViewComponent
 	 * Go project details
 	 * @param selectedProject 
 	 */
-	goProjectDetails(selectedProject: ProjectModel)
+	async goProjectDetails(selectedProject: ProjectModel)
 	{
-		this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+		await this.localStorageService
+			.setSelectProject(selectedProject)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(async () =>
+			{
+				this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+			});
 	}
 
 	/**

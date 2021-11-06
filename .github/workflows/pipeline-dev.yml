@@ -16,63 +16,19 @@ on:
       - dev
       
 jobs:
-  deploy:
-
-    name: Deploy C2 Client Dev
-    runs-on: ubuntu-latest
-    environment:
-      name: dev
-      url: https://c2.dev.rollingarray.co.in/
-
-    # Start stage
-
-
-    # Use template with parameters
-    steps:
-    - name: Get latest code
-      uses: actions/checkout@v2.3.2
-
-    - name: Use Node.js 14 LTS
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    
-    - name: Install NPM Modules
-      run: npm install
-
-    - name: Build Project
-      run: npm run build-dev
-
-    - name: Directory Permissions
-      run: chmod -R 777 ./www/
-      
-    - uses: papeloto/action-zip@v1
-      with:
-        files: ./www/
-        recursive: false
-        dest: ./dist/result.zip
-    
-    - name: Sync Files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ secrets.FTP_SERVER}}
-        username: ${{ secrets.FTP_USERNAME}}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
-        server-dir: /
-        dangerous-clean-slate: true
-        
   post-deploy:
     runs-on: ubuntu-latest
-    needs: deploy
     steps:
-      - name: Run migrations and seeders, clear cache for views, config and routes
-        uses: fifsky/ssh-action@master
-        with:
-          command: |
-            cd /home4/rolli3oh/public_html/c2/ui/dev/
-            unzip -qq ./result.zip
-            rm -f result.zip
-          host: rollingarray.co.in
-          user: c2_rsa
-          key: ${{ secrets.PRIVATE_KEY }}
+      - name: Directory Permissions
+        run: sudo apt-get install sshpass
+      
+      - name: Directory Permissions
+        run: sshpass -p "2Z#J#$Xj5c1?" ssh -oHostKeyAlgorithms=+ssh-dss rolli3oh@rollingarray.co.in
+        
+      - name: Directory Permissions
+        run: cd /home4/rolli3oh/public_html/c2/ui/dev/
+      
+      - name: Directory Permissions
+        run: unzip -qq ./result.zip
+      
+      

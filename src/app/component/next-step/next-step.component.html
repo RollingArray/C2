@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:12:58 
- * Last modified  : 2021-05-18 19:15:17
+ * Last modified  : 2021-11-06 19:21:21
  */
  -->
 
@@ -48,10 +48,13 @@
 					<div class="steps">
 						<h3 color="secondary">What's Next ?</h3>
 						<ion-card *ngFor="let step of nextStepModule.steps">
-							<div class="step-indicator">
-								<ion-icon color="dark" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-							</div>
-							<div class="step-text" [innerHTML]="step"></div>
+							<ion-item lines="none" class="step-indicator">
+								<ion-icon [src]="step.icon"></ion-icon>
+								<div class="step-text" [innerHTML]="step.title"></div>
+							</ion-item>
+							<ion-button mode="ios" color="dark" class="go" (click)="gotoPage(step.url)">
+								<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
+							</ion-button>
 						</ion-card>
 					</div>
 					<!-- steps -->

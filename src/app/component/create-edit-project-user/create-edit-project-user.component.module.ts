@@ -6,6 +6,7 @@ import { SharedModule } from "src/app/shared/module/shared.module";
 import { IonicModule } from "@ionic/angular";
 import { NoDataModule } from "../no-data/no-data.component.module";
 import { CreateEditProjectUserComponent } from "./create-edit-project-user.component";
+import { CustomFieldsModule } from "../custom-fields/custom-fields-fields.component.module";
 @NgModule({
 	imports: [
 		CommonModule,
@@ -14,6 +15,7 @@ import { CreateEditProjectUserComponent } from "./create-edit-project-user.compo
 		NoDataModule,
 		PageInfoTitleModule,
 		PanelHeaderModule,
+		CustomFieldsModule
 	],
 
 	declarations: [CreateEditProjectUserComponent],

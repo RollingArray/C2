@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-06 21:39:56
+ * Last modified  : 2021-11-07 09:50:51
  */
 
 
@@ -472,7 +472,7 @@ export class StringKey {
 	public static readonly CONFIRM_ACTION: string = 'Confirm Your Action !';
 	public static readonly CONFIRM_LOG_OUT: string = 'Do You Want To <b>Sign Out</b>';
 	public static readonly MANDATORY_FIELDS: string = 'Do Not Keep Field(s) Blank';
-	public static readonly MANDATORY_SELECT: string = 'Select <b>Goal</b>, <b>Sprint</b> & <b>Assignee</b> to create an <b>Activity</b>';
+	public static readonly MANDATORY_SELECT: string = 'Select <b>Goal</b>, <b>Sprint</b> & <b>Assignee</b> from <b>Choose Entity</b> to create an <b>Activity</b>';
 	public static readonly DELETE_CONFIRM: string = 'Are You Sure You Want To <b>Delete</b>';
 	public static readonly RESEND_ACTIVATION_CODE: string = 'Email Required For Resending Activation Code';
 	public static readonly ALLOW_NOTIFICATION: string = 'You did not allow us to send notifications, please allow to send notification from your app settings to receive update from your project';

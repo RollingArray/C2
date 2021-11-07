@@ -2,8 +2,10 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
+import { AvatarModule } from "src/app/component/avatar/avatar.component.module";
 import { BreadcrumbModule } from "src/app/component/breadcrumb/breadcrumb.component.module";
 import { CreateEditProjectUserModule } from "src/app/component/create-edit-project-user/create-edit-project-user.component.module";
+import { CustomFieldsModule } from "src/app/component/custom-fields/custom-fields-fields.component.module";
 import { NoDataModule } from "src/app/component/no-data/no-data.component.module";
 import { PageInfoTitleModule } from "src/app/component/page-info-title/page-info-title.component.module";
 import { PanelHeaderModule } from "src/app/component/panel-header/panel-header.component.module";
@@ -29,6 +31,8 @@ const routes: Routes = [
     PanelHeaderModule,
     PanelInfoModule,
     BreadcrumbModule,
+    AvatarModule,
+    CustomFieldsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProjectMembersPage]

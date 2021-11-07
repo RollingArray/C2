@@ -62,9 +62,12 @@
 					[user]="projectAdministrator"
 					[isInitials] = "true"
 					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
-					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_LIGHT"
+					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_MEDIUM"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)"></app-panel-header>
+					(event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)">
+				</app-panel-header>
+				<app-custom-fields [description]="projectAdministrator?.userEmail">
+				</app-custom-fields>
 				<!-- panel header -->
 
 			</ion-card>
@@ -96,9 +99,12 @@
 					[user]="projectAssignee"
 					[isInitials] = "true"
 					[panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
-					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_LIGHT"
+					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_MEDIUM"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)"></app-panel-header>
+					(event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)">
+				</app-panel-header>
+				<app-custom-fields [description]="projectAssignee?.userEmail">
+				</app-custom-fields>
 			</ion-card>
 		</ng-container>
 	</ion-card>
@@ -129,9 +135,11 @@
 					[user]="projectReviewer"
 					[isInitials] = "true"
 					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
-					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_LIGHT"
+					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_MEDIUM"
 					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
 					(event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"></app-panel-header>
+				<app-custom-fields [description]="projectReviewer?.userEmail">
+				</app-custom-fields>
 			</ion-card>
 		</ng-container>
 	</ion-card>

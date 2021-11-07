@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 14:56:50 
- * Last modified  : 2021-11-06 15:44:56
+ * Last modified  : 2021-11-07 15:18:35
  */
 -->
 
@@ -46,8 +46,8 @@
     </ion-fab>
 
     <!-- user -->
-    
-	<ion-card>
+
+    <ion-card>
         <app-panel-header
             [panelTitle]="loggedInUserName"
             [isLargeIcon]="true"
@@ -92,49 +92,56 @@
                         </app-panel-header>
                         <!-- project header -->
 
-						<!-- project description -->
-						<app-custom-fields
-							[description]="project.projectDescription"
-						>
-						</app-custom-fields>
-						<!-- project description -->
-						
-						<ion-grid>
-							<ion-row>
-								
-								<ion-col>
-									<ion-button mode="ios" color="dark" class="go" (click)="goProjectDetails(project)">
-										{{stringKey.GO}}
-										&nbsp;&nbsp;
-										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-									</ion-button>
-									<ion-button mode="ios" color="dark" class="go" (click)="nextStep(project)">
-										{{stringKey.NEXT}}
-										&nbsp;&nbsp;
-										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-									</ion-button>
-								</ion-col>
-								
-							</ion-row>
-						</ion-grid>
-                        
+                        <!-- project description -->
+                        <app-custom-fields
+                            [description]="project.projectDescription"
+                        >
+                        </app-custom-fields>
+                        <!-- project description -->
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button
+                                        mode="ios"
+                                        color="dark"
+                                        class="go"
+                                        (click)="goProjectDetails(project)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_RIGHT_ARROW"
+                                        ></ion-icon>
+                                    </ion-button>
+                                    <ion-button
+                                        mode="ios"
+                                        color="dark"
+                                        class="go"
+                                        (click)="nextStep(project)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_HELP"
+                                        ></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
 
                         <!-- user types -->
                         <div class="users">
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Reviewer ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Reviewer ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_STAR"
                                 *ngFor="let user of project.projectReviewers.data"
                             ></app-avatar>
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Assignee ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Assignee ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_PEN"
                                 *ngFor="let user of project.projectAssignees.data"
                             ></app-avatar>
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Administrator ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Administrator ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_COG"
                                 *ngFor="let user of project.projectAdministrator.data"

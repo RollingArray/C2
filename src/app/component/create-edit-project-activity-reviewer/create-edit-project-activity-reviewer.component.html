@@ -4,14 +4,9 @@
         <ion-title>
             {{ stringKey.CHOOSE_REVIEWER }}
         </ion-title>
-        <ion-buttons slot="start">
-            <ion-button fill="solid" color="dark" (click)="cancelModal()">{{
-                stringKey.CANCEL
-            }}</ion-button>
-        </ion-buttons>
         <ion-buttons slot="end">
-            <ion-button fill="solid" color="dark" (click)="submit()">{{
-                stringKey.SELECT
+            <ion-button fill="outline" color="dark" (click)="cancelModal()">{{
+                stringKey.CANCEL
             }}</ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -25,6 +20,14 @@
     >
     </app-page-info-title>
     <!-- page title -->
+
+	<!-- fab -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark" (click)="submit()">
+			<ion-icon [src]="stringKey.ICON_SELECT"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- fab -->
 
     <form
         [formGroup]="formGroup"
@@ -81,9 +84,12 @@
                 {{ dropSelectorTitle }}
             </ion-title>
             <ion-buttons slot="end">
-                <ion-button fill="outline" (click)="closeDropSelector()">{{
-                    stringKey.CLOSE
-                }}</ion-button>
+                <ion-button
+                    color="dark"
+                    fill="outline"
+                    (click)="closeDropSelector()"
+                    >{{ stringKey.CLOSE }}</ion-button
+                >
             </ion-buttons>
         </ion-toolbar>
     </ion-header>
@@ -93,11 +99,13 @@
     <ion-content #reviewerDropSelector>
         <ion-card *ngFor="let user of projectReviewers">
             <app-panel-header
+                [user]="user"
+                [isInitials]="true"
                 [panelTitle]="
                     getUserFullName(user.userFirstName, user.userLastName)
                 "
                 [panelIcon]="stringKey.ICON_USER"
-                [panelColor]="stringKey.COLOR_DARK"
+                [panelColor]="stringKey.COLOR_MEDIUM"
                 [eventIcon]="stringKey.ICON_ACTIVATE"
                 [isEventRequired]="true"
                 (event)="chooseUser(user)"

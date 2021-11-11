@@ -4,14 +4,11 @@
 		<ion-title>
 			{{ pageTitle }}
 		</ion-title>
-		<ion-buttons slot="start">
-			<ion-button fill="solid" color="dark" (click)="cancelModal()">{{
-				stringKey.CANCEL
-				}}</ion-button>
-		</ion-buttons>
 		<ion-buttons slot="end">
-			<ion-button fill="solid" color="dark" (click)="submit()">{{
-				stringKey.SAVE
+			<ion-button mode="ios"
+			fill="outline"
+			color="dark" (click)="cancelModal()">{{
+				stringKey.CANCEL
 				}}</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
@@ -34,12 +31,12 @@
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<!-- activity name -->
 		<ion-card color="secondary">
-			<p>
+			
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ACTIVITY }}
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+					<p> {{ stringKey.FORM_INFO_ACTIVITY }}</p>
+					
 				</ion-item>
-			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
 					<ion-textarea [placeholder]="stringKey.FORM_PLACEHOLDER_ACTIVITY" autocomplete="off"
@@ -58,12 +55,10 @@
 
 		<!-- activity result type -->
 		<ion-card color="secondary">
-			<p>
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ACTIVITY_RESULT_TYPE }}
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+					<p>{{ stringKey.FORM_INFO_ACTIVITY_RESULT_TYPE }}</p>
 				</ion-item>
-			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
 					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_ACTIVITY_RESULT_TYPE" autocomplete="off"
@@ -82,12 +77,11 @@
 
 		<!-- activity weight -->
 		<ion-card color="secondary">
-			<p>
 				<ion-item color="secondary" lines="none">
 					<ion-icon [src]="stringKey.ICON_SLIDER" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ACTIVITY_WEIGHT }}
+				<p>{{ stringKey.FORM_INFO_ACTIVITY_WEIGHT }}</p>
+					
 				</ion-item>
-			</p>
 			<ion-card lines="none" color="light">
 				<ion-item lines="none" color="light">
 					<ion-range formControlName="activityWeight" color="primary" min="1" max="100" step="1">
@@ -130,7 +124,7 @@
 			<!-- criteria poor value -->
 			<ion-card color="secondary">
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
 					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_POOR_VALUE }}</span>
 					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_POOR_INVERSE_VALUE
 						}}</span>
@@ -155,7 +149,7 @@
 			<!-- criteria improvement value -->
 			<ion-card color="secondary">
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
 					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_VALUE
 						}}</span>
 					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE
@@ -183,7 +177,7 @@
 			<!-- criteria expectation value -->
 			<ion-card color="secondary">
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
 					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXPECTATION_VALUE
 						}}</span>
 					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE
@@ -211,7 +205,7 @@
 			<!-- criteria exceed value -->
 			<ion-card color="secondary">
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
 					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXCEED_VALUE }}</span>
 					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE
 						}}</span>
@@ -236,7 +230,7 @@
 			<!-- criteria outstanding value -->
 			<ion-card color="secondary">
 				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
+					<ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
 					<span *ngIf="characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_OUTSTANDING_VALUE
 						}}</span>
 					<span *ngIf="!characteristicsHigherBetter">{{ stringKey.FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE

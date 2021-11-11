@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-06 19:36:30
+ * Last modified  : 2021-11-11 18:07:30
  */
 
 /* Change autocomplete styles in WebKit */
@@ -32,6 +32,9 @@ select:-webkit-autofill:focus {
   background-color: var(--ion-color-primary) !important;
 }
 
+ion-modal{
+  --border-radius: 10px !important;
+}
 ion-card {
   border-radius: 8px;
   font-size: 14px;

@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 17:23:00 
- * Last modified  : 2021-10-31 17:23:47
+ * Last modified  : 2021-11-11 16:58:12
  */
 
 import { PageInfoTitleModule } from './../../component/page-info-title/page-info-title.component.module';
@@ -18,6 +18,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignInPage } from './sign-in.page';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { AccountVerificationModule } from 'src/app/component/account-verification/account-verification.module';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     PageInfoTitleModule,
+    AccountVerificationModule
   ],
   declarations: [SignInPage]
 })

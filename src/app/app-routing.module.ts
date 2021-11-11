@@ -28,10 +28,6 @@ const routes: Routes = [
 		path: "update-password",
 		loadChildren: () => import('./pages/update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
 	},
-	{
-		path: "account-verification",
-		loadChildren: () => import('./pages/account-verification/account-verification.module').then( m => m.AccountVerificationPageModule)
-	},
 	{ 	
 		path: 'my-project', 
 		loadChildren: () => import('./pages/my-project/my-project.module').then( m => m.MyProjectPageModule),

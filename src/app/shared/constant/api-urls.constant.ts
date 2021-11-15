@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Api urls
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:34:14 
+ * Last modified  : 2021-11-15 21:36:51
+ */
+
 import { environment } from "../../../environments/environment";
 
 export class ApiUrls {
@@ -46,4 +58,6 @@ export class ApiUrls {
 
 	public static readonly PROJECT_ACTIVITY_REVIEWER_CRUD: string = ApiUrls.API_BASE_PATH + "/activity/reviewer/crud/";
 	public static readonly PROJECT_ACTIVITY_REVIEW_UPDATE: string = ApiUrls.API_BASE_PATH + "/review/update/";
+	public static readonly PROJECT_ACTIVITY_REVIEW_UNLOCK: string = ApiUrls.API_BASE_PATH + "/review/unlock/"
+	public static readonly PROJECT_ACTIVITY_REVIEW_LOCK: string = ApiUrls.API_BASE_PATH + "/review/lock/"
 }

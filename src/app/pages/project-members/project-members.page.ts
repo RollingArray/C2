@@ -1,3 +1,16 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project members page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:34:14 
+ * Last modified  : 2021-11-15 21:34:14 
+ */
+
+
 import { AlertService } from 'src/app/shared/service/alert.service';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
@@ -5,11 +18,8 @@ import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
-import { NavParams } from '@ionic/angular';
 import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
-import { ProjectService } from 'src/app/shared/service/project.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';

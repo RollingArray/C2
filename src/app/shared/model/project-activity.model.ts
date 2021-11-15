@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-29 11:19:35 
- * Last modified  : 2021-05-08 18:27:33
+ * Last modified  : 2021-11-13 07:04:13
  */
 
 import { ActivityReviewerBaseModel } from './activity-reviewer-base.model';
@@ -19,5 +19,6 @@ export interface ProjectActivityModel {
     filter ?:boolean;
     projectActivities ?: ProjectActivityBaseModel;
     activityDetails ?: ActivityModel;
-    reviewDetails ?: ActivityReviewerBaseModel
+    reviewDetails?: ActivityReviewerBaseModel
+    userType?: ProjectModel;
 }

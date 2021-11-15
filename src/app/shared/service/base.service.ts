@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 10:15:11 
- * Last modified  : 2021-11-01 10:15:33
+ * Last modified  : 2021-11-12 17:11:20
  */
 
 import { HttpClient } from "@angular/common/http";
@@ -186,7 +186,7 @@ export abstract class BaseService<T extends BaseModel> {
 				message,
 				buttons: [
 					{
-						text: "ok",
+						text: "Okay",
 						handler: (data) => { },
 					},
 				],

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-07 09:50:51
+ * Last modified  : 2021-11-15 19:48:54
  */
 
 
@@ -122,6 +122,9 @@ export class StringKey {
 	public static readonly REVIEW_DETAILS: string = 'Review Detail(s)';
 	public static readonly CHOOSE_FILTER: string = 'Choose Entity';
 	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
+	public static readonly REVIEW_LOCK: string = 'This review is only visible to Project Administrator and same reviewer';
+	public static readonly REVIEW_UN_LOCK: string = 'This review is visible to everyone';
+	public static readonly REVIEW_ASSIGNEE_LOCK: string = 'This review is locked, approach Project Administrator to unlock the review';
 
 	public static readonly PASS_LESS_AUTH: string = 'Password-less Authentication';
 	public static readonly PASS_LESS_INFO_HEADER_1: string = 'What Is Password-less Authentication?';
@@ -263,8 +266,10 @@ export class StringKey {
 	public static readonly ALERT_NO_SAME_REVIEWER: string = 'Review can be submitted by only same Reviewer';
 	public static readonly ALERT_ACHIEVED_RESULT_VALUE: string = 'Since the measurement type of the task is Bool, the Achieved Result Value can be 0(not complete) or 100(complete)';
 	public static readonly CHANGE_SPRINT_STATUS: string = 'Do you want to change the status of the sprint';
+	public static readonly ALERT_UNLOCK: string = 'Would you like to <strong>unlock</strong> this review for <strong>assignee</strong> visibility !!!';
+	public static readonly ALERT_LOCK: string = 'Would you like to <strong>lock</strong> this review !!!';
+	public static readonly ALERT_NO_UNLOCK_ACTIVITY: string = 'Unlocked review <strong>can not</strong> be modified !!! approach project admin to lock the review first if modification required';
 	
-
 	//form info
 	public static readonly FORM_INFO_PROJECT_NAME: string = 'Provide a suitable name for your project';
 	public static readonly FORM_INFO_PROJECT_DESCRIPTION: string = 'Provide a description for your project';
@@ -461,7 +466,7 @@ export class StringKey {
 
 	//message
 	public static readonly API_REQUEST_MESSAGE_1: string = 'Fetching Detail(s).. Please Wait';
-	public static readonly API_REQUEST_MESSAGE_2: string = 'Submitting Detail(s)  .. Please Wait';
+	public static readonly API_REQUEST_MESSAGE_2: string = 'Sending Detail(s)  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_3: string = 'Signing In  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_4: string = 'Signing Out  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_5: string = 'Signing Up  .. Please Wait';
@@ -495,7 +500,7 @@ export class StringKey {
 	public static readonly NO_DATA_DIVERSITY: string = 'Diverse workforce is the key to a successful project. Add Members to the project and assign them Activities. C2 algorithm will generate Credibility Index for each Assignee based on the Reviews';
 	public static readonly NO_DATA_CREDIBILITY: string = 'Hold tight, we are looking for you data';
 	public static readonly HOLD_TIGHT: string = 'Hold tight, we are looking for your data';
-
+	public static readonly NO_DATA_PROJECT_REVIEWER_OTHER: string = 'No reviews are yet available';
 	public static readonly NO_DATA_PROJECT_REVIEWER: string = 'An activity in a project needs to be reviewed by a reviewer, add a new reviewer';
 	public static readonly NO_DATA_SPRINT: string = 'In a project, goals can not be set with out accessing time duration. Add a new sprint';
 	public static readonly NO_DATA_GOAL: string = 'No goal has been set for the project yet. Add a new goal';
@@ -563,11 +568,14 @@ export class StringKey {
 	public static readonly ICON_STAR: string = StringKey.ICON_BASE_PATH + "star.svg";
 	public static readonly ICON_COG: string = StringKey.ICON_BASE_PATH + "cog.svg";
 	public static readonly ICON_PEN: string = StringKey.ICON_BASE_PATH + "pen.svg";
+	public static readonly ICON_LOCK: string = StringKey.ICON_BASE_PATH + "lock.svg";
+	public static readonly ICON_UN_LOCK: string = StringKey.ICON_BASE_PATH + "un-lock.svg";
 
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
 	public static readonly ICON_NOTIFICATION: string = StringKey.ICON_BASE_PATH + "notifications.svg";
 	public static readonly ICON_ADD: string = StringKey.ICON_BASE_PATH + "add.svg";
+	public static readonly ICON_ADD_SQUARE: string = StringKey.ICON_BASE_PATH + "add-square.svg";
 	public static readonly ICON_EDIT: string = StringKey.ICON_BASE_PATH + "edit.svg";
 	public static readonly ICON_VIEW: string = StringKey.ICON_BASE_PATH + "view.svg";
 	public static readonly ICON_CANCEL: string = StringKey.ICON_BASE_PATH + "cancel.svg";
@@ -591,7 +599,8 @@ export class StringKey {
 	public static readonly ICON_REVIEWER: string = StringKey.ICON_BASE_PATH + "reviewer.svg";
 	public static readonly ICON_START: string = StringKey.ICON_BASE_PATH + "start.svg";
 	public static readonly ICON_STOP: string = StringKey.ICON_BASE_PATH + "stop.svg";
-	
+	public static readonly ICON_EMAIL: string = StringKey.ICON_BASE_PATH + "email.svg";
+
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";

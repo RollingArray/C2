@@ -1,26 +1,33 @@
-import { AlertService } from 'src/app/shared/service/alert.service';
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project activity review page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:30:56 
+ * Last modified  : 2021-11-15 21:31:31
+ */
+
+
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
-import { NavParams } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { takeUntil } from 'rxjs/operators';
 import { ProjectActivityService } from 'src/app/shared/service/project-activity.service';
 import { ActivityModel } from 'src/app/shared/model/activity.model';
 import { ProjectActivityModel } from 'src/app/shared/model/project-activity.model';
-import { CreateEditProjectActivityReviewerComponent } from 'src/app/component/create-edit-project-activity-reviewer/create-edit-project-activity-reviewer.component';
-import { FilterModel } from 'src/app/shared/model/filter.model';
-import { CreateEditProjectFilterComponent } from 'src/app/component/create-edit-project-filter/create-edit-project-filter.component';
 import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measurement-type.enum';
 import { ActivityReviewerModel } from 'src/app/shared/model/activity-reviewer.model';
-import { ProjectActivityReviewerService } from 'src/app/shared/service/project-activity-reviewer.service';
 import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
+import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 
 @Component({
 	selector: "project-users",
@@ -53,6 +60,11 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 	 * Activity  of project activity review page
 	 */
 	private _activity: ActivityModel;
+
+	/**
+	 * User type of project activity review page
+	 */
+	private _userType: ProjectModel;
 
 	/**
 	 * Activity reviews of project activity review page
@@ -156,6 +168,22 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 	}
 
 	/**
+	 * Gets user type
+	 */
+	public get userType()
+	{
+		return this._userType;
+	}
+
+	/**
+	 * Gets whether is administrator
+	 */
+	 get isAdministrator()
+	 {
+		 return this._userType.userTypeId === UserTypeEnum.Administrator ? true : false;
+	 }
+
+	/**
 	 * Creates an instance of project activity review page.
 	 * @param injector 
 	 * @param localStorageService 
@@ -245,6 +273,9 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 						// attach activities to returned data
 						this._activity = this._projectActivityModel.activityDetails;
 
+						// get user type for the project
+						this._userType = this._projectActivityModel.userType;
+
 						if(this._projectActivityModel.reviewDetails.success){
 							this._activityReviews = this._projectActivityModel.reviewDetails.data;
 
@@ -297,36 +328,6 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 		return await modal.present();
 	}
 	
-	/**
-	 * Adds reviewer
-	 * @returns  
-	 */
-	async addReviewer() {
-		const passedModel: ActivityModel = {
-			userId: this._loggedInUser,
-			projectId: this._projectId,
-			activityId: this._activityId,
-			operationType: `${OperationsEnum.Create}`
-		}
-		const modal = await this.modalController.create({
-			component: CreateEditProjectActivityReviewerComponent,
-			componentProps: {
-				data: passedModel
-			}
-		});
-
-		modal.onDidDismiss().then(data => {
-
-			this._modalData = data.data;
-			if (this._modalData.cancelled) {
-				//do not refresh the page
-			} else {
-				//load data from network
-				this.loadData();
-			}
-		});
-
-		return await modal.present();
-	}
+	
 }
 

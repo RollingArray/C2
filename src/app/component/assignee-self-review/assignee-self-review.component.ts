@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Assignee self review component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:21:25 
+ * Last modified  : 2021-11-15 21:21:44
+ */
+
 import { Component, OnInit, Input, Injector, EventEmitter, Output } from "@angular/core";
 import { takeUntil } from "rxjs/operators";
 import { ActivityMeasurementTypeEnum } from "src/app/shared/enum/activity-measurement-type.enum";
@@ -240,5 +252,18 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 			return await modal.present();
 		}
 	}
+
+	/**
+	 * 
+	 * @param selectedReviewer 
+	 * @returns 
+	 */
+	 getUser(selectedActivity: ActivityModel)
+	 {
+		 return {
+			 userFirstName: selectedActivity.assigneeUserFirstName,
+			 userLastName: selectedActivity.assigneeUserLastName,
+		 }
+	 }
 
 }

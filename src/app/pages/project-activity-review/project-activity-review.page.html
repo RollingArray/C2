@@ -1,99 +1,151 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project activity review page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:30:56 
+ * Last modified  : 2021-11-15 21:32:06
+ */
+ -->
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
-	<ion-toolbar color="primary">
-		<ion-title> {{stringKey.ACTIVITY_REVIEW}} </ion-title>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-			<ion-back-button></ion-back-button>
-		</ion-buttons>
-		<ion-buttons slot="end" (click)="loadData()">
-			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
-		</ion-buttons>
-	</ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title> {{stringKey.ACTIVITY_REVIEW}} </ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end" (click)="loadData()">
+            <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="stringKey.ACTIVITY_REVIEW" [info]="stringKey.ACTIVITY_REVIEW_INFO">
-	</app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title
+        [title]="stringKey.ACTIVITY_REVIEW"
+        [info]="stringKey.ACTIVITY_REVIEW_INFO"
+    >
+    </app-page-info-title>
+    <!-- page title -->
 
-	<!-- refresh btn -->
-	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content></ion-refresher-content>
-	</ion-refresher>
-	<!-- refresh btn -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark" (click)="addReviewer()">
-			<ion-icon [src]="stringKey.ICON_ADD"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
-	<!-- refresh btn -->
+    <!-- refresh btn -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- refresh btn -->
 
-	<!-- no data -->
-	<app-no-data [credibility]=true *ngIf="!hasData" [text]="stringKey.NO_DATA_CREDIBILITY"></app-no-data>
-	<!-- no data -->
+    <!-- no data -->
+    <app-no-data
+        [credibility]="true"
+        *ngIf="!hasData"
+        [text]="stringKey.NO_DATA_CREDIBILITY"
+    ></app-no-data>
+    <!-- no data -->
 
-	<!-- data container -->
-	<ng-container *ngIf="hasData">
-		<!-- title -->
-		<app-panel-header [panelTitle]="activity.activityName" [panelIcon]="stringKey.ICON_ACTIVITY"
-			[panelColor]="stringKey.COLOR_SECONDARY" [eventIcon]="stringKey.ICON_EDIT" [isEventRequired]="true" (click)="editProjectActivity(activity)">
-		</app-panel-header>
-		<!-- title -->
+    <!-- data container -->
+    <ng-container *ngIf="hasData">
+        <!-- title -->
+        <ion-card>
+			<app-panel-header
+				*ngIf="!isAdministrator"
+                [panelTitle]="activity.activityName"
+                [panelIcon]="stringKey.ICON_ACTIVITY"
+                [panelColor]="stringKey.COLOR_SECONDARY"
+            >
+            </app-panel-header>
+            <app-panel-header
+				*ngIf="isAdministrator"
+                [panelTitle]="activity.activityName"
+                [panelIcon]="stringKey.ICON_ACTIVITY"
+                [panelColor]="stringKey.COLOR_SECONDARY"
+                [eventIcon]="stringKey.ICON_EDIT"
+                [isEventRequired]="true"
+                (click)="editProjectActivity(activity)"
+            >
+            </app-panel-header>
+        </ion-card>
 
-		<!-- activity grid -->
-		<ion-grid>
-			<ion-row>
-				<!-- measurement type -->
-				<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-					<ion-card>
-						<app-panel-header [panelTitle]="stringKey.MEASUREMENT_TYPE"
-							[panelIcon]="stringKey.ICON_RESULT" [panelColor]="stringKey.COLOR_MEDIUM"
-							>
-						</app-panel-header>
-						<app-custom-fields [data]="activity.activityResultType"></app-custom-fields>
-					</ion-card>
-				</ion-col>
-				<!-- measurement type -->
+        <!-- title -->
 
-				<!-- weight -->
-				<ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-					<ion-card>
-						<app-panel-header [panelTitle]="stringKey.WEIGHT_IN_P" [panelIcon]="stringKey.ICON_WEIGHT"
-							[panelColor]="stringKey.COLOR_MEDIUM" eventIcon="stringKey.ICON_MORE">
-						</app-panel-header>
-						<app-custom-fields [data]="activity.activityWeight.toString()"></app-custom-fields>
-					</ion-card>
-				</ion-col>
-				<!-- weight -->
+        <!-- activity grid -->
+        <ion-grid>
+            <ion-row>
+                <!-- measurement type -->
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                    <ion-card>
+                        <app-panel-header
+                            [panelTitle]="stringKey.MEASUREMENT_TYPE"
+                            [panelIcon]="stringKey.ICON_RESULT"
+                            [panelColor]="stringKey.COLOR_MEDIUM"
+                        >
+                        </app-panel-header>
+                        <app-custom-fields
+                            [data]="activity.activityResultType"
+                        ></app-custom-fields>
+                    </ion-card>
+                </ion-col>
+                <!-- measurement type -->
 
-				<!-- scale -->
-				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-					<app-measurement-scale [activity] = "activity"></app-measurement-scale>
-				</ion-col>
-				<!-- scale -->
+                <!-- weight -->
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                    <ion-card>
+                        <app-panel-header
+                            [panelTitle]="stringKey.WEIGHT_IN_P"
+                            [panelIcon]="stringKey.ICON_WEIGHT"
+                            [panelColor]="stringKey.COLOR_MEDIUM"
+                            eventIcon="stringKey.ICON_MORE"
+                        >
+                        </app-panel-header>
+                        <app-custom-fields
+                            [data]="activity.activityWeight.toString()"
+                        ></app-custom-fields>
+                    </ion-card>
+                </ion-col>
+                <!-- weight -->
 
-				<!-- comment -->
-				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-					<app-assignee-self-review [activity] = "activity" [allowAction]=true (event)="loadData()"></app-assignee-self-review>
-				</ion-col>
-				<!-- comment -->
+                <!-- scale -->
+                <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                    <app-measurement-scale
+                        [activity]="activity"
+                    ></app-measurement-scale>
+                </ion-col>
+                <!-- scale -->
 
-				<!-- reviewer -->
-				<ion-col size-lg="12" size-md="12" size-sm="12" size="12">
-					<app-reviewer-review [activityReviews]="activityReviews" [hasData]="hasReviewsData" [allowAction]=true (event)="loadData()"></app-reviewer-review>
-				</ion-col>
-				<!-- reviewer -->
+                <!-- comment -->
+                <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                    <app-assignee-self-review
+                        [activity]="activity"
+                        [allowAction]="true"
+                        (event)="loadData()"
+                    >
+                    </app-assignee-self-review>
+                </ion-col>
+                <!-- comment -->
 
-			</ion-row>
-		</ion-grid>
-		<!-- activity grid -->
-		
-	</ng-container>
-	<!-- data container -->
+                <!-- reviewer -->
+                <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                    <app-reviewer-review
+                        [userType]="userType"
+                        [activityReviews]="activityReviews"
+                        [hasData]="hasReviewsData"
+                        [allowAction]="true"
+                        (event)="loadData()"
+                    ></app-reviewer-review>
+                </ion-col>
+                <!-- reviewer -->
+            </ion-row>
+        </ion-grid>
+        <!-- activity grid -->
+    </ng-container>
+    <!-- data container -->
 
-	<!-- empty row -->
-	<div id="dum-height"></div>
-	<!-- empty row -->
+    <!-- empty row -->
+    <!-- <div id="dum-height"></div> -->
+    <!-- empty row -->
 </ion-content>

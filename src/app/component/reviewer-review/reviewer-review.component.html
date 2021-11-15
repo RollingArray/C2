@@ -1,54 +1,160 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Reviewer review component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:26:30 
+ * Last modified  : 2021-11-15 21:27:22
+ */
+ -->
 <ion-card>
-	<app-panel-header [panelTitle]="stringKey.REVIEW_DETAILS"
-		[panelIcon]="stringKey.ICON_ACTIVITY_REVIEW" [panelColor]="stringKey.COLOR_MEDIUM"
-	>
-	</app-panel-header>
+    <app-panel-header
+		*ngIf="isAssignee || isReviewer"
+        [panelTitle]="stringKey.REVIEW_DETAILS"
+        [panelIcon]="stringKey.ICON_ACTIVITY_REVIEW"
+        [panelColor]="stringKey.COLOR_MEDIUM"
+    >
+    </app-panel-header>
 
-	<!-- no data -->
-	<app-no-data [reviewer]=true *ngIf="!hasData"
-		[text]="stringKey.NO_DATA_PROJECT_REVIEWER"></app-no-data>
-	<!-- no data -->
+	<app-panel-header
+		*ngIf="isAdministrator"
+        [panelTitle]="stringKey.REVIEW_DETAILS"
+        [panelIcon]="stringKey.ICON_ACTIVITY_REVIEW"
+        [panelColor]="stringKey.COLOR_MEDIUM"
+		[eventIcon]="stringKey.ICON_ADD_SQUARE"
+		[isEventRequired]="true"
+		(event)="addReviewer()"
+    >
+    </app-panel-header>
 
-	<!-- data -->
-	<div *ngIf="hasData">
-		<div *ngFor="let reviewer of activityReviews">
-			<app-panel-header [panelTitle]="getUserFullName(reviewer.reviewerUserFirstName, reviewer.reviewerUserLastName)" [panelIcon]="stringKey.ICON_REVIEWER"
-				[panelColor]="stringKey.COLOR_LIGHT" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]="true"
-				(event)="openReviewerOptions(reviewer)">
-			</app-panel-header>
+    <!-- no data -->
+    <app-no-data
+        [reviewer]="true"
+        *ngIf="!hasData"
+        [text]="noDataText"
+    ></app-no-data>
+    <!-- no data -->
 
-			<!-- result & comment -->
-			<ion-grid>
-				<ion-row>
-					<!-- measurement type -->
-					<ion-col size-lg="4" size-md="4" size-sm="4" size="12">
-						<ion-card>
-							<app-panel-header [panelTitle]="stringKey.VERIFIED_RESULT"
-								[panelIcon]="stringKey.ICON_VERIFIED_RESULT" [panelColor]="stringKey.COLOR_LIGHT">
-							</app-panel-header>
-							<app-custom-fields *ngIf="reviewer.achievedResultValue" [data]="showResult(reviewer)"></app-custom-fields>
-							<ion-card *ngIf="reviewer.achievedResultValue">
-								<app-work-progress [activity]="reviewer" [resultValue]="reviewer.achievedResultValue"></app-work-progress>
-							</ion-card>
-							<app-custom-fields *ngIf="!reviewer.achievedResultValue" [noData]=true></app-custom-fields>
-						</ion-card>
-					</ion-col>
-					<!-- measurement type -->
-	
-					<!-- weight -->
-					<ion-col size-lg="8" size-md="8" size-sm="8" size="12">
-						<ion-card>
-							<app-panel-header [panelTitle]="stringKey.REVIEWER_COMMENT" [panelIcon]="stringKey.ICON_COMMENT" [panelColor]="stringKey.COLOR_LIGHT">
-							</app-panel-header>
-							<app-custom-fields *ngIf="reviewer.reviewerComment"  [data]="reviewer.reviewerComment"></app-custom-fields>
-							<app-custom-fields *ngIf="!reviewer.reviewerComment" [noData]=true></app-custom-fields>
-						</ion-card>
-					</ion-col>
-					<!-- weight -->
-				</ion-row>
-			</ion-grid>
-			<!-- result & comment -->
-		</div>
-	</div>
-	<!-- data -->
+    <!-- data -->
+    <div *ngIf="hasData">
+        <div *ngFor="let reviewer of activityReviews">
+			<app-panel-header
+				*ngIf="isAssignee"
+				[user]="getUser(reviewer)"
+				[isInitials] = "true"
+                [panelTitle]="
+                    getUserFullName(
+                        reviewer.reviewerUserFirstName,
+                        reviewer.reviewerUserLastName
+                    )
+                "
+                [panelIcon]="stringKey.ICON_REVIEWER"
+                [panelColor]="stringKey.COLOR_LIGHT"
+            >
+            </app-panel-header>
+
+			<app-panel-header
+				*ngIf="isAdministrator || isReviewer"
+				[user]="getUser(reviewer)"
+				[isInitials] = "true"
+                [panelTitle]="
+                    getUserFullName(
+                        reviewer.reviewerUserFirstName,
+                        reviewer.reviewerUserLastName
+                    )
+                "
+                [panelIcon]="stringKey.ICON_REVIEWER"
+                [panelColor]="stringKey.COLOR_LIGHT"
+                [eventIcon]="stringKey.ICON_MORE"
+                [isEventRequired]="true"
+                (event)="openReviewerOptions(reviewer)"
+            >
+            </app-panel-header>
+
+            <!-- review lock administrator -->
+            <app-panel-header
+                *ngIf="
+                    isAdministrator &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                "
+                [panelTitle]="stringKey.REVIEW_LOCK"
+                [panelIcon]="stringKey.ICON_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+                [eventIcon]="stringKey.ICON_UN_LOCK"
+                [isEventRequired]="true"
+                (event)="unLockReview(reviewer)"
+            >
+            </app-panel-header>
+            <app-panel-header
+                *ngIf="
+                    isAdministrator &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                "
+                [panelTitle]="stringKey.REVIEW_UN_LOCK"
+                [panelIcon]="stringKey.ICON_UN_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+                [eventIcon]="stringKey.ICON_LOCK"
+                [isEventRequired]="true"
+                (event)="lockReview(reviewer)"
+            >
+            </app-panel-header>
+            <!-- review lock administrator -->
+
+            <!-- review lock reviewer -->
+            <app-panel-header
+                *ngIf="
+                    isReviewer &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                "
+                [panelTitle]="stringKey.REVIEW_LOCK"
+                [panelIcon]="stringKey.ICON_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+            >
+            </app-panel-header>
+            <app-panel-header
+                *ngIf="
+                    isReviewer &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                "
+                [panelTitle]="stringKey.REVIEW_UN_LOCK"
+                [panelIcon]="stringKey.ICON_UN_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+            >
+            </app-panel-header>
+            <!-- review lock reviewer -->
+
+            <!-- review lock assignee -->
+            <app-panel-header
+                *ngIf="
+                    isAssignee &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                "
+                [panelTitle]="stringKey.REVIEW_ASSIGNEE_LOCK"
+                [panelIcon]="stringKey.ICON_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+            >
+            </app-panel-header>
+            <!-- review lock assignee -->
+
+            <!-- result & comment -->
+            <app-review-details
+                *ngIf="isAdministrator || isReviewer"
+                [reviewer]="reviewer"
+            ></app-review-details>
+            <app-review-details
+                *ngIf="
+                    isAssignee &&
+                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                "
+                [reviewer]="reviewer"
+            ></app-review-details>
+
+            <!-- result & comment -->
+        </div>
+    </div>
+    <!-- data -->
 </ion-card>

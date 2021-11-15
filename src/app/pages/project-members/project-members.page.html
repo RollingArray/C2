@@ -1,152 +1,213 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project members page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:34:14 
+ * Last modified  : 2021-11-15 21:35:53
+ */
+ -->
 <!-- header -->
-<ion-header [appScrollTracker]='scrollArea'>
-	<ion-toolbar color="primary">
-		<ion-title>
-			{{stringKey.PROJECT_MEMBER}}
-		</ion-title>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-buttons slot="end" (click)="loadData()">
-			<ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
-		</ion-buttons>
-	</ion-toolbar>
+<ion-header [appScrollTracker]="scrollArea">
+    <ion-toolbar color="primary">
+        <ion-title> {{stringKey.PROJECT_MEMBER}} </ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end" (click)="loadData()">
+            <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 
-
 <!-- header -->
 <ion-content #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="stringKey.PROJECT_MEMBER" [info]="stringKey.PROJECT_MEMBER_INFO">
-	</app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title
+        [title]="stringKey.PROJECT_MEMBER"
+        [info]="stringKey.PROJECT_MEMBER_INFO"
+    >
+    </app-page-info-title>
+    <!-- page title -->
 
-	<!-- breadcrumb -->
-	<app-breadcrumb [crumbs]='breadCrumb'></app-breadcrumb>
-	<!-- breadcrumb -->
+    <!-- breadcrumb -->
+    <app-breadcrumb [crumbs]="breadCrumb"></app-breadcrumb>
+    <!-- breadcrumb -->
 
-	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content></ion-refresher-content>
-	</ion-refresher>
-	<!-- fab -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark">
-			<ion-icon [src]="stringKey.ICON_ADD" (click)="addProjectUser()"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
-	<!-- fab -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- fab -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button color="dark">
+            <ion-icon
+                [src]="stringKey.ICON_ADD"
+                (click)="addProjectUser()"
+            ></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <!-- fab -->
 
-	<!-- project admin -->
-	<ion-card>
-		<!-- panel header -->
-		<app-panel-header [panelTitle]="stringKey.PROJECT_ADMIN" [panelIcon]="stringKey.ICON_ADMIN"
-			[panelColor]="stringKey.COLOR_MEDIUM" [isEventRequired]=false></app-panel-header>
-		<!-- panel header -->
-		<!-- info -->
-		<app-panel-info [title]="stringKey.PROJECT_ADMIN_INFO"></app-panel-info>
+    <!-- project admin -->
+    <ion-card>
+        <!-- panel header -->
+        <app-panel-header
+            [panelTitle]="stringKey.PROJECT_ADMIN"
+            [panelIcon]="stringKey.ICON_ADMIN"
+            [panelColor]="stringKey.COLOR_MEDIUM"
+            [isEventRequired]="false"
+        ></app-panel-header>
+        <!-- panel header -->
+        <!-- info -->
+        <app-panel-info [title]="stringKey.PROJECT_ADMIN_INFO"></app-panel-info>
 
-		<!-- no data -->
-		<app-no-data [user]=true *ngIf="!projectMemberModel?.projectAdministrator?.success"
-			[text]="stringKey.NO_DATA_PROJECT_ADMIN">
-		</app-no-data>
-		<!-- no data -->
+        <!-- no data -->
+        <app-no-data
+            [user]="true"
+            *ngIf="!projectMemberModel?.projectAdministrator?.success"
+            [text]="stringKey.NO_DATA_PROJECT_ADMIN"
+        >
+        </app-no-data>
+        <!-- no data -->
 
-		<!-- info -->
-		<ng-container *ngIf="projectMemberModel?.projectAdministrator?.success">
-			<ion-card *ngFor="
+        <!-- info -->
+        <ng-container *ngIf="projectMemberModel?.projectAdministrator?.success">
+            <ion-card
+                *ngFor="
 					let projectAdministrator of projectMemberModel?.projectAdministrator?.data
-        ">
-				<!-- panel header -->
-				<app-panel-header
-					[user]="projectAdministrator"
-					[isInitials] = "true"
-					[panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
-					[panelIcon]="stringKey.ICON_ADMIN" [panelColor]="stringKey.COLOR_MEDIUM"
-					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)">
-				</app-panel-header>
-				<app-custom-fields [description]="projectAdministrator?.userEmail">
-				</app-custom-fields>
-				<!-- panel header -->
+        "
+            >
+                <!-- panel header -->
+                <app-panel-header
+                    [user]="projectAdministrator"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
+                    [panelIcon]="stringKey.ICON_ADMIN"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
+                    [eventIcon]="stringKey.ICON_DELETE"
+                    [isEventRequired]="true"
+                    (event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)"
+                >
+                </app-panel-header>
+                <app-custom-fields
+                    [email]="projectAdministrator?.userEmail"
+                >
+                </app-custom-fields>
+                <!-- panel header -->
+            </ion-card>
+        </ng-container>
+    </ion-card>
+    <!-- project admin -->
+    <!--  project member -->
+    <ion-card>
+        <!-- panel header -->
+        <app-panel-header
+            [panelTitle]="stringKey.PROJECT_MEMBER"
+            [panelIcon]="stringKey.ICON_USER"
+            [panelColor]="stringKey.COLOR_MEDIUM"
+            [eventIcon]="stringKey.ICON_MORE"
+            [isEventRequired]="false"
+        >
+        </app-panel-header>
+        <!-- panel header -->
 
-			</ion-card>
-		</ng-container>
-	</ion-card>
-	<!-- project admin -->
-	<!--  project member -->
-	<ion-card>
-		<!-- panel header -->
-		<app-panel-header [panelTitle]="stringKey.PROJECT_MEMBER" [panelIcon]="stringKey.ICON_USER"
-			[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
-		</app-panel-header>
-		<!-- panel header -->
+        <!-- info -->
+        <app-panel-info
+            [title]="stringKey.PROJECT_MEMBER_INFO"
+        ></app-panel-info>
+        <!-- info -->
 
-		<!-- info -->
-		<app-panel-info [title]="stringKey.PROJECT_MEMBER_INFO"></app-panel-info>
-		<!-- info -->
+        <!-- no data -->
+        <app-no-data
+            [member]="true"
+            *ngIf="!projectMemberModel?.projectAssignees?.success"
+            [text]="stringKey.NO_DATA_PROJECT_MEMBER"
+        >
+        </app-no-data>
+        <!-- no data -->
 
-		<!-- no data -->
-		<app-no-data [member]=true *ngIf="!projectMemberModel?.projectAssignees?.success" [text]="stringKey.NO_DATA_PROJECT_MEMBER">
-		</app-no-data>
-		<!-- no data -->
-
-		<ng-container *ngIf="projectMemberModel?.projectAssignees?.success">
-			<ion-card *ngFor="
+        <ng-container *ngIf="projectMemberModel?.projectAssignees?.success">
+            <ion-card
+                *ngFor="
 					let projectAssignee of projectMemberModel?.projectAssignees?.data
-        ">
-				<app-panel-header
-					[user]="projectAssignee"
-					[isInitials] = "true"
-					[panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
-					[panelIcon]="stringKey.ICON_USER" [panelColor]="stringKey.COLOR_MEDIUM"
-					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)">
-				</app-panel-header>
-				<app-custom-fields [description]="projectAssignee?.userEmail">
-				</app-custom-fields>
-			</ion-card>
-		</ng-container>
-	</ion-card>
-	<!--  project member -->
+        "
+            >
+                <app-panel-header
+                    [user]="projectAssignee"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
+                    [panelIcon]="stringKey.ICON_USER"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
+                    [eventIcon]="stringKey.ICON_DELETE"
+                    [isEventRequired]="true"
+                    (event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)"
+                >
+                </app-panel-header>
+                <app-custom-fields [email]="projectAssignee?.userEmail">
+                </app-custom-fields>
+            </ion-card>
+        </ng-container>
+    </ion-card>
+    <!--  project member -->
 
-	<!--  project reviewer -->
-	<ion-card>
-		<!-- panel header -->
-		<app-panel-header [panelTitle]="stringKey.PROJECT_REVIEWER" [panelIcon]="stringKey.ICON_REVIEWER"
-			[panelColor]="stringKey.COLOR_MEDIUM" [eventIcon]="stringKey.ICON_MORE" [isEventRequired]=false>
-		</app-panel-header>
-		<!-- panel header -->
+    <!--  project reviewer -->
+    <ion-card>
+        <!-- panel header -->
+        <app-panel-header
+            [panelTitle]="stringKey.PROJECT_REVIEWER"
+            [panelIcon]="stringKey.ICON_REVIEWER"
+            [panelColor]="stringKey.COLOR_MEDIUM"
+            [eventIcon]="stringKey.ICON_MORE"
+            [isEventRequired]="false"
+        >
+        </app-panel-header>
+        <!-- panel header -->
 
-		<!-- info -->
-		<app-panel-info [title]="stringKey.PROJECT_REVIEWER_INFO"></app-panel-info>
-		<!-- info -->
+        <!-- info -->
+        <app-panel-info
+            [title]="stringKey.PROJECT_REVIEWER_INFO"
+        ></app-panel-info>
+        <!-- info -->
 
-		<!-- no data -->
-		<app-no-data [reviewer]=true *ngIf="!projectMemberModel?.projectReviewers?.success" [text]="stringKey.NO_DATA_PROJECT_REVIEWER">
-		</app-no-data>
-		<!-- no data -->
+        <!-- no data -->
+        <app-no-data
+            [reviewer]="true"
+            *ngIf="!projectMemberModel?.projectReviewers?.success"
+            [text]="stringKey.NO_DATA_PROJECT_REVIEWER"
+        >
+        </app-no-data>
+        <!-- no data -->
 
-		<ng-container *ngIf="projectMemberModel?.projectReviewers?.success">
-			<ion-card *ngFor="
+        <ng-container *ngIf="projectMemberModel?.projectReviewers?.success">
+            <ion-card
+                *ngFor="
 					let projectReviewer of projectMemberModel?.projectReviewers?.data
-        ">
-				<app-panel-header
-					[user]="projectReviewer"
-					[isInitials] = "true"
-					[panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
-					[panelIcon]="stringKey.ICON_REVIEWER" [panelColor]="stringKey.COLOR_MEDIUM"
-					[eventIcon]="stringKey.ICON_DELETE" [isEventRequired]=true
-					(event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"></app-panel-header>
-				<app-custom-fields [description]="projectReviewer?.userEmail">
-				</app-custom-fields>
-			</ion-card>
-		</ng-container>
-	</ion-card>
-	<!--  project reviewer -->
+        "
+            >
+                <app-panel-header
+                    [user]="projectReviewer"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
+                    [panelIcon]="stringKey.ICON_REVIEWER"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
+                    [eventIcon]="stringKey.ICON_DELETE"
+                    [isEventRequired]="true"
+                    (event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"
+                ></app-panel-header>
+                <app-custom-fields [email]="projectReviewer?.userEmail">
+                </app-custom-fields>
+				
+            </ion-card>
+        </ng-container>
+    </ion-card>
+    <!--  project reviewer -->
 
-	<!-- empty row -->
-	<div id="dum-height"></div>
-	<!-- empty row -->
-
+    <!-- empty row -->
+    <div id="dum-height"></div>
+    <!-- empty row -->
 </ion-content>

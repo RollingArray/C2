@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:15:29 
- * Last modified  : 2021-11-11 16:36:58
+ * Last modified  : 2021-11-12 10:15:50
  */
 
 
@@ -171,23 +171,23 @@ export class ArrayKey {
 				},
 			]
 		},
-		crudProjectReviewer: {
+		crudProjectAssignee: {
 			image: StringKey.IMAGE_PROJECT_DONE,
 			steps: [
 				{
 					title: StringKey.NS_PROJECT_7,
 					url: ['my','activity'],
-					icon: StringKey.ICON_ACTIVITY
+					icon: StringKey.ICON_MY_ACTIVITY
 				}
 			]
 		},
-		crudProjectAssignee: {
+		crudProjectReviewer: {
 			image: StringKey.IMAGE_PROJECT_DONE,
 			steps: [
 				{
 					title: StringKey.NS_PROJECT_8,
 					url: ['my','review'],
-					icon: StringKey.ICON_ACTIVITY
+					icon: StringKey.ICON_MY_REVIEWS
 				}
 			]
 		},

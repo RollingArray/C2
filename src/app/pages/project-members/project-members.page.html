@@ -43,7 +43,7 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <!-- fab -->
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="projectMemberModel?.projectAdministrator?.success && isAdministrator">
         <ion-fab-button color="dark">
             <ion-icon
                 [src]="stringKey.ICON_ADD"
@@ -84,6 +84,7 @@
             >
                 <!-- panel header -->
                 <app-panel-header
+                    *ngIf="isAdministrator"
                     [user]="projectAdministrator"
                     [isInitials]="true"
                     [panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
@@ -94,6 +95,16 @@
                     (event)="openProjectMembersOptions(projectAdministrator, userTypeEnum.Administrator)"
                 >
                 </app-panel-header>
+                <app-panel-header
+                    *ngIf="!isAdministrator"
+                    [user]="projectAdministrator"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectAdministrator?.userFirstName,projectAdministrator?.userLastName)"
+                    [panelIcon]="stringKey.ICON_ADMIN"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
+                >
+                </app-panel-header>
+                
                 <app-custom-fields
                     [email]="projectAdministrator?.userEmail"
                 >
@@ -138,6 +149,7 @@
         "
             >
                 <app-panel-header
+                    *ngIf="isAdministrator"
                     [user]="projectAssignee"
                     [isInitials]="true"
                     [panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
@@ -146,6 +158,15 @@
                     [eventIcon]="stringKey.ICON_DELETE"
                     [isEventRequired]="true"
                     (event)="openProjectMembersOptions(projectAssignee, userTypeEnum.Assignee)"
+                >
+                </app-panel-header>
+                <app-panel-header
+                    *ngIf="!isAdministrator"
+                    [user]="projectAssignee"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectAssignee?.userFirstName,projectAssignee?.userLastName)"
+                    [panelIcon]="stringKey.ICON_ADMIN"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
                 >
                 </app-panel-header>
                 <app-custom-fields [email]="projectAssignee?.userEmail">
@@ -190,6 +211,7 @@
         "
             >
                 <app-panel-header
+                    *ngIf="isAdministrator"
                     [user]="projectReviewer"
                     [isInitials]="true"
                     [panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
@@ -199,6 +221,15 @@
                     [isEventRequired]="true"
                     (event)="openProjectMembersOptions(projectReviewer, userTypeEnum.Reviewer)"
                 ></app-panel-header>
+                <app-panel-header
+                    *ngIf="!isAdministrator"
+                    [user]="projectReviewer"
+                    [isInitials]="true"
+                    [panelTitle]="getUserFullName(projectReviewer?.userFirstName,projectReviewer?.userLastName)"
+                    [panelIcon]="stringKey.ICON_ADMIN"
+                    [panelColor]="stringKey.COLOR_MEDIUM"
+                >
+                </app-panel-header>
                 <app-custom-fields [email]="projectReviewer?.userEmail">
                 </app-custom-fields>
 				

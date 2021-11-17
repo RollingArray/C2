@@ -282,8 +282,9 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Adds project activity
 	 * @returns  
 	 */
-	async addProjectActivity() {
-		if(!this._filterModel.sprintId){
+	async addProjectActivity()
+	{
+		if(!this._filterModel){
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_SELECT}`
 			);

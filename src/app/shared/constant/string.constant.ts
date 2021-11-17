@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-15 19:48:54
+ * Last modified  : 2021-11-17 20:38:29
  */
 
 
@@ -525,7 +525,7 @@ export class StringKey {
 	public static readonly T_N_C_INFO: string = 'Read how we set the rights and responsibilities of anyone using the site / app';
 	public static readonly P_P: string = 'Privacy Policy';
 	public static readonly P_P_INFO: string = 'Read how we collect, store, protect, and utilize personal data provided by the users';
-	public static readonly FAQ: string = 'Explore more about C2 on Help Center';
+	public static readonly FAQ: string = 'C2 is an Open Source Project, explore more about C2 on Github';
 	public static readonly FAQ_INFO: string = 'Read our FAQ to het answers to your questions';
 	public static readonly FAQ_Q_2: string = 'Are you officially supporting any shopping online site or any supplier or a project';
 	public static readonly FAQ_A_2: string = 'No, we do not';

@@ -54,6 +54,11 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	private _projectId: string;
 
 	/**
+	 * User type of project activity review page
+	 */
+	 private _userType: ProjectModel;
+
+	/**
 	 * Project model of project members page
 	 */
 	private _projectMemberModel: ProjectMemberModel;
@@ -100,7 +105,22 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 		this._breadCrumb = value;
 	}
 	
-
+	/**
+	 * Gets user type
+	 */
+	 public get userType()
+	 {
+		 return this._userType;
+	 }
+ 
+	 /**
+	  * Gets whether is administrator
+	  */
+	  get isAdministrator()
+	  {
+		  return this._userType.userTypeId === UserTypeEnum.Administrator ? true : false;
+	  }
+	
 	/**
 	 * Creates an instance of project members page.
 	 * @param injector 
@@ -176,8 +196,13 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 			.subscribe(
 				async (baseModel: BaseModel) => {
 					this.loadingService.dismiss();
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 						this._projectMemberModel = baseModel.data;
+
+						// get user type for the project
+						this._userType = this._projectMemberModel.userType;
+						
 						await this.generateBreadcrumb();
 					}
 					else{

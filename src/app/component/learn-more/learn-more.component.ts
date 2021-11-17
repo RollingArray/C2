@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-05 11:29:45 
- * Last modified  : 2021-11-05 11:29:45 
+ * Last modified  : 2021-11-17 20:12:34
  */
 
 
@@ -15,6 +15,7 @@ import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { StringKey } from 'src/app/shared/constant/string.constant';
 import { environment } from 'src/environments/environment';
+import { ApiUrls } from 'src/app/shared/constant/api-urls.constant';
 
 @Component({
 	selector: 'app-learn-more',
@@ -71,7 +72,7 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	 */
 	async faq()
 	{
-		
+		(window as any).open(ApiUrls.GITHUB, "_blank");
 	}
 
 	/**

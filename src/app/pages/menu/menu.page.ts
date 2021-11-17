@@ -31,6 +31,8 @@ import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model
 import { AvatarService } from 'src/app/shared/service/avatar.service';
 import { SwUpdate } from '@angular/service-worker';
 import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
+import { ProjectService } from 'src/app/shared/service/project.service';
+import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 
 @Component({
 	selector: "app-menu",
@@ -85,6 +87,12 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	private _hasData: boolean;
 
 	/**
+	 * Load route of menu page
+	 */
+	private _loadRoute: boolean = false;
+
+	
+	/**
 	 * Gets logged in user
 	 */
 	public get loggedInUser(): string
@@ -106,6 +114,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 */
 	public get pages(): RouteModel[]
 	{
+		this._pages.map(eachPage =>
+		{
+			eachPage.children.map(eachPageChildren =>
+			{
+				const allowMenuAccess = eachPageChildren.allowAccess.includes(this._projectModel.userTypeId as UserTypeEnum);
+				eachPageChildren.allowMenuAccess = allowMenuAccess;
+			})
+		});
 		return this._pages;
 	}
 
@@ -158,7 +174,23 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		return avatar;
 	}
 
+	/**
+	 * Gets load route
+	 */
+	get loadRoute()
+	{
+		return this._loadRoute;
+	}
 
+	get projectModel()
+	{
+		return this._projectModel;
+	}
+
+	/**
+	 * User type enum of menu page
+	 */
+	readonly userTypeEnum =  UserTypeEnum;
 	/**
 	 * Creates an instance of menu page.
 	 * @param injector 
@@ -177,12 +209,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		private loadingService: LoadingService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
-		private avatarService: AvatarService
+		private avatarService: AvatarService,
+		private projectService: ProjectService
 	)
 	{
 		super(injector);
-	}
 
+	}
+	
 	/**
 	 * Registers back button
 	 */
@@ -200,6 +234,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	async ngOnInit()
 	{
 		this.checkIfAppUpdateAvailable();
+		
 	}
 
 	// Lifecycle hook: ionViewDidEnter
@@ -217,6 +252,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		await this.registerBackButton();
 
 		await this.getSelectProject();
+
+		this.loadData();
 	}
 
 	/**
@@ -232,6 +269,39 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		window.location.reload;
 	}
 
+	/**
+	 * Loads data
+	 */
+	 async loadData() {
+		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
+
+		const passedData: ProjectModel = {
+			projectId: this._projectId,
+			userId: this._loggedInUserId,
+			rawDataKeys: ['projectDetails', 'userType']
+		};
+
+		this.projectService
+			.getProjectRaw(passedData)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(
+				(baseModel: BaseModel) => {
+					this.loadingService.dismiss();
+					if (baseModel.success) {
+						this._projectModel = {
+							projectDescription: baseModel.data.projectDetails.data.projectDescription,
+							projectId: baseModel.data.projectDetails.data.projectId,
+							projectName: baseModel.data.projectDetails.data.projectName,
+							userTypeId: baseModel.data.userType.userTypeId,
+							userTypeName: baseModel.data.userType.userTypeName
+						};
+
+						this._loadRoute = true;
+					}
+				}
+			);
+	 }
+	
 	/**
 	 * Passed project id
 	 */
@@ -294,6 +364,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.subscribe((data: string) =>
 			{
 				this._loggedInUserId = data;
+
 			});
 	}
 

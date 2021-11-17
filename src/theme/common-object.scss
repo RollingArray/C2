@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-11 18:07:30
+ * Last modified  : 2021-11-17 20:15:23
  */
 
 /* Change autocomplete styles in WebKit */
@@ -135,11 +135,13 @@ td:last-child {
   text-align: justify;
 }
 
+/*cursor*/
 .cursor-pointer
 {
   cursor: pointer;
 }
 
+/* Float */
 .float-right
 {
   float: right; 
@@ -148,4 +150,45 @@ td:last-child {
 .float-left
 {
   float: left; 
+}
+
+/* display */
+.display-block
+{
+  display: block;
+}
+
+/* Variable width */
+@for $i from 1 through 100 {
+	.width-#{$i}-p {
+		width: (100% - $i) !important;
+	}
+  }
+
+/*Variable font size */
+@for $i from 10 through 100 {
+	.font-size-#{$i}-px {
+		font-size: #{$i}px;
+	}
+}
+
+/*Variable font size */
+@for $i from 1 through 100 {
+	.margin-left-#{$i}-px {
+		margin-left: #{$i}px;
+	}
+}
+
+/*Variable margin */
+@for $i from 1 through 100 {
+	.margin-#{$i}-px {
+		margin: #{$i}px;
+	}
+}
+
+/*Variable padding */
+@for $i from 1 through 100 {
+	.padding-#{$i}-px {
+		padding: #{$i}px;
+	}
 }

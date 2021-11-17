@@ -428,6 +428,7 @@ export class StringKey {
 	public static readonly UPDATE: string = 'Update';
 	public static readonly ACTIVATE: string = 'Activate';
 	public static readonly AUTHORIZE_ME: string = 'Authorize Me';
+	public static readonly PROFILE: string = 'Profile';
 	public static readonly LOGOUT: string = 'Logout';
 	public static readonly LEARN: string = 'Learn';
 	public static readonly SIGN_UP: string = 'Sign Up';
@@ -570,6 +571,7 @@ export class StringKey {
 	public static readonly ICON_PEN: string = StringKey.ICON_BASE_PATH + "pen.svg";
 	public static readonly ICON_LOCK: string = StringKey.ICON_BASE_PATH + "lock.svg";
 	public static readonly ICON_UN_LOCK: string = StringKey.ICON_BASE_PATH + "un-lock.svg";
+	public static readonly ICON_RESTRICTED: string = StringKey.ICON_BASE_PATH + "restricted.svg";
 
 	public static readonly ICON_REFRESH: string = StringKey.ICON_BASE_PATH + "refresh.svg";
 	public static readonly ICON_INFO: string = StringKey.ICON_BASE_PATH + "info.svg";
@@ -617,6 +619,7 @@ export class StringKey {
 	public static readonly IMAGE_ICON: string = StringKey.IMAGE_BASE_PATH + "app_icon.svg";
 	public static readonly IMAGE_LANDING: string = StringKey.IMAGE_BASE_PATH + "app_landing.svg";
 	public static readonly IMAGE_AVATAR: string = StringKey.IMAGE_BASE_PATH + "app_avatar.svg";
+	public static readonly IMAGE_ICON_SMALL: string = StringKey.IMAGE_BASE_PATH + "app_icon-small.svg";
 
 	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
 	public static readonly IMAGE_GOAL_DONE: string = StringKey.IMAGE_BASE_PATH + "goal_done.svg";

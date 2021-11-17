@@ -11,6 +11,7 @@
 
 
 import { StringKey } from 'src/app/shared/constant/string.constant';
+import { UserTypeEnum } from '../enum/user-type.enum';
 import { RouteModel } from '../model/route.model';
 import { SlideModel } from '../model/slide.model';
 
@@ -25,7 +26,8 @@ export class ArrayKey {
 				{
 					title: StringKey.CREDIBILITY_BOARD,
 					url: ['credibility-board'],
-					icon: StringKey.ICON_CREDIBILITY
+					icon: StringKey.ICON_CREDIBILITY,
+					allowAccess: [UserTypeEnum.Administrator]
 				},
 			]
 		},
@@ -35,12 +37,14 @@ export class ArrayKey {
 				{
 					title: StringKey.MY_ACTIVITY,
 					url: ['my','activity'],
-					icon: StringKey.ICON_MY_ACTIVITY
+					icon: StringKey.ICON_MY_ACTIVITY,
+					allowAccess: [UserTypeEnum.Administrator, UserTypeEnum.Assignee, UserTypeEnum.Reviewer]
 				},
 				{
 					title: StringKey.MY_REVIEW,
 					url: ['my','review'],
-					icon: StringKey.ICON_MY_REVIEWS
+					icon: StringKey.ICON_MY_REVIEWS,
+					allowAccess: [UserTypeEnum.Administrator, UserTypeEnum.Reviewer, UserTypeEnum.Assignee]
 				},
 			]
 		},
@@ -50,22 +54,26 @@ export class ArrayKey {
 				{
 					title: StringKey.PROJECT_MEMBERS,
 					url: ['members'],
-					icon: StringKey.ICON_MEMBERS
+					icon: StringKey.ICON_MEMBERS,
+					allowAccess: [UserTypeEnum.Administrator, UserTypeEnum.Assignee, UserTypeEnum.Reviewer]
 				},
 				{
 					title: StringKey.PROJECT_SPRINT,
 					url: ['sprints'],
-					icon: StringKey.ICON_SPRINT
+					icon: StringKey.ICON_SPRINT,
+					allowAccess: [UserTypeEnum.Administrator]
 				},
 				{
 					title: StringKey.PROJECT_GOAL,
 					url: ['goals'],
-					icon: StringKey.ICON_GOAL
+					icon: StringKey.ICON_GOAL,
+					allowAccess: [UserTypeEnum.Administrator]
 				},
 				{
 					title: StringKey.PROJECT_ACTIVITY,
 					url: ['activities'],
-					icon: StringKey.ICON_ACTIVITY
+					icon: StringKey.ICON_ACTIVITY,
+					allowAccess: [UserTypeEnum.Administrator]
 				},
 			]
 		},

@@ -34,6 +34,9 @@
         "
         [panelIcon]="stringKey.ICON_USER"
         [panelColor]="stringKey.COLOR_LIGHT"
+        [eventIcon]="stringKey.ICON_REQUEST"
+        [isEventRequired]="allowAction"
+        (event)="openActivityCommentOptions(activity)"
     >
     </app-panel-header>
     <!-- assignee -->

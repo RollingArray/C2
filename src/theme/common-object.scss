@@ -149,3 +149,38 @@ td:last-child {
 {
   float: left; 
 }
+
+/* Variable width */
+@for $i from 1 through 100 {
+	.width-#{$i}-p {
+		width: (100% - $i) !important;
+	}
+  }
+
+/*Variable font size */
+@for $i from 10 through 100 {
+	.font-size-#{$i}-px {
+		font-size: #{$i}px;
+	}
+}
+
+/*Variable font size */
+@for $i from 1 through 100 {
+	.margin-left-#{$i}-px {
+		margin-left: #{$i}px;
+	}
+}
+
+/*Variable margin */
+@for $i from 1 through 100 {
+	.margin-#{$i}-px {
+		margin: #{$i}px;
+	}
+}
+
+/*Variable padding */
+@for $i from 1 through 100 {
+	.padding-#{$i}-px {
+		padding: #{$i}px;
+	}
+}

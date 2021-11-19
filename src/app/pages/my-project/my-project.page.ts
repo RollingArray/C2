@@ -27,6 +27,9 @@ import { UserProfileComponent } from 'src/app/component/user-profile/user-profil
 import { AvatarService } from 'src/app/shared/service/avatar.service';
 import { UserModel } from 'src/app/shared/model/user.model';
 import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
+import { DataCommunicationService } from 'src/app/shared/service/data-communication.service';
+import { DataCommunicationModel } from 'src/app/shared/model/data-communication.model';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
 	selector: "app-my-project",
@@ -143,7 +146,9 @@ export class MyProjectPage extends BaseViewComponent
 		public localStorageService: LocalStorageService,
 		public commonCrudService: CommonCrudService<ProjectModel>,
 		public toolTipService: ToolTipService,
-		private avatarService: AvatarService
+		private avatarService: AvatarService,
+		private dataCommunicationService: DataCommunicationService,
+		private userService: UserService
 	)
 	{
 		super(injector);
@@ -187,7 +192,7 @@ export class MyProjectPage extends BaseViewComponent
 	 */
 	ionViewDidEnter()
 	{
-		//
+		this.ifInvalidSession();
 	}
 
 	/**
@@ -198,6 +203,24 @@ export class MyProjectPage extends BaseViewComponent
 		super.ngOnDestroy();
 	}
 
+	/**
+	 * invalid session
+	 */
+	 async ifInvalidSession()
+	 {
+		 this.dataCommunicationService
+			 .getMessage()
+			 .pipe(takeUntil(this.unsubscribe))
+			 .subscribe((dataCommunicationModel: DataCommunicationModel) =>
+			 {
+				 //if the api response comes with invalid session, prompt user to re-sign in
+				if (dataCommunicationModel.message === "INVALID_SESSION")
+				{
+					this.userService.logout();
+				}
+			 });
+	 }
+	
 	/**
 	 * Gets current user
 	 */

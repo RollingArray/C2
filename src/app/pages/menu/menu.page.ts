@@ -226,7 +226,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async () =>
 			{
-				await this.logout();
+				await this.userService.logout();
 			});
 	}
 
@@ -413,109 +413,11 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 				//if the api response comes with invalid session, prompt user to re-sign in
 				if (dataCommunicationModel.message === "INVALID_SESSION")
 				{
-					this.promptUserToLoginInApp();
+					this.userService.logout();
 				}
 			});
 	}
 
-
-	/**
-	 * Prompts user to login in app
-	 */
-	async promptUserToLoginInApp()
-	{
-		const alert = await this.alertController.create({
-			header: `${StringKey.APP_NAME}`,
-			message: `${StringKey.TOKEN_EXPIRE}`,
-			inputs: [
-				{
-					name: "userPassword",
-					placeholder: `${StringKey.FORM_PLACE_PASSWORD}`,
-				},
-			],
-			buttons: [
-				{
-					text: `${StringKey.AUTHORIZE_ME}`,
-					handler: async (data) =>
-					{
-						this._userModel = {
-							userEmail: await this.activeUserEmail(),
-							userPassword: data.userPassword,
-							userLoginType: "IN_APP_LOGIN",
-							userPlatform: "iOS",
-						};
-
-						await this.inAppLogin();
-					},
-				},
-			],
-		});
-		await alert.present();
-	}
-
-	/**
-	 * Determines whether app login in
-	 */
-	async inAppLogin()
-	{
-		await this.loadingService.present(
-			`${StringKey.API_REQUEST_MESSAGE_1}`
-		);
-		this.userService
-			.signIn(this._userModel)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				async (baseModel: BaseModel) =>
-				{
-					//dismiss loader
-					await this.loadingService.dismiss();
-
-					// build ser model
-					this._userModel = {
-						userId: baseModel.userId,
-						token: baseModel.token,
-					};
-
-					// if success
-					if (baseModel.success)
-					{
-						//update token
-						await this.localStorageService
-							.setActiveUser(this._userModel)
-							.pipe(takeUntil(this.unsubscribe))
-							.subscribe(async () =>
-							{
-								await this.presentInAppLoginAlert();
-							});
-					}
-				},
-				(error) =>
-				{
-					this.loadingService.dismiss();
-				}
-			);
-	}
-
-	/**
-	 * Presents in app login alert
-	 */
-	async presentInAppLoginAlert()
-	{
-		const alert = await this.alertController.create({
-			header: `${StringKey.APP_NAME}`,
-			message: `${StringKey.IN_APP_LOGIN_SUCCESS}`,
-			buttons: [
-				{
-					text: `${StringKey.SURE}`,
-					handler: () =>
-					{
-						// no handler required
-					},
-				},
-			],
-		});
-		await alert.present();
-	}
 
 	/**
 	 * Presents logout alert confirm
@@ -537,7 +439,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 					{
 						//close the side menu and log out
 						this.menuController.close();
-						await this.logout();
+						await this.userService.logout();
 					},
 				},
 			],
@@ -571,31 +473,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		});
 
 		return await modal.present();
-	}
-
-	/**
-	 * Logouts menu page
-	 */
-	async logout()
-	{
-		await this.loadingService.present(
-			`${StringKey.API_REQUEST_MESSAGE_5}`
-		);
-		await this.localStorageService
-			.removeActiveUser()
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (data: boolean) =>
-			{
-				if (data)
-				{
-					await this.loadingService
-						.dismiss()
-						.then(() => window.location.reload());
-				} else
-				{
-					await this.loadingService.dismiss();
-				}
-			});
 	}
 
 	/**

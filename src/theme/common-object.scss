@@ -172,10 +172,17 @@ td:last-child {
 	}
 }
 
-/*Variable font size */
+/*Variable margin left */
 @for $i from 1 through 100 {
 	.margin-left-#{$i}-px {
 		margin-left: #{$i}px;
+	}
+}
+
+/*Variable margin top */
+@for $i from 1 through 100 {
+	.margin-top-#{$i}-px {
+		margin-top: #{$i}px;
 	}
 }
 

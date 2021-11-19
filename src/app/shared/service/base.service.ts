@@ -20,6 +20,7 @@ import { BaseModel } from "../model/base.model";
 import { UserModel } from "../model/user.model";
 import { DataCommunicationService } from "./data-communication.service";
 import { LocalStorageService } from "./local-storage.service";
+import { UserService } from "./user.service";
 
 @Injectable({
 	providedIn: "root",
@@ -49,9 +50,10 @@ export abstract class BaseService<T extends BaseModel> {
 	 */
 	constructor(
 		private httpClient: HttpClient,
-		private localStorageService: LocalStorageService,
+		public localStorageService: LocalStorageService,
 		public alertController: AlertController,
 		private dataCommunicationService: DataCommunicationService
+
 	) { }
 
 	/**
@@ -120,11 +122,40 @@ export abstract class BaseService<T extends BaseModel> {
 					}
 				} else
 				{
+					// logout is invalid session
 					if (response.error.errorCode === "INVALID_SESSION")
 					{
-						this.dataCommunicationService.sendMessage(
-							response.error.errorCode
-						);
+						this.alertController
+							.create({
+								header: this.stringKey.APP_NAME,
+								message : response.error.message,
+								buttons: [
+									
+									{
+										text: this.stringKey.CANCEL,
+										handler: (_) =>
+										{ 
+											//
+										},
+									},
+									{
+										text: this.stringKey.SIGN_IN,
+										handler: (_) =>
+										{ 
+											// send a message to any component listening towards INVALID_SESSION error
+											this.dataCommunicationService.sendMessage(
+												response.error.errorCode
+											);
+										},
+									},
+								],
+							})
+							.then((response) =>
+							{
+								response.present();
+							});
+										
+						
 					} else
 					{
 						this.errorAlert(response.error.message);

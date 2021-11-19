@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-05 11:29:45 
- * Last modified  : 2021-11-17 20:12:34
+ * Last modified  : 2021-11-19 13:42:37
  */
 
 
@@ -42,6 +42,11 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	 * App version of learn more component
 	 */
 	readonly appVersion = environment.version;
+
+	/**
+	 * App environment of learn more component
+	 */
+	readonly appEnvironment = environment.level ? environment.level : '';
 
 	/**
 	 * Creates an instance of learn more component.

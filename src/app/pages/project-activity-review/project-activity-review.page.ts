@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:30:56 
- * Last modified  : 2021-11-15 21:31:31
+ * Last modified  : 2021-11-19 20:11:45
  */
 
 
@@ -28,6 +28,8 @@ import { ActivityMeasurementTypeEnum } from 'src/app/shared/enum/activity-measur
 import { ActivityReviewerModel } from 'src/app/shared/model/activity-reviewer.model';
 import { CreateEditProjectActivityComponent } from 'src/app/component/create-edit-project-activity/create-edit-project-activity.component';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
+import { LockTypeEnum } from 'src/app/shared/enum/lock-type.enum';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: "project-users",
@@ -182,6 +184,8 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 	 {
 		 return this._userType.userTypeId === UserTypeEnum.Administrator ? true : false;
 	 }
+	
+	readonly lockTypeEnum = LockTypeEnum;
 
 	/**
 	 * Creates an instance of project activity review page.
@@ -328,6 +332,56 @@ export class ProjectActivityReviewPage extends BaseViewComponent implements OnIn
 		return await modal.present();
 	}
 	
-	
+	/**
+	 * Deletes reviewer
+	 * @param selectedReviewer 
+	 */
+	 async lockUnlockActivity(selectedActivity: ActivityModel, lockTypeStatus: LockTypeEnum) {
+		
+		// start loaded
+		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
+
+		// build model
+		const passedData: ActivityModel = {
+			projectId: selectedActivity.projectId,
+			userId: this._loggedInUser,
+			activityId: selectedActivity.activityId
+		};
+
+		 let projectActivityService : Observable<BaseModel>;
+
+		 if (lockTypeStatus === LockTypeEnum.Lock)
+		 {
+			projectActivityService = this.projectActivityService.projectActivityLock(passedData);
+		 }
+		 else
+		 {
+			projectActivityService = this.projectActivityService.projectActivityUnlock(passedData);
+		 }
+		 
+		// call api
+		projectActivityService
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(
+				async (baseModel: BaseModel) => {
+
+					// end loaded
+					await this.loadingService.dismiss();
+
+					// build
+					if (baseModel.success) {
+
+						// show toast
+						await this.presentToast(baseModel.message);
+
+						//load data
+						this.loadData();
+					}
+				},
+				async (error) => {
+					await this.loadingService.dismiss();
+				}
+			);
+	 }
 }
 

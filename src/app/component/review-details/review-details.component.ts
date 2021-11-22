@@ -7,13 +7,13 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:25:05 
- * Last modified  : 2021-11-15 21:25:20
+ * Last modified  : 2021-11-19 19:33:08
  */
 
 
 import { Component, OnInit, Input, Injector } from "@angular/core";
 import { ActivityMeasurementTypeEnum } from "src/app/shared/enum/activity-measurement-type.enum";
-import { ReviewLockTypeEnum } from "src/app/shared/enum/review-lock-type.enum";
+import { LockTypeEnum } from "src/app/shared/enum/lock-type.enum";
 import { ActivityReviewerModel } from "src/app/shared/model/activity-reviewer.model";
 import { BaseViewComponent } from "../base/base-view.component";
 
@@ -32,7 +32,7 @@ export class ReviewDetailsComponent extends BaseViewComponent implements OnInit 
 	/**
 	 * Review lock type enum of reviewer review component
 	 */
-	readonly reviewLockTypeEnum = ReviewLockTypeEnum;
+	readonly LockTypeEnum = LockTypeEnum;
 	
 	/**
 	 * Creates an instance of review details component.

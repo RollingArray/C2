@@ -134,8 +134,6 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 		return this._projectSprintModel;
 	}
 
-	
-
 	// MyProjectPage constructor
 	constructor(
 		injector: Injector,
@@ -166,7 +164,7 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 	ngOnInit() {
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
-		this.errorMessage = this.stringKey.NO_DATA_SPRINT;
+		this.errorMessage = this.stringKey.HOLD_TIGHT;
 	}
 
 	/**

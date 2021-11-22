@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-08-09 20:29:05 
- * Last modified  : 2021-08-09 20:29:23
+ * Last modified  : 2021-11-22 20:26:43
  */
 
 
@@ -158,7 +158,7 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 	ngOnInit() {
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
-		this.errorMessage = this.stringKey.NO_DATA_GOAL;
+		this.errorMessage = this.stringKey.HOLD_TIGHT;
 	}
 
 	/**

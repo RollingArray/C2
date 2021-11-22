@@ -7,11 +7,10 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-11-15 21:34:14 
+ * Last modified  : 2021-11-22 20:01:13
  */
 
 
-import { AlertService } from 'src/app/shared/service/alert.service';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
@@ -29,6 +28,8 @@ import { CreateEditProjectUserComponent } from 'src/app/component/create-edit-pr
 import { ProjectMemberService } from 'src/app/shared/service/project-member.service';
 import { UserModel } from 'src/app/shared/model/user.model';
 import { ProjectMemberModel } from 'src/app/shared/model/project-member.model';
+import { CommonCrudService } from 'src/app/shared/service/common-crud.service';
+import { CrudComponentEnum } from 'src/app/shared/enum/crud-component.enum';
 
 
 @Component({
@@ -62,6 +63,11 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	 * Project model of project members page
 	 */
 	private _projectMemberModel: ProjectMemberModel;
+
+	/**
+	 * Project name of project members page
+	 */
+	private _projectName = '';
 
 	/**
 	 * Project model of project members page
@@ -122,6 +128,11 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	  }
 	
 	/**
+	 * Crud component enum of project members page
+	 */
+	readonly crudComponentEnum = CrudComponentEnum;
+	
+	/**
 	 * Creates an instance of project members page.
 	 * @param injector 
 	 * @param localStorageService 
@@ -136,7 +147,7 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 		private projectMemberService: ProjectMemberService,
 		private loadingService: LoadingService,
 		private platformHelper: PlatformHelper,
-		private alertService: AlertService
+		private commonCrudService: CommonCrudService<ProjectModel>
 	) {
 		super(injector);
 	}
@@ -164,8 +175,8 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	 * Generates breadcrumb
 	 */
 	async generateBreadcrumb(){
-		let projectName = this._projectMemberModel.projectDetails?.projectName;
-		this._breadCrumb = [projectName, this.stringKey.PROJECT_MEMBER];
+		this._projectName = this._projectMemberModel.projectDetails?.projectName;
+		this._breadCrumb = [this._projectName, this.stringKey.PROJECT_MEMBER];
 	}
 
 	/**
@@ -327,4 +338,23 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 
 		await alertController.present();
 	}
+
+	/**
+	 * Next step
+	 * @param projectModel 
+	 */
+	 async nextStep(crudComponentEnum: CrudComponentEnum)
+	 {
+		switch (crudComponentEnum) {
+			case CrudComponentEnum.OPEN_ACTIVITY_ASSIGNEE:
+				this.commonCrudService.openNextStep(CrudComponentEnum.OPEN_ACTIVITY_ASSIGNEE, this._projectName);
+				break;
+			case CrudComponentEnum.OPEN_ACTIVITY_REVIEWER:
+				this.commonCrudService.openNextStep(CrudComponentEnum.OPEN_ACTIVITY_REVIEWER, this._projectName);
+				break;
+			default:
+				break;
+		}
+		
+	 }
 }

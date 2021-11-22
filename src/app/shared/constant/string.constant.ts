@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-19 22:06:50
+ * Last modified  : 2021-11-22 19:58:17
  */
 
 
@@ -146,14 +146,16 @@ export class StringKey {
 	public static readonly DELETE_DETAILS: string = 'Delete Details';
 	public static readonly VIEW_DETAILS: string = 'View Details';
 	public static readonly PROJECT_ADMIN: string = 'Project Administrator';
-	public static readonly PROJECT_ADMIN_INFO: string = 'Project administrator(s) are administrate by the project to run smoothly';
+	public static readonly PROJECT_ADMIN_INFO: string = 'A project administrator is a professional who organizes the necessary team members and specializes in facilitating, reporting and analyzing projects';
 	public static readonly CREDIBILITY_BOARD: string = 'Credibility Board';
 	public static readonly CREDIBILITY_INDEX: string = 'Credibility Index';
+	public static readonly PROJECT_TEAM: string = 'Project Team';
+	public static readonly PROJECT_TEAM_INFO: string = 'The project team includes the project manager and the group of individuals who work together on a project to achieve its objectives';
 	public static readonly PROJECT_MEMBERS: string = 'Project Member(s)';
 	public static readonly PROJECT_MEMBER: string = 'Project Assignee(s)';
 	public static readonly PROJECT_REVIEWER: string = 'Project Reviewer(s)';
 	public static readonly PROJECT_DETAILS: string = 'Project Detail(s)';
-	public static readonly PROJECT_MEMBER_INFO: string = 'Project Assignees are owner of a specific activity performed to achieve a Goal applicable to a project';
+	public static readonly PROJECT_MEMBER_INFO: string = 'Project Assignees are the owner of a specific activity performed to achieve a Goal applicable to a project';
 	public static readonly PROJECT_REVIEWER_INFO: string = 'Project Reviewers reviews a specific activity to accomplish a goal';
 	public static readonly PROJECT_SPRINT: string = 'Project Sprint(s)';
 	public static readonly PROJECT_SPRINT_INFO: string = 'Sprint is a duration. Sprint needs a suitable name, start and end date';
@@ -411,7 +413,10 @@ export class StringKey {
 	public static readonly NS_SPRINT_3: string = 'As a reviewer, post Review on the <b>Activity</b>';
 	public static readonly NS_SPRINT_4: string =  'View assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
 
-
+	public static readonly NS_ACTIVITY_ASSIGNEE_1: string =  'Create New <b>Activities</b> to achieve a <b>Goal</b> in a <b>Sprint</b> and add <b>Assignee</b> to it';
+	
+	public static readonly NS_ACTIVITY_REVIEWER_1: string =  'Create New <b>Activities</b> to achieve a <b>Goal</b> in a <b>Sprint</b> and add <b>Reviewer</b> to it';
+	
 	//tool tip
 	public static readonly TOOL_TIP_IS_A: string = 'is a';
 	public static readonly TOOL_TIP_IS_AN: string = 'is an';
@@ -626,6 +631,8 @@ export class StringKey {
 	public static readonly IMAGE_PROJECT_DONE: string = StringKey.IMAGE_BASE_PATH + "project_done.svg";
 	public static readonly IMAGE_GOAL_DONE: string = StringKey.IMAGE_BASE_PATH + "goal_done.svg";
 	public static readonly IMAGE_SPRINT_DONE: string = StringKey.IMAGE_BASE_PATH + "sprint_done.svg";
+	public static readonly IMAGE_MEMBER_DONE: string = StringKey.IMAGE_BASE_PATH + "member_done.svg";
+	public static readonly IMAGE_REVIEWER_DONE: string = StringKey.IMAGE_BASE_PATH + "reviewer_done.svg";
 	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
 	public static readonly IMAGE_PASSWORD_LESS: string = StringKey.IMAGE_BASE_PATH + "password_less.svg";
 	

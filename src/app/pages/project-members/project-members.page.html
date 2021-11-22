@@ -8,13 +8,13 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-11-15 21:35:53
+ * Last modified  : 2021-11-22 20:01:57
  */
  -->
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
     <ion-toolbar color="primary">
-        <ion-title> {{stringKey.PROJECT_MEMBER}} </ion-title>
+        <ion-title> {{stringKey.PROJECT_TEAM}} </ion-title>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -29,8 +29,8 @@
 <ion-content #scrollArea scrollEvents="true">
     <!-- page title -->
     <app-page-info-title
-        [title]="stringKey.PROJECT_MEMBER"
-        [info]="stringKey.PROJECT_MEMBER_INFO"
+        [title]="stringKey.PROJECT_TEAM"
+        [info]="stringKey.PROJECT_TEAM_INFO"
     >
     </app-page-info-title>
     <!-- page title -->
@@ -121,8 +121,9 @@
             [panelTitle]="stringKey.PROJECT_MEMBER"
             [panelIcon]="stringKey.ICON_USER"
             [panelColor]="stringKey.COLOR_MEDIUM"
-            [eventIcon]="stringKey.ICON_MORE"
-            [isEventRequired]="false"
+            [eventIcon]="stringKey.ICON_HELP"
+            [isEventRequired]="true"
+            (event)="nextStep(crudComponentEnum.OPEN_ACTIVITY_ASSIGNEE)"
         >
         </app-panel-header>
         <!-- panel header -->
@@ -183,8 +184,9 @@
             [panelTitle]="stringKey.PROJECT_REVIEWER"
             [panelIcon]="stringKey.ICON_REVIEWER"
             [panelColor]="stringKey.COLOR_MEDIUM"
-            [eventIcon]="stringKey.ICON_MORE"
-            [isEventRequired]="false"
+            [eventIcon]="stringKey.ICON_HELP"
+            [isEventRequired]="true"
+            (event)="nextStep(crudComponentEnum.OPEN_ACTIVITY_REVIEWER)"
         >
         </app-panel-header>
         <!-- panel header -->

@@ -75,7 +75,7 @@
                 [isEventRequired]="true"
                 (event)="openUserOptions(user)"
             ></app-panel-header>
-            <app-custom-fields [description]="user?.userEmail">
+            <app-custom-fields [email]="user?.userEmail">
             </app-custom-fields>
         </ion-card>
     </ng-container>

@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-11-22 20:01:13
+ * Last modified  : 2021-11-22 20:18:15
  */
 
 
@@ -83,6 +83,12 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	 * Determines whether app is
 	 */
 	private _isApp = true;
+
+	/**
+	 * Determines whether data has
+	 */
+	private _hasData: boolean = false;
+	
 	/**
 	 * Gets project member model
 	 */
@@ -126,6 +132,21 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 	  {
 		  return this._userType.userTypeId === UserTypeEnum.Administrator ? true : false;
 	  }
+	
+	
+	/**
+	 * Sets whether has data
+	 */
+	 public set hasData(value: boolean) {
+		this._hasData = value;
+	}
+
+	/**
+	 * Gets whether has data
+	 */
+	public get hasData(): boolean {
+		return this._hasData;
+	}
 	
 	/**
 	 * Crud component enum of project members page
@@ -211,6 +232,9 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 					{
 						this._projectMemberModel = baseModel.data;
 
+						// removed no data from ui
+						this._hasData = true;
+						
 						// get user type for the project
 						this._userType = this._projectMemberModel.userType;
 						
@@ -341,9 +365,9 @@ export class ProjectMembersPage extends BaseViewComponent implements OnInit, OnD
 
 	/**
 	 * Next step
-	 * @param projectModel 
+	 * @param crudComponentEnum 
 	 */
-	 async nextStep(crudComponentEnum: CrudComponentEnum)
+	async nextStep(crudComponentEnum: CrudComponentEnum)
 	 {
 		switch (crudComponentEnum) {
 			case CrudComponentEnum.OPEN_ACTIVITY_ASSIGNEE:

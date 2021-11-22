@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:15:29 
- * Last modified  : 2021-11-12 10:15:50
+ * Last modified  : 2021-11-22 19:58:24
  */
 
 
@@ -52,7 +52,7 @@ export class ArrayKey {
 			title: StringKey.SELECTED_PROJECT_SETTINGS,
 			children: [
 				{
-					title: StringKey.PROJECT_MEMBERS,
+					title: StringKey.PROJECT_TEAM,
 					url: ['members'],
 					icon: StringKey.ICON_MEMBERS,
 					allowAccess: [UserTypeEnum.Administrator, UserTypeEnum.Assignee, UserTypeEnum.Reviewer]
@@ -245,6 +245,26 @@ export class ArrayKey {
 				},
 				{
 					title: StringKey.NS_SPRINT_4,
+					url: ['activities'],
+					icon: StringKey.ICON_REVIEWER
+				},
+			]
+		},
+		openActivityAssignee: {
+			image: StringKey.IMAGE_MEMBER_DONE,
+			steps: [
+				{
+					title: StringKey.NS_ACTIVITY_ASSIGNEE_1,
+					url: ['activities'],
+					icon: StringKey.ICON_ASSIGNEE
+				},
+			]
+		},
+		openActivityReview: {
+			image: StringKey.IMAGE_REVIEWER_DONE,
+			steps: [
+				{
+					title: StringKey.NS_ACTIVITY_REVIEWER_1,
 					url: ['activities'],
 					icon: StringKey.ICON_REVIEWER
 				},

@@ -12,6 +12,6 @@
 export const environment = {
   production: true,
   apiEndpoint: 'https://c2.dev.api.rollingarray.co.in/',
-  version: "1.25.79.254",
+  version: "1.25.80.255",
   level : 'Dev'
 };

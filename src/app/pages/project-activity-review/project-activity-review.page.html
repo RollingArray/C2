@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:30:56 
- * Last modified  : 2021-11-15 21:32:06
+ * Last modified  : 2021-11-19 21:31:52
  */
  -->
 <!-- header -->
@@ -60,7 +60,20 @@
             >
             </app-panel-header>
             <app-panel-header
-				*ngIf="isAdministrator"
+                *ngIf="
+                    isAdministrator &&
+                    activity.activityLocked === lockTypeEnum.Lock
+                "
+                [panelTitle]="activity.activityName"
+                [panelIcon]="stringKey.ICON_ACTIVITY"
+                [panelColor]="stringKey.COLOR_SECONDARY"
+            >
+            </app-panel-header>
+            <app-panel-header
+                *ngIf="
+                    isAdministrator &&
+                    activity.activityLocked === lockTypeEnum.Unlock
+                "
                 [panelTitle]="activity.activityName"
                 [panelIcon]="stringKey.ICON_ACTIVITY"
                 [panelColor]="stringKey.COLOR_SECONDARY"
@@ -69,6 +82,33 @@
                 (click)="editProjectActivity(activity)"
             >
             </app-panel-header>
+            <app-panel-header
+                *ngIf="
+                    isAdministrator &&
+                    activity.activityLocked === lockTypeEnum.Unlock
+                "
+                [panelTitle]="stringKey.ACTIVITY_LOCK"
+                [panelIcon]="stringKey.ICON_UN_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+                [eventIcon]="stringKey.ICON_LOCK"
+                [isEventRequired]="true"
+                (click)="lockUnlockActivity(activity, lockTypeEnum.Lock)"
+            >
+            </app-panel-header>
+            <app-panel-header
+                *ngIf="
+                    isAdministrator &&
+                    activity.activityLocked === lockTypeEnum.Lock
+                "
+                [panelTitle]="stringKey.ACTIVITY_LOCK"
+                [panelIcon]="stringKey.ICON_LOCK"
+                [panelColor]="stringKey.COLOR_INFO"
+                [eventIcon]="stringKey.ICON_UN_LOCK"
+                [isEventRequired]="true"
+                (click)="lockUnlockActivity(activity, lockTypeEnum.Unlock)"
+            >
+            </app-panel-header>
+
         </ion-card>
 
         <!-- title -->

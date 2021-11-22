@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:26:30 
- * Last modified  : 2021-11-15 21:27:22
+ * Last modified  : 2021-11-19 19:32:35
  */
  -->
 <ion-card>
@@ -79,7 +79,7 @@
             <app-panel-header
                 *ngIf="
                     isAdministrator &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                    reviewer.reviewLock === lockTypeEnum.Lock
                 "
                 [panelTitle]="stringKey.REVIEW_LOCK"
                 [panelIcon]="stringKey.ICON_LOCK"
@@ -92,7 +92,7 @@
             <app-panel-header
                 *ngIf="
                     isAdministrator &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                    reviewer.reviewLock === lockTypeEnum.Unlock
                 "
                 [panelTitle]="stringKey.REVIEW_UN_LOCK"
                 [panelIcon]="stringKey.ICON_UN_LOCK"
@@ -108,7 +108,7 @@
             <app-panel-header
                 *ngIf="
                     isReviewer &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                    reviewer.reviewLock === lockTypeEnum.Lock
                 "
                 [panelTitle]="stringKey.REVIEW_LOCK"
                 [panelIcon]="stringKey.ICON_LOCK"
@@ -118,7 +118,7 @@
             <app-panel-header
                 *ngIf="
                     isReviewer &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                    reviewer.reviewLock === lockTypeEnum.Unlock
                 "
                 [panelTitle]="stringKey.REVIEW_UN_LOCK"
                 [panelIcon]="stringKey.ICON_UN_LOCK"
@@ -131,7 +131,7 @@
             <app-panel-header
                 *ngIf="
                     isAssignee &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Lock
+                    reviewer.reviewLock === lockTypeEnum.Lock
                 "
                 [panelTitle]="stringKey.REVIEW_ASSIGNEE_LOCK"
                 [panelIcon]="stringKey.ICON_LOCK"
@@ -148,7 +148,7 @@
             <app-review-details
                 *ngIf="
                     isAssignee &&
-                    reviewer.reviewLock === reviewLockTypeEnum.Unlock
+                    reviewer.reviewLock === lockTypeEnum.Unlock
                 "
                 [reviewer]="reviewer"
             ></app-review-details>

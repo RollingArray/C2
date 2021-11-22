@@ -7,14 +7,14 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:26:30 
- * Last modified  : 2021-11-15 21:26:45
+ * Last modified  : 2021-11-19 20:07:35
  */
 
 import { Component, OnInit, Input, Injector, EventEmitter, Output } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { takeUntil } from "rxjs/operators";
 import { OperationsEnum } from "src/app/shared/enum/operations.enum";
-import { ReviewLockTypeEnum } from "src/app/shared/enum/review-lock-type.enum";
+import { LockTypeEnum } from "src/app/shared/enum/lock-type.enum";
 import { UserTypeEnum } from "src/app/shared/enum/user-type.enum";
 import { ActivityReviewerModel } from "src/app/shared/model/activity-reviewer.model";
 import { ActivityModel } from "src/app/shared/model/activity.model";
@@ -116,7 +116,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	/**
 	 * Review lock type enum of reviewer review component
 	 */
-	readonly reviewLockTypeEnum = ReviewLockTypeEnum;
+	readonly lockTypeEnum = LockTypeEnum;
 
 	/**
 	 * Creates an instance of assignee self review component.
@@ -230,7 +230,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 		if(this._loggedInUser != selectedReviewer.reviewerUserId){
 			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_REVIEWER)
 		}
-		else if (selectedReviewer.reviewLock === this.reviewLockTypeEnum.Unlock)
+		else if (selectedReviewer.reviewLock === this.lockTypeEnum.Unlock)
 		{
 			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_UNLOCK_ACTIVITY)
 		}
@@ -362,7 +362,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 				}, {
 					text: this.stringKey.YES,
 					handler: async () => {
-						await this.lockUnlockReview(selectedReviewer, ReviewLockTypeEnum.Lock);
+						await this.lockUnlockReview(selectedReviewer, LockTypeEnum.Lock);
 					}
 				}
 			]
@@ -389,7 +389,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 				}, {
 					text: this.stringKey.YES,
 					handler: async () => {
-						await this.lockUnlockReview(selectedReviewer, ReviewLockTypeEnum.Unlock);
+						await this.lockUnlockReview(selectedReviewer, LockTypeEnum.Unlock);
 					}
 				}
 			]
@@ -402,7 +402,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 * Deletes reviewer
 	 * @param selectedReviewer 
 	 */
-	 async lockUnlockReview(selectedReviewer: ActivityReviewerModel, reviewLockTypeStatus: ReviewLockTypeEnum) {
+	 async lockUnlockReview(selectedReviewer: ActivityReviewerModel, reviewLockTypeStatus: LockTypeEnum) {
 		
 		// start loaded
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
@@ -417,7 +417,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 		 console.log(passedData);
 		 let projectActivityReviewerService : Observable<BaseModel>;
 
-		 if (reviewLockTypeStatus === ReviewLockTypeEnum.Lock)
+		 if (reviewLockTypeStatus === LockTypeEnum.Lock)
 		 {
 			projectActivityReviewerService = this.projectActivityReviewerService.projectActivityReviewLock(passedData);
 		 }

@@ -8,19 +8,30 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:21:25 
- * Last modified  : 2021-11-15 21:22:31
+ * Last modified  : 2021-11-19 18:36:44
  */
  -->
 <ion-card>
     <app-panel-header
+        *ngIf="!isAssignee"
         [panelTitle]="stringKey.ASSIGNEE_SELF_REVIEW"
         [panelIcon]="stringKey.ICON_SELF_REVIEW"
         [panelColor]="stringKey.COLOR_MEDIUM"
-        [eventIcon]="stringKey.ICON_MORE"
+    >
+    </app-panel-header>
+
+    <app-panel-header
+        *ngIf="isAssignee"
+        [panelTitle]="stringKey.ASSIGNEE_SELF_REVIEW"
+        [panelIcon]="stringKey.ICON_SELF_REVIEW"
+        [panelColor]="stringKey.COLOR_MEDIUM"
+        [eventIcon]="stringKey.ICON_EDIT"
         [isEventRequired]="allowAction"
         (event)="openActivityCommentOptions(activity)"
     >
     </app-panel-header>
+
+    
 
     <!-- assignee -->
     <app-panel-header
@@ -34,9 +45,6 @@
         "
         [panelIcon]="stringKey.ICON_USER"
         [panelColor]="stringKey.COLOR_LIGHT"
-        [eventIcon]="stringKey.ICON_REQUEST"
-        [isEventRequired]="allowAction"
-        (event)="openActivityCommentOptions(activity)"
     >
     </app-panel-header>
     <!-- assignee -->

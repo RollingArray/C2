@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-11-17 20:12:23
+ * Last modified  : 2021-11-19 20:04:04
  */
 
 import { environment } from "../../../environments/environment";
@@ -53,6 +53,8 @@ export class ApiUrls {
 	public static readonly PROJECT_MY_REVIEWS: string = ApiUrls.API_BASE_PATH + "/project/my/reviews/";
 	public static readonly PROJECT_ACTIVITY_DETAILS: string = ApiUrls.API_BASE_PATH + "/activity/details/";
 	public static readonly PROJECT_ACTIVITY_CRUD: string = ApiUrls.API_BASE_PATH + "/goal/activity/crud/";
+	public static readonly PROJECT_ACTIVITY_UNLOCK: string = ApiUrls.API_BASE_PATH + "/activity/unlock/";
+	public static readonly PROJECT_ACTIVITY_LOCK: string = ApiUrls.API_BASE_PATH + "/activity/lock/";
 
 	public static readonly PROJECT_COMMENT_CRUD: string = ApiUrls.API_BASE_PATH + "/activity/comment/crud/";
 

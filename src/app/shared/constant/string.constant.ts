@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-17 20:38:29
+ * Last modified  : 2021-11-19 22:06:50
  */
 
 
@@ -124,6 +124,8 @@ export class StringKey {
 	public static readonly CHOOSE_REVIEWER: string = 'Choose Reviewer';
 	public static readonly REVIEW_LOCK: string = 'This review is only visible to Project Administrator and same reviewer';
 	public static readonly REVIEW_UN_LOCK: string = 'This review is visible to everyone';
+	public static readonly ACTIVITY_LOCK: string = 'This activity is locked and not allowed for any modification and assignee comments';
+	public static readonly ACTIVITY_UN_LOCK: string = 'This activity is open for any modification';
 	public static readonly REVIEW_ASSIGNEE_LOCK: string = 'This review is locked, approach Project Administrator to unlock the review';
 
 	public static readonly PASS_LESS_AUTH: string = 'Password-less Authentication';
@@ -176,10 +178,10 @@ export class StringKey {
 	public static readonly UPDATE_ACTIVITY: string = 'Update Activity';
 	public static readonly PROJECT_FILTER_INFO: string = 'Choose relevant Sprint, Goal and Assignee from the list of available details';
 	
-	public static readonly MEASUREMENT_TYPE_NUM: string = 'NUM';
-	public static readonly MEASUREMENT_TYPE_BOOL: string = 'BOOL';
-	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the activity measures based on the following numeric scale';
-	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the activity measures based on either fully achieved or none';
+	public static readonly MEASUREMENT_TYPE_NUM: string = 'Numeric Scale [NUM]';
+	public static readonly MEASUREMENT_TYPE_BOOL: string = 'Boolean Scale [BOOL]';
+	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the activity measures based on the numeric scale. Example: 10% - 89%, $12 - $100, 10 Hour(s) - 30 Hour(s)';
+	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the activity measures based on either fully achieved or none.  Example: Yes / No, True / False, Done / Not Done';
 	public static readonly FORM_INFO_ACTIVITY: string = 'What is the activity to perform to achieve the goal';
 	public static readonly FORM_INFO_ACTIVITY_WEIGHT: string = 'Provide a weight to the activity, maximum is 100 %';
 	public static readonly FORM_INFO_ACTIVITY_RESULT_TYPE: string = 'Provide in what context the result of the activity will be judged';
@@ -302,17 +304,17 @@ export class StringKey {
 	public static readonly FORM_INFO_CHOOSE_AVATAR: string = 'Choose your avatar';
 	public static readonly FORM_INFO_PROFILE_SECURITY_DETAILS: string = 'You answer to the security question, we will use this to identify you if you forget your password';
 
-	public static readonly FORM_INFO_CRITERIA_POOR_VALUE: string = 'Will be considered poor if less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_VALUE: string = 'Will be considered improvement if less than mentioned value but more than poor';
-	public static readonly FORM_INFO_CRITERIA_EXPECTATION_VALUE: string = 'Will be considered expectation if less than mentioned value but more than improvement';
-	public static readonly FORM_INFO_CRITERIA_EXCEED_VALUE: string = 'Will be considered exceed if less than mentioned value but more than expectation';
-	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_VALUE: string = 'Will be considered outstanding if less than mentioned value but more than exceed';
+	public static readonly FORM_INFO_CRITERIA_POOR_VALUE: string = 'Will be considered <b>poor</b> if less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_VALUE: string = 'Will be considered <b>improvement</b> if less than mentioned value but more than poor';
+	public static readonly FORM_INFO_CRITERIA_EXPECTATION_VALUE: string = 'Will be considered <b>expectation</b> if less than mentioned value but more than improvement';
+	public static readonly FORM_INFO_CRITERIA_EXCEED_VALUE: string = 'Will be considered <b>exceed</b> if less than mentioned value but more than expectation';
+	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_VALUE: string = 'Will be considered <b>outstanding</b> if less than mentioned value but more than exceed';
 
-	public static readonly FORM_INFO_CRITERIA_POOR_INVERSE_VALUE: string = 'Will be considered poor if more than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE: string = 'Will be considered improvement if more than poor but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE: string = 'Will be considered expectation if more than improvement but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE: string = 'Will be considered exceed if more than expectation but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE: string = 'Will be considered outstanding if more than exceed but less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_POOR_INVERSE_VALUE: string = 'Will be considered <b>poor</b> if more than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE: string = 'Will be considered <b>improvement</b> if more than poor but less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE: string = 'Will be considered <b>expectation</b> if more than improvement but less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE: string = 'Will be considered <b>exceed</b> if more than expectation but less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE: string = 'Will be considered <b>outstanding</b> if more than exceed but less than mentioned value';
 
 	public static readonly FORM_INFO_WEIGHT: string = 'Provide the weight interns of %, considering 100 and maximum and 0 being minimum';
 	public static readonly FORM_INFO_TASK_NAME: string = 'Provide a suitable name for the task';
@@ -485,7 +487,7 @@ export class StringKey {
 	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check <b>Measurement Criteria</b> Range';
 	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review <b>Feedback</b> classification';
 	public static readonly NUMBER_OF_REVIEWS: string = 'Number of reviews';
-	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is higher the better result. Toggle the switch to make the characteristics inverse, lower the better';
+	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>higher the better result</b>. Toggle the switch to make the characteristics inverse, <b>lower the better</b>';
 	public static readonly MEASUREMENT_CRITERIA_CHARACTERISTICS: string = 'Measurement criteria characteristics';
 	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER: string = 'Higher the better result';
 	public static readonly CRITERIA_CHARACTERISTICS_LOWER_BETTER: string = 'Lower the better result';

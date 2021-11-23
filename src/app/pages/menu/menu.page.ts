@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-23 16:11:04
+ * Last modified  : 2021-11-23 16:15:12
  */
 
 
@@ -29,7 +29,6 @@ import { UserService } from 'src/app/shared/service/user.service';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
 import { AvatarService } from 'src/app/shared/service/avatar.service';
-import { SwUpdate } from '@angular/service-worker';
 import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
@@ -204,7 +203,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 */
 	constructor(
 		injector: Injector,
-		private swUpdate: SwUpdate,
 		private menuController: MenuController,
 		private localStorageService: LocalStorageService,
 		private loadingService: LoadingService,

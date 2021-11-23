@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-23 16:15:12
+ * Last modified  : 2021-11-23 20:12:34
  */
 
 
@@ -90,7 +90,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 * Load route of menu page
 	 */
 	private _loadRoute: boolean = false;
-
 	
 	/**
 	 * Gets logged in user
@@ -287,6 +286,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.subscribe(
 				(baseModel: BaseModel) => {
 					this.loadingService.dismiss();
+					console.log(baseModel);
 					if (baseModel.success) {
 						this._projectModel = {
 							projectDescription: baseModel.data.projectDetails.data.projectDescription,

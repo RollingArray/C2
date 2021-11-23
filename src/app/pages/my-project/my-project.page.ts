@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-23 16:12:30
+ * Last modified  : 2021-11-23 20:05:11
  */
 
 
@@ -427,14 +427,32 @@ export class MyProjectPage extends BaseViewComponent
 	 * Go project details
 	 * @param selectedProject 
 	 */
-	async goProjectDetails(selectedProject: ProjectModel)
+	async goProjectDetails(projectModel: ProjectModel)
 	{
 		await this.localStorageService
-			.setSelectProject(selectedProject)
+			.setSelectProject(projectModel)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async () =>
 			{
-				this.router.navigate([selectedProject.projectId, 'go'], { relativeTo: this.activatedRoute });
+				switch (projectModel.projectUserTypeId)
+				{
+					case UserTypeEnum.Administrator:
+						this.router.navigate([projectModel.projectId, 'go', 'credibility-board'], { relativeTo: this.activatedRoute });
+						break;
+					
+					case UserTypeEnum.Reviewer:
+						this.router.navigate([projectModel.projectId, 'go', 'my','review'], { relativeTo: this.activatedRoute });
+						break;
+					
+					case UserTypeEnum.Assignee:
+						this.router.navigate([projectModel.projectId, 'go', 'my','activity'], { relativeTo: this.activatedRoute });
+						break;
+
+					default:
+						break;
+				}
+
+				
 			});
 	}
 

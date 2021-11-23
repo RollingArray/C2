@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-06 21:50:33
+ * Last modified  : 2021-11-23 11:03:16
  */
 
 
@@ -526,7 +526,7 @@ export class MyProjectPage extends BaseViewComponent
 			buttons: [
 				{
 					text: this.stringKey.MY_PROFILE,
-					icon: this.stringKey.ICON_EDIT,
+					icon: this.stringKey.ICON_USER,
 					handler: () =>
 					{
 						this.viewProfile();

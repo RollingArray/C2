@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-05 11:39:23
+ * Last modified  : 2021-11-23 16:15:12
  */
 
 
@@ -29,10 +29,10 @@ import { UserService } from 'src/app/shared/service/user.service';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
 import { AvatarService } from 'src/app/shared/service/avatar.service';
-import { SwUpdate } from '@angular/service-worker';
 import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
+import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
 
 @Component({
 	selector: "app-menu",
@@ -203,14 +203,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 */
 	constructor(
 		injector: Injector,
-		private swUpdate: SwUpdate,
 		private menuController: MenuController,
 		private localStorageService: LocalStorageService,
 		private loadingService: LoadingService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
 		private avatarService: AvatarService,
-		private projectService: ProjectService
+		private projectService: ProjectService,
+		private updateCheckerService: UpdateCheckerService
 	)
 	{
 		super(injector);
@@ -233,13 +233,13 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	// Lifecycle hook: ngOnInit
 	async ngOnInit()
 	{
-		this.checkIfAppUpdateAvailable();
-		
+		//
 	}
 
 	// Lifecycle hook: ionViewDidEnter
 	async ionViewDidEnter()
 	{
+		this.updateCheckerService.checkIfAppUpdateAvailable();
 
 		await this.passedProjectId();
 
@@ -313,26 +313,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			{
 				this._projectId = params.projectId;
 			});
-	}
-
-	/**
-	 * Checks if app update available
-	 */
-	async checkIfAppUpdateAvailable()
-	{
-
-		if (this.swUpdate.isEnabled)
-		{
-			this.swUpdate.available.subscribe(() =>
-			{
-				let versionUpdateMessage = `New version is available. Load New Version?`;
-
-				if (confirm(versionUpdateMessage))
-				{
-					window.location.reload();
-				}
-			});
-		}
 	}
 
 	/**

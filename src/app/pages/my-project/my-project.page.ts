@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-06 21:50:33
+ * Last modified  : 2021-11-23 16:12:30
  */
 
 
@@ -30,6 +30,7 @@ import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.comp
 import { DataCommunicationService } from 'src/app/shared/service/data-communication.service';
 import { DataCommunicationModel } from 'src/app/shared/model/data-communication.model';
 import { UserService } from 'src/app/shared/service/user.service';
+import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
 
 @Component({
 	selector: "app-my-project",
@@ -148,7 +149,8 @@ export class MyProjectPage extends BaseViewComponent
 		public toolTipService: ToolTipService,
 		private avatarService: AvatarService,
 		private dataCommunicationService: DataCommunicationService,
-		private userService: UserService
+		private userService: UserService,
+		private updateCheckerService: UpdateCheckerService
 	)
 	{
 		super(injector);
@@ -192,6 +194,7 @@ export class MyProjectPage extends BaseViewComponent
 	 */
 	ionViewDidEnter()
 	{
+		this.updateCheckerService.checkIfAppUpdateAvailable();
 		this.ifInvalidSession();
 	}
 
@@ -526,7 +529,7 @@ export class MyProjectPage extends BaseViewComponent
 			buttons: [
 				{
 					text: this.stringKey.MY_PROFILE,
-					icon: this.stringKey.ICON_EDIT,
+					icon: this.stringKey.ICON_USER,
 					handler: () =>
 					{
 						this.viewProfile();

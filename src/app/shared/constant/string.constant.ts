@@ -490,7 +490,7 @@ export class StringKey {
 	public static readonly RESEND_ACTIVATION_CODE: string = 'Email Required For Resending Activation Code';
 	public static readonly ALLOW_NOTIFICATION: string = 'You did not allow us to send notifications, please allow to send notification from your app settings to receive update from your project';
 	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check <b>Measurement Criteria</b> Range';
-	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review <b>Feedback</b> classification';
+	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review Feedback classification';
 	public static readonly NUMBER_OF_REVIEWS: string = 'Number of reviews';
 	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>higher the better result</b>. Toggle the switch to make the characteristics inverse, <b>lower the better</b>';
 	public static readonly MEASUREMENT_CRITERIA_CHARACTERISTICS: string = 'Measurement criteria characteristics';

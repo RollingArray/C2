@@ -7,5 +7,10 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:23:05 
- * Last modified  : 2021-11-15 21:24:14
+ * Last modified  : 2021-11-23 11:37:06
  */
+
+ p {
+     font-size: small;
+     color: var(--ion-color-semi-dark);;
+ }

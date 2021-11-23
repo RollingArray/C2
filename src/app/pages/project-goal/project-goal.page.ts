@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-08-09 20:29:05 
- * Last modified  : 2021-11-22 20:26:43
+ * Last modified  : 2021-11-23 11:05:45
  */
 
 
@@ -304,7 +304,7 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 				},
 				{
 					text: this.stringKey.DELETE + ' ' + this.stringKey.DETAILS,
-					icon: this.stringKey.ICON_EDIT,
+					icon: this.stringKey.ICON_DELETE,
 					handler: () => {
 						this.deleteProjectGoal(selectedGoal);
 					}

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-22 19:58:17
+ * Last modified  : 2021-11-23 19:29:11
  */
 
 
@@ -447,6 +447,9 @@ export class StringKey {
 	public static readonly GOT_IT_CONTINUE: string = 'Got It, Let Me Continue !!';
 	public static readonly ADD_CATEGORY: string = 'Add Category';
 	public static readonly ADD_PRODUCT: string = 'Add Product';
+	public static readonly ADD_MEMBER: string = 'Add Member';
+	public static readonly ADD_PROJECT: string = 'Add Project';
+	public static readonly ADD_GOAL: string = 'Add Goal';
 	public static readonly SURE: string = 'Sure';
 	public static readonly YES: string = 'Yes';
 	public static readonly NO: string = 'No';

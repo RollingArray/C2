@@ -13,6 +13,6 @@
  export const environment = {
 	production: false,
 	apiEndpoint: 'http://localhost:8888/C2/api/',
-	version: "7.96.126.12104",
+	version: "8.97.127.12105",
 	level : 'Local'
 };

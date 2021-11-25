@@ -31,6 +31,7 @@ import { DataCommunicationService } from 'src/app/shared/service/data-communicat
 import { DataCommunicationModel } from 'src/app/shared/model/data-communication.model';
 import { UserService } from 'src/app/shared/service/user.service';
 import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: "app-my-project",
@@ -97,7 +98,7 @@ export class MyProjectPage extends BaseViewComponent
 			{
 				loggedInUserName = data;
 			});
-		return `${this.stringKey.WELCOME}, ${loggedInUserName}`;
+		return `${this.greeting}, ${loggedInUserName}`;
 	}
 
 	/**
@@ -134,6 +135,44 @@ export class MyProjectPage extends BaseViewComponent
 	}
 
 	/**
+	 * Gets greeting
+	 */
+	get greeting()
+	{
+		const hr = new Date().getHours();
+		let greet = '';
+
+		if (hr < 12)
+		{
+			greet = this.stringKey.GREETING_MORNING;
+		}
+		else if (hr >= 12 && hr <= 17)
+		{
+			greet = this.stringKey.GREETING_AFTERNOON;
+		}
+		else if (hr >= 17 && hr <= 24)
+		{
+			greet = this.stringKey.GREETING_EVENING;
+		}
+		
+		return greet;
+	}
+
+	/**
+	 * Transforms date
+	 * @param date 
+	 * @returns  
+	 */
+	 get today() {
+		let formattedDate = this.datePipe.transform(
+			new Date(),
+			"fullDate"
+		);
+
+		return `${this.stringKey.ITS} ${formattedDate}`;
+	}
+
+	/**
 	 * Creates an instance of my project page.
 	 * @param injector 
 	 * @param projectService 
@@ -150,7 +189,8 @@ export class MyProjectPage extends BaseViewComponent
 		private avatarService: AvatarService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
-		private updateCheckerService: UpdateCheckerService
+		private updateCheckerService: UpdateCheckerService,
+		private datePipe: DatePipe,
 	)
 	{
 		super(injector);
@@ -209,21 +249,21 @@ export class MyProjectPage extends BaseViewComponent
 	/**
 	 * invalid session
 	 */
-	 async ifInvalidSession()
-	 {
-		 this.dataCommunicationService
-			 .getMessage()
-			 .pipe(takeUntil(this.unsubscribe))
-			 .subscribe((dataCommunicationModel: DataCommunicationModel) =>
-			 {
-				 //if the api response comes with invalid session, prompt user to re-sign in
+	async ifInvalidSession()
+	{
+		this.dataCommunicationService
+			.getMessage()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((dataCommunicationModel: DataCommunicationModel) =>
+			{
+				//if the api response comes with invalid session, prompt user to re-sign in
 				if (dataCommunicationModel.message === "INVALID_SESSION")
 				{
 					this.userService.logout();
 				}
-			 });
-	 }
-	
+			});
+	}
+
 	/**
 	 * Gets current user
 	 */
@@ -293,11 +333,11 @@ export class MyProjectPage extends BaseViewComponent
 					case UserTypeEnum.Administrator:
 						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT, projectModel.projectName);
 						break;
-					
+
 					case UserTypeEnum.Reviewer:
 						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT_REVIEWER, projectModel.projectName);
 						break;
-					
+
 					case UserTypeEnum.Assignee:
 						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_PROJECT_ASSIGNMENT, projectModel.projectName);
 						break;
@@ -306,7 +346,7 @@ export class MyProjectPage extends BaseViewComponent
 						break;
 				}
 			});
-		
+
 	}
 
 
@@ -439,20 +479,20 @@ export class MyProjectPage extends BaseViewComponent
 					case UserTypeEnum.Administrator:
 						this.router.navigate([projectModel.projectId, 'go', 'credibility-board'], { relativeTo: this.activatedRoute });
 						break;
-					
+
 					case UserTypeEnum.Reviewer:
-						this.router.navigate([projectModel.projectId, 'go', 'my','review'], { relativeTo: this.activatedRoute });
+						this.router.navigate([projectModel.projectId, 'go', 'my', 'review'], { relativeTo: this.activatedRoute });
 						break;
-					
+
 					case UserTypeEnum.Assignee:
-						this.router.navigate([projectModel.projectId, 'go', 'my','activity'], { relativeTo: this.activatedRoute });
+						this.router.navigate([projectModel.projectId, 'go', 'my', 'activity'], { relativeTo: this.activatedRoute });
 						break;
 
 					default:
 						break;
 				}
 
-				
+
 			});
 	}
 

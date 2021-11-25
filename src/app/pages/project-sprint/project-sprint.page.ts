@@ -1,24 +1,26 @@
-import { AlertService } from 'src/app/shared/service/alert.service';
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project sprint page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-25 15:11:50 
+ * Last modified  : 2021-11-25 15:11:50 
+ */
+
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { BaseModel } from 'src/app/shared/model/base.model';
 import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { Subscription } from 'rxjs';
 import { StringKey } from 'src/app/shared/constant/string.constant';
-import { NavParams } from '@ionic/angular';
-import { ProjectUserTypeModel } from 'src/app/shared/model/project-user-type.model';
-import { ProjectService } from 'src/app/shared/service/project.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
-import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { takeUntil } from 'rxjs/operators';
-import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
-import { CreateEditProjectUserComponent } from 'src/app/component/create-edit-project-user/create-edit-project-user.component';
-import { ProjectMemberService } from 'src/app/shared/service/project-member.service';
 import { ProjectSprintService } from 'src/app/shared/service/project-sprint.service';
-import { CreateEditProjectSprintComponent } from 'src/app/component/create-edit-project-sprint/create-edit-project-sprint.component';
 import { SprintModel } from 'src/app/shared/model/sprint.model';
 import { ProjectSprintModel } from 'src/app/shared/model/project-sprint.model';
 import { CommonCrudService } from 'src/app/shared/service/common-crud.service';

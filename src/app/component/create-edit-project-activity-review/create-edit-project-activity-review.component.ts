@@ -116,7 +116,6 @@ export class CreateEditProjectActivityReviewComponent extends BaseFormComponent 
 	  */
 	ngOnInit() {
 		this._passedActivityReview = this.navParams.get("data");
-		console.log(this._passedActivityReview);
 		this._characteristicsHigherBetter = this._passedActivityReview.characteristicsHigherBetter.toString() == "1" ? true : false; 
 		
 		this.buildFrom();

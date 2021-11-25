@@ -3,6 +3,11 @@ ion-item {
   p {
     width: 90%;
     margin: 20px;
+
+    span{
+      font-size: small;
+      color: var(--ion-color-semi-dark);
+    }
   }
 }
 

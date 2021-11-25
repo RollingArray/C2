@@ -113,6 +113,28 @@
 
         <!-- title -->
 
+        <!-- sprint -->
+        <ion-card>
+            <app-panel-header
+                [panelTitle]="activity.sprintName"
+                [panelIcon]="stringKey.ICON_SPRINT"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+            >
+            </app-panel-header>
+        </ion-card>
+        <!-- sprint -->
+
+        <!-- goal -->
+        <ion-card>
+            <app-panel-header
+                [panelTitle]="activity.goalName"
+                [panelIcon]="stringKey.ICON_GOAL"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+            >
+            </app-panel-header>
+        </ion-card>
+        <!-- goal -->
+
         <!-- activity grid -->
         <ion-grid>
             <ion-row>

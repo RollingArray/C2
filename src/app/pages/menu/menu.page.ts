@@ -33,6 +33,7 @@ import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.comp
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
 import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: "app-menu",
@@ -187,6 +188,16 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	}
 
 	/**
+	 * App environment of learn more component
+	 */
+	readonly appEnvironment = environment.level ? environment.level : '';
+
+	/**
+	 * App version of learn more component
+	 */
+	readonly appVersion = environment.version;
+	
+	/**
 	 * User type enum of menu page
 	 */
 	readonly userTypeEnum =  UserTypeEnum;
@@ -286,7 +297,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.subscribe(
 				(baseModel: BaseModel) => {
 					this.loadingService.dismiss();
-					console.log(baseModel);
 					if (baseModel.success) {
 						this._projectModel = {
 							projectDescription: baseModel.data.projectDetails.data.projectDescription,

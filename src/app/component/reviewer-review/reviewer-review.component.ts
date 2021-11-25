@@ -34,7 +34,8 @@ import { CreateEditProjectActivityReviewerComponent } from "../create-edit-proje
 	templateUrl: './reviewer-review.component.html',
 	styleUrls: ['./reviewer-review.component.scss'],
 })
-export class ReviewerReviewComponent extends BaseViewComponent implements OnInit {
+export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
+{
 
 	/**
 	 * Input  of assignee self review component
@@ -49,7 +50,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	/**
 	 * Determines whether reviews data has
 	 */
-	 @Input() hasData: boolean = false;
+	@Input() hasData: boolean = false;
 
 	/**
 	 * Input  of assignee self review component
@@ -79,7 +80,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	/**
 	 * Activity id of project activity review page
 	 */
-	 private _activityId: string;
+	private _activityId: string;
 
 	/**
 	 * Gets whether is administrator
@@ -94,7 +95,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 */
 	get isReviewer()
 	{
-		return this.userType.userTypeId === UserTypeEnum.Reviewer	? true : false;
+		return this.userType.userTypeId === UserTypeEnum.Reviewer ? true : false;
 	}
 
 	/**
@@ -110,7 +111,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 */
 	get noDataText()
 	{
-		return this.isAdministrator ? this.stringKey.NO_DATA_PROJECT_REVIEWER : this.stringKey.NO_DATA_PROJECT_REVIEWER_OTHER; 
+		return this.isAdministrator ? this.stringKey.NO_DATA_PROJECT_REVIEWER : this.stringKey.NO_DATA_PROJECT_REVIEWER_OTHER;
 	}
 
 	/**
@@ -130,14 +131,16 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 		private loadingService: LoadingService,
 		private projectActivityReviewerService: ProjectActivityReviewerService,
 		private alertService: AlertService
-	) {
+	)
+	{
 		super(injector);
 	}
 
 	/**
 	 * on init
 	 */
-	ngOnInit() {
+	ngOnInit()
+	{
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 		this._activityId = this.activatedRoute.snapshot.paramMap.get("activityId");
@@ -146,7 +149,8 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	/**
 	* on destroy
 	*/
-	ngOnDestroy() {
+	ngOnDestroy()
+	{
 		super.ngOnDestroy();
 	}
 
@@ -154,16 +158,18 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 * Actives user id
 	 * @returns  
 	 */
-	async activeUserId() {
+	async activeUserId()
+	{
 		this.localStorageService
 			.getActiveUserId()
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe((data: string) => {
+			.subscribe((data: string) =>
+			{
 				this._loggedInUser = data;
 			});
 	}
 
-	
+
 
 	/**
 	 * Opens reviewer options
@@ -181,14 +187,16 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 					{
 						text: this.stringKey.DELETE + ' ' + this.stringKey.REVIEWER,
 						icon: this.stringKey.ICON_DELETE,
-						handler: () => {
+						handler: () =>
+						{
 							this.delete(selectedReviewer);
 						}
 					},
 					{
 						text: this.stringKey.CANCEL,
 						icon: this.stringKey.ICON_CANCEL,
-						handler: () => {
+						handler: () =>
+						{
 							//
 						}
 					}
@@ -203,22 +211,24 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 					{
 						text: this.stringKey.UPDATE + ' ' + this.stringKey.REVIEWER_COMMENT,
 						icon: this.stringKey.ICON_EDIT,
-						handler: () => {
+						handler: () =>
+						{
 							this.addEditReview(selectedReviewer);
 						}
 					},
 					{
 						text: this.stringKey.CANCEL,
 						icon: this.stringKey.ICON_CANCEL,
-						handler: () => {
+						handler: () =>
+						{
 							//
 						}
 					}
 				]
 			});
 		}
-		
-		await actionSheet.present();	
+
+		await actionSheet.present();
 	}
 
 	/**
@@ -227,22 +237,24 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 */
 	async addEditReview(selectedReviewer: ActivityReviewerModel)
 	{
-		if(this._loggedInUser != selectedReviewer.reviewerUserId){
+		if (this._loggedInUser != selectedReviewer.reviewerUserId)
+		{
 			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_SAME_REVIEWER)
 		}
 		else if (selectedReviewer.reviewLock === this.lockTypeEnum.Unlock)
 		{
 			this.alertService.presentBasicAlert(this.stringKey.ALERT_NO_UNLOCK_ACTIVITY)
 		}
-		else{
+		else
+		{
 			const passedModel: ActivityReviewerModel = {
 				userId: this._loggedInUser,
 				projectId: this._projectId,
 				activityId: this._activityId,
 				activityReviewId: selectedReviewer.activityReviewId,
-				achievedResultValue : selectedReviewer.achievedResultValue,
-				reviewerUserId : selectedReviewer.reviewerUserId,
-				reviewerComment : selectedReviewer.reviewerComment,
+				achievedResultValue: selectedReviewer.achievedResultValue,
+				reviewerUserId: selectedReviewer.reviewerUserId,
+				reviewerComment: selectedReviewer.reviewerComment,
 				activityMeasurementType: selectedReviewer.activityMeasurementType,
 				activityResultType: selectedReviewer.activityResultType,
 				criteriaPoorValue: selectedReviewer.criteriaPoorValue,
@@ -256,22 +268,25 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 					data: passedModel
 				}
 			});
-	
-			modal.onDidDismiss().then(data => {
-	
+
+			modal.onDidDismiss().then(data =>
+			{
+
 				this._modalData = data.data;
-				if (this._modalData.cancelled) {
+				if (this._modalData.cancelled)
+				{
 					//do not refresh the page
-				} else {
+				} else
+				{
 					//load data from network
 					this.event.emit();
 				}
 			});
-	
+
 			return await modal.present();
 		}
 	}
-	
+
 	/**
 	 * Deletes project activity review page
 	 * @param selectedReviewer 
@@ -284,12 +299,14 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			buttons: [
 				{
 					text: this.stringKey.CANCEL,
-					handler: () => {
+					handler: () =>
+					{
 						//
 					}
 				}, {
 					text: this.stringKey.YES,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.deleteReviewer(selectedReviewer);
 					}
 				}
@@ -303,8 +320,9 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 * Deletes reviewer
 	 * @param selectedReviewer 
 	 */
-	async deleteReviewer(selectedReviewer: ActivityReviewerModel) {
-		
+	async deleteReviewer(selectedReviewer: ActivityReviewerModel)
+	{
+
 		// start loaded
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_6}`);
 
@@ -314,7 +332,7 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			projectId: this._projectId,
 			activityId: this._activityId,
 			activityReviewId: selectedReviewer.activityReviewId,
-			reviewerUserId:selectedReviewer.reviewerUserId,
+			reviewerUserId: selectedReviewer.reviewerUserId,
 			operationType: OperationsEnum.Delete,
 		};
 
@@ -323,13 +341,15 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			.projectActivityReviewerCrud(passedData)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
-				async (baseModel: BaseModel) => {
+				async (baseModel: BaseModel) =>
+				{
 
 					// end loaded
 					await this.loadingService.dismiss();
 
 					// build
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 
 						// show toast
 						await this.presentToast(baseModel.message);
@@ -338,7 +358,8 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 						this.event.emit();
 					}
 				},
-				async (error) => {
+				async (error) =>
+				{
 					await this.loadingService.dismiss();
 				}
 			);
@@ -356,12 +377,14 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			buttons: [
 				{
 					text: this.stringKey.CANCEL,
-					handler: () => {
+					handler: () =>
+					{
 						//
 					}
 				}, {
 					text: this.stringKey.YES,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.lockUnlockReview(selectedReviewer, LockTypeEnum.Lock);
 					}
 				}
@@ -383,12 +406,14 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			buttons: [
 				{
 					text: this.stringKey.CANCEL,
-					handler: () => {
+					handler: () =>
+					{
 						//
 					}
 				}, {
 					text: this.stringKey.YES,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.lockUnlockReview(selectedReviewer, LockTypeEnum.Unlock);
 					}
 				}
@@ -402,8 +427,9 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 	 * Deletes reviewer
 	 * @param selectedReviewer 
 	 */
-	 async lockUnlockReview(selectedReviewer: ActivityReviewerModel, reviewLockTypeStatus: LockTypeEnum) {
-		
+	async lockUnlockReview(selectedReviewer: ActivityReviewerModel, reviewLockTypeStatus: LockTypeEnum)
+	{
+
 		// start loaded
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
 
@@ -414,29 +440,30 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			activityReviewId: selectedReviewer.activityReviewId,
 		};
 
-		 console.log(passedData);
-		 let projectActivityReviewerService : Observable<BaseModel>;
+		let projectActivityReviewerService: Observable<BaseModel>;
 
-		 if (reviewLockTypeStatus === LockTypeEnum.Lock)
-		 {
+		if (reviewLockTypeStatus === LockTypeEnum.Lock)
+		{
 			projectActivityReviewerService = this.projectActivityReviewerService.projectActivityReviewLock(passedData);
-		 }
-		 else
-		 {
+		}
+		else
+		{
 			projectActivityReviewerService = this.projectActivityReviewerService.projectActivityReviewUnlock(passedData);
-		 }
-		 
+		}
+
 		// call api
 		projectActivityReviewerService
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
-				async (baseModel: BaseModel) => {
+				async (baseModel: BaseModel) =>
+				{
 
 					// end loaded
 					await this.loadingService.dismiss();
 
 					// build
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 
 						// show toast
 						await this.presentToast(baseModel.message);
@@ -445,12 +472,13 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 						this.event.emit();
 					}
 				},
-				async (error) => {
+				async (error) =>
+				{
 					await this.loadingService.dismiss();
 				}
 			);
-	 }
-	
+	}
+
 	/**
 	 * Adds reviewer
 	 * @returns  
@@ -470,12 +498,15 @@ export class ReviewerReviewComponent extends BaseViewComponent implements OnInit
 			}
 		});
 
-		modal.onDidDismiss().then(data => {
+		modal.onDidDismiss().then(data =>
+		{
 
 			this._modalData = data.data;
-			if (this._modalData.cancelled) {
+			if (this._modalData.cancelled)
+			{
 				//do not refresh the page
-			} else {
+			} else
+			{
 				//load data
 				this.event.emit();
 			}

@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Project sprint page module
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-25 15:11:50 
+ * Last modified  : 2021-11-25 15:12:36
+ */
+
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";

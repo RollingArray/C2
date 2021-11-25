@@ -144,6 +144,14 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	public get characteristicsHigherBetter(): boolean {
 		return this._characteristicsHigherBetter;
 	}
+
+	/**
+	 * Gets passed activity
+	 */
+	public get passedActivity()
+	{
+		return this._passedActivity;
+	}
 	
 	/**
 	 * Creates an instance of create edit project activity component.
@@ -211,7 +219,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	private setPassedValueToFrom()
 	{
-		console.log(this._passedActivity);
 		const form = this.formGroup.value;
 		form.activityName = this._passedActivity.activityName;
 		form.activityWeight = this._passedActivity.activityWeight;
@@ -431,8 +438,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					}		
 					else
 					{
-						console.log("a1");
-			
 						await this.alertService.presentBasicAlert(
 							`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 						);
@@ -440,7 +445,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 				}
 				else
 				{
-					console.log("b1");
 					await this.alertService.presentBasicAlert(
 						`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 					);
@@ -448,7 +452,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			}	
 			else
 			{
-				console.log("c1");
 				await this.alertService.presentBasicAlert(
 					`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 				);
@@ -456,8 +459,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		}
 		else
 		{
-			console.log(parseInt(form.criteriaImprovementValue), parseInt(form.criteriaPoorValue), parseInt(form.criteriaExpectationValue));
-			console.log("d1");
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 			);
@@ -482,8 +483,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					}		
 					else
 					{
-						console.log("a");
-			
 						await this.alertService.presentBasicAlert(
 							`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 						);
@@ -491,8 +490,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 				}
 				else
 				{
-					console.log("b");
-			
 					await this.alertService.presentBasicAlert(
 						`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 					);
@@ -500,8 +497,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 			}	
 			else
 			{
-				console.log("c");
-			
 				await this.alertService.presentBasicAlert(
 					`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 				);
@@ -509,8 +504,6 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		}
 		else
 		{
-			console.log("d");
-			
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 			);

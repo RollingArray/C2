@@ -504,6 +504,10 @@ export class StringKey {
 	public static readonly CHOOSE_PROJECT: string = 'Select a project from My Project to see this details !';
 	public static readonly TASK_REVIEWERS: string = 'Task Reviewer(s)';
 	public static readonly REVIEW_RESULT: string = 'Review Result';
+	public static readonly GREETING_MORNING: string = 'Good Morning';
+	public static readonly GREETING_AFTERNOON: string = 'Good Afternoon';
+	public static readonly GREETING_EVENING: string = 'Good Evening';
+	public static readonly ITS: string = 'It\'s';
 	
 	//error message
 	public static readonly NO_DATA_PROJECT_ADMIN: string = 'A project can not run without an administrator. Add a new administrator';

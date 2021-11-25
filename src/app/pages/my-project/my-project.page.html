@@ -50,9 +50,10 @@
     <ion-card>
         <app-panel-header
             [panelTitle]="loggedInUserName"
+            [info] = "today"
             [isLargeIcon]="true"
             [panelIcon]="avatar"
-            [panelColor]="stringKey.COLOR_MEDIUM"
+            [panelColor]="stringKey.COLOR_INFO"
             [eventIcon]="stringKey.ICON_MORE"
             [isEventRequired]="true"
             (event)="openLoggedInUserOptions()"

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-29 11:11:02 
- * Last modified  : 2021-11-19 19:31:08
+ * Last modified  : 2021-11-25 15:13:38
  */
 
 
@@ -20,7 +20,8 @@ export interface ActivityModel extends ProjectModel {
     activityId ?: string;
     sprintId ?: string;
     sprintName ?: string;
-    goalId ?: string;
+    goalId?: string;
+    goalName ?: string;
     assigneeUserId ?: string;
     assigneeUserFirstName ?: string;
     assigneeUserLastName ?: string;

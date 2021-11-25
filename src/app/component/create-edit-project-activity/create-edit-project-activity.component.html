@@ -39,6 +39,28 @@
         color="primary"
         lines="none"
     >
+        <!-- sprint -->
+        <ion-card>
+            <app-panel-header
+                [panelTitle]="passedActivity.sprintName"
+                [panelIcon]="stringKey.ICON_SPRINT"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+            >
+            </app-panel-header>
+        </ion-card>
+        <!-- sprint -->
+
+        <!-- goal -->
+        <ion-card>
+            <app-panel-header
+                [panelTitle]="passedActivity.goalName"
+                [panelIcon]="stringKey.ICON_GOAL"
+                [panelColor]="stringKey.COLOR_MEDIUM"
+            >
+            </app-panel-header>
+        </ion-card>
+        <!-- goal -->
+
         <!-- activity name -->
         <ion-card color="secondary">
             <ion-item color="secondary" lines="none">
@@ -48,6 +70,7 @@
             <ion-card lines="none" color="light">
                 <ion-item lines="none" color="light">
                     <ion-textarea
+                        rows="6"
                         [placeholder]="stringKey.FORM_PLACEHOLDER_ACTIVITY"
                         autocomplete="off"
                         formControlName="activityName"
@@ -137,14 +160,13 @@
         <ion-card
             color="secondary"
             (click)="openDropSelector(moduleEnum.measurementType)"
-            class="selector"
         >
             <ion-item color="secondary" lines="none">
                 <ion-icon
-                    [src]="stringKey.ICON_MULTI_SELECT"
+                    [src]="stringKey.ICON_ACTIVATE"
                     slot="start"
                 ></ion-icon>
-                {{ stringKey.FORM_INFO_MEASUREMENT_TYPE }}
+                <p>{{ stringKey.FORM_INFO_MEASUREMENT_TYPE }}</p>
             </ion-item>
             <app-panel-header
                 *ngIf="selectedActivityMeasurementType"
@@ -160,18 +182,24 @@
         <div *ngIf="showNumScale">
             <ion-card color="senary">
                 <ion-item color="senary" lines="none">
-                    <p [innerHTML]="stringKey.CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO"></p>
+                    <p
+                        [innerHTML]="
+                            stringKey.CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO
+                        "
+                    ></p>
                 </ion-item>
                 <ion-item color="senary">
-					<ion-label class="text-right">
-						{{stringKey.CRITERIA_CHARACTERISTICS_LOWER_BETTER}}
-					</ion-label>
-					<ion-toggle
+                    <ion-label class="text-right">
+                        {{ stringKey.CRITERIA_CHARACTERISTICS_LOWER_BETTER }}
+                    </ion-label>
+                    <ion-toggle
                         [(ngModel)]="characteristicsHigherBetter"
                         [ngModelOptions]="{ standalone: true }"
                         (ionChange)="onToggleBtnChange($event)"
                     ></ion-toggle>
-					<ion-label>{{stringKey.CRITERIA_CHARACTERISTICS_HIGHER_BETTER}}</ion-label>
+                    <ion-label>{{
+                        stringKey.CRITERIA_CHARACTERISTICS_HIGHER_BETTER
+                    }}</ion-label>
                 </ion-item>
             </ion-card>
 
@@ -182,8 +210,16 @@
                         [src]="stringKey.ICON_FORM"
                         slot="start"
                     ></ion-icon>
-                    <span *ngIf="characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_POOR_VALUE"></span>
-                    <span *ngIf="!characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_POOR_INVERSE_VALUE"></span>
+                    <span
+                        *ngIf="characteristicsHigherBetter"
+                        [innerHTML]="stringKey.FORM_INFO_CRITERIA_POOR_VALUE"
+                    ></span>
+                    <span
+                        *ngIf="!characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_POOR_INVERSE_VALUE
+                        "
+                    ></span>
                 </ion-item>
             </ion-card>
             <ion-card lines="none" color="light">
@@ -222,8 +258,18 @@
                         [src]="stringKey.ICON_FORM"
                         slot="start"
                     ></ion-icon>
-                    <span *ngIf="characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_VALUE"></span>
-                    <span *ngIf="!characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE"></span>
+                    <span
+                        *ngIf="characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_VALUE
+                        "
+                    ></span>
+                    <span
+                        *ngIf="!characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE
+                        "
+                    ></span>
                 </ion-item>
             </ion-card>
             <ion-card lines="none" color="light">
@@ -263,8 +309,18 @@
                         [src]="stringKey.ICON_FORM"
                         slot="start"
                     ></ion-icon>
-                    <span *ngIf="characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_EXPECTATION_VALUE"></span>
-                    <span *ngIf="!characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE"></span>
+                    <span
+                        *ngIf="characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_EXPECTATION_VALUE
+                        "
+                    ></span>
+                    <span
+                        *ngIf="!characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE
+                        "
+                    ></span>
                 </ion-item>
             </ion-card>
             <ion-card lines="none" color="light">
@@ -304,8 +360,16 @@
                         [src]="stringKey.ICON_FORM"
                         slot="start"
                     ></ion-icon>
-                    <span *ngIf="characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_EXCEED_VALUE"></span>
-                    <span *ngIf="!characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE"></span>
+                    <span
+                        *ngIf="characteristicsHigherBetter"
+                        [innerHTML]="stringKey.FORM_INFO_CRITERIA_EXCEED_VALUE"
+                    ></span>
+                    <span
+                        *ngIf="!characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE
+                        "
+                    ></span>
                 </ion-item>
             </ion-card>
             <ion-card lines="none" color="light">
@@ -345,8 +409,18 @@
                         [src]="stringKey.ICON_FORM"
                         slot="start"
                     ></ion-icon>
-                    <span *ngIf="characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_OUTSTANDING_VALUE"></span>
-                    <span *ngIf="!characteristicsHigherBetter" [innerHTML]="stringKey.FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE"></span>
+                    <span
+                        *ngIf="characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_OUTSTANDING_VALUE
+                        "
+                    ></span>
+                    <span
+                        *ngIf="!characteristicsHigherBetter"
+                        [innerHTML]="
+                            stringKey.FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE
+                        "
+                    ></span>
                 </ion-item>
             </ion-card>
             <ion-card lines="none" color="light">
@@ -401,9 +475,12 @@
                 {{ dropSelectorTitle }}
             </ion-title>
             <ion-buttons slot="end">
-                <ion-button color="dark" fill="outline" (click)="closeDropSelector()">{{
-                    stringKey.CLOSE
-                }}</ion-button>
+                <ion-button
+                    color="dark"
+                    fill="outline"
+                    (click)="closeDropSelector()"
+                    >{{ stringKey.CLOSE }}</ion-button
+                >
             </ion-buttons>
         </ion-toolbar>
     </ion-header>

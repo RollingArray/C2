@@ -289,13 +289,16 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 				`${this.stringKey.MANDATORY_SELECT}`
 			);
 		}
-		else{
+		else
+		{
 			const passedModel: ActivityModel = {
 				userId: this._loggedInUser,
 				projectId: this._projectId,
 				assigneeUserId: this._filterModel.assigneeUserId,
 				sprintId: this._filterModel.sprintId,
+				sprintName: this._filterModel.sprintName,
 				goalId: this._filterModel.goalId,
+				goalName: this._filterModel.goalName,
 				operationType: `${OperationsEnum.Create}`
 			}
 			const modal = await this.modalController.create({

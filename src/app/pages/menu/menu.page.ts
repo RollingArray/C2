@@ -297,7 +297,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.subscribe(
 				(baseModel: BaseModel) => {
 					this.loadingService.dismiss();
-					console.log(baseModel);
 					if (baseModel.success) {
 						this._projectModel = {
 							projectDescription: baseModel.data.projectDetails.data.projectDescription,

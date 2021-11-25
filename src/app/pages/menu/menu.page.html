@@ -130,6 +130,13 @@
                                 </ion-card>
                             </ion-col>
                         </ion-row>
+                        <ion-row>
+                            <ion-col class="text-center">
+                                <p>
+                                    <ion-label>{{ stringKey.VERSION }} :: {{ appEnvironment }} {{ appVersion }}</ion-label>
+                                </p>
+                            </ion-col>
+                        </ion-row>
                     </ion-grid>
                     <ion-card class="cursor-pointer" (click)="gotoMyProjects()">
                         <ion-item color="primary" lines="none">

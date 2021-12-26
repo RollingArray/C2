@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-12-26 11:29:23
+ * Last modified  : 2021-12-26 21:24:48
  */
 
 import { environment } from "../../../environments/environment";
@@ -65,7 +65,7 @@ export class ApiUrls {
 
 
 	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline";
-
+	public static readonly RA: string = 'https://rollingarray.co.in/';
 	public static readonly HELP_BASE: string = 'https://c2.doc.rollingarray.co.in/';
 	public static readonly HELP_BASE_ARTICLE: string = 'https://c2.doc.rollingarray.co.in/#/go/articles/';
 	public static readonly HELP: string = ApiUrls.HELP_BASE;
@@ -78,5 +78,19 @@ export class ApiUrls {
 	public static readonly HELP_MY_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "my-projects";
 	public static readonly HELP_NEW_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "create-new-project";
 	public static readonly HELP_EDIT_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "edit-existing-project-details";
+
+	public static readonly HELP_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "projects";
+	public static readonly HELP_MEMBERS: string = ApiUrls.HELP_BASE_ARTICLE + "project-team";
+	public static readonly HELP_SPRINT: string = ApiUrls.HELP_BASE_ARTICLE + "sprint";
+	public static readonly HELP_GOAL: string = ApiUrls.HELP_BASE_ARTICLE + "goal";
+	public static readonly HELP_ACTIVITY: string = ApiUrls.HELP_BASE_ARTICLE + "activity";
+	public static readonly HELP_MEASUREMENT: string = ApiUrls.HELP_BASE_ARTICLE + "measurement-criteria";
+	public static readonly HELP_CHARACTER: string = ApiUrls.HELP_BASE_ARTICLE + "measurement-criteria-characteristics";
+	public static readonly HELP_REVIEWER: string = ApiUrls.HELP_BASE_ARTICLE + "reviewer";
+	public static readonly HELP_FEEDBACK: string = ApiUrls.HELP_BASE_ARTICLE + "feedback-classification-&-calculating-performance";
+	public static readonly HELP_WEIGHTED_PERFORMANCE: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-weighted-performances";
+	public static readonly HELP_ACTIVITY_PERFORMANCE: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-activity-performance";
+	public static readonly HELP_CREDIBILITY: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-credibility";
+	public static readonly HELP_OPPORTUNITY: string = ApiUrls.HELP_BASE_ARTICLE + "define-equal-opportunities";
 
 }

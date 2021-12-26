@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 14:25:52 
- * Last modified  : 2021-11-11 17:28:56
+ * Last modified  : 2021-12-26 19:41:56
  */
 
 
@@ -25,6 +25,8 @@ import { takeUntil } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
 import { NavParams } from '@ionic/angular';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 
 @Component({
@@ -96,12 +98,22 @@ export class AccountVerificationComponent extends BaseFormComponent
 		private router: Router,
 		private localStorageService: LocalStorageService,
 		private platformHelper: PlatformHelper,
-		public navParams: NavParams
+		public navParams: NavParams,
+		private analyticsService: AnalyticsService
 	)
 	{
 		super(injector);
 		this._passedUser = this.navParams.get("data");
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.ACTIVATE,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**

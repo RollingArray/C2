@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-17 20:24:35
+ * Last modified  : 2021-12-26 17:24:28
  */
  -->
 <ion-app>
@@ -149,9 +149,10 @@
                     </ion-card>
 
                     <ion-card
+
 						class="cursor-pointer"
                         *ngFor="let p of pages"
-                        color="medium"
+                        color="primary-gradient"
                     >
                         <ion-item color="pitch-dark" lines="none">
                             <ion-icon
@@ -167,7 +168,7 @@
                             >
                                 <ion-item
                                     lines="none"
-                                    color="medium"
+                                    color="primary"
                                     (click)="gotoPage(eachSubMenu)"
                                     routerDirection="root"
                                     routerLinkActive="active"

@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-11 16:33:48 
- * Last modified  : 2021-11-11 16:42:19
+ * Last modified  : 2021-12-26 20:42:00
  */
  -->
 <ion-content fullscreen class="ion-padding" scroll-y="false" lines="none">
@@ -25,6 +25,9 @@
 						<div class="slide">
 							<h2 color="dark"><b>{{slide.title}}</b></h2>
 							<p [innerHTML]="slide.info"></p>
+							<ion-button color="dark" (click)="endIntro()" [href]="slide.helpUrl" target="_blank">
+								{{stringKey.LEARN_MORE}}
+							</ion-button>
 							<ion-button color="primary" (click)="endIntro()">
 								{{slide.buttonText}}
 								<ion-icon slot="end" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>

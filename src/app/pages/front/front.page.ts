@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:14:11 
- * Last modified  : 2021-12-26 11:16:41
+ * Last modified  : 2021-12-26 19:57:08
  */
 
 
@@ -17,6 +17,8 @@ import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { IntroComponent } from 'src/app/component/intro/intro.component';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 @Component({
 	selector: "app-front",
@@ -24,6 +26,12 @@ import { IntroComponent } from 'src/app/component/intro/intro.component';
 	styleUrls: ["./front.page.scss"],
 })
 export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
+	
+	/**
+	 * Year  of front page
+	 */
+	readonly year = new Date().getFullYear();
+
 	/**
 	 * Creates an instance of front page.
 	 * @param injector 
@@ -34,8 +42,18 @@ export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
 		injector: Injector,
 		private localStorageService: LocalStorageService,
 		private platformHelper: PlatformHelper,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.FRONT,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**

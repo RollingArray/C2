@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:11:18 
- * Last modified  : 2021-12-26 11:31:41
+ * Last modified  : 2021-12-26 19:50:05
  */
 
 
@@ -21,6 +21,8 @@ import { NavParams } from "@ionic/angular";
 import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
+import { AnalyticsService } from "src/app/shared/service/analytics.service";
+import { EventPageEnum } from "src/app/shared/enum/event-page.enum";
 
 @Component({
 	selector: "app-create-edit-project",
@@ -57,7 +59,8 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 		private alertService: AlertService,
 		private projectService: ProjectService,
 		private loadingService: LoadingService,
-		public navParams: NavParams
+		public navParams: NavParams,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
 	}
@@ -68,6 +71,17 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	ngOnInit() {
 		this._passedProject = this.navParams.get("data");
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log(
+			this._passedProject.userId,
+			EventPageEnum.CRUD_PROJECT,
+			{
+				'data': this._passedProject.operationType
+			}
+		);
 	}
 
 	/**

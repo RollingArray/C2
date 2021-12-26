@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-17 20:15:23
+ * Last modified  : 2021-12-26 18:34:36
  */
 
 /* Change autocomplete styles in WebKit */
@@ -203,4 +203,5 @@ td:last-child {
 .link{
   color: var(--ion-color-secondary);
   text-decoration: underline;
+  cursor: pointer;
 }

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:17:44 
- * Last modified  : 2021-12-26 11:18:00
+ * Last modified  : 2021-12-26 19:40:27
  */
 
 
@@ -20,6 +20,8 @@ import { BaseModel } from 'src/app/shared/model/base.model';
 import { takeUntil } from 'rxjs/operators';
 import { PasswordLessComponent } from 'src/app/component/password-less/password-less.component';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 
 @Component({
@@ -44,10 +46,20 @@ export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
 		private loadingService: LoadingService,
 		private userService: UserService,
 		private router: Router,
-		private localStorageService: LocalStorageService
+		private localStorageService: LocalStorageService,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.SIGN_UP,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**

@@ -77,7 +77,7 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	 */
 	async faq()
 	{
-		(window as any).open(ApiUrls.GITHUB, "_blank");
+		(window as any).open(ApiUrls.HELP, "_blank");
 	}
 
 	/**
@@ -85,7 +85,7 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	 */
 	async tnc()
 	{
-		
+		(window as any).open(ApiUrls.HELP_T_C, "_blank");
 	}
 
 	/**
@@ -93,7 +93,7 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	 */
 	async pp()
 	{
-		
+		(window as any).open(ApiUrls.HELP_PP, "_blank");
 	}
 
 	/**

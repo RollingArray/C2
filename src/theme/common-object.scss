@@ -199,3 +199,8 @@ td:last-child {
 		padding: #{$i}px;
 	}
 }
+
+.link{
+  color: var(--ion-color-secondary);
+  text-decoration: underline;
+}

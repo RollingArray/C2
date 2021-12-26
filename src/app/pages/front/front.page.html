@@ -1,3 +1,16 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Front page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:16:28 
+ * Last modified  : 2021-12-26 11:16:59
+ */
+ -->
 <ion-content lines="none" color="primary-gradient">
 	<ion-grid lines="none">
 		<ion-row justify-content-center lines="none">
@@ -45,7 +58,33 @@
 				</ion-button>
 			</ion-col>
 			<!-- sign in -->
+
 			
+			
+		</ion-row>
+		<ion-row class="margin-top-30-px">
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center border">
+				<a  class="link"  (click)="loadIntro()" [href]="">
+					How Does It Work
+				</a>
+				&nbsp;|&nbsp; 
+				<a class="link" [href]="apiUrls.HELP" target="_blank">
+					Help & Doc
+				</a> 
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center">
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.HELP_PP" target="_blank">
+					Privacy Policy
+				</a>
+				&nbsp;|&nbsp; 
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.HELP_T_C" >
+					Terms Conditions
+				</a> 
+			</ion-col>
 		</ion-row>
 	</ion-grid>
 </ion-content>

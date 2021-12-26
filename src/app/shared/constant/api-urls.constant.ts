@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-11-19 20:04:04
+ * Last modified  : 2021-12-26 11:29:23
  */
 
 import { environment } from "../../../environments/environment";
@@ -63,5 +63,20 @@ export class ApiUrls {
 	public static readonly PROJECT_ACTIVITY_REVIEW_UNLOCK: string = ApiUrls.API_BASE_PATH + "/review/unlock/";
 	public static readonly PROJECT_ACTIVITY_REVIEW_LOCK: string = ApiUrls.API_BASE_PATH + "/review/lock/";
 
-	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline"
+
+	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline";
+
+	public static readonly HELP_BASE: string = 'https://c2.doc.rollingarray.co.in/';
+	public static readonly HELP_BASE_ARTICLE: string = 'https://c2.doc.rollingarray.co.in/#/go/articles/';
+	public static readonly HELP: string = ApiUrls.HELP_BASE;
+	public static readonly HELP_PP: string = ApiUrls.HELP_BASE_ARTICLE + "privacy-policy";
+	public static readonly HELP_T_C: string = ApiUrls.HELP_BASE_ARTICLE + "terms-conditions";
+	public static readonly HELP_AUTH: string = ApiUrls.HELP_BASE_ARTICLE + "authentication-&-authorization";
+	public static readonly HELP_SIGN_UP: string = ApiUrls.HELP_BASE_ARTICLE + "sign-up";
+	public static readonly HELP_SIGN_IN: string = ApiUrls.HELP_BASE_ARTICLE + "sign-in";
+	public static readonly HELP_PROFILE: string = ApiUrls.HELP_BASE_ARTICLE + "my-profile";
+	public static readonly HELP_MY_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "my-projects";
+	public static readonly HELP_NEW_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "create-new-project";
+	public static readonly HELP_EDIT_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "edit-existing-project-details";
+
 }

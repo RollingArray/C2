@@ -1,7 +1,17 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Sign up page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:17:44 
+ * Last modified  : 2021-12-26 11:18:00
+ */
+
+
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { BaseFormComponent } from 'src/app/component/base/base-form.component';
-import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { UserModel } from 'src/app/shared/model/user.model';
 import { AlertService } from 'src/app/shared/service/alert.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -18,6 +28,8 @@ import { LocalStorageService } from 'src/app/shared/service/local-storage.servic
 	styleUrls: ["./sign-up.page.scss"],
 })
 export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
+	
+	
 	/**
 	 * Creates an instance of sign up page.
 	 * @param injector 

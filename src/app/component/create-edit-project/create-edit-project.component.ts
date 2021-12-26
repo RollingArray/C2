@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:11:18 
- * Last modified  : 2021-08-09 20:17:33
+ * Last modified  : 2021-12-26 11:31:41
  */
 
 
@@ -119,6 +119,20 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 			title = this.stringKey.CREATE_PROJECT;
 		} else {
 			title = this.stringKey.UPDATE_PROJECT;
+		}
+
+		return title;
+	}
+
+	/**
+	 * Gets help article
+	 */
+	get helpArticle() {
+		let title: string;
+		if (this._passedProject.operationType === OperationsEnum.Create) {
+			title = this.apiUrls.HELP_NEW_PROJECT;
+		} else {
+			title = this.apiUrls.HELP_EDIT_PROJECT;
 		}
 
 		return title;

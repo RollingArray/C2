@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-26 18:05:25
+ * Last modified  : 2021-12-26 18:34:00
  */
 
 
@@ -17,6 +17,9 @@ export class StringKey {
 	public static readonly APP_VERSION: string = '6.2.0';
 	public static readonly APP_BUNDLE_ID: string = 'in.co.rollingarray.c2';
 	public static readonly FCM_SENDER_KEY: string = '736974848102';
+	public static readonly BORN: string = 'Made with ❤️ in India';
+	public static readonly COPY: string = 'Copyright © ';
+	public static readonly RA: string = 'RollingArray';
 
 	// page text
 
@@ -544,7 +547,10 @@ export class StringKey {
 	public static readonly FAQ_INFO: string = 'Read our FAQ to het answers to your questions';
 	public static readonly FAQ_Q_2: string = 'Are you officially supporting any shopping online site or any supplier or a project';
 	public static readonly FAQ_A_2: string = 'No, we do not';
-
+	public static readonly HOW_WORK: string = 'How Does It Work';
+	public static readonly HELP_DOC: string =  'Help & Doc';
+	public static readonly OPEN: string = 'Open Source';
+	
 	public static readonly ICON_BASE_PATH: string = "assets/custom-ion-icons/";
 	public static readonly ICON_BREADCRUMB: string = StringKey.ICON_BASE_PATH + "breadcrumb.svg";
 	public static readonly ICON_MENU: string = StringKey.ICON_BASE_PATH + "menu.svg";

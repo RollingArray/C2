@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-12-26 11:29:23
+ * Last modified  : 2021-12-26 18:31:25
  */
 
 import { environment } from "../../../environments/environment";
@@ -65,7 +65,7 @@ export class ApiUrls {
 
 
 	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline";
-
+	public static readonly RA: string = 'https://rollingarray.co.in/';
 	public static readonly HELP_BASE: string = 'https://c2.doc.rollingarray.co.in/';
 	public static readonly HELP_BASE_ARTICLE: string = 'https://c2.doc.rollingarray.co.in/#/go/articles/';
 	public static readonly HELP: string = ApiUrls.HELP_BASE;

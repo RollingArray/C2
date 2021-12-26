@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-11-23 19:29:11
+ * Last modified  : 2021-12-26 18:05:25
  */
 
 
@@ -540,6 +540,7 @@ export class StringKey {
 	public static readonly P_P: string = 'Privacy Policy';
 	public static readonly P_P_INFO: string = 'Read how we collect, store, protect, and utilize personal data provided by the users';
 	public static readonly FAQ: string = 'C2 is an Open Source Project, explore more about C2 on Github';
+	public static readonly KNOWLEDGE_BASE: string = 'Learn more about C2 @ C2 Knowledge Base';
 	public static readonly FAQ_INFO: string = 'Read our FAQ to het answers to your questions';
 	public static readonly FAQ_Q_2: string = 'Are you officially supporting any shopping online site or any supplier or a project';
 	public static readonly FAQ_A_2: string = 'No, we do not';
@@ -616,7 +617,7 @@ export class StringKey {
 	public static readonly ICON_START: string = StringKey.ICON_BASE_PATH + "start.svg";
 	public static readonly ICON_STOP: string = StringKey.ICON_BASE_PATH + "stop.svg";
 	public static readonly ICON_EMAIL: string = StringKey.ICON_BASE_PATH + "email.svg";
-
+	public static readonly ICON_OPEN: string = StringKey.ICON_BASE_PATH + "open.svg";
 	public static readonly ICON_TASK: string = StringKey.ICON_BASE_PATH + "task.svg";
 	public static readonly ICON_ASSIGNEE: string = StringKey.ICON_BASE_PATH + "user-story.svg";
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";

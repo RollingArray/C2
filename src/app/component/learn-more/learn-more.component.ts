@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-05 11:29:45 
- * Last modified  : 2021-11-19 13:42:37
+ * Last modified  : 2021-12-26 18:02:41
  */
 
 
@@ -73,11 +73,18 @@ export class LearnMoreComponent extends BaseViewComponent implements OnInit, OnD
 	}
 
 	/**
+	 * Knowledges base
+	 */
+	async knowledgeBase()
+	{
+		(window as any).open(ApiUrls.HELP, "_blank");
+	}
+	/**
 	 * Faqs learn more component
 	 */
 	async faq()
 	{
-		(window as any).open(ApiUrls.HELP, "_blank");
+		(window as any).open(ApiUrls.GITHUB, "_blank");
 	}
 
 	/**

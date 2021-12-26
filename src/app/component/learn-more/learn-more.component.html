@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-05 11:29:45 
- * Last modified  : 2021-11-19 13:44:58
+ * Last modified  : 2021-12-26 18:06:16
  */
  -->
 
@@ -89,8 +89,14 @@
 				</ion-item>
 				<ion-card class="text-center cursor-pointer" color="dark" (click)="faq()">
 					<p>
-						<ion-icon [src]="stringKey.ICON_HELP"></ion-icon>
+						<ion-icon [src]="stringKey.ICON_OPEN"></ion-icon>
 						<ion-label>&nbsp; {{ stringKey.FAQ }} </ion-label>
+					</p>
+				</ion-card>
+				<ion-card class="text-center cursor-pointer" color="dark" (click)="knowledgeBase()">
+					<p>
+						<ion-icon [src]="stringKey.ICON_HELP"></ion-icon>
+						<ion-label>&nbsp; {{ stringKey.KNOWLEDGE_BASE }} </ion-label>
 					</p>
 				</ion-card>
 			</ion-card>

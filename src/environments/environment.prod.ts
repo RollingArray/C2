@@ -6,13 +6,14 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-04-21 12:04:48 
- * Last modified  : 2021-12-26 20:25:39
+ * Last modified  : 2021-12-26 22:12:16
  */
 
 export const environment = {
 	production: true,
 	apiEndpoint: 'https://c2.api.rollingarray.co.in/',
-	version: "1.16.50.120",
+	version: "1.16.50.122",
+	level: '',
 	firebaseConfig: {
 		apiKey: "AIzaSyBEFrQ-gd8cxA2N00vKzDCV1_BGSQfGBHg",
 		authDomain: "credibility-calculator.firebaseapp.com",

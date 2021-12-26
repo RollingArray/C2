@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 18:51:09 
- * Last modified  : 2021-12-26 20:22:18
+ * Last modified  : 2021-12-26 22:12:00
  */
 
 
@@ -40,7 +40,7 @@ export class AnalyticsService
 	async log(loggedInUser: string, page: EventPageEnum, data: any)
 	{
 		// log if production
-		if (!environment.level) 
+		if (environment.level === '') 
 		{
 			const getOs = await this.getOs();
 			const getDevice = await this.getBrowserPlatformProduct();

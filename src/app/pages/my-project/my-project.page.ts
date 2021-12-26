@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-11-23 20:05:11
+ * Last modified  : 2021-12-26 19:46:44
  */
 
 
@@ -32,6 +32,8 @@ import { DataCommunicationModel } from 'src/app/shared/model/data-communication.
 import { UserService } from 'src/app/shared/service/user.service';
 import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
 import { DatePipe } from '@angular/common';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 @Component({
 	selector: "app-my-project",
@@ -191,6 +193,7 @@ export class MyProjectPage extends BaseViewComponent
 		private userService: UserService,
 		private updateCheckerService: UpdateCheckerService,
 		private datePipe: DatePipe,
+		private analyticsService: AnalyticsService
 	)
 	{
 		super(injector);
@@ -203,6 +206,17 @@ export class MyProjectPage extends BaseViewComponent
 	{
 		this.getCurrentUserId();
 		this.loadData();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log(
+			this._loggedInUser,
+			EventPageEnum.MY_PROJECT,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**

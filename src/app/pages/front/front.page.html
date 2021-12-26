@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:16:28 
- * Last modified  : 2021-12-26 18:33:04
+ * Last modified  : 2021-12-26 20:00:23
  */
  -->
 <ion-content lines="none" color="primary-gradient">
@@ -31,7 +31,7 @@
 			<!-- app tag -->
 			
 			<!-- sign up -->
-			<ion-col class="tag-gap" align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none">
 				<ion-button expand="block" color="primary" [routerLink]="['/sign-up']">
 					<ion-icon [src]="stringKey.ICON_SIGN_UP"></ion-icon>
@@ -102,7 +102,7 @@
 			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none" class="text-center">
 				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.RA" target="_blank">
-					{{stringKey.COPY}}
+					{{stringKey.COPY}} {{year}}
 				</a> 
 				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.RA" target="_blank">
 					{{stringKey.RA}}

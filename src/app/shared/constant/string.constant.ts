@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-26 18:34:00
+ * Last modified  : 2021-12-26 19:57:39
  */
 
 
@@ -18,7 +18,7 @@ export class StringKey {
 	public static readonly APP_BUNDLE_ID: string = 'in.co.rollingarray.c2';
 	public static readonly FCM_SENDER_KEY: string = '736974848102';
 	public static readonly BORN: string = 'Made with ❤️ in India';
-	public static readonly COPY: string = 'Copyright © ';
+	public static readonly COPY: string = ' © ';
 	public static readonly RA: string = 'RollingArray';
 
 	// page text

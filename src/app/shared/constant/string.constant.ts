@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-27 15:08:56
+ * Last modified  : 2021-12-27 18:14:31
  */
 
 
@@ -499,7 +499,7 @@ export class StringKey {
 	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check <b>Measurement Criteria</b> Range';
 	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review Feedback classification';
 	public static readonly NUMBER_OF_REVIEWS: string = 'Number of reviews';
-	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>higher the better result</b>. Toggle the switch to make the characteristics inverse, <b>lower the better</b>';
+	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>lower the better result</b>. Toggle the switch to make the characteristics inverse, <b>higher the better</b>';
 	public static readonly MEASUREMENT_CRITERIA_CHARACTERISTICS: string = 'Measurement criteria characteristics';
 	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER: string = 'Higher the better result';
 	public static readonly CRITERIA_CHARACTERISTICS_LOWER_BETTER: string = 'Lower the better result';

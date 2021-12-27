@@ -1,3 +1,15 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Api urls
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:34:14 
+ * Last modified  : 2021-12-26 21:24:48
+ */
+
 import { environment } from "../../../environments/environment";
 
 export class ApiUrls {
@@ -41,9 +53,44 @@ export class ApiUrls {
 	public static readonly PROJECT_MY_REVIEWS: string = ApiUrls.API_BASE_PATH + "/project/my/reviews/";
 	public static readonly PROJECT_ACTIVITY_DETAILS: string = ApiUrls.API_BASE_PATH + "/activity/details/";
 	public static readonly PROJECT_ACTIVITY_CRUD: string = ApiUrls.API_BASE_PATH + "/goal/activity/crud/";
+	public static readonly PROJECT_ACTIVITY_UNLOCK: string = ApiUrls.API_BASE_PATH + "/activity/unlock/";
+	public static readonly PROJECT_ACTIVITY_LOCK: string = ApiUrls.API_BASE_PATH + "/activity/lock/";
 
 	public static readonly PROJECT_COMMENT_CRUD: string = ApiUrls.API_BASE_PATH + "/activity/comment/crud/";
 
 	public static readonly PROJECT_ACTIVITY_REVIEWER_CRUD: string = ApiUrls.API_BASE_PATH + "/activity/reviewer/crud/";
 	public static readonly PROJECT_ACTIVITY_REVIEW_UPDATE: string = ApiUrls.API_BASE_PATH + "/review/update/";
+	public static readonly PROJECT_ACTIVITY_REVIEW_UNLOCK: string = ApiUrls.API_BASE_PATH + "/review/unlock/";
+	public static readonly PROJECT_ACTIVITY_REVIEW_LOCK: string = ApiUrls.API_BASE_PATH + "/review/lock/";
+
+
+	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline";
+	public static readonly RA: string = 'https://rollingarray.co.in/';
+	public static readonly HELP_BASE: string = 'https://c2.doc.rollingarray.co.in/';
+	public static readonly HELP_BASE_ARTICLE: string = 'https://c2.doc.rollingarray.co.in/#/go/articles/';
+	public static readonly HELP: string = ApiUrls.HELP_BASE;
+	public static readonly HELP_PP: string = ApiUrls.HELP_BASE_ARTICLE + "privacy-policy";
+	public static readonly HELP_T_C: string = ApiUrls.HELP_BASE_ARTICLE + "terms-conditions";
+	public static readonly HELP_AUTH: string = ApiUrls.HELP_BASE_ARTICLE + "authentication-&-authorization";
+	public static readonly HELP_SIGN_UP: string = ApiUrls.HELP_BASE_ARTICLE + "sign-up";
+	public static readonly HELP_SIGN_IN: string = ApiUrls.HELP_BASE_ARTICLE + "sign-in";
+	public static readonly HELP_PROFILE: string = ApiUrls.HELP_BASE_ARTICLE + "my-profile";
+	public static readonly HELP_MY_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "my-projects";
+	public static readonly HELP_NEW_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "create-new-project";
+	public static readonly HELP_EDIT_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "edit-existing-project-details";
+
+	public static readonly HELP_PROJECT: string = ApiUrls.HELP_BASE_ARTICLE + "projects";
+	public static readonly HELP_MEMBERS: string = ApiUrls.HELP_BASE_ARTICLE + "project-team";
+	public static readonly HELP_SPRINT: string = ApiUrls.HELP_BASE_ARTICLE + "sprint";
+	public static readonly HELP_GOAL: string = ApiUrls.HELP_BASE_ARTICLE + "goal";
+	public static readonly HELP_ACTIVITY: string = ApiUrls.HELP_BASE_ARTICLE + "activity";
+	public static readonly HELP_MEASUREMENT: string = ApiUrls.HELP_BASE_ARTICLE + "measurement-criteria";
+	public static readonly HELP_CHARACTER: string = ApiUrls.HELP_BASE_ARTICLE + "measurement-criteria-characteristics";
+	public static readonly HELP_REVIEWER: string = ApiUrls.HELP_BASE_ARTICLE + "reviewer";
+	public static readonly HELP_FEEDBACK: string = ApiUrls.HELP_BASE_ARTICLE + "feedback-classification-&-calculating-performance";
+	public static readonly HELP_WEIGHTED_PERFORMANCE: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-weighted-performances";
+	public static readonly HELP_ACTIVITY_PERFORMANCE: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-activity-performance";
+	public static readonly HELP_CREDIBILITY: string = ApiUrls.HELP_BASE_ARTICLE + "calculating-credibility";
+	public static readonly HELP_OPPORTUNITY: string = ApiUrls.HELP_BASE_ARTICLE + "define-equal-opportunities";
+
 }

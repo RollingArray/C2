@@ -19,6 +19,8 @@ export class PanelHeaderComponent extends BaseViewComponent implements OnInit {
   @Input() isLargeIcon: boolean = false;;
   @Input() isInitials: boolean = false;
   @Input() panelSubHead;
+  @Input() info: string = '';
+  
   @Output() event = new EventEmitter();
 
   onPanelTap() {

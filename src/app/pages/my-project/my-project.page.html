@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 14:56:50 
- * Last modified  : 2021-10-31 22:23:15
+ * Last modified  : 2021-12-26 11:32:54
  */
 -->
 
@@ -18,7 +18,7 @@
         <ion-buttons slot="end" (click)="loadData()">
             <ion-icon slot="start" [src]="stringKey.ICON_REFRESH"></ion-icon>
         </ion-buttons>
-        <ion-buttons slot="start" (click)="loadData()">
+        <ion-buttons class="cursor-pointer" slot="start" (click)="learnMore()">
             <ion-avatar slot="">
                 <img [src]="stringKey.IMAGE_ICON" />
             </ion-avatar>
@@ -29,6 +29,7 @@
 <ion-content #scrollArea scrollEvents="true">
     <!-- page title -->
     <app-page-info-title
+        [helpArticle]="apiUrls.HELP_MY_PROJECT"
         [title]="stringKey.MY_PROJECT"
         [info]="stringKey.MY_PROJECT_INFO"
     ></app-page-info-title>
@@ -46,13 +47,14 @@
     </ion-fab>
 
     <!-- user -->
-    
-	<ion-card>
+
+    <ion-card>
         <app-panel-header
             [panelTitle]="loggedInUserName"
+            [info] = "today"
             [isLargeIcon]="true"
             [panelIcon]="avatar"
-            [panelColor]="stringKey.COLOR_MEDIUM"
+            [panelColor]="stringKey.COLOR_INFO"
             [eventIcon]="stringKey.ICON_MORE"
             [isEventRequired]="true"
             (event)="openLoggedInUserOptions()"
@@ -92,49 +94,56 @@
                         </app-panel-header>
                         <!-- project header -->
 
-						<!-- project description -->
-						<app-custom-fields
-							[description]="project.projectDescription"
-						>
-						</app-custom-fields>
-						<!-- project description -->
-						
-						<ion-grid>
-							<ion-row>
-								
-								<ion-col>
-									<ion-button color="primary" class="go" (click)="goProjectDetails(project)">
-										{{stringKey.GO}}
-										&nbsp;&nbsp;
-										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-									</ion-button>
-									<ion-button color="primary" class="go" (click)="nextStep(project)">
-										{{stringKey.NEXT}}
-										&nbsp;&nbsp;
-										<ion-icon [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-									</ion-button>
-								</ion-col>
-								
-							</ion-row>
-						</ion-grid>
-                        
+                        <!-- project description -->
+                        <app-custom-fields
+                            [description]="project.projectDescription"
+                        >
+                        </app-custom-fields>
+                        <!-- project description -->
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button
+                                        mode="ios"
+                                        color="dark"
+                                        class="go"
+                                        (click)="goProjectDetails(project)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_RIGHT_ARROW"
+                                        ></ion-icon>
+                                    </ion-button>
+                                    <ion-button
+                                        mode="ios"
+                                        color="dark"
+                                        class="go"
+                                        (click)="nextStep(project)"
+                                    >
+                                        <ion-icon
+                                            [src]="stringKey.ICON_HELP"
+                                        ></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
 
                         <!-- user types -->
                         <div class="users">
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Reviewer ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Reviewer ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_STAR"
                                 *ngFor="let user of project.projectReviewers.data"
                             ></app-avatar>
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Assignee ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Assignee ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_PEN"
                                 *ngFor="let user of project.projectAssignees.data"
                             ></app-avatar>
                             <app-avatar
-								(click)="avatarToolTip(userTypeEnum.Administrator ,project.projectName, user, $event)"
+                                (click)="avatarToolTip(userTypeEnum.Administrator ,project.projectName, user, $event)"
                                 [user]="user"
                                 [icon]="stringKey.ICON_COG"
                                 *ngFor="let user of project.projectAdministrator.data"

@@ -13,7 +13,7 @@ export class AlertService {
 			.create({
 				header: 'C2',
 				message,
-				buttons: ['OK']
+				buttons: ['Okay']
 			})
 			.then(response => {
 				response

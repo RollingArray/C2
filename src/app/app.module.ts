@@ -22,6 +22,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { DisableBackService } from './shared/service/disable-back.service';
+import { AngularFireModule } from "@angular/fire";
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import { DisableBackService } from './shared/service/disable-back.service';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
 	],
 	providers: [
     //Push,

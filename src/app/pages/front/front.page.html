@@ -1,3 +1,16 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Front page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:16:28 
+ * Last modified  : 2021-12-26 20:00:23
+ */
+ -->
 <ion-content lines="none" color="primary-gradient">
 	<ion-grid lines="none">
 		<ion-row justify-content-center lines="none">
@@ -17,25 +30,6 @@
 			</ion-col>
 			<!-- app tag -->
 			
-			<!-- sign in -->
-			<ion-col class="tag-gap" align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
-				offset-sm="4" lines="none">
-				<ion-button expand="block" color="secondary" [routerLink]="['/sign-in']">
-					<ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
-					<ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
-				</ion-button>
-			</ion-col>
-			<!-- sign in -->
-
-			<!-- hav account -->
-			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
-				offset-sm="4" lines="none">
-				<h3>
-					{{stringKey.HAVE_ACCOUNT}}
-				</h3>
-			</ion-col>
-			<!-- hav account -->
-
 			<!-- sign up -->
 			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
 				offset-sm="4" lines="none">
@@ -45,6 +39,76 @@
 				</ion-button>
 			</ion-col>
 			<!-- sign up -->
+			
+			<!-- hav account -->
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+				<h3>
+					{{stringKey.HAVE_ACCOUNT}}
+				</h3>
+			</ion-col>
+			<!-- hav account -->
+
+			<!-- sign in -->
+			<ion-col  align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none">
+				<ion-button expand="block" color="secondary" [routerLink]="['/sign-in']">
+					<ion-icon [src]="stringKey.ICON_LOGIN"></ion-icon>
+					<ion-label>&nbsp; {{stringKey.SIGN_IN}} </ion-label>
+				</ion-button>
+			</ion-col>
+			<!-- sign in -->
+
+			
+			
 		</ion-row>
+		<ion-row class="margin-top-30-px">
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center">
+				<a  class="link"  [href]="apiUrls.GITHUB" target="_blank">
+					{{stringKey.OPEN}}
+				</a>
+				&nbsp;|&nbsp; 
+				<a  class="link"  (click)="loadIntro()" [href]="">
+					{{stringKey.HOW_WORK}}
+				</a>
+				&nbsp;|&nbsp; 
+				<a class="link" [href]="apiUrls.HELP" target="_blank">
+					{{stringKey.HELP_DOC}}
+				</a> 
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center">
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.HELP_PP" target="_blank">
+					{{stringKey.P_P}}
+				</a>
+				&nbsp;|&nbsp; 
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.HELP_T_C" >
+					{{stringKey.T_N_C}}
+				</a> 
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center">
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.RA" target="_blank">
+					{{stringKey.BORN}}
+				</a>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align-self-center size="12" size-lg="4" size-md="4" size-sm="4" offset-lg="4" offset-md="4"
+				offset-sm="4" lines="none" class="text-center">
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.RA" target="_blank">
+					{{stringKey.COPY}} {{year}}
+				</a> 
+				<a color="primary-gradient" class="link" size="small" [href]="apiUrls.RA" target="_blank">
+					{{stringKey.RA}}
+				</a> 
+			</ion-col>
+		</ion-row>
+		
 	</ion-grid>
 </ion-content>

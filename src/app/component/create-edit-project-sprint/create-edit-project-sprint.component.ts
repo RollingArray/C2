@@ -119,17 +119,20 @@ export class CreateEditProjectSprintComponent extends BaseFormComponent
 	 */
 	get pageTitle() {
 		let title: string;
-		switch (this._passedSprint.operationType) {
-			case OperationsEnum.Create:
-				title = this.stringKey.CREATE_SPRINT;
-				break;
-			case OperationsEnum.Edit:
-				title = this.stringKey.UPDATE_SPRINT;
-				break;
-			default:
-				break;
+		if (this._passedSprint)
+		{
+			switch (this._passedSprint.operationType) {
+				case OperationsEnum.Create:
+					title = this.stringKey.CREATE_SPRINT;
+					break;
+				case OperationsEnum.Edit:
+					title = this.stringKey.UPDATE_SPRINT;
+					break;
+				default:
+					break;
+			}
 		}
-
+		
 		return title;
 	}
 

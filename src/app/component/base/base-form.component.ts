@@ -23,6 +23,7 @@ import { ArrayKey } from 'src/app/shared/constant/array.constant';
 import { Subject } from 'rxjs';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
 import { ModalData } from "src/app/shared/model/modal-data.model";
+import { ApiUrls } from "src/app/shared/constant/api-urls.constant";
 
 @Component({
 	selector: 'base-form-component',
@@ -41,6 +42,7 @@ export abstract class BaseFormComponent implements OnInit, OnDestroy {
 	public subscription: Subscription = new Subscription();
 	public unsubscribe = new Subject<void>();
 
+	readonly apiUrls = ApiUrls;
 	readonly stringKey = StringKey;
 	readonly regex = Regex;
 	readonly arrayKey = ArrayKey;

@@ -1,4 +1,17 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Assignee self review component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:21:25 
+ * Last modified  : 2021-11-19 18:36:04
+ */
+
 import { Component, OnInit, Input, Injector, EventEmitter, Output } from "@angular/core";
+import { ActionSheetButton } from "@ionic/core";
 import { takeUntil } from "rxjs/operators";
 import { ActivityMeasurementTypeEnum } from "src/app/shared/enum/activity-measurement-type.enum";
 import { OperationsEnum } from "src/app/shared/enum/operations.enum";
@@ -46,6 +59,10 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 	 */
 	private _projectId: string;
 
+	get isAssignee()
+	{
+		return this._loggedInUser == this.activity.assigneeUserId ? true : false
+	}
 	/**
 	 * Creates an instance of assignee self review component.
 	 * @param injector 
@@ -112,7 +129,8 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 	 * Opens activity comment options
 	 * @param selectedActivity 
 	 */
-	async openActivityCommentOptions(selectedActivity: ActivityModel) {
+	async openActivityCommentOptions(selectedActivity: ActivityModel)
+	{
 		const actionSheet = await this.actionSheetController.create({
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
 			buttons: [
@@ -126,7 +144,6 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 						else{
 							this.addActivityComment(selectedActivity);
 						}
-						
 					}
 				},
 				{
@@ -240,5 +257,18 @@ export class AssigneeSelfReviewComponent extends BaseViewComponent implements On
 			return await modal.present();
 		}
 	}
+
+	/**
+	 * 
+	 * @param selectedReviewer 
+	 * @returns 
+	 */
+	 getUser(selectedActivity: ActivityModel)
+	 {
+		 return {
+			 userFirstName: selectedActivity.assigneeUserFirstName,
+			 userLastName: selectedActivity.assigneeUserLastName,
+		 }
+	 }
 
 }

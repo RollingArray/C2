@@ -1,102 +1,146 @@
 <!-- header -->
-<ion-header [appScrollTracker]='scrollArea'>
-	<ion-toolbar color="primary">
-		<ion-title>
-			{{ pageTitle }}
-		</ion-title>
-		<ion-buttons slot="end">
-			<ion-button fill="solid" color="dark" (click)="cancelModal()">{{
-				stringKey.CANCEL
-				}}</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
+<ion-header [appScrollTracker]="scrollArea">
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{ pageTitle }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button
+                mode="ios"
+                fill="outline"
+                color="dark"
+                (click)="cancelModal()"
+                >{{ stringKey.CANCEL }}</ion-button
+            >
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="pageTitle" [info]="stringKey.SPRINT_DETAIL_INFO"></app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title
+        [title]="pageTitle"
+        [info]="stringKey.SPRINT_DETAIL_INFO"
+    ></app-page-info-title>
+    <!-- page title -->
 
-	<!-- fab -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark" (click)="submit()">
-			<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
-	<!-- fab -->
-	
-	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
-		<!-- Sprint name -->
-		<ion-card color="secondary">
-			<p>
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{stringKey.FORM_INFO_SPRINT_NAME}}
-				</ion-item>
-			</p>
-			<ion-card lines="none" color="light">
-				<ion-item lines="none" color="light">
-					<ion-input [placeholder]="stringKey.FORM_PLACEHOLDER_SPRINT_NAME" autocomplete="off"
-						formControlName="sprintName" type="text">
-					</ion-input>
-				</ion-item>
-				<ion-card *ngIf="sprintName.invalid && sprintName.touched" color="warning">
-					<ion-item color="warning">
-						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-						{{stringKey.FORM_INFO_SPRINT_NAME}}
-					</ion-item>
-				</ion-card>
-			</ion-card>
-		</ion-card>
-		<!-- Sprint name -->
+    <!-- fab -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button color="dark" (click)="submit()">
+            <ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <!-- fab -->
 
-		<!-- Sprint start date -->
-		<ion-card color="secondary">
-			<p>
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{stringKey.FORM_INFO_SPRINT_START_DATE}}
-				</ion-item>
-			</p>
-			<ion-card lines="none" color="light">
-				<ion-item lines="none">
-					<ion-datetime [placeholder]="stringKey.FORM_PLACEHOLDER_SPRINT_START_DATE"
-						formControlName="sprintStartDate" displayFormat="YYYY-MM-DD" [value]="sprintStartDate">
-					</ion-datetime>
-				</ion-item>
-				<ion-card *ngIf="sprintStartDate.invalid && sprintStartDate.touched" color="warning">
-					<ion-item color="warning">
-						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-						{{stringKey.FORM_VALIDATION_SPRINT_START_DATE}}
-					</ion-item>
-				</ion-card>
-			</ion-card>
-		</ion-card>
-		<!-- Sprint start date -->
+    <form
+        [formGroup]="formGroup"
+        (ngSubmit)="submit()"
+        color="primary"
+        lines="none"
+    >
+        <!-- Sprint name -->
+        <ion-card color="secondary">
+            <ion-item color="secondary" lines="none">
+                <ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+                <p>{{ stringKey.FORM_INFO_SPRINT_NAME }}</p>
+            </ion-item>
+            <ion-card lines="none" color="light">
+                <ion-item lines="none" color="light">
+                    <ion-input
+                        [placeholder]="stringKey.FORM_PLACEHOLDER_SPRINT_NAME"
+                        autocomplete="off"
+                        formControlName="sprintName"
+                        type="text"
+                    >
+                    </ion-input>
+                </ion-item>
+                <ion-card
+                    *ngIf="sprintName.invalid && sprintName.touched"
+                    color="warning"
+                >
+                    <ion-item color="warning">
+                        <ion-icon
+                            color="danger"
+                            slot="start"
+                            [src]="stringKey.ICON_WARNING"
+                        ></ion-icon>
+                        {{ stringKey.FORM_INFO_SPRINT_NAME }}
+                    </ion-item>
+                </ion-card>
+            </ion-card>
+        </ion-card>
+        <!-- Sprint name -->
 
-		<!-- Sprint end date -->
-		<ion-card color="secondary">
-			<p>
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{stringKey.FORM_INFO_SPRINT_END_DATE}}
-				</ion-item>
-			</p>
-			<ion-card lines="none" color="light">
-				<ion-item lines="none">
-					<ion-datetime [placeholder]="stringKey.FORM_PLACEHOLDER_SPRINT_END_DATE"
-						formControlName="sprintEndDate" displayFormat="YYYY-MM-DD" [value]="sprintEndDate">
-					</ion-datetime>
-				</ion-item>
-				<ion-card *ngIf="sprintEndDate.invalid && sprintEndDate.touched" color="warning">
-					<ion-item color="warning">
-						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-						{{stringKey.FORM_VALIDATION_SPRINT_END_DATE}}
-					</ion-item>
-				</ion-card>
-			</ion-card>
-		</ion-card>
-		<!-- Sprint end date -->
-	</form>
-	
+        <!-- Sprint start date -->
+        <ion-card color="secondary">
+            <ion-item color="secondary" lines="none">
+                <ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+                <p>{{ stringKey.FORM_INFO_SPRINT_START_DATE }}</p>
+            </ion-item>
+
+            <ion-card lines="none" color="light">
+                <ion-item lines="none">
+                    <ion-datetime
+                        [placeholder]="
+                            stringKey.FORM_PLACEHOLDER_SPRINT_START_DATE
+                        "
+                        formControlName="sprintStartDate"
+                        displayFormat="YYYY-MM-DD"
+                        [value]="sprintStartDate"
+                    >
+                    </ion-datetime>
+                </ion-item>
+                <ion-card
+                    *ngIf="sprintStartDate.invalid && sprintStartDate.touched"
+                    color="warning"
+                >
+                    <ion-item color="warning">
+                        <ion-icon
+                            color="danger"
+                            slot="start"
+                            [src]="stringKey.ICON_WARNING"
+                        ></ion-icon>
+                        {{ stringKey.FORM_VALIDATION_SPRINT_START_DATE }}
+                    </ion-item>
+                </ion-card>
+            </ion-card>
+        </ion-card>
+        <!-- Sprint start date -->
+
+        <!-- Sprint end date -->
+        <ion-card color="secondary">
+            <ion-item color="secondary" lines="none">
+                <ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+                <p>{{ stringKey.FORM_INFO_SPRINT_END_DATE }}</p>
+            </ion-item>
+
+            <ion-card lines="none" color="light">
+                <ion-item lines="none">
+                    <ion-datetime
+                        [placeholder]="
+                            stringKey.FORM_PLACEHOLDER_SPRINT_END_DATE
+                        "
+                        formControlName="sprintEndDate"
+                        displayFormat="YYYY-MM-DD"
+                        [value]="sprintEndDate"
+                    >
+                    </ion-datetime>
+                </ion-item>
+                <ion-card
+                    *ngIf="sprintEndDate.invalid && sprintEndDate.touched"
+                    color="warning"
+                >
+                    <ion-item color="warning">
+                        <ion-icon
+                            color="danger"
+                            slot="start"
+                            [src]="stringKey.ICON_WARNING"
+                        ></ion-icon>
+                        {{ stringKey.FORM_VALIDATION_SPRINT_END_DATE }}
+                    </ion-item>
+                </ion-card>
+            </ion-card>
+        </ion-card>
+        <!-- Sprint end date -->
+    </form>
 </ion-content>

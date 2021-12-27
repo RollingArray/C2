@@ -20,6 +20,7 @@ import { ArrayKey } from 'src/app/shared/constant/array.constant';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
+import { ApiUrls } from "src/app/shared/constant/api-urls.constant";
 
 @Component({
 	selector: 'base-view-component',
@@ -40,6 +41,7 @@ export abstract class BaseViewComponent implements OnInit, OnDestroy {
 	public errorMessage: string = StringKey.HOLD_TIGHT;
 	public noAccess: boolean = false;
 
+	readonly apiUrls = ApiUrls;
 	readonly stringKey = StringKey;
 	readonly regex = Regex;
 	readonly arrayKey = ArrayKey;

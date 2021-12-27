@@ -1,3 +1,15 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Sign up page template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:17:44 
+ * Last modified  : 2021-12-26 11:32:05
+ */
+ -->
 <ion-content lines="none" color="primary">
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<ion-grid lines="none">
@@ -5,11 +17,11 @@
 				<ion-col align-self-center size="12" size-lg="8" size-md="8" size-sm="8" offset-lg="2" offset-md="2"
 					offset-sm="2" lines="none">
 					<!-- app icon -->
-					<img [src]="stringKey.IMAGE_ICON" />
+					<img class="margin-top-50-px" [src]="stringKey.IMAGE_ICON" />
 					<!-- app icon -->
 					
 					<!-- page title -->
-					<app-page-info-title [title]="stringKey.SIGN_UP" [info]="stringKey.SIGN_UP_INFO">
+					<app-page-info-title [helpArticle]="apiUrls.HELP_SIGN_UP" [title]="stringKey.SIGN_UP" [info]="stringKey.SIGN_UP_INFO">
 					</app-page-info-title>
 					<!-- page title -->
 
@@ -42,7 +54,10 @@
 						<ion-item color="semi-dark" lines="none">
 							<ion-icon [src]="stringKey.ICON_INFO"></ion-icon>
 							<p [innerHtml]="stringKey.FORM_INFO_PASSWORD_LESS"></p>
-							<ion-button class="inline-button" expand="block" color="primary" slot="end" (click)="lernaMorePasswordLess()">{{stringKey.LEARN_MORE}}</ion-button>
+							<a class="link" [href]="apiUrls.HELP_AUTH" target="_blank">
+								{{stringKey.LEARN_MORE}}
+							</a> 
+							
 						</ion-item>
 						
 					</ion-card>

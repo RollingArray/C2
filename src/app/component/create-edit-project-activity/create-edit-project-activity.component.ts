@@ -144,6 +144,14 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	public get characteristicsHigherBetter(): boolean {
 		return this._characteristicsHigherBetter;
 	}
+
+	/**
+	 * Gets passed activity
+	 */
+	public get passedActivity()
+	{
+		return this._passedActivity;
+	}
 	
 	/**
 	 * Creates an instance of create edit project activity component.
@@ -209,7 +217,8 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	/**
 	 * Sets passed value to from
 	 */
-	private setPassedValueToFrom() {
+	private setPassedValueToFrom()
+	{
 		const form = this.formGroup.value;
 		form.activityName = this._passedActivity.activityName;
 		form.activityWeight = this._passedActivity.activityWeight;
@@ -220,6 +229,7 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 		form.criteriaExpectationValue = this._passedActivity.criteriaExpectationValue;
 		form.criteriaExceedValue = this._passedActivity.criteriaExceedValue;
 		form.criteriaOutstandingValue = this._passedActivity.criteriaOutstandingValue;
+		this._characteristicsHigherBetter = this._passedActivity.characteristicsHigherBetter == 1 ? true : false;
 
 		if(this._passedActivity.activityMeasurementType){
 			this.chooseTaskMeasurementType(this._passedActivity.activityMeasurementType);
@@ -414,6 +424,7 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 */
 	private async higherBetterValueValidation() {
 		const form = this.formGroup.value;
+		
 		if(parseInt(form.criteriaImprovementValue) >= parseInt(form.criteriaPoorValue) && parseInt(form.criteriaImprovementValue) < parseInt(form.criteriaExpectationValue))
 		{
 			if(parseInt(form.criteriaExpectationValue) >= parseInt(form.criteriaImprovementValue) && parseInt(form.criteriaExpectationValue) < parseInt(form.criteriaExceedValue))
@@ -425,25 +436,29 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					{
 						await this.submitData();
 					}		
-					else{
+					else
+					{
 						await this.alertService.presentBasicAlert(
 							`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 						);
 					}
 				}
-				else{
+				else
+				{
 					await this.alertService.presentBasicAlert(
 						`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 					);
 				}	
 			}	
-			else{
+			else
+			{
 				await this.alertService.presentBasicAlert(
 					`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 				);
 			}
 		}
-		else{
+		else
+		{
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 			);
@@ -466,25 +481,29 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 					{
 						await this.submitData();
 					}		
-					else{
+					else
+					{
 						await this.alertService.presentBasicAlert(
 							`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 						);
 					}
 				}
-				else{
+				else
+				{
 					await this.alertService.presentBasicAlert(
 						`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 					);
 				}	
 			}	
-			else{
+			else
+			{
 				await this.alertService.presentBasicAlert(
 					`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 				);
 			}
 		}
-		else{
+		else
+		{
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_MEASUREMENT_CRITERIA_RANGE}`
 			);
@@ -503,7 +522,8 @@ export class CreateEditProjectActivityComponent extends BaseFormComponent
 	 * Builds data model to pass
 	 * @returns  
 	 */
-	private async buildDataModelToPass() {
+	private async buildDataModelToPass()
+	{
 		// build data userModel
 		const form = this.formGroup.value;
 		const model: ActivityModel = {

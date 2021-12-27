@@ -1,116 +1,171 @@
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
-	<ion-toolbar color="primary">
-		<ion-title>
-			{{ pageTitle }}
-		</ion-title>
-		<ion-buttons slot="start">
-			<ion-button fill="solid" color="dark" (click)="cancelModal()">{{
-				stringKey.CANCEL
-				}}</ion-button>
-		</ion-buttons>
-		<ion-buttons slot="end">
-			<ion-button fill="solid" color="dark" (click)="submit()">{{
-				stringKey.SAVE
-				}}</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{ pageTitle }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button
+                mode="ios"
+                fill="outline"
+                color="dark"
+                (click)="cancelModal()"
+                >{{ stringKey.CANCEL }}</ion-button
+            >
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <!-- header -->
 <ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
-	<!-- page title -->
-	<app-page-info-title [title]="pageTitle" [info]="stringKey.COMMENT_INFO">
-	</app-page-info-title>
-	<!-- page title -->
+    <!-- page title -->
+    <app-page-info-title [title]="pageTitle" [info]="stringKey.COMMENT_INFO">
+    </app-page-info-title>
+    <!-- page title -->
 
-	<!-- fab -->
-	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button color="dark" (click)="submit()">
-			<ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
-		</ion-fab-button>
-	</ion-fab>
-	<!-- fab -->
+    <!-- fab -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button color="dark" (click)="submit()">
+            <ion-icon [src]="stringKey.ICON_SAVE"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <!-- fab -->
 
-	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
+    <form
+        [formGroup]="formGroup"
+        (ngSubmit)="submit()"
+        color="primary"
+        lines="none"
+    >
+        <!-- claimed value -->
+        <ion-card color="secondary">
+            <p>
+                <ion-item color="secondary" lines="none">
+                    <ion-icon
+                        [src]="stringKey.ICON_SLIDER"
+                        slot="start"
+                    ></ion-icon>
+                    {{ stringKey.FORM_INFO_ASSIGNEE_ACTIVITY_CLAIM_FACT }}
+                </ion-item>
+            </p>
+            <ion-card lines="none" color="light">
+                <!-- toggle -->
+                <ion-item
+                    lines="none"
+                    color="light"
+                    *ngIf="
+                        passedActivity.activityMeasurementType ==
+                        activityMeasurementTypeEnum.Bool
+                    "
+                >
+                    <ion-label slot="start">{{
+                        stringKey.NOT_ACHIEVED
+                    }}</ion-label>
+                    <ion-toggle
+                        color="primary"
+                        [(ngModel)]="isToggled"
+                        [ngModelOptions]="{ standalone: true }"
+                        (ionChange)="onToggleBtnChange($event)"
+                    ></ion-toggle>
+                    <ion-label slot="end">{{ stringKey.ACHIEVED }}</ion-label>
+                </ion-item>
+                <!-- toggle -->
 
-		<!-- claimed value -->
-		<ion-card color="secondary">
-			<p>
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_SLIDER" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ASSIGNEE_ACTIVITY_CLAIM_FACT }}
-				</ion-item>
-			</p>
-			<ion-card lines="none" color="light">
-				<!-- toggle -->
-				<ion-item lines="none" color="light"
-					*ngIf="passedActivity.activityMeasurementType == activityMeasurementTypeEnum.Bool">
-					<ion-label slot="start">{{ stringKey.NOT_ACHIEVED }}</ion-label>
-					<ion-toggle color="primary" [(ngModel)]="isToggled" [ngModelOptions]="{ standalone: true }"
-						(ionChange)="onToggleBtnChange($event)"></ion-toggle>
-					<ion-label slot="end">{{ stringKey.ACHIEVED }}</ion-label>
-				</ion-item>
-				<!-- toggle -->
+                <!-- slider -->
+                <ion-item
+                    lines="none"
+                    color="light"
+                    *ngIf="
+                        passedActivity.activityMeasurementType ==
+                        activityMeasurementTypeEnum.Num
+                    "
+                >
+                    <!-- slider high to low  -->
+                    <ion-range
+                        formControlName="claimedResultValue"
+                        color="primary"
+                        [min]="passedActivity.criteriaPoorValue"
+                        [max]="passedActivity.criteriaOutstandingValue"
+                        step="1"
+                        *ngIf="characteristicsHigherBetter"
+                    >
+                        <ion-label slot="start">{{
+                            passedActivity.criteriaPoorValue
+                        }}</ion-label>
+                        <ion-label slot="end">{{
+                            passedActivity.criteriaOutstandingValue
+                        }}</ion-label>
+                    </ion-range>
+                    <!-- slider high to low  -->
 
-				<!-- slider -->
-				<ion-item lines="none" color="light"
-					*ngIf="passedActivity.activityMeasurementType == activityMeasurementTypeEnum.Num">
+                    <!-- slider low to high  -->
+                    <ion-range
+                        formControlName="claimedResultValue"
+                        color="primary"
+                        [min]="passedActivity.criteriaOutstandingValue"
+                        [max]="passedActivity.criteriaPoorValue"
+                        step="1"
+                        *ngIf="!characteristicsHigherBetter"
+                    >
+                        <ion-label slot="start">{{
+                            passedActivity.criteriaOutstandingValue
+                        }}</ion-label>
+                        <ion-label slot="end">{{
+                            passedActivity.criteriaPoorValue
+                        }}</ion-label>
+                    </ion-range>
+                    <!-- slider low to high  -->
 
-					<!-- slider high to low  -->
-					<ion-range formControlName="claimedResultValue" color="primary"
-						[min]="passedActivity.criteriaPoorValue" [max]="passedActivity.criteriaOutstandingValue"
-						step="1" *ngIf="characteristicsHigherBetter">
-						<ion-label slot="start">{{passedActivity.criteriaPoorValue}}</ion-label>
-						<ion-label slot="end">{{passedActivity.criteriaOutstandingValue}}</ion-label>
-					</ion-range>
-					<!-- slider high to low  -->
+                    <!-- end result  -->
+                    <span class="percentage">{{
+                        claimedResultValue.value
+                    }}</span>
+                    <span class="percentage"
+                        >&nbsp; {{ passedActivity.activityResultType }}</span
+                    >
+                    <!-- end result  -->
+                </ion-item>
+                <!-- slider -->
+            </ion-card>
+        </ion-card>
+        <!-- claimed value -->
 
-					<!-- slider low to high  -->
-					<ion-range formControlName="claimedResultValue" color="primary"
-						[min]="passedActivity.criteriaOutstandingValue" [max]="passedActivity.criteriaPoorValue"
-						step="1" *ngIf="!characteristicsHigherBetter">
-						<ion-label slot="start">{{passedActivity.criteriaOutstandingValue}}</ion-label>
-						<ion-label slot="end">{{passedActivity.criteriaPoorValue}}</ion-label>
-					</ion-range>
-					<!-- slider low to high  -->
-
-					<!-- end result  -->
-					<span class="percentage">{{claimedResultValue.value}}</span>
-					<span class="percentage">&nbsp; {{passedActivity.activityResultType}}</span>
-					<!-- end result  -->
-
-				</ion-item>
-				<!-- slider -->
-			</ion-card>
-		</ion-card>
-		<!-- claimed value -->
-
-		<!-- comment description -->
-		<ion-card color="secondary">
-			<p>
-				<ion-item color="secondary" lines="none">
-					<ion-icon [src]="stringKey.ICON_CREATE" slot="start"></ion-icon>
-					{{ stringKey.FORM_INFO_ACTIVITY_ASSIGNEE_COMMENT }}
-				</ion-item>
-			</p>
-			<ion-card lines="none" color="light">
-				<ion-item lines="none" color="light">
-					<ion-textarea rows=13 [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT" autocomplete="off"
-						formControlName="commentDescription" type="text">
-					</ion-textarea>
-				</ion-item>
-				<ion-card *ngIf="commentDescription.invalid && commentDescription.touched" color="warning">
-					<ion-item color="warning">
-						<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-						{{ stringKey.FORM_VALIDATION_COMMENT }}
-					</ion-item>
-				</ion-card>
-			</ion-card>
-		</ion-card>
-		<!-- comment description -->
-
-	</form>
-	<!-- empty row -->
-	<div id="dum-height"></div>
-	<!-- empty row -->
+        <!-- comment description -->
+        <ion-card color="secondary">
+            <ion-item color="secondary" lines="none">
+                <ion-icon [src]="stringKey.ICON_FORM" slot="start"></ion-icon>
+                <p>{{ stringKey.FORM_INFO_ACTIVITY_ASSIGNEE_COMMENT }}</p>
+            </ion-item>
+            <ion-card lines="none" color="light">
+                <ion-item lines="none" color="light">
+                    <ion-textarea
+                        rows="13"
+                        [placeholder]="stringKey.FORM_PLACEHOLDER_COMMENT"
+                        autocomplete="off"
+                        formControlName="commentDescription"
+                        type="text"
+                    >
+                    </ion-textarea>
+                </ion-item>
+                <ion-card
+                    *ngIf="
+                        commentDescription.invalid && commentDescription.touched
+                    "
+                    color="warning"
+                >
+                    <ion-item color="warning">
+                        <ion-icon
+                            color="danger"
+                            slot="start"
+                            [src]="stringKey.ICON_WARNING"
+                        ></ion-icon>
+                        {{ stringKey.FORM_VALIDATION_COMMENT }}
+                    </ion-item>
+                </ion-card>
+            </ion-card>
+        </ion-card>
+        <!-- comment description -->
+    </form>
+    <!-- empty row -->
+    <div id="dum-height"></div>
+    <!-- empty row -->
 </ion-content>

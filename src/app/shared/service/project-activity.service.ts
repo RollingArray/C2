@@ -96,4 +96,22 @@ export class ProjectActivityService extends BaseService<ActivityModel> {
 	getProjectActivityDetails(activityModel: ActivityModel): Observable<BaseModel> {
 		return this.post(`${ApiUrls.PROJECT_ACTIVITY_DETAILS}`, activityModel);
 	}
+
+	/**
+	 * Projects activity lock
+	 * @param activityModel 
+	 * @returns activity lock 
+	 */
+	projectActivityLock(activityModel: ActivityModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_LOCK}`, activityModel);
+	}
+
+	/**
+	 * Projects activity unlock
+	 * @param activityModel 
+	 * @returns activity unlock 
+	 */
+	projectActivityUnlock(activityModel: ActivityModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_UNLOCK}`, activityModel);
+	}
 }

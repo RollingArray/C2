@@ -6,7 +6,7 @@
         </ion-title>
         <ion-buttons slot="end">
             <ion-button
-                fill="solid"
+                fill="outline"
                 color="dark"
                 slot="end"
                 (click)="cancelModal()"
@@ -23,7 +23,8 @@
         [info]="stringKey.SEARCH_USER_INFO"
     ></app-page-info-title>
     <!-- page title -->
-    <form>
+
+	<form>
         <ion-card>
             <ion-card-content>
                 <!-- supplier name -->
@@ -41,6 +42,7 @@
                             name="search"
                         ></ion-input>
                         <ion-button
+							mode="ios"
                             slot="end"
                             fill="solid"
                             color="dark"
@@ -64,6 +66,8 @@
     <ng-container *ngIf="hasData">
         <ion-card *ngFor="let user of users">
             <app-panel-header
+                [user]="user"
+                [isInitials]="true"
                 [panelTitle]="user.userFirstName + ' ' + user.userLastName"
                 [panelIcon]="stringKey.ICON_USER"
                 [panelColor]="stringKey.COLOR_MEDIUM"
@@ -71,6 +75,8 @@
                 [isEventRequired]="true"
                 (event)="openUserOptions(user)"
             ></app-panel-header>
+            <app-custom-fields [email]="user?.userEmail">
+            </app-custom-fields>
         </ion-card>
     </ng-container>
 </ion-content>

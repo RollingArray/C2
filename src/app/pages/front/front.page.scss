@@ -1,3 +1,16 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Front page template style
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:16:28 
+ * Last modified  : 2021-12-26 19:59:34
+ */
+
+
 ion-card {
   border: none !important;
   -webkit-box-shadow: none;
@@ -36,5 +49,9 @@ h1, h2, h3, h4,h5, h6{
 }
 
 .tag-gap{
-  margin: 65px 0 0 0;
+  // margin: 15px 0 0 0;
+}
+
+.border{
+  border-top: 1px solid var(--ion-color-primary);
 }

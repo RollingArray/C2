@@ -1,7 +1,17 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Sign up page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:17:44 
+ * Last modified  : 2021-12-26 19:40:27
+ */
+
+
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { BaseFormComponent } from 'src/app/component/base/base-form.component';
-import { ModalData } from 'src/app/shared/model/modal-data.model';
-import { UserModel } from 'src/app/shared/model/user.model';
 import { AlertService } from 'src/app/shared/service/alert.service';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -10,6 +20,8 @@ import { BaseModel } from 'src/app/shared/model/base.model';
 import { takeUntil } from 'rxjs/operators';
 import { PasswordLessComponent } from 'src/app/component/password-less/password-less.component';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 
 @Component({
@@ -18,6 +30,8 @@ import { LocalStorageService } from 'src/app/shared/service/local-storage.servic
 	styleUrls: ["./sign-up.page.scss"],
 })
 export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
+	
+	
 	/**
 	 * Creates an instance of sign up page.
 	 * @param injector 
@@ -32,10 +46,20 @@ export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
 		private loadingService: LoadingService,
 		private userService: UserService,
 		private router: Router,
-		private localStorageService: LocalStorageService
+		private localStorageService: LocalStorageService,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.SIGN_UP,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**

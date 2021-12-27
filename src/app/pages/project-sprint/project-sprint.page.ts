@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-25 15:11:50 
- * Last modified  : 2021-11-25 15:11:50 
+ * Last modified  : 2021-12-27 18:05:48
  */
 
 import { OperationsEnum } from 'src/app/shared/enum/operations.enum';
@@ -208,7 +208,9 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 						if(this._projectSprintModel.projectSprints.success){
 							this._hasData = true;
 						}
-						else{
+						else
+						{
+							this._hasData = false;
 							this.errorMessage = this.stringKey.NO_DATA_SPRINT;
 							
 						}
@@ -346,6 +348,13 @@ export class ProjectSprintPage extends BaseViewComponent implements OnInit, OnDe
 					icon: this.stringKey.ICON_DELETE,
 					handler: () => {
 						this.deleteProjectSprint(selectedSprint);
+					}
+				},
+				{
+					text: this.stringKey.NEXT,
+					icon: this.stringKey.ICON_HELP,
+					handler: () => {
+						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_SPRINT, selectedSprint.sprintName);
 					}
 				},
 				{

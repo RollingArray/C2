@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-17 12:29:14 
- * Last modified  : 2021-12-26 19:46:44
+ * Last modified  : 2021-12-27 17:27:13
  */
 
 
@@ -326,6 +326,8 @@ export class MyProjectPage extends BaseViewComponent
 				}
 				else
 				{
+					this._hasData = false;
+					this._projects = [];
 					this.errorMessage = this.stringKey.NO_DATA_MY_PROJECT;
 				}
 			});

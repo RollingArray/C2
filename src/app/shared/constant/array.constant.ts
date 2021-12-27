@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:15:29 
- * Last modified  : 2021-12-26 20:52:34
+ * Last modified  : 2021-12-27 18:03:55
  */
 
 
@@ -215,7 +215,7 @@ export class ArrayKey {
 				
 				{
 					title: StringKey.NS_GOAL_1,
-					url: ['activities'],
+					url: ['sprints'],
 					icon: StringKey.ICON_REVIEWER
 				},
 				{
@@ -225,12 +225,12 @@ export class ArrayKey {
 				},
 				{
 					title: StringKey.NS_GOAL_3,
-					url: ['activities'],
+					url: ['my','review'],
 					icon: StringKey.ICON_REVIEWER
 				},
 				{
 					title: StringKey.NS_GOAL_4,
-					url: ['activities'],
+					url: ['credibility-board'],
 					icon: StringKey.ICON_REVIEWER
 				},
 			]
@@ -240,7 +240,7 @@ export class ArrayKey {
 			steps: [
 				{
 					title: StringKey.NS_SPRINT_1,
-					url: ['activities'],
+					url: ['goals'],
 					icon: StringKey.ICON_REVIEWER
 				},
 				{
@@ -250,12 +250,12 @@ export class ArrayKey {
 				},
 				{
 					title: StringKey.NS_SPRINT_3,
-					url: ['activities'],
+					url: ['my','review'],
 					icon: StringKey.ICON_REVIEWER
 				},
 				{
 					title: StringKey.NS_SPRINT_4,
-					url: ['activities'],
+					url: ['credibility-board'],
 					icon: StringKey.ICON_REVIEWER
 				},
 			]
@@ -265,7 +265,7 @@ export class ArrayKey {
 			steps: [
 				{
 					title: StringKey.NS_ACTIVITY_ASSIGNEE_1,
-					url: ['activities'],
+					url: ['my','activity'],
 					icon: StringKey.ICON_ASSIGNEE
 				},
 			]
@@ -275,7 +275,7 @@ export class ArrayKey {
 			steps: [
 				{
 					title: StringKey.NS_ACTIVITY_REVIEWER_1,
-					url: ['activities'],
+					url: ['my','review'],
 					icon: StringKey.ICON_REVIEWER
 				},
 			]

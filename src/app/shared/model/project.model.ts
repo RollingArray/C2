@@ -10,9 +10,11 @@ export interface ProjectModel extends OperatingUserModel {
     projectName ?: string;
     projectDescription ?: string;
     requestFrom ?: string;
-    userTypeId ?: string;
+    userTypeId?: string;
+    userTypeName?: string;
     rawDataKeys ?: string[];
     projectAdministrator ?: ProjectUserTypeBaseModel;
     projectAssignees ?: ProjectUserTypeBaseModel;
-    projectReviewers ?: ProjectUserTypeBaseModel;
+    projectReviewers?: ProjectUserTypeBaseModel;
+    projectUserTypeId ?: string;
 }

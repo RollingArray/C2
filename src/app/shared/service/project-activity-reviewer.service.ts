@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-06 11:49:59 
- * Last modified  : 2021-05-06 21:47:54
+ * Last modified  : 2021-11-13 13:15:17
  */
 
 
@@ -73,5 +73,21 @@ export class ProjectActivityReviewerService extends BaseService<ActivityReviewer
 		return this.post(`${ApiUrls.PROJECT_ACTIVITY_REVIEW_UPDATE}`, activityReviewerModel);
 	}
 
-	
+	/**
+	 * Projects activity review lock
+	 * @param activityReviewerModel 
+	 * @returns activity review lock 
+	 */
+	projectActivityReviewLock(activityReviewerModel: ActivityReviewerModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_REVIEW_LOCK}`, activityReviewerModel);
+	}
+
+	/**
+	 * Projects activity review unlock
+	 * @param activityReviewerModel 
+	 * @returns activity review unlock 
+	 */
+	projectActivityReviewUnlock(activityReviewerModel: ActivityReviewerModel): Observable<BaseModel> {
+		return this.post(`${ApiUrls.PROJECT_ACTIVITY_REVIEW_UNLOCK}`, activityReviewerModel);
+	}
 }

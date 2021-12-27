@@ -111,8 +111,14 @@ export class LocalStorageService
 	 * Gets active user name
 	 * @returns active user name 
 	 */
-	getActiveUserName(): Observable<string> {
-		var fullName = localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_FIRST_NAME}`) + " " + localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_LAST_NAME}`);
+	getActiveUserName(): Observable<string>
+	{
+		const firstName = localStorage.getItem(LocalStoreKey.LOGGED_IN_USER_FIRST_NAME);
+		const lastName = localStorage.getItem(LocalStoreKey.LOGGED_IN_USER_LAST_NAME);
+		const firstNameCapitalized = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+		const lastNameCapitalized = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
+		var fullName = firstNameCapitalized + " " + lastNameCapitalized;
 
 		this.currentActiveUserName$ = new BehaviorSubject<string>(fullName);
 		return this.currentActiveUserName$.asObservable();

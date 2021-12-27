@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:12:14 
- * Last modified  : 2021-05-18 19:12:31
+ * Last modified  : 2021-11-06 19:24:19
  */
 
 .message {
@@ -24,13 +24,29 @@
 	.step-indicator{
 		align-content: center;
 		ion-icon{
-			font-size: 50px;
-			color: var(--ion-color-dark);
+			font-size: 30px;
+			color: var(--ion-color-primary);
+			width: 70px;
 		}
 	}
 
 	.step-text{
 		font-size: 15px;
 		padding: 10px;
+		border-bottom: 1px solid var(--ion-color-medium);
+		
 	}
+
+	.go{
+		float: right;
+		margin: 10px;
+	}
+}
+
+code {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	font-size: 85%;
+	background-color: var(--ion-color-dark);
+	border-radius: 6px;
 }

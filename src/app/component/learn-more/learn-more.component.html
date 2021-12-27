@@ -1,0 +1,127 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Learn more component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-05 11:29:45 
+ * Last modified  : 2021-12-26 18:06:16
+ */
+ -->
+
+
+<!-- header -->
+<ion-header [appScrollTracker]="scrollArea">
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{ stringKey.APP_NAME }}
+        </ion-title>
+        <ion-buttons slot="end">
+			<ion-button class="cursor-pointer" fill="outline" color="dark" (click)="closeModal()">{{
+				stringKey.CLOSE
+				}}</ion-button>
+		</ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<!-- header -->
+<ion-content color="primary" lines="none" #scrollArea scrollEvents="true">
+    <ion-grid lines="none">
+		<ion-row>
+			<ion-col align-self-center size="6" offset="3" lines="none">
+					<img [src]="stringKey.IMAGE_LANDING"/>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col class="text-center">
+				<p>
+					<ion-label><b>{{ stringKey.APP_TAG_LINE }}</b></ion-label>
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col class="text-center">
+				<p>
+					<ion-label>{{ stringKey.VERSION }} :: {{ appEnvironment }} {{ appVersion }}</ion-label>
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col class="text-center">
+				<p>
+					<ion-label>
+						{{ stringKey.COPYRIGHT }} {{ year }} |
+						<b>{{ stringKey.OWNER_EMAIL }}</b>
+					</ion-label>
+				</p>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col class="text-center">
+				<p>
+					<ion-label>
+						{{ stringKey.QUERY }} <br /><b>{{ stringKey.SUPPORT_EMAIL }}</b>
+					</ion-label>
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-card color="light">
+				<ion-item color="light" lines="none">
+					<h3>
+						<ion-icon
+							color="dark"
+							slot="start"
+							[src]="stringKey.ICON_MENU"
+						></ion-icon>
+						{{ stringKey.WHAT_WE_ARE }}
+					</h3>
+				</ion-item>
+				<ion-item lines="none">
+					<p>
+						{{ stringKey.WHAT_WE_ARE_INFO_1 }}
+						<br><br>
+						{{ stringKey.WHAT_WE_ARE_INFO_2 }}
+					</p>
+				</ion-item>
+				<ion-card class="text-center cursor-pointer" color="dark" (click)="faq()">
+					<p>
+						<ion-icon [src]="stringKey.ICON_OPEN"></ion-icon>
+						<ion-label>&nbsp; {{ stringKey.FAQ }} </ion-label>
+					</p>
+				</ion-card>
+				<ion-card class="text-center cursor-pointer" color="dark" (click)="knowledgeBase()">
+					<p>
+						<ion-icon [src]="stringKey.ICON_HELP"></ion-icon>
+						<ion-label>&nbsp; {{ stringKey.KNOWLEDGE_BASE }} </ion-label>
+					</p>
+				</ion-card>
+			</ion-card>
+		</ion-row>
+        <ion-row>
+			<ion-grid>
+				<ion-row>
+					<ion-col size-lg="6" size-md="6" size-sm="12" size="12">
+						<ion-card class="text-center cursor-pointer" expand="block" color="dark" (click)="tnc()">
+							<p>
+								<ion-icon [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+								<ion-label>&nbsp; {{ stringKey.T_N_C }} </ion-label>
+							</p>
+						</ion-card>
+					</ion-col>
+					<ion-col size-lg="6" size-md="6" size-sm="12" size="12">
+						<ion-card class="text-center cursor-pointer" expand="block" color="dark" (click)="pp()">
+							<p>
+								<ion-icon [src]="stringKey.ICON_DOCUMENT"></ion-icon>
+								<ion-label>&nbsp; {{ stringKey.P_P }} </ion-label>
+							</p>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,14 +1,24 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Front page
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:14:11 
+ * Last modified  : 2021-12-26 19:57:08
+ */
+
+
 import { takeUntil } from 'rxjs/operators';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
-import { StringKey } from 'src/app/shared/constant/string.constant';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
-import { ModalController } from '@ionic/angular';
 import { IntroComponent } from 'src/app/component/intro/intro.component';
-import { RegisteredUserService } from 'src/app/shared/service/registered-user.service';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 @Component({
 	selector: "app-front",
@@ -16,19 +26,46 @@ import { RegisteredUserService } from 'src/app/shared/service/registered-user.se
 	styleUrls: ["./front.page.scss"],
 })
 export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
-	// instance variable
-	private introStatus: string;
+	
+	/**
+	 * Year  of front page
+	 */
+	readonly year = new Date().getFullYear();
 
-	// SignInPage constructor
+	/**
+	 * Creates an instance of front page.
+	 * @param injector 
+	 * @param localStorageService 
+	 * @param platformHelper 
+	 */
 	constructor(
 		injector: Injector,
 		private localStorageService: LocalStorageService,
 		private platformHelper: PlatformHelper,
-		private registeredUserService: RegisteredUserService,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.FRONT,
+			{
+				'data': ''
+			}
+		);
 	}
 
+	/**
+	 * on destroy
+	 */
+	 ngOnDestroy() {
+		super.ngOnDestroy();
+	}
+
+	/**
+	 * on init
+	 */
 	async ngOnInit() {
 		if (await this.activeUserId()) {
 			this.router.navigate(["/my-project"]);
@@ -45,7 +82,11 @@ export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
 				);
 		}
 	}
-	//activeUserId
+	
+	/**
+	 * Actives user id
+	 * @returns  
+	 */
 	async activeUserId() {
 		let activeUserId = "";
 		this.localStorageService
@@ -57,11 +98,10 @@ export class FrontPage extends BaseViewComponent implements OnInit, OnDestroy {
 		return activeUserId;
 	}
 
-	ngOnDestroy() {
-		super.ngOnDestroy();
-	}
-
-	// add Community
+	/**
+	 * Loads intro
+	 * @returns  
+	 */
 	async loadIntro() {
 		const modal = await this.modalController.create({
 			component: IntroComponent,

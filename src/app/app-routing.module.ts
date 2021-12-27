@@ -20,18 +20,6 @@ const routes: Routes = [
 		path: "front",
 		loadChildren: () => import('./pages/front/front.module').then( m => m.FrontPageModule)
 	},
-	{
-		path: "reset-password-code",
-		loadChildren: () => import('./pages/reset-password-code/reset-password-code.module').then( m => m.ResetPasswordCodePageModule)
-	},
-	{
-		path: "update-password",
-		loadChildren: () => import('./pages/update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
-	},
-	{
-		path: "account-verification",
-		loadChildren: () => import('./pages/account-verification/account-verification.module').then( m => m.AccountVerificationPageModule)
-	},
 	{ 	
 		path: 'my-project', 
 		loadChildren: () => import('./pages/my-project/my-project.module').then( m => m.MyProjectPageModule),

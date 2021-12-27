@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 14:25:52 
- * Last modified  : 2021-10-31 16:39:40
+ * Last modified  : 2021-11-11 17:29:30
  */
  -->
 <ion-content lines="none" color="primary" #scrollArea scrollEvents="true">
@@ -19,38 +19,13 @@
 				offset-sm="2" lines="none">
 
 					<!-- app icon -->
-					<img [src]="stringKey.IMAGE_ICON" />
+					<img class="margin-top-50-px" [src]="stringKey.IMAGE_ICON" />
 					<!-- app icon -->
 
 					<!-- page title -->
 					<app-page-info-title [title]="stringKey.ACCOUNT_VERIFICATION" [info]="stringKey.ACCOUNT_ACTIVATION_INFO">
 					</app-page-info-title>
 					<!-- page title -->
-
-					<!-- email -->
-					
-					<ion-card color="secondary">
-						<ion-item color="secondary" lines="none">
-							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
-							<p>{{stringKey.FORM_INFO_CREDENTIAL_EMAIL}}</p>
-						</ion-item>
-						
-						<ion-card lines="none" color="light">
-							<ion-item lines="none" color="light">
-								<ion-label position="floating">{{stringKey.EMAIL}}</ion-label>
-								<ion-input autocomplete="off" [placeholder]="stringKey.FORM_PLACEHOLDER_PROFILE_EMAIL"
-									formControlName="userEmail" type="text" value="">
-								</ion-input>
-							</ion-item>
-							<ion-card *ngIf="userEmail.invalid && userEmail.touched" color="warning">
-								<ion-item color="warning">
-									<ion-icon color="danger" slot="start" [src]="stringKey.ICON_WARNING"></ion-icon>
-									{{stringKey.FORM_VALIDATION_EMAIL}}
-								</ion-item>
-							</ion-card>
-						</ion-card>
-					</ion-card>
-					<!-- email -->
 
 					<!-- code -->
 					<ion-card color="secondary">
@@ -97,7 +72,7 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col>
-					<ion-button class="footer-button" size="default" expand="block" color="semi-dark" (click)="goBack()">
+					<ion-button class="footer-button" size="default" expand="block" color="semi-dark" (click)="cancelModal()">
 						<ion-icon [src]="stringKey.ICON_CANCEL"></ion-icon>
 						<ion-label>&nbsp; {{stringKey.CANCEL}} </ion-label>
 					</ion-button>

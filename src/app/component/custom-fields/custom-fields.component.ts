@@ -1,23 +1,66 @@
-import { BaseViewComponent } from 'src/app/component/base/base-view.component';
-import { Component, OnInit, Input, Injector } from '@angular/core';
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Custom fields component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:23:05 
+ * Last modified  : 2021-11-15 21:23:44
+ */
+
+
+import { BaseViewComponent } from "src/app/component/base/base-view.component";
+import { Component, OnInit, Input, Injector } from "@angular/core";
 
 @Component({
-  selector: 'app-custom-fields',
-  templateUrl: './custom-fields.component.html',
-  styleUrls: ['./custom-fields.component.css']
+    selector: "app-custom-fields",
+    templateUrl: "./custom-fields.component.html",
+    styleUrls: ["./custom-fields.component.css"],
 })
+export class CustomFieldsComponent extends BaseViewComponent implements OnInit
+{
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() description: string;
 
-export class CustomFieldsComponent extends BaseViewComponent implements OnInit {
-  @Input() description: string;
-  @Input() sprintStartDate: string;
-  @Input() sprintEndDate: string;
-  @Input() weight: string;
-  @Input() data: string;
-  @Input() noData: boolean = false;
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() sprintStartDate: string;
 
-  constructor(
-    injector: Injector,
-  ) { 
-    super(injector);
-  }
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() sprintEndDate: string;
+
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() weight: string;
+
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() data: string;
+
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() email: string;
+
+	/**
+	 * Input  of custom fields component
+	 */
+	@Input() noData: boolean = false;
+
+	/**
+	 * Creates an instance of custom fields component.
+	 * @param injector 
+	 */
+	constructor(injector: Injector) {
+        super(injector);
+    }
 }

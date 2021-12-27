@@ -193,14 +193,13 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 		this.errorMessage = this.stringKey.NO_DATA_ACTIVITY;
-		this.getSelectProjectFilter();
 	}
 
 	/**
 	 * Ions view did enter
 	 */
 	ionViewDidEnter() {
-		this.loadData();
+		this.getSelectProjectFilter();
 	}
 
 	/**
@@ -283,19 +282,23 @@ export class ProjectActivityPage extends BaseViewComponent implements OnInit, On
 	 * Adds project activity
 	 * @returns  
 	 */
-	async addProjectActivity() {
-		if(!this._filterModel.sprintId){
+	async addProjectActivity()
+	{
+		if(!this._filterModel){
 			await this.alertService.presentBasicAlert(
 				`${this.stringKey.MANDATORY_SELECT}`
 			);
 		}
-		else{
+		else
+		{
 			const passedModel: ActivityModel = {
 				userId: this._loggedInUser,
 				projectId: this._projectId,
 				assigneeUserId: this._filterModel.assigneeUserId,
 				sprintId: this._filterModel.sprintId,
+				sprintName: this._filterModel.sprintName,
 				goalId: this._filterModel.goalId,
+				goalName: this._filterModel.goalName,
 				operationType: `${OperationsEnum.Create}`
 			}
 			const modal = await this.modalController.create({

@@ -5,5 +5,6 @@ export interface ProjectMemberModel {
     projectDetails ?: ProjectModel;
     projectAdministrator ?: ProjectUserTypeBaseModel;
     projectAssignees ?: ProjectUserTypeBaseModel;
-    projectReviewers ?: ProjectUserTypeBaseModel;
+    projectReviewers?: ProjectUserTypeBaseModel;
+    userType?: ProjectModel;
 }

@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-03 20:22:58
+ * Last modified  : 2021-11-23 20:12:34
  */
 
 
@@ -29,7 +29,11 @@ import { UserService } from 'src/app/shared/service/user.service';
 import { ProjectModel } from 'src/app/shared/model/project.model';
 import { RouteChildrenModel, RouteModel } from 'src/app/shared/model/route.model';
 import { AvatarService } from 'src/app/shared/service/avatar.service';
-import { SwUpdate } from '@angular/service-worker';
+import { LearnMoreComponent } from 'src/app/component/learn-more/learn-more.component';
+import { ProjectService } from 'src/app/shared/service/project.service';
+import { UserTypeEnum } from 'src/app/shared/enum/user-type.enum';
+import { UpdateCheckerService } from 'src/app/shared/service/update-checker.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: "app-menu",
@@ -84,6 +88,11 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	private _hasData: boolean;
 
 	/**
+	 * Load route of menu page
+	 */
+	private _loadRoute: boolean = false;
+	
+	/**
 	 * Gets logged in user
 	 */
 	public get loggedInUser(): string
@@ -105,6 +114,14 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 */
 	public get pages(): RouteModel[]
 	{
+		this._pages.map(eachPage =>
+		{
+			eachPage.children.map(eachPageChildren =>
+			{
+				const allowMenuAccess = eachPageChildren.allowAccess.includes(this._projectModel.userTypeId as UserTypeEnum);
+				eachPageChildren.allowMenuAccess = allowMenuAccess;
+			})
+		});
 		return this._pages;
 	}
 
@@ -157,7 +174,33 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		return avatar;
 	}
 
+	/**
+	 * Gets load route
+	 */
+	get loadRoute()
+	{
+		return this._loadRoute;
+	}
 
+	get projectModel()
+	{
+		return this._projectModel;
+	}
+
+	/**
+	 * App environment of learn more component
+	 */
+	readonly appEnvironment = environment.level ? environment.level : '';
+
+	/**
+	 * App version of learn more component
+	 */
+	readonly appVersion = environment.version;
+	
+	/**
+	 * User type enum of menu page
+	 */
+	readonly userTypeEnum =  UserTypeEnum;
 	/**
 	 * Creates an instance of menu page.
 	 * @param injector 
@@ -170,18 +213,20 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	 */
 	constructor(
 		injector: Injector,
-		private swUpdate: SwUpdate,
 		private menuController: MenuController,
 		private localStorageService: LocalStorageService,
 		private loadingService: LoadingService,
 		private dataCommunicationService: DataCommunicationService,
 		private userService: UserService,
-		private avatarService: AvatarService
+		private avatarService: AvatarService,
+		private projectService: ProjectService,
+		private updateCheckerService: UpdateCheckerService
 	)
 	{
 		super(injector);
-	}
 
+	}
+	
 	/**
 	 * Registers back button
 	 */
@@ -191,19 +236,20 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(async () =>
 			{
-				await this.logout();
+				await this.userService.logout();
 			});
 	}
 
 	// Lifecycle hook: ngOnInit
 	async ngOnInit()
 	{
-		this.checkIfAppUpdateAvailable();
+		//
 	}
 
 	// Lifecycle hook: ionViewDidEnter
 	async ionViewDidEnter()
 	{
+		this.updateCheckerService.checkIfAppUpdateAvailable();
 
 		await this.passedProjectId();
 
@@ -216,6 +262,8 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		await this.registerBackButton();
 
 		await this.getSelectProject();
+
+		this.loadData();
 	}
 
 	/**
@@ -232,6 +280,39 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	}
 
 	/**
+	 * Loads data
+	 */
+	 async loadData() {
+		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
+
+		const passedData: ProjectModel = {
+			projectId: this._projectId,
+			userId: this._loggedInUserId,
+			rawDataKeys: ['projectDetails', 'userType']
+		};
+
+		this.projectService
+			.getProjectRaw(passedData)
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(
+				(baseModel: BaseModel) => {
+					this.loadingService.dismiss();
+					if (baseModel.success) {
+						this._projectModel = {
+							projectDescription: baseModel.data.projectDetails.data.projectDescription,
+							projectId: baseModel.data.projectDetails.data.projectId,
+							projectName: baseModel.data.projectDetails.data.projectName,
+							userTypeId: baseModel.data.userType.userTypeId,
+							userTypeName: baseModel.data.userType.userTypeName
+						};
+
+						this._loadRoute = true;
+					}
+				}
+			);
+	 }
+	
+	/**
 	 * Passed project id
 	 */
 	async passedProjectId()
@@ -242,26 +323,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			{
 				this._projectId = params.projectId;
 			});
-	}
-
-	/**
-	 * Checks if app update available
-	 */
-	async checkIfAppUpdateAvailable()
-	{
-
-		if (this.swUpdate.isEnabled)
-		{
-			this.swUpdate.available.subscribe(() =>
-			{
-				let versionUpdateMessage = `New version is available. Load New Version?`;
-
-				if (confirm(versionUpdateMessage))
-				{
-					window.location.reload();
-				}
-			});
-		}
 	}
 
 	/**
@@ -293,6 +354,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 			.subscribe((data: string) =>
 			{
 				this._loggedInUserId = data;
+
 			});
 	}
 
@@ -341,109 +403,11 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 				//if the api response comes with invalid session, prompt user to re-sign in
 				if (dataCommunicationModel.message === "INVALID_SESSION")
 				{
-					this.promptUserToLoginInApp();
+					this.userService.logout();
 				}
 			});
 	}
 
-
-	/**
-	 * Prompts user to login in app
-	 */
-	async promptUserToLoginInApp()
-	{
-		const alert = await this.alertController.create({
-			header: `${StringKey.APP_NAME}`,
-			message: `${StringKey.TOKEN_EXPIRE}`,
-			inputs: [
-				{
-					name: "userPassword",
-					placeholder: `${StringKey.FORM_PLACE_PASSWORD}`,
-				},
-			],
-			buttons: [
-				{
-					text: `${StringKey.AUTHORIZE_ME}`,
-					handler: async (data) =>
-					{
-						this._userModel = {
-							userEmail: await this.activeUserEmail(),
-							userPassword: data.userPassword,
-							userLoginType: "IN_APP_LOGIN",
-							userPlatform: "iOS",
-						};
-
-						await this.inAppLogin();
-					},
-				},
-			],
-		});
-		await alert.present();
-	}
-
-	/**
-	 * Determines whether app login in
-	 */
-	async inAppLogin()
-	{
-		await this.loadingService.present(
-			`${StringKey.API_REQUEST_MESSAGE_1}`
-		);
-		this.userService
-			.signIn(this._userModel)
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(
-				async (baseModel: BaseModel) =>
-				{
-					//dismiss loader
-					await this.loadingService.dismiss();
-
-					// build ser model
-					this._userModel = {
-						userId: baseModel.userId,
-						token: baseModel.token,
-					};
-
-					// if success
-					if (baseModel.success)
-					{
-						//update token
-						await this.localStorageService
-							.setActiveUser(this._userModel)
-							.pipe(takeUntil(this.unsubscribe))
-							.subscribe(async () =>
-							{
-								await this.presentInAppLoginAlert();
-							});
-					}
-				},
-				(error) =>
-				{
-					this.loadingService.dismiss();
-				}
-			);
-	}
-
-	/**
-	 * Presents in app login alert
-	 */
-	async presentInAppLoginAlert()
-	{
-		const alert = await this.alertController.create({
-			header: `${StringKey.APP_NAME}`,
-			message: `${StringKey.IN_APP_LOGIN_SUCCESS}`,
-			buttons: [
-				{
-					text: `${StringKey.SURE}`,
-					handler: () =>
-					{
-						// no handler required
-					},
-				},
-			],
-		});
-		await alert.present();
-	}
 
 	/**
 	 * Presents logout alert confirm
@@ -465,7 +429,7 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 					{
 						//close the side menu and log out
 						this.menuController.close();
-						await this.logout();
+						await this.userService.logout();
 					},
 				},
 			],
@@ -502,31 +466,6 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 	}
 
 	/**
-	 * Logouts menu page
-	 */
-	async logout()
-	{
-		await this.loadingService.present(
-			`${StringKey.API_REQUEST_MESSAGE_5}`
-		);
-		await this.localStorageService
-			.removeActiveUser()
-			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (data: boolean) =>
-			{
-				if (data)
-				{
-					await this.loadingService
-						.dismiss()
-						.then(() => window.location.reload());
-				} else
-				{
-					await this.loadingService.dismiss();
-				}
-			});
-	}
-
-	/**
 	 * Goto my projects
 	 */
 	async gotoMyProjects()
@@ -555,4 +494,25 @@ export class MenuPage extends BaseViewComponent implements OnInit, OnDestroy
 		}
 		this.router.navigate(constructUrl);
 	}
+
+	/**
+	 * Learns more
+	 * @returns  
+	 */
+	 public async learnMore()
+	 {
+		 const modal = await this.modalController.create({
+			 component: LearnMoreComponent,
+			 componentProps: {
+				 data: {}
+			 }
+		 });
+ 
+		 modal.onDidDismiss().then(data =>
+		 {
+			 //
+		 });
+ 
+		 return await modal.present();
+	 }
 }

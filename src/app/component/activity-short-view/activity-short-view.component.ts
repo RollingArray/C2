@@ -18,7 +18,6 @@ export class ActivityShortViewComponent extends BaseViewComponent implements OnI
 		injector: Injector,
 	) {
 		super(injector);
-		console.log(this.activity);
 	}
 
 	ngOnInit() { }

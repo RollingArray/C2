@@ -1,3 +1,14 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ *
+ * @summary Sign up page module
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:17:44 
+ * Last modified  : 2021-12-26 11:18:42
+ */
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

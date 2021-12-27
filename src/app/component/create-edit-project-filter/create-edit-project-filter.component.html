@@ -1,17 +1,25 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Create edit project filter component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-17 18:16:16 
+ * Last modified  : 2021-11-17 18:45:00
+ */
+ -->
 <!-- header -->
 <ion-header [appScrollTracker]="scrollArea">
     <ion-toolbar>
         <ion-title>
             {{ stringKey.CHOOSE_FILTER }}
         </ion-title>
-        <ion-buttons slot="start" >
-            <ion-button fill="solid" color="dark" (click)="cancelModal()">{{
+       <ion-buttons slot="end">
+            <ion-button fill="outline" color="dark" (click)="cancelModal()">{{
                 stringKey.CANCEL
-            }}</ion-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button fill="solid" color="dark" (click)="submit()">{{
-                stringKey.SELECT
             }}</ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -26,6 +34,14 @@
     </app-page-info-title>
     <!-- page title -->
 
+    <!-- fab -->
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button color="dark" (click)="submit()">
+			<ion-icon [src]="stringKey.ICON_SELECT"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+	<!-- fab -->
+    
     <form
         [formGroup]="formGroup"
         (ngSubmit)="submit()"
@@ -86,12 +102,7 @@
             </ion-item>
             <app-panel-header
                 *ngIf="selectedUser"
-                [panelTitle]="
-                    getUserFullName(
-                        selectedUser.userFirstName,
-                        selectedUser.userLastName
-                    )
-                "
+                [panelTitle]="getUserFullName(selectedUser?.userFirstName,selectedUser?.userLastName)"
                 [panelIcon]="stringKey.ICON_SELECT"
                 [panelColor]="stringKey.COLOR_SUCCESS"
                 [isEventRequired]="false"
@@ -120,7 +131,7 @@
                 {{ dropSelectorTitle }}
             </ion-title>
             <ion-buttons slot="end">
-                <ion-button fill="solid" color="dark" (click)="closeDropSelector()">{{
+                <ion-button fill="outline" color="dark" (click)="closeDropSelector()">{{
                     stringKey.CLOSE
                 }}</ion-button>
             </ion-buttons>
@@ -130,8 +141,20 @@
 
     <!-- member drop selector -->
     <ion-content #memberDropSelector>
+        <!-- no data -->
+        <app-no-data
+            [user]="true"
+            *ngIf="!projectUsers"
+            [text]="stringKey.NO_DATA_PROJECT_MEMBER"
+        >
+        </app-no-data>
+        <!-- no data -->
+
+        <!-- data -->
         <ion-card *ngFor="let user of projectUsers">
             <app-panel-header
+                [user]="user"
+                [isInitials]="true"
                 [panelTitle]="
                     getUserFullName(user.userFirstName, user.userLastName)
                 "
@@ -142,14 +165,25 @@
                 (event)="chooseUser(user)"
             >
             </app-panel-header>
-            <app-custom-fields [description]="user.userEmail">
+            <app-custom-fields [email]="user.userEmail">
             </app-custom-fields>
         </ion-card>
+        <!-- data -->
     </ion-content>
     <!-- member drop selector -->
 
     <!-- sprint drop selector -->
     <ion-content #sprintDropSelector>
+        <!-- no data -->
+        <app-no-data
+            [sprint]="true"
+            *ngIf="!projectSprints"
+            [text]="stringKey.NO_DATA_SPRINT"
+        >
+        </app-no-data>
+        <!-- no data -->
+
+        <!-- data -->
         <ion-list>
             <ion-card *ngFor="let sprint of projectSprints">
                 <app-panel-header
@@ -167,11 +201,22 @@
                 </app-custom-fields>
             </ion-card>
         </ion-list>
+        <!-- data -->
     </ion-content>
     <!-- sprint drop selector -->
 
     <!-- goal drop selector -->
     <ion-content #goalDropSelector>
+        <!-- no data -->
+        <app-no-data
+            [goal]="true"
+            *ngIf="!projectGoals"
+            [text]="stringKey.NO_DATA_GOAL"
+        >
+        </app-no-data>
+        <!-- no data -->
+
+        <!-- data -->
         <ion-card *ngFor="let goal of projectGoals">
             <app-panel-header
                 [panelTitle]="goal.goalName"
@@ -184,6 +229,7 @@
             <app-custom-fields [description]="goal.goalDescription">
             </app-custom-fields>
         </ion-card>
+        <!-- data -->
     </ion-content>
     <!-- goal drop selector -->
 </div>

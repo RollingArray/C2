@@ -14,10 +14,10 @@ export class Regex {
   public static readonly RESET_PASSWORD_CODE_PATTERN = /([a-zA-Z0-9]{4,30}\s*)+/;
   public static readonly DATE_PATTERN = /^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$/;
   public static readonly EMAIL_PATTERN = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-  public static readonly AVATAR_A_D = /^[A-D]*$/;
-  public static readonly AVATAR_E_H = /^[E-H]*$/;
-  public static readonly AVATAR_I_L = /^[I-L]*$/;
-  public static readonly AVATAR_M_P = /^[M-P]*$/;
-  public static readonly AVATAR_Q_T = /^[Q-T]*$/;
-  public static readonly AVATAR_U_Z = /^[U-Z]*$/;
+  public static readonly AVATAR_A_D = /^[a-dA-D]*$/;
+  public static readonly AVATAR_E_H = /^[e-hE-H]*$/;
+  public static readonly AVATAR_I_L = /^[i-lI-L]*$/;
+  public static readonly AVATAR_M_P = /^[m-pM-P]*$/;
+  public static readonly AVATAR_Q_T = /^[q-tQ-T]*$/;
+  public static readonly AVATAR_U_Z = /^[u-zU-Z]*$/;
 }

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:11:18 
- * Last modified  : 2021-08-09 20:17:33
+ * Last modified  : 2021-12-26 19:50:05
  */
 
 
@@ -21,6 +21,8 @@ import { NavParams } from "@ionic/angular";
 import { OperationsEnum } from "src/app/shared/enum/operations.enum";
 import { takeUntil } from "rxjs/operators";
 import { BaseModel } from "src/app/shared/model/base.model";
+import { AnalyticsService } from "src/app/shared/service/analytics.service";
+import { EventPageEnum } from "src/app/shared/enum/event-page.enum";
 
 @Component({
 	selector: "app-create-edit-project",
@@ -57,7 +59,8 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 		private alertService: AlertService,
 		private projectService: ProjectService,
 		private loadingService: LoadingService,
-		public navParams: NavParams
+		public navParams: NavParams,
+		private analyticsService: AnalyticsService
 	) {
 		super(injector);
 	}
@@ -68,6 +71,17 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 	ngOnInit() {
 		this._passedProject = this.navParams.get("data");
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log(
+			this._passedProject.userId,
+			EventPageEnum.CRUD_PROJECT,
+			{
+				'data': this._passedProject.operationType
+			}
+		);
 	}
 
 	/**
@@ -119,6 +133,20 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 			title = this.stringKey.CREATE_PROJECT;
 		} else {
 			title = this.stringKey.UPDATE_PROJECT;
+		}
+
+		return title;
+	}
+
+	/**
+	 * Gets help article
+	 */
+	get helpArticle() {
+		let title: string;
+		if (this._passedProject.operationType === OperationsEnum.Create) {
+			title = this.apiUrls.HELP_NEW_PROJECT;
+		} else {
+			title = this.apiUrls.HELP_EDIT_PROJECT;
 		}
 
 		return title;

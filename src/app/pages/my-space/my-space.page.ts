@@ -201,6 +201,7 @@ export class MySpacePage extends BaseViewComponent implements OnInit, OnDestroy 
 		this.activeUserId();
 		this._projectId = this.activatedRoute.snapshot.paramMap.get("projectId");
 		this._mySpaceType = this.activatedRoute.snapshot.paramMap.get("spaceType");
+		this.errorMessage = this.stringKey.HOLD_TIGHT;
 	}
 
 	/**
@@ -279,7 +280,7 @@ export class MySpacePage extends BaseViewComponent implements OnInit, OnDestroy 
 
 						// keep no data ui
 						else{
-							
+							this.errorMessage = this.stringKey.NO_DATA;
 							this._hasData = false;
 						}
 					}

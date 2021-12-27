@@ -7,34 +7,26 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 14:25:52 
- * Last modified  : 2021-10-31 16:09:00
+ * Last modified  : 2021-11-11 16:58:04
  */
 
 import { SharedModule } from 'src/app/shared/module/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { AccountVerificationPage } from './account-verification.page';
+import { AccountVerificationComponent } from './account-verification.component';
 import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info-title.component.module';
-
-const routes: Routes = [
-	{
-		path: '',
-		component: AccountVerificationPage
-	}
-];
 
 @NgModule({
 	imports: [
 		CommonModule,
-		FormsModule,
-		IonicModule,
 		SharedModule,
-		PageInfoTitleModule,
-		RouterModule.forChild(routes)
+		IonicModule,
+		PageInfoTitleModule
 	],
-	declarations: [AccountVerificationPage]
+
+	declarations: [AccountVerificationComponent],
+	exports: [AccountVerificationComponent],
+	entryComponents: [AccountVerificationComponent]
 })
-export class AccountVerificationPageModule { }
+export class AccountVerificationModule { }

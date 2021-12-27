@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 14:25:52 
- * Last modified  : 2021-10-31 16:16:44
+ * Last modified  : 2021-12-26 19:41:56
  */
 
 
@@ -24,22 +24,36 @@ import { BaseModel } from 'src/app/shared/model/base.model';
 import { takeUntil } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { PlatformHelper } from 'src/app/shared/helper/platform.helper';
+import { NavParams } from '@ionic/angular';
+import { AnalyticsService } from 'src/app/shared/service/analytics.service';
+import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
 
 
 @Component({
 	selector: "app-account-verification",
-	templateUrl: "./account-verification.page.html",
-	styleUrls: ["./account-verification.page.scss"],
+	templateUrl: "./account-verification.component.html",
+	styleUrls: ["./account-verification.component.scss"],
 })
-export class AccountVerificationPage extends BaseFormComponent
+export class AccountVerificationComponent extends BaseFormComponent
 	implements OnInit, OnDestroy
 {
+
+	/**
+	 * Modal data of create edit project activity component
+	 */
+	private _modalData: ModalData;
+	
+	/**
+	 * Passed user of account verification component
+	 */
+	private _passedUser: UserModel;
+
 	/**
 	 * Gets active user email
 	 */
 	get activeUserEmail()
 	{
-		let activeUserEmail = "asd";
+		let activeUserEmail = "";
 		this.localStorageService
 			.getActiveUserEmail()
 			.pipe(takeUntil(this.unsubscribe))
@@ -83,11 +97,23 @@ export class AccountVerificationPage extends BaseFormComponent
 		private userService: UserService,
 		private router: Router,
 		private localStorageService: LocalStorageService,
-		private platformHelper: PlatformHelper
+		private platformHelper: PlatformHelper,
+		public navParams: NavParams,
+		private analyticsService: AnalyticsService
 	)
 	{
 		super(injector);
+		this._passedUser = this.navParams.get("data");
 		this.buildFrom();
+
+		/*
+		Log event
+		*/
+		this.analyticsService.log('', EventPageEnum.ACTIVATE,
+			{
+				'data': ''
+			}
+		);
 	}
 
 	/**
@@ -136,7 +162,7 @@ export class AccountVerificationPage extends BaseFormComponent
 	private async setFormData()
 	{
 		const form = this.formGroup.value;
-		form.userEmail = "";
+		form.userEmail = this._passedUser.userEmail;
 		form.userVerificationCode = "";
 	}
 
@@ -180,7 +206,9 @@ export class AccountVerificationPage extends BaseFormComponent
 							await this.localStorageService
 								.setActiveUser(userModel)
 								.pipe(takeUntil(this.unsubscribe))
-								.subscribe(async () => {
+								.subscribe(async () =>
+								{
+									this.dismissModal();
 									this.router.navigate(["/my-project"]);
 								});
 						}
@@ -253,5 +281,27 @@ export class AccountVerificationPage extends BaseFormComponent
 					}
 				);
 		}
+	}
+
+	/**
+	 * Dismiss modal
+	 */
+	 dismissModal() {
+		this.modalController.dismiss(this._modalData).then(() => {
+			this.formGroup.reset();
+		});
+	}
+
+	/**
+	 * Cancels modal
+	 */
+	cancelModal() {
+
+		this._modalData = {
+			cancelled: true,
+			operationSubmitted: false,
+		};
+		// store active user
+		this.dismissModal();
 	}
 }

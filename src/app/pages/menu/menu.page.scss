@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 20:47:46 
- * Last modified  : 2021-11-01 20:48:23
+ * Last modified  : 2021-11-17 20:18:47
  */
 .active {
     --ion-text-color: var(--ion-color-primary);
@@ -25,20 +25,6 @@
     font-size: small;
 }
 
-.profilepicposition  {
-  position: absolute;
-  top: -80%;
-  right: 0%;
-  z-index: 89;
-}
-
-
-.profilepicsize  {
-  width: 50% !important;  
-  height : 50% !important;  
-  max-width: 20px !important;  //any size
-  max-height: 20px !important; //any size 
-}
 
 .fav-icon1 {
   position: relative;
@@ -49,6 +35,11 @@
 	text-shadow: 1px 1px #000;
 }
 
-.top-gap{
-  margin-top: 100px;
+ion-col{
+  text-align: center;
+}
+
+.segment{
+  display: block;
+  line-height: 40px;
 }

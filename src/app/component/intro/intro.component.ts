@@ -1,3 +1,16 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Intro component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-11 16:33:48 
+ * Last modified  : 2021-11-11 16:41:27
+ */
+
+
 import { takeUntil } from 'rxjs/operators';
 import { BaseViewComponent } from 'src/app/component/base/base-view.component';
 import { Component, OnInit, ViewChild, Injector } from "@angular/core";
@@ -5,140 +18,170 @@ import { IonSlides, ModalController } from "@ionic/angular";
 import { StringKey } from "src/app/shared/constant/string.constant";
 import { SlideModel } from "src/app/shared/model/slide.model";
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
+import { ArrayKey } from 'src/app/shared/constant/array.constant';
 
 @Component({
 	selector: "app-intro",
 	templateUrl: "./intro.component.html",
 	styleUrls: ["./intro.component.scss"],
 })
-export class IntroComponent extends BaseViewComponent implements OnInit  {
-	@ViewChild('slides', {static: false}) slides: IonSlides;
-	private currentIndex: number;
-	public showNext: boolean;
-	public showPrevious: boolean;
-	private sliderLength: number;
-	readonly stringKey = StringKey;
-	public slideArray: SlideModel[];
+export class IntroComponent extends BaseViewComponent implements OnInit
+{
+	/**
+	 * View child of intro component
+	 */
+	@ViewChild('slides', { static: false }) slides: IonSlides;
 
-	slideOpts = {
+	/**
+	 * Show next of intro component
+	 */
+	private _showNext: boolean;
+
+	/**
+	 * Show previous of intro component
+	 */
+	private _showPrevious: boolean;
+
+	/**
+	 * Slider length of intro component
+	 */
+	private _sliderLength: number;
+
+	/**
+	 * String key of intro component
+	 */
+	readonly stringKey = StringKey;
+
+	/**
+	 * Slide array of intro component
+	 */
+	readonly slideArray = ArrayKey.INTRO_SLIDE_ARRAY;
+
+	/**
+	 * Slide opts of intro component
+	 */
+	readonly slideOpts = {
 		initialSlide: 1,
 		speed: 400,
 	};
 
-	endIntro() {
-    this.localStorageService
-      .endIntro()
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(
-        (data : boolean) =>{
-          if(data){
-            this.modalController.dismiss().then(() => {});
-          }
-        }
-      )
-		
+	/**
+	 * Gets show next
+	 */
+	get showNext()
+	{
+		return this._showNext;
 	}
 
-	constructor(
-    injector: Injector,
-    private localStorageService: LocalStorageService,
-  ) {
-    super(injector);
-  }
+	/**
+	 * Gets show previous
+	 */
+	get showPrevious()
+	{
+		return this._showPrevious;
+	}
 
-	next() {
+	/**
+	 * Creates an instance of intro component.
+	 * @param injector 
+	 * @param localStorageService 
+	 */
+	constructor(
+		injector: Injector,
+		private localStorageService: LocalStorageService,
+	)
+	{
+		super(injector);
+	}
+
+	/**
+	 * on init
+	 */
+	ngOnInit()
+	{
+		this._showNext = true;
+		this._showPrevious = false;
+		this._sliderLength = this.slideArray.length;
+	}
+
+
+	/**
+	 * Next intro component
+	 */
+	next()
+	{
 		this.slides.slideNext();
 	}
 
-	prev() {
+	/**
+	 * Prev intro component
+	 */
+	prev()
+	{
 		this.slides.slidePrev();
 	}
 
-	slideChanged(slides: IonSlides) {
-		slides.getActiveIndex().then((index: number) => {
-			if (index === 0) {
-				this.showNext = true;
-				this.showPrevious = false;
-			} else if (index === this.sliderLength - 1) {
-				this.showNext = false;
-				this.showPrevious = true;
-			} else {
-				this.showNext = true;
-				this.showPrevious = true;
+	/**
+	 * Slides changed
+	 * @param slides 
+	 */
+	slideChanged(slides: IonSlides)
+	{
+		slides.getActiveIndex().then((index: number) =>
+		{
+			if (index === 0)
+			{
+				this._showNext = true;
+				this._showPrevious = false;
+			} else if (index === this._sliderLength - 1)
+			{
+				this._showNext = false;
+				this._showPrevious = true;
+			} else
+			{
+				this._showNext = true;
+				this._showPrevious = true;
 			}
 		});
 	}
 
-	reachedBegining(event) {
-		this.showNext = true;
-		this.showPrevious = false;
+	/**
+	 * Reached begining
+	 * @param event 
+	 */
+	reachedBegining(event)
+	{
+		this._showNext = true;
+		this._showPrevious = false;
 	}
 
-	reachedEnd(event) {
-		this.showNext = false;
-		this.showPrevious = true;
+	/**
+	 * Reached end
+	 * @param event 
+	 */
+	reachedEnd(event)
+	{
+		this._showNext = false;
+		this._showPrevious = true;
 	}
 
-	ngOnInit() {
-		this.slideArray = [
-			{
-				title: this.stringKey.INTRO_SLIDE_0_TITLE,
-				info: this.stringKey.INTRO_SLIDE_0_INFO,
-				imageName: "inclusion",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_1_TITLE,
-				info: this.stringKey.INTRO_SLIDE_1_INFO,
-				imageName: "no_project",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_2_TITLE,
-				info: this.stringKey.INTRO_SLIDE_2_INFO,
-				imageName: "no_member",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_3_TITLE,
-				info: this.stringKey.INTRO_SLIDE_3_INFO,
-				imageName: "no_sprint",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_4_TITLE,
-				info: this.stringKey.INTRO_SLIDE_4_INFO,
-				imageName: "no_goal",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_5_TITLE,
-				info: this.stringKey.INTRO_SLIDE_5_INFO,
-				imageName: "no_activity",
-				buttonText: this.stringKey.SKIP_INTRO,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_6_TITLE,
-				info: this.stringKey.INTRO_SLIDE_6_INFO,
-				imageName: "no_reviewer",
-				buttonText: this.stringKey.GOT_IT_CONTINUE,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_7_TITLE,
-				info: this.stringKey.INTRO_SLIDE_7_INFO,
-				imageName: "no_diversity",
-				buttonText: this.stringKey.GOT_IT_CONTINUE,
-			},
-			{
-				title: this.stringKey.INTRO_SLIDE_8_TITLE,
-				info: this.stringKey.INTRO_SLIDE_8_INFO,
-				imageName: "no_credibility",
-				buttonText: this.stringKey.GOT_IT_CONTINUE,
-			},
-		];
+	/**
+	 * Ends intro
+	 */
+	endIntro()
+	{
+		this.localStorageService
+			.endIntro()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(
+				(data: boolean) =>
+				{
+					if (data)
+					{
+						this.modalController.dismiss().then(() => { });
+					}
+				}
+			)
 
-		this.showNext = true;
-		this.showPrevious = false;
-		this.sliderLength = this.slideArray.length;
 	}
 }

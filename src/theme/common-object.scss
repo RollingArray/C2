@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-01 11:07:12 
- * Last modified  : 2021-11-01 10:20:26
+ * Last modified  : 2021-12-26 18:34:36
  */
 
 /* Change autocomplete styles in WebKit */
@@ -27,6 +27,14 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+/* popover*/
+.popover-arrow.sc-ion-popover-ios::after{
+  background-color: var(--ion-color-primary) !important;
+}
+
+ion-modal{
+  --border-radius: 10px !important;
+}
 ion-card {
   border-radius: 8px;
   font-size: 14px;
@@ -125,4 +133,75 @@ td:last-child {
 }
 .text-justify{
   text-align: justify;
+}
+
+/*cursor*/
+.cursor-pointer
+{
+  cursor: pointer;
+}
+
+/* Float */
+.float-right
+{
+  float: right; 
+}
+
+.float-left
+{
+  float: left; 
+}
+
+/* display */
+.display-block
+{
+  display: block;
+}
+
+/* Variable width */
+@for $i from 1 through 100 {
+	.width-#{$i}-p {
+		width: (100% - $i) !important;
+	}
+  }
+
+/*Variable font size */
+@for $i from 10 through 100 {
+	.font-size-#{$i}-px {
+		font-size: #{$i}px;
+	}
+}
+
+/*Variable margin left */
+@for $i from 1 through 100 {
+	.margin-left-#{$i}-px {
+		margin-left: #{$i}px;
+	}
+}
+
+/*Variable margin top */
+@for $i from 1 through 100 {
+	.margin-top-#{$i}-px {
+		margin-top: #{$i}px;
+	}
+}
+
+/*Variable margin */
+@for $i from 1 through 100 {
+	.margin-#{$i}-px {
+		margin: #{$i}px;
+	}
+}
+
+/*Variable padding */
+@for $i from 1 through 100 {
+	.padding-#{$i}-px {
+		padding: #{$i}px;
+	}
+}
+
+.link{
+  color: var(--ion-color-secondary);
+  text-decoration: underline;
+  cursor: pointer;
 }

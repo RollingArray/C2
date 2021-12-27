@@ -1,15 +1,19 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Intro component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-11 16:33:48 
+ * Last modified  : 2021-12-26 20:42:00
+ */
+ -->
 <ion-content fullscreen class="ion-padding" scroll-y="false" lines="none">
-	<ion-item lines="none">
-		<ion-buttons slot="start" (click)="prev()" *ngIf="showPrevious">
-			<ion-icon color="primary" slot="start" [src]="stringKey.ICON_LEFT_ARROW"></ion-icon>
-		</ion-buttons>
-		<ion-buttons slot="end" (click)="next()" *ngIf="showNext">
-			<ion-icon color="primary" slot="start" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>
-		</ion-buttons>
-	</ion-item>
-
 	<ion-slides lines="none" #slides (ionSlideDidChange)="slideChanged(slides)" (ionSlideReachEnd)="reachedEnd($event)"
-		(ionSlideReachStart)="reachedBegining($event)">
+		(ionSlideReachStart)="reachedBegining($event)" pager="true">
 
 		<ion-slide *ngFor="let slide of slideArray">
 			<ion-grid lines="none">
@@ -21,6 +25,9 @@
 						<div class="slide">
 							<h2 color="dark"><b>{{slide.title}}</b></h2>
 							<p [innerHTML]="slide.info"></p>
+							<ion-button color="dark" (click)="endIntro()" [href]="slide.helpUrl" target="_blank">
+								{{stringKey.LEARN_MORE}}
+							</ion-button>
 							<ion-button color="primary" (click)="endIntro()">
 								{{slide.buttonText}}
 								<ion-icon slot="end" [src]="stringKey.ICON_RIGHT_ARROW"></ion-icon>

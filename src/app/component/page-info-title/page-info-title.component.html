@@ -1,3 +1,16 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Page info title component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-12-26 11:22:36 
+ * Last modified  : 2021-12-26 11:24:10
+ */
+ -->
 <ion-list lines="none" color="primary" class="ion-no-padding">
   <ion-item color="primary" lines="none">
     <h3>
@@ -5,9 +18,12 @@
     </h3>
   </ion-item>
   <ion-item color="primary" lines="none">
-    <ion-icon color="light" slot="start" [src]="stringKey.ICON_INFO"></ion-icon>
-    <h5>
+    <ion-icon color="info" slot="start" [src]="stringKey.ICON_INFO"></ion-icon>
+    <h6>
       {{info}}
-    </h5>
+      <a class="link" [href]="helpArticle" target="_blank">
+        {{stringKey.LEARN_MORE}}
+      </a> 
+    </h6>
   </ion-item>
 </ion-list>

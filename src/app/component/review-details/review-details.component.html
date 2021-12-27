@@ -1,0 +1,67 @@
+<!-- 
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Review details component template
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2021-11-15 21:25:05 
+ * Last modified  : 2021-11-15 21:26:05
+ */
+ -->
+<ion-grid>
+    <ion-row>
+        <!-- measurement type -->
+        <ion-col size-lg="4" size-md="4" size-sm="4" size="12">
+            <ion-card>
+                <app-panel-header
+                    [panelTitle]="stringKey.VERIFIED_RESULT"
+                    [panelIcon]="stringKey.ICON_VERIFIED_RESULT"
+                    [panelColor]="stringKey.COLOR_LIGHT"
+                >
+                </app-panel-header>
+                <app-custom-fields
+                    *ngIf="reviewer.achievedResultValue"
+                    [data]="showResult()"
+                >
+                </app-custom-fields>
+                <ion-card *ngIf="reviewer.achievedResultValue">
+                    <app-work-progress
+                        [activity]="reviewer"
+                        [resultValue]="reviewer.achievedResultValue"
+                    >
+                    </app-work-progress>
+                </ion-card>
+                <app-custom-fields
+                    *ngIf="!reviewer.achievedResultValue"
+                    [noData]="true"
+                ></app-custom-fields>
+            </ion-card>
+        </ion-col>
+        <!-- measurement type -->
+
+        <!-- weight -->
+        <ion-col size-lg="8" size-md="8" size-sm="8" size="12">
+            <ion-card>
+                <app-panel-header
+                    [panelTitle]="stringKey.REVIEWER_COMMENT"
+                    [panelIcon]="stringKey.ICON_COMMENT"
+                    [panelColor]="stringKey.COLOR_LIGHT"
+                >
+                </app-panel-header>
+                <app-custom-fields
+                    *ngIf="reviewer.reviewerComment"
+                    [data]="reviewer.reviewerComment"
+                >
+                </app-custom-fields>
+                <app-custom-fields
+                    *ngIf="!reviewer.reviewerComment"
+                    [noData]="true"
+                ></app-custom-fields>
+            </ion-card>
+        </ion-col>
+        <!-- weight -->
+    </ion-row>
+</ion-grid>

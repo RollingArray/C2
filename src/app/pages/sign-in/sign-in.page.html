@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-10-31 17:23:00 
- * Last modified  : 2021-10-31 17:23:39
+ * Last modified  : 2021-12-26 11:30:04
  */
  -->
 
@@ -17,19 +17,18 @@
 	<form [formGroup]="formGroup" (ngSubmit)="submit()" color="primary" lines="none">
 		<ion-grid lines="none">
 			<ion-row justify-content-center lines="none">
-				<ion-col align-self-center size="12" size-lg="8" size-md="8" size-sm="8" offset-lg="2" offset-md="2"
-					offset-sm="2" lines="none">
+				<ion-col align-self-center size="12" size-xl="6" size-lg="6" size-md="6" size-sm="6" offset-lg="3" offset-md="3"
+					offset-sm="3" lines="none">
 					<!-- app icon -->
-					<img [src]="stringKey.IMAGE_ICON" />
+					<img class="margin-top-50-px" [src]="stringKey.IMAGE_ICON" />
 					<!-- app icon -->
 
 					<!-- page title -->
-					<app-page-info-title [title]="stringKey.SIGN_IN" [info]="stringKey.SIGN_IN_INFO">
+					<app-page-info-title [helpArticle]="apiUrls.HELP_SIGN_IN" [title]="stringKey.SIGN_IN" [info]="stringKey.SIGN_IN_INFO">
 					</app-page-info-title>
 					<!-- page title -->
 
 					<!-- email -->
-					
 					<ion-card color="secondary">
 						<ion-item color="secondary" lines="none">
 							<ion-icon [src]="stringKey.ICON_FORM"></ion-icon>
@@ -52,11 +51,6 @@
 						</ion-card>
 					</ion-card>
 					<!-- email -->
-
-					<!-- email -->
-					
-					<!-- email -->
-					
 				</ion-col>
 			</ion-row>
 		</ion-grid>

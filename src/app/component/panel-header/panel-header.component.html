@@ -25,6 +25,10 @@
 		<b>
 			{{ panelTitle }}
 		</b>	
+		<span *ngIf="info">
+			<br><br>
+			{{info}}
+		</span>
 	</p>
 	<ion-icon slot="end" [src]="eventIcon" color="dark" *ngIf="isEventRequired"></ion-icon>
 </ion-item>

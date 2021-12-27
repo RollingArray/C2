@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:17:44 
- * Last modified  : 2021-12-26 19:40:27
+ * Last modified  : 2021-12-27 15:34:21
  */
 
 
@@ -22,6 +22,8 @@ import { PasswordLessComponent } from 'src/app/component/password-less/password-
 import { LocalStorageService } from 'src/app/shared/service/local-storage.service';
 import { AnalyticsService } from 'src/app/shared/service/analytics.service';
 import { EventPageEnum } from 'src/app/shared/enum/event-page.enum';
+import { AccountVerificationComponent } from 'src/app/component/account-verification/account-verification.component';
+import { UserModel } from 'src/app/shared/model/user.model';
 
 
 @Component({
@@ -167,7 +169,7 @@ export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
 							.pipe(takeUntil(this.unsubscribe))
 							.subscribe(async () => {
 								// store active user
-								this.router.navigateByUrl("/account-verification");
+								this.loadAccountVerification(userModel);
 							});
 					}
 				},
@@ -207,5 +209,23 @@ export class SignUpPage extends BaseFormComponent implements OnInit, OnDestroy {
 		});
 
 		return await modal.present();
+	}
+
+	// add Community
+	async loadAccountVerification(userModel: UserModel) {
+		const modal = await this.modalController.create({
+			component: AccountVerificationComponent,
+			componentProps: {
+				data: userModel,
+			},
+		});
+
+		modal.onDidDismiss().then((data) => {
+			//if app, initiate push notificaiton
+			
+		});
+
+		return await modal.present();
+
 	}
 }

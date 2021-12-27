@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-26 19:57:39
+ * Last modified  : 2021-12-27 15:08:56
  */
 
 
@@ -303,6 +303,7 @@ export class StringKey {
 	public static readonly FORM_INFO_CREDENTIAL_DETAILS: string = 'Provide your credential, we will use this while you sign in';
 	public static readonly FORM_INFO_CREDENTIAL_EMAIL: string = 'Provide your registered email';
 	public static readonly FORM_INFO_PASSWORD_LESS: string = '<b>C2</b> works with a password-less system';
+	public static readonly FORM_INFO_TERMS: string = '<b>C2</b> Terms & Conditions';
 	public static readonly FORM_INFO_SECURITY_DETAILS: string = 'Answer these security question, we will use this to identify you if you wish to reset your password';
 	public static readonly FORM_INFO_PROFILE_PERSONAL_DETAILS: string = 'Your personal details';
 	public static readonly FORM_INFO_PROFILE_CREDENTIAL_DETAILS: string = 'Your credential, you use this email to sign in';

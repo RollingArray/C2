@@ -6,14 +6,14 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:05:59 
- * Last modified  : 2021-08-10 17:55:23
+ * Last modified  : 2021-12-27 17:29:46
  */
 
 
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { CreateEditProjectGoalComponent } from 'src/app/component/create-edit-project-goal/create-edit-project-goal.component';
 import { CreateEditProjectSprintComponent } from 'src/app/component/create-edit-project-sprint/create-edit-project-sprint.component';
 import { CreateEditProjectComponent } from 'src/app/component/create-edit-project/create-edit-project.component';
@@ -21,8 +21,10 @@ import { NextStepComponent } from 'src/app/component/next-step/next-step.compone
 import { StringKey } from '../constant/string.constant';
 import { CrudComponentEnum } from '../enum/crud-component.enum';
 import { OperationsEnum } from '../enum/operations.enum';
+import { UserTypeEnum } from '../enum/user-type.enum';
 import { BaseModel } from '../model/base.model';
 import { ModalData } from '../model/modal-data.model';
+import { ProjectModel } from '../model/project.model';
 import { BaseService } from './base.service';
 import { LoadingService } from './loading.service';
 import { LocalStorageService } from './local-storage.service';
@@ -136,7 +138,14 @@ export class CommonCrudService<T extends BaseModel> {
 			this._modalData = data.data;
 			if (this._modalData.cancelled) {
 				//do not refresh the page
-			} else {
+			} else
+			{
+				// save newly generated project to local storage
+				if (this._modalData.returnData)
+				{
+					this.saveProjectIfNewProject(componentType, this._modalData.returnData);	
+				}
+				
 				// open whats next
 				this.openNextStep(componentType, this._modalData.returnMessage);
 			}
@@ -144,6 +153,27 @@ export class CommonCrudService<T extends BaseModel> {
 
 		return await modal.present();
 	}
+
+	/**
+	 * Saves project if new project
+	 * @param componentType 
+	 * @param data 
+	 */
+	async saveProjectIfNewProject(componentType: CrudComponentEnum, data: any)
+	 {
+		if (componentType === CrudComponentEnum.CRUD_PROJECT)
+		{
+			const projectModel: ProjectModel = {
+				projectId: data.project_id,
+				projectName: data.project_name
+			};
+			
+			await this.localStorageService
+				.setSelectProject(projectModel)
+				.pipe(take(1))
+				.subscribe(async () =>{});
+			}
+	 }
 
 	/**
 	 * Opens modal with edit operation

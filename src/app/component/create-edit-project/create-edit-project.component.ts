@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:11:18 
- * Last modified  : 2021-12-26 19:50:05
+ * Last modified  : 2021-12-27 17:19:03
  */
 
 
@@ -213,11 +213,13 @@ export class CreateEditProjectComponent extends BaseFormComponent implements OnI
 					await this.loadingService.dismiss();
 
 					// build
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 						this._modalData = {
 							cancelled: false,
 							operationSubmitted: true,
-							returnMessage: baseModel.message
+							returnMessage: baseModel.message,
+							returnData: baseModel.crudReturn
 						};
 
 						await this.presentToast(baseModel.message);

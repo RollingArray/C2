@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:17:44 
- * Last modified  : 2021-12-26 11:32:05
+ * Last modified  : 2021-12-27 15:29:03
  */
  -->
 <ion-content lines="none" color="primary">
@@ -49,7 +49,7 @@
 					</ion-card>
 					<!-- email -->
 
-					<!-- password -->
+					<!-- password less -->
 					<ion-card color="semi-dark">
 						<ion-item color="semi-dark" lines="none">
 							<ion-icon [src]="stringKey.ICON_INFO"></ion-icon>
@@ -57,11 +57,9 @@
 							<a class="link" [href]="apiUrls.HELP_AUTH" target="_blank">
 								{{stringKey.LEARN_MORE}}
 							</a> 
-							
 						</ion-item>
-						
 					</ion-card>
-					<!-- password -->
+					<!-- password less -->
 
 					<!-- personal details -->
 					<ion-card color="secondary">
@@ -107,9 +105,22 @@
 					</ion-card>
 					<!-- personal details -->
 
+					<!-- password less -->
+					<ion-card color="semi-dark">
+						<ion-item color="semi-dark" lines="none">
+							<ion-icon [src]="stringKey.ICON_INFO"></ion-icon>
+							<p [innerHtml]="stringKey.FORM_INFO_TERMS"></p>
+							<a class="link" [href]="apiUrls.HELP_T_C" target="_blank">
+								{{stringKey.LEARN_MORE}}
+							</a> 
+						</ion-item>
+					</ion-card>
+					<!-- password less -->
+
 				</ion-col>
 			</ion-row>
 		</ion-grid>
+		
 	</form>
 </ion-content>
 

@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-08-09 20:29:05 
- * Last modified  : 2021-11-23 11:05:45
+ * Last modified  : 2021-12-27 17:59:59
  */
 
 
@@ -201,10 +201,13 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 							this._hasData = true;
 						}
 						else{
+							this._hasData = false;
 							this.errorMessage = this.stringKey.NO_DATA_GOAL;
 						}
 					}
-					else{
+					else
+					{
+						this._hasData = false;
 						this.errorMessage = baseModel.error.message;
 					}
 
@@ -307,6 +310,13 @@ export class ProjectGoalPage extends BaseViewComponent implements OnInit, OnDest
 					icon: this.stringKey.ICON_DELETE,
 					handler: () => {
 						this.deleteProjectGoal(selectedGoal);
+					}
+				},
+				{
+					text: this.stringKey.NEXT,
+					icon: this.stringKey.ICON_HELP,
+					handler: () => {
+						this.commonCrudService.openNextStep(CrudComponentEnum.CRUD_GOAL, selectedGoal.goalName);
 					}
 				},
 				{

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-12-26 11:17:44 
- * Last modified  : 2021-12-26 11:18:42
+ * Last modified  : 2021-12-27 15:32:10
  */
 
 import { NgModule } from '@angular/core';
@@ -20,6 +20,7 @@ import { SignUpPage } from './sign-up.page';
 import { SharedModule } from 'src/app/shared/module/shared.module';
 import { PageInfoTitleModule } from 'src/app/component/page-info-title/page-info-title.component.module';
 import { PasswordLessModule } from 'src/app/component/password-less/password-less.component.module';
+import { AccountVerificationModule } from 'src/app/component/account-verification/account-verification.module';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     SharedModule,
     PageInfoTitleModule,
     PasswordLessModule,
+    AccountVerificationModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SignUpPage]

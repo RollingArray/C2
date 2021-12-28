@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-27 18:14:31
+ * Last modified  : 2021-12-28 17:52:31
  */
 
 
@@ -35,17 +35,17 @@ export class StringKey {
 	public static readonly INTRO_SLIDE_3_TITLE: string = 'Plan Sprint';
 	public static readonly INTRO_SLIDE_3_INFO: string = 'Time period is crucial for any successfully deliverable, plan a <b>Sprint</b>';
 
-	public static readonly INTRO_SLIDE_4_TITLE: string = 'Lets Work Towards A Goal';
+	public static readonly INTRO_SLIDE_4_TITLE: string = 'Let\'s Work Towards A Goal';
 	public static readonly INTRO_SLIDE_4_INFO: string = 'Target your <b>Goal</b> and work towards them along with your Team';
 
 	public static readonly INTRO_SLIDE_5_TITLE: string = 'Bulls Eye';
-	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign <b>Measurable</b> deliverables around a Goal to team mates';
+	public static readonly INTRO_SLIDE_5_INFO: string = 'Assign <b>Measurable</b> deliverables around a <b>Goal</b> and assign to team mates';
 
 	public static readonly INTRO_SLIDE_6_TITLE: string = 'Reviews Are Important';
 	public static readonly INTRO_SLIDE_6_INFO: string = 'Get <b>Unbiased opinion</b> about the deliverables by reviewing through multiple <b>Reviewers</b>';
 
 	public static readonly INTRO_SLIDE_7_TITLE: string = 'Algorithm Diversity';
-	public static readonly INTRO_SLIDE_7_INFO: string = 'Get <b>Credibility score</b> irrespective of gender, race and bias about a team mate solely based on the work done in the past and reviews';
+	public static readonly INTRO_SLIDE_7_INFO: string = 'Get <b>Credibility score</b> irrespective of gender, race and bias about a team mate, solely based on the work done in the past and reviews he/she has received';
 	
 	public static readonly INTRO_SLIDE_8_TITLE: string = 'Welcome Opportunity';
 	public static readonly INTRO_SLIDE_8_INFO: string = 'Give the <b>New opportunity</b> to the <b>Fittest</b>';
@@ -115,7 +115,7 @@ export class StringKey {
 	public static readonly CREATE_TASK_TYPE: string = 'Create Task Type';
 	public static readonly UPDATE_TASK_TYPE: string = 'Update Task Type';
 	public static readonly PERFORMANCE_MATRIX: string = 'Member Performance Matrix';
-	public static readonly PERFORMANCE_MATRIX_INFO: string = 'Performance Matrix for a user defined by the collection assigned tasks and how they are achieved over a sprint. Each task gets evaluated by a set of reviewers';
+	public static readonly PERFORMANCE_MATRIX_INFO: string = 'Performance Matrix for a user defined by the collection of assigned tasks and how they are achieved over a sprint. Each task gets evaluated by a set of reviewers';
 
 	public static readonly PROJECT_FORM_HEADER: string = 'Enter/update the following details to build your project';
 	public static readonly PROJECT_ADMIN_NOTE: string = 'Since you are creating/updating this project, you will be the default administrator of the project. You can add more administrator(s) to manage various activity(s) for your project';
@@ -175,7 +175,7 @@ export class StringKey {
 	public static readonly ASSIGNEE_INFO: string = 'Enter/update the following details to create/update a user story';
 	public static readonly CREATE_ASSIGNEE: string = 'Create User Story';
 	public static readonly UPDATE_ASSIGNEE: string = 'Update User Story';
-	public static readonly PROJECT_ASSIGNEE_INFO: string = 'User Story is a is a collection of tasks to define key performance indicator';
+	public static readonly PROJECT_ASSIGNEE_INFO: string = 'User Story is a collection of tasks to define key performance indicator';
 	public static readonly TASK_MEASUREMENT_CRITERIA: string = 'Measurement Criteria';
 	public static readonly TASK_MEASUREMENT_CRITERIA_INFO: string = 'Measurement Criteria definition';
 	public static readonly PROJECT_ACTIVITY_INFO: string = 'Enter/update the following details to create/update an activity';
@@ -185,7 +185,7 @@ export class StringKey {
 	
 	public static readonly MEASUREMENT_TYPE_NUM: string = 'Numeric Scale [NUM]';
 	public static readonly MEASUREMENT_TYPE_BOOL: string = 'Boolean Scale [BOOL]';
-	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment of the activity measures based on the numeric scale. Example: 10% - 89%, $12 - $100, 10 Hour(s) - 30 Hour(s)';
+	public static readonly MEASUREMENT_TYPE_NUM_INFO: string = 'Fulfillment  of the activity measures based on the numeric scale. Example: 10% - 89%, $12 - $100, 10 Hour(s) - 30 Hour(s)';
 	public static readonly MEASUREMENT_TYPE_BOOL_INFO: string = 'Fulfillment of the activity measures based on either fully achieved or none.  Example: Yes / No, True / False, Done / Not Done';
 	public static readonly FORM_INFO_ACTIVITY: string = 'What is the activity to perform to achieve the goal';
 	public static readonly FORM_INFO_ACTIVITY_WEIGHT: string = 'Provide a weight to the activity, maximum is 100 %';
@@ -193,6 +193,7 @@ export class StringKey {
 	public static readonly FORM_INFO_COMMENT: string = 'Provide details of the progress you have mede on the activity ';
 	
 	public static readonly MEASUREMENT_TYPE: string = 'Measurement Parameter';
+	public static readonly MEASUREMENT_CRITERIA: string = 'Measurement Criteria';
 	public static readonly ASSIGNEE_SELF_REVIEW: string = 'Assignee Self Review';
 	public static readonly ASSIGNEE_COMMENT: string = 'Assignee Comment';
 	public static readonly REVIEWER_COMMENT: string = 'Reviewer Comment';
@@ -202,7 +203,7 @@ export class StringKey {
 	public static readonly PERFORMANCE_MATRIX_FORM_INFO: string = 'Enter/update the following details to create/update a performance matrix';
 	public static readonly CREATE_PERFORMANCE_MATRIX: string = 'Create Performance Matrix';
 	public static readonly UPDATE_PERFORMANCE_MATRIX: string = 'Update Performance Matrix';
-	public static readonly TASK_INFO: string = 'Task(s) are set of activities to achieve a nature of task assigned to a user in the boundaries of a sprint. Task completions are measured bt the measuring criteria defined in the task type measurement criteria';
+	public static readonly TASK_INFO: string = 'Task(s) are set of activities to achieve a nature of task assigned to a user in the boundaries of a sprint. Task completions are measured by the measuring criteria defined in the task type measurement criteria';
 	public static readonly TASK_FORM_INFO: string = 'Enter/update the following details to create/update a task';
 	public static readonly CREATE_TASK: string = 'Create Task';
 	public static readonly UPDATE_TASK: string = 'Update Task';
@@ -256,7 +257,7 @@ export class StringKey {
 	
 	public static readonly CREDIBILITY_SCORE_OUT_OF_100: string = 'Credibility Score in %';
 	public static readonly CREDIBILITY_SCORE_OUT_OF_5: string = 'Credibility Score out of 5';
-	public static readonly CREDIBILITY_BOARD_INFO: string = 'We uses custom algorithm to the evaluate the feedback and arrive on the Credibility Score shown in Credibility Board';
+	public static readonly CREDIBILITY_BOARD_INFO: string = 'Credibility Score uses custom algorithm to the evaluate the feedback and arrive on the Credibility Score shown in Credibility Board';
 	public static readonly CREDIBILITY_INDEX_INFO: string = 'Each Feedback is analysed based on multiple factors to calculate this Credibility Score';
 	public static readonly FEEDBACK_ANALYSIS: string = 'Review feedback analysis';
 	public static readonly SEARCH_USER: string = 'Search User';
@@ -310,19 +311,19 @@ export class StringKey {
 	public static readonly FORM_INFO_CHOOSE_AVATAR: string = 'Choose your avatar';
 	public static readonly FORM_INFO_PROFILE_SECURITY_DETAILS: string = 'You answer to the security question, we will use this to identify you if you forget your password';
 
-	public static readonly FORM_INFO_CRITERIA_POOR_VALUE: string = 'Will be considered <b>poor</b> if less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_VALUE: string = 'Will be considered <b>improvement</b> if less than mentioned value but more than poor';
-	public static readonly FORM_INFO_CRITERIA_EXPECTATION_VALUE: string = 'Will be considered <b>expectation</b> if less than mentioned value but more than improvement';
-	public static readonly FORM_INFO_CRITERIA_EXCEED_VALUE: string = 'Will be considered <b>exceed</b> if less than mentioned value but more than expectation';
-	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_VALUE: string = 'Will be considered <b>outstanding</b> if less than mentioned value but more than exceed';
+	public static readonly FORM_INFO_CRITERIA_POOR_VALUE: string = 'Will be considered <b>poor</b> if less than <b>mentioned value</b>';
+	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_VALUE: string = 'Will be considered <b>improvement</b> if less than <b>mentioned</b> value but more than <b>poor</b>';
+	public static readonly FORM_INFO_CRITERIA_EXPECTATION_VALUE: string = 'Will be considered <b>expectation</b> if less than <b>mentioned value</b> but more than <b>improvement</b>';
+	public static readonly FORM_INFO_CRITERIA_EXCEED_VALUE: string = 'Will be considered <b>exceed</b> if less than <b>mentioned value</b> but more than <b>expectation</b>';
+	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_VALUE: string = 'Will be considered <b>outstanding</b> if less than <b>mentioned value</b> but more than <b>exceed</b>';
 
-	public static readonly FORM_INFO_CRITERIA_POOR_INVERSE_VALUE: string = 'Will be considered <b>poor</b> if more than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE: string = 'Will be considered <b>improvement</b> if more than poor but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE: string = 'Will be considered <b>expectation</b> if more than improvement but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE: string = 'Will be considered <b>exceed</b> if more than expectation but less than mentioned value';
-	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE: string = 'Will be considered <b>outstanding</b> if more than exceed but less than mentioned value';
+	public static readonly FORM_INFO_CRITERIA_POOR_INVERSE_VALUE: string = 'Will be considered <b>poor</b> if more than <b>mentioned value</b>';
+	public static readonly FORM_INFO_CRITERIA_IMPROVEMENT_INVERSE_VALUE: string = 'Will be considered <b>improvement</b> if more than <b>poor</b> but less than <b>mentioned value</b>';
+	public static readonly FORM_INFO_CRITERIA_EXPECTATION_INVERSE_VALUE: string = 'Will be considered <b>expectation</b> if more than <b>improvement</b> but less than <b>mentioned value</b>';
+	public static readonly FORM_INFO_CRITERIA_EXCEED_INVERSE_VALUE: string = 'Will be considered <b>exceed</b> if more than <b>expectation</b> but less than <b>mentioned value</b>';
+	public static readonly FORM_INFO_CRITERIA_OUTSTANDING_INVERSE_VALUE: string = 'Will be considered <b>outstanding</b> if more than <b>exceed</b> but less than <b>mentioned value</b>';
 
-	public static readonly FORM_INFO_WEIGHT: string = 'Provide the weight interns of %, considering 100 and maximum and 0 being minimum';
+	public static readonly FORM_INFO_WEIGHT: string = 'Provide the weight in terms of %, considering 100 and maximum and 0 being minimum';
 	public static readonly FORM_INFO_TASK_NAME: string = 'Provide a suitable name for the task';
 	public static readonly FORM_INFO_TASK_DESCRIPTION: string = 'Provide a suitable description for the task';
 	public static readonly FORM_INFO_TASK_KEY_COMPLETION_INDICATOR: string = 'Provide a suitable description indicating the key completion parameters';
@@ -369,9 +370,9 @@ export class StringKey {
 	//form validaiton
 	public static readonly FORM_VALIDATION_EMAIL: string = 'Should be a valid email';
 	public static readonly FORM_VALIDATION_PASSWORD: string = 'It is a mandatory filed. Should be between 8 to 10 characters. Only [A-Z] [a-z] [0-9] [space] allowed';
-	public static readonly FORM_VALIDATION_USER_NAME: string = 'It is a mandatory filed. Only [A-Z][a-z] allowed';
-	public static readonly FORM_VALIDATION_SECURITY_QUESTION: string = 'It is a mandatory filed. Only [A-Z][a-z][space] allowed';
-	public static readonly FORM_VALIDATION_VERIFICATION_CODE: string = 'It is a mandatory filed. Only [A-Z][a-z][0-9] allowed';
+	public static readonly FORM_VALIDATION_USER_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] allowed';
+	public static readonly FORM_VALIDATION_SECURITY_QUESTION: string = 'It is a mandatory filed. Only [A-Z] [a-z] [space] allowed';
+	public static readonly FORM_VALIDATION_VERIFICATION_CODE: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] allowed';
 	public static readonly FORM_VALIDATION_PASSWORD_RESET_CODE: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] allowed';
 
 	public static readonly FORM_VALIDATION_PROJECT_NAME: string = 'It is a mandatory filed. Only [A-Z] [a-z] [0-9] [space] allowed';
@@ -407,13 +408,13 @@ export class StringKey {
 	public static readonly NS_PROJECT_7: string =  'View <b>Activity(s)</b> assigned to you and provide self comments';
 	public static readonly NS_PROJECT_8: string = 'View <b>Review(s)</b> assigned to you and provide self comments';
 	
-	public static readonly NS_GOAL_1: string =  'Create New <b>Sprints</b> from Project Sprint(s) menu available in main menu inside Project Details';
-	public static readonly NS_GOAL_2: string =  'Create New <b>Activities</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
+	public static readonly NS_GOAL_1: string =  'Create New <b>Sprint</b> from Project Sprint(s) menu available in main menu inside Project Details';
+	public static readonly NS_GOAL_2: string =  'Create New <b>Activity</b> to achieve a Goal in a Sprint and add Assignees and Reviewers to it';
 	public static readonly NS_GOAL_3: string = 'As a reviewer, post Review on the <b>Activity</b>';
 	public static readonly NS_GOAL_4: string =  'View assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
 
-	public static readonly NS_SPRINT_1: string =  'Create New <b>Goals</b> from Project Goal(s) menu available in main menu inside Project Details';
-	public static readonly NS_SPRINT_2: string =  'Create New <b>Activities</b> to achieve a <b>Goal</b> in a <b>Sprint</b> and add <b>Assignees</b> and <b>Reviewers</b> to it';
+	public static readonly NS_SPRINT_1: string =  'Create New <b>Goal</b> from Project Goal(s) menu available in main menu inside Project Details';
+	public static readonly NS_SPRINT_2: string =  'Create New <b>Activity</b> to achieve a <b>Goal</b> in a <b>Sprint</b> and add <b>Assignees</b> and <b>Reviewers</b> to it';
 	public static readonly NS_SPRINT_3: string = 'As a reviewer, post Review on the <b>Activity</b>';
 	public static readonly NS_SPRINT_4: string =  'View assignee\'s <b>Credibility Index</b> from Credibility Board menu available in main menu inside Project Details';
 
@@ -497,14 +498,14 @@ export class StringKey {
 	public static readonly RESEND_ACTIVATION_CODE: string = 'Email Required For Resending Activation Code';
 	public static readonly ALLOW_NOTIFICATION: string = 'You did not allow us to send notifications, please allow to send notification from your app settings to receive update from your project';
 	public static readonly MANDATORY_MEASUREMENT_CRITERIA_RANGE: string = 'Check <b>Measurement Criteria</b> Range';
-	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review Feedback classification';
+	public static readonly REVIEW_FEEDBACK_CLASSIFICATION: string = 'Review Feedback Classification';
 	public static readonly NUMBER_OF_REVIEWS: string = 'Number of reviews';
-	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>lower the better result</b>. Toggle the switch to make the characteristics inverse, <b>higher the better</b>';
+	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER_INFO: string = 'Default measurement criteria characteristics is <b>Lower the Better Result</b>. Toggle the switch to make the characteristics inverse, <b>Higher the Better Result</b>';
 	public static readonly MEASUREMENT_CRITERIA_CHARACTERISTICS: string = 'Measurement criteria characteristics';
 	public static readonly CRITERIA_CHARACTERISTICS_HIGHER_BETTER: string = 'Higher the better result';
 	public static readonly CRITERIA_CHARACTERISTICS_LOWER_BETTER: string = 'Lower the better result';
 	public static readonly TASK_TYPE_MEASUREMENT_CRITERIA: string = 'Task Type Measurement Criteria';
-	public static readonly TASK_TYPE_MEASUREMENT_CRITERIA_INFO: string = 'View all the criteria how the task defined as the corresponding task type will be measured';
+	public static readonly TASK_TYPE_MEASUREMENT_CRITERIA_INFO: string = 'View all the criteria of how the task defined. Corresponding to the criteria the task type will be measured';
 	public static readonly CHOOSE_PROJECT: string = 'Select a project from My Project to see this details !';
 	public static readonly TASK_REVIEWERS: string = 'Task Reviewer(s)';
 	public static readonly REVIEW_RESULT: string = 'Review Result';
@@ -515,7 +516,7 @@ export class StringKey {
 	
 	//error message
 	public static readonly NO_DATA_PROJECT_ADMIN: string = 'A project can not run without an administrator. Add a new administrator';
-	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without its members, add a new member';
+	public static readonly NO_DATA_PROJECT_MEMBER: string = 'A project is very lonely without it\'s members, add a new member';
 	public static readonly NO_DATA_DIVERSITY: string = 'Diverse workforce is the key to a successful project. Add Members to the project and assign them Activities. C2 algorithm will generate Credibility Index for each Assignee based on the Reviews';
 	public static readonly NO_DATA_CREDIBILITY: string = 'Hold tight, we are looking for you data';
 	public static readonly HOLD_TIGHT: string = 'Hold tight, we are looking for your data';
@@ -528,8 +529,8 @@ export class StringKey {
 	public static readonly NO_DATA_MY_PROJECT: string = 'You do not have any project yet, you may create a new project here';
 	public static readonly NO_DATA: string = 'No data available';
 	public static readonly NO_DATA_SHORT: string = 'No data';
-	public static readonly NO_DATA_SEARCH: string = 'We did not find data based on your search';
-	public static readonly NO_DATA_ADMIN: string = 'We did not find any pending request';
+	public static readonly NO_DATA_SEARCH: string = 'No data has been found based on your search';
+	public static readonly NO_DATA_ADMIN: string = 'No pending request has been found';
 	public static readonly NO_FILTER: string = 'Select Entity to refine your result';
 
 	public static readonly WHAT_WE_ARE: string = 'What is C2';
@@ -538,13 +539,13 @@ export class StringKey {
 	public static readonly COPYRIGHT: string = '© Copyright';
 	public static readonly OWNER_EMAIL: string = 'rollingarray.co.in';
 	public static readonly SUPPORT_EMAIL: string = 'support@rollingarray.co.in';
-	public static readonly QUERY: string = 'Reach out to us for any query ';
+	public static readonly QUERY: string = 'Reach out for any query';
 	public static readonly T_N_C: string = 'Terms & Conditions';
 	public static readonly T_N_C_INFO: string = 'Read how we set the rights and responsibilities of anyone using the site / app';
 	public static readonly P_P: string = 'Privacy Policy';
 	public static readonly P_P_INFO: string = 'Read how we collect, store, protect, and utilize personal data provided by the users';
 	public static readonly FAQ: string = 'C2 is an Open Source Project, explore more about C2 on Github';
-	public static readonly KNOWLEDGE_BASE: string = 'Learn more about C2 @ C2 Knowledge Base';
+	public static readonly KNOWLEDGE_BASE: string = 'Learn more at C2 Knowledge Base';
 	public static readonly FAQ_INFO: string = 'Read our FAQ to het answers to your questions';
 	public static readonly FAQ_Q_2: string = 'Are you officially supporting any shopping online site or any supplier or a project';
 	public static readonly FAQ_A_2: string = 'No, we do not';
@@ -652,7 +653,6 @@ export class StringKey {
 	public static readonly IMAGE_PASSWORD_LESS: string = StringKey.IMAGE_BASE_PATH + "password_less.svg";
 	
 	
-
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";
 	public static readonly COLOR_TERNARY: string = "tertiary";

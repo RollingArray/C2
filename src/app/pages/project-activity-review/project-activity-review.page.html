@@ -8,7 +8,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:30:56 
- * Last modified  : 2021-12-27 18:20:41
+ * Last modified  : 2021-12-28 15:48:49
  */
  -->
 <!-- header -->
@@ -28,6 +28,7 @@
 <ion-content #scrollArea scrollEvents="true">
     <!-- page title -->
     <app-page-info-title
+        [helpArticle]="apiUrls.HELP_ACTIVITY"
         [title]="stringKey.ACTIVITY_REVIEW"
         [info]="stringKey.ACTIVITY_REVIEW_INFO"
     >

@@ -146,6 +146,27 @@ export class MySpacePage extends BaseViewComponent implements OnInit, OnDestroy 
 	}
 
 	/**
+	 * Gets help url
+	 */
+	get helpUrl() {
+		let helpUrl: string;
+		
+		switch (this._mySpaceType) {
+			case 'activity':
+				helpUrl = this.apiUrls.HELP_ACTIVITY;
+				break;
+			case 'review':
+				helpUrl = this.apiUrls.HELP_REVIEWER;
+				break;
+
+			default:
+				break;
+		}
+
+		return helpUrl;
+	}
+
+	/**
 	 * Gets no data activity
 	 */
 	get noDataActivity() {

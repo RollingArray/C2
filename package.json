@@ -9,7 +9,7 @@
     "version-update:dev": "gulp version-update --configuration=dev",
     "version-update:stage": "gulp version-update --configuration=stage",
     "version-update:prod": "gulp version-update --configuration=prod",
-    "version-update-all": "npm run version-update:local && npm run version-update:dev && npm run version-update:stage && npm run version-update:stage",
+    "version-update-all": "npm run version-update:local && npm run version-update:dev && npm run version-update:stage && npm run version-update:prod",
     "start-local": "npm run version-update-all && ionic serve --port 8000",
     "start-dev": "npm run version-update:dev && ionic serve --configuration=dev --port 8000",
     "start-stage": "npm run version-update:stage && ionic serve --configuration=stage --port 8000",

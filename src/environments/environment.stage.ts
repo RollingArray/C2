@@ -12,7 +12,7 @@
 export const environment = {
 	production: true,
 	apiEndpoint: 'https://c2.stage.api.rollingarray.co.in/',
-	version: "1.12.40.125",
+	version: "1.12.40.130",
 	level: 'Stage',
 	firebaseConfig: {
 		apiKey: "AIzaSyBEFrQ-gd8cxA2N00vKzDCV1_BGSQfGBHg",

@@ -13,7 +13,7 @@
 export const environment = {
 	production: false,
 	apiEndpoint: 'http://localhost:8888/C2/api/',
-	version: "10.99.129.12107",
+	version: "14.103.133.12111",
 	level: 'Local',
 	firebaseConfig: {
 		apiKey: "AIzaSyBEFrQ-gd8cxA2N00vKzDCV1_BGSQfGBHg",

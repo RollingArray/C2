@@ -17,9 +17,10 @@ export class StringKey {
 	public static readonly APP_VERSION: string = '6.2.0';
 	public static readonly APP_BUNDLE_ID: string = 'in.co.rollingarray.c2';
 	public static readonly FCM_SENDER_KEY: string = '736974848102';
-	public static readonly BORN: string = 'Made with ❤️ in India';
+	public static readonly BORN: string = 'Designed & Crafted in India 🇮🇳 with ❤️';
 	public static readonly COPY: string = ' © ';
-	public static readonly RA: string = 'RollingArray';
+	public static readonly RA: string = 'rollingarray.co.in';
+	public static readonly PH_ALT: string = 'C2 - Bring equality in diverse workforce | Product Hunt';
 
 	// page text
 
@@ -540,9 +541,9 @@ export class StringKey {
 	public static readonly OWNER_EMAIL: string = 'rollingarray.co.in';
 	public static readonly SUPPORT_EMAIL: string = 'support@rollingarray.co.in';
 	public static readonly QUERY: string = 'Reach out for any query';
-	public static readonly T_N_C: string = 'Terms & Conditions';
+	public static readonly T_N_C: string = 'Terms';
 	public static readonly T_N_C_INFO: string = 'Read how we set the rights and responsibilities of anyone using the site / app';
-	public static readonly P_P: string = 'Privacy Policy';
+	public static readonly P_P: string = 'Privacy';
 	public static readonly P_P_INFO: string = 'Read how we collect, store, protect, and utilize personal data provided by the users';
 	public static readonly FAQ: string = 'C2 is an Open Source Project, explore more about C2 on Github';
 	public static readonly KNOWLEDGE_BASE: string = 'Learn more at C2 Knowledge Base';
@@ -631,6 +632,7 @@ export class StringKey {
 	public static readonly ICON_PIE_CHART: string = StringKey.ICON_BASE_PATH + "pie-chart.svg";
 	public static readonly ICON_LINE_CHART: string = StringKey.ICON_BASE_PATH + "line-chart.svg";
 	public static readonly ICON_BAR_CHART: string = StringKey.ICON_BASE_PATH + "bar-chart.svg";
+	public static readonly ICON_YOUTUBE: string = StringKey.ICON_BASE_PATH + "youtube.svg";
 	public static readonly IMAGE_AVATAR_A: string = StringKey.ICON_BASE_PATH + "avatar-a.svg";
 	public static readonly IMAGE_AVATAR_B: string = StringKey.ICON_BASE_PATH + "avatar-b.svg";
 	public static readonly IMAGE_AVATAR_C: string = StringKey.ICON_BASE_PATH + "avatar-c.svg";
@@ -652,6 +654,7 @@ export class StringKey {
 	public static readonly IMAGE_INCLUSION_DONE: string = StringKey.IMAGE_BASE_PATH + "inclusion.svg";
 	public static readonly IMAGE_PASSWORD_LESS: string = StringKey.IMAGE_BASE_PATH + "password_less.svg";
 	
+	public static readonly IMAGE_PH: string = "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=325427&theme=light";
 	
 	public static readonly COLOR_PRIMARY: string = "primary";
 	public static readonly COLOR_SECONDARY: string = "secondary";

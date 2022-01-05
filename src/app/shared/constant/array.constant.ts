@@ -90,7 +90,7 @@ export class ArrayKey {
 			info: StringKey.INTRO_SLIDE_0_INFO,
 			imageName: "inclusion",
 			buttonText: StringKey.SKIP_INTRO,
-			helpUrl: ApiUrls.HELP_OPPORTUNITY
+			helpUrl: ApiUrls.YOUTUBE
 		},
 		{
 			title: StringKey.INTRO_SLIDE_1_TITLE,

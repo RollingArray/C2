@@ -64,6 +64,8 @@ export class ApiUrls {
 	public static readonly PROJECT_ACTIVITY_REVIEW_LOCK: string = ApiUrls.API_BASE_PATH + "/review/lock/";
 
 
+	public static readonly PH: string = "https://www.producthunt.com/posts/c2-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-c2-2";
+	public static readonly YOUTUBE: string = "https://youtu.be/H89ltgkk6T0";
 	public static readonly GITHUB: string = "https://github.com/RollingArray/C2-storyline";
 	public static readonly RA: string = 'https://rollingarray.co.in/';
 	public static readonly HELP_BASE: string = 'https://c2.doc.rollingarray.co.in/';

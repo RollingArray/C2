@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-15 21:34:14 
- * Last modified  : 2021-12-28 15:44:32
+ * Last modified  : 2022-01-07 19:26:15
  */
 
 import { environment } from "../../../environments/environment";
@@ -35,6 +35,7 @@ export class ApiUrls {
 	public static readonly PROJECT_RAW: string = ApiUrls.API_BASE_PATH + "/project/raw/";
 
 	public static readonly PROJECT_MEMBERS: string = ApiUrls.API_BASE_PATH + "/project/members/";
+	public static readonly NEW_MEMBER_INVITE: string = ApiUrls.API_BASE_PATH + "/project/new/member/invite/";
 	public static readonly CREDIBILITY_INDEX: string = ApiUrls.API_BASE_PATH + "/project/credibility/index/";
 	public static readonly CREDIBILITY_INDEX_DETAILS: string = ApiUrls.API_BASE_PATH + "/assignee/credibility/index/details/";
 	

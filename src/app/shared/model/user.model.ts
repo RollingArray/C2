@@ -14,7 +14,8 @@ export interface UserModel extends BaseModel, SearchModel, ProjectModel {
     userFirstName ?: string;
     userLastName ?: string;
     userPassword ?: string;
-    userEmail ?: string;
+    userEmail?: string;
+    inviteUserEmail ?: string;
     userSecurityAnswer1 ?: string;
     userSecurityAnswer2 ?: string;
     userPlatform ?: string;

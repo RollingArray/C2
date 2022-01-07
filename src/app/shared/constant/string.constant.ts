@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-18 19:16:27 
- * Last modified  : 2021-12-28 17:52:31
+ * Last modified  : 2022-01-07 19:30:30
  */
 
 
@@ -278,7 +278,8 @@ export class StringKey {
 	public static readonly ALERT_UNLOCK: string = 'Would you like to <strong>unlock</strong> this review for <strong>assignee</strong> visibility !!!';
 	public static readonly ALERT_LOCK: string = 'Would you like to <strong>lock</strong> this review !!!';
 	public static readonly ALERT_NO_UNLOCK_ACTIVITY: string = 'Unlocked review <strong>can not</strong> be modified !!! approach project admin to lock the review first if modification required';
-	
+	public static readonly ALERT_INVITE: string = 'Provide the Email of the new member to send the invitation!!!';
+
 	//form info
 	public static readonly FORM_INFO_PROJECT_NAME: string = 'Provide a suitable name for your project';
 	public static readonly FORM_INFO_PROJECT_DESCRIPTION: string = 'Provide a description for your project';
@@ -337,7 +338,8 @@ export class StringKey {
 
 	//form placeholder text
 	public static readonly FORM_PLACEHOLDER_USER: string = 'Alex';
-	public static readonly FORM_PLACEHOLDER_PROFILE_EMAIL: string = 'alexbains@gmail.com';
+	public static readonly FORM_PLACEHOLDER_PROFILE_EMAIL: string = 'alexbains@c2.com';
+	public static readonly FORM_PLACEHOLDER_INVITE_EMAIL: string = 'new.user@email.com';
 	public static readonly FORM_PLACEHOLDER_PROFILE_PASSWORD: string = 'Password';
 	public static readonly FORM_PLACEHOLDER_PROFILE_FIRST_NAME: string = 'Alex';
 	public static readonly FORM_PLACEHOLDER_PROFILE_LAST_NAME: string = 'Bains';
@@ -436,6 +438,8 @@ export class StringKey {
 	public static readonly TOOL_TIP_PROJECT_ADMIN: string = 'Project Administrator';
 	
 	//button
+	public static readonly INVITE_USER: string = 'Unable to search user, send Invitation';
+	public static readonly SEARCH: string = 'Search';
 	public static readonly SEND: string = 'Send';
 	public static readonly GET_IT: string = 'Get It';
 	public static readonly UPDATE: string = 'Update';
@@ -488,6 +492,7 @@ export class StringKey {
 	public static readonly API_REQUEST_MESSAGE_4: string = 'Signing Out  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_5: string = 'Signing Up  .. Please Wait';
 	public static readonly API_REQUEST_MESSAGE_6: string = 'Deleting Detail(s)  .. Please Wait';
+	public static readonly API_REQUEST_MESSAGE_7: string = 'Sending Invite  .. Please Wait';
 
 	public static readonly TOKEN_EXPIRE: string = 'Oh No !! Your Authorization Has Expired. <b>Please Authorize yourself</b>';
 	public static readonly IN_APP_LOGIN_SUCCESS: string = 'Delighted To Get You Back, <b>You Can Proceed</b> !';

@@ -1,3 +1,16 @@
+/**
+ * © Rolling Array https://rollingarray.co.in/
+ *
+ * long description for the file
+ *
+ * @summary Create edit project goal component
+ * @author code@rollingarray.co.in
+ *
+ * Created at     : 2022-01-07 18:10:18 
+ * Last modified  : 2022-01-07 18:10:34
+ */
+
+
 import { Component, OnInit, OnDestroy, Input, Injector } from "@angular/core";
 import { BaseFormComponent } from "../base/base-form.component";
 import { GoalModel } from "src/app/shared/model/goal.model";

@@ -6,7 +6,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-05-05 08:18:02 
- * Last modified  : 2021-05-05 08:26:30
+ * Last modified  : 2022-01-07 19:43:50
  */
 
 
@@ -34,7 +34,8 @@ import { ProjectMemberService } from 'src/app/shared/service/project-member.serv
 	styleUrls: ["./create-edit-project-user.component.scss"],
 })
 export class CreateEditProjectUserComponent extends BaseFormComponent
-	implements OnInit, OnDestroy {
+	implements OnInit, OnDestroy
+{
 	/**
 	 * User model of create edit project user component
 	 */
@@ -56,6 +57,16 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	private _loggedInUser: string;
 
 	/**
+	 * Logged in user first name of create edit project user component
+	 */
+	private _loggedInUserFirstName: string;
+
+	/**
+	 * Logged in user last name of create edit project user component
+	 */
+	private _loggedInUserLastName: string;
+
+	/**
 	 * Search  of create edit project user component
 	 */
 	private _search: string;
@@ -68,48 +79,105 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	/**
 	 * Determines whether data has
 	 */
-	private _hasData: boolean = false;
+	private _hasData: boolean = true;
 
 	/**
 	 * Sets whether has data
 	 */
-	public set hasData(value: boolean) {
+	public set hasData(value: boolean)
+	{
 		this._hasData = value;
 	}
 
 	/**
 	 * Gets whether has data
 	 */
-	public get hasData(): boolean {
+	public get hasData(): boolean
+	{
 		return this._hasData;
 	}
 
 	/**
 	 * Sets users
 	 */
-	public set users(value: UserModel[]) {
+	public set users(value: UserModel[])
+	{
 		this._users = value;
 	}
 
 	/**
 	 * Gets users
 	 */
-	public get users(): UserModel[] {
+	public get users(): UserModel[]
+	{
 		return this._users;
 	}
 
 	/**
 	 * Sets search
 	 */
-	public set search(value: string) {
+	public set search(value: string)
+	{
 		this._search = value;
 	}
 
 	/**
 	 * Gets search
 	 */
-	public get search(): string {
+	public get search(): string
+	{
 		return this._search;
+	}
+
+	/**
+	 * Gets active user first name
+	 */
+	public get activeUserFirstName()
+	{
+		let activeUserFirstName = "";
+		this.localStorageService
+			.getActiveUserFirstName()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: string) =>
+			{
+				activeUserFirstName = data;
+			});
+
+		return activeUserFirstName;
+	}
+
+	/**
+	 * Gets active user last name
+	 */
+	public get activeUserLastName()
+	{
+		let activeUserLastName = "";
+		this.localStorageService
+			.getActiveUserLastName()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe((data: string) =>
+			{
+				activeUserLastName = data;
+			});
+
+		return activeUserLastName;
+	}
+
+	/**
+	 * Gets selected project name
+	 */
+	public get selectedProject()
+	{
+		let selectedProject : ProjectModel;
+		this.localStorageService
+			.getSelectedProject()
+			.pipe(takeUntil(this.unsubscribe))
+			.subscribe(data =>
+			{
+				selectedProject = data;
+			});
+
+		return selectedProject;
 	}
 
 	/**
@@ -128,30 +196,35 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 		public loadingService: LoadingService,
 		private localStorageService: LocalStorageService,
 		public navParams: NavParams
-	) {
+	)
+	{
 		super(injector);
 		this._projectModel = this.navParams.get("data");
+		console.log(this._projectModel);
 		this._loggedInUser = this.localStorageService.currentActiveUserId$.getValue();
 	}
 
 	/**
 	 * on init
 	 */
-	ngOnInit() {
+	ngOnInit()
+	{
 		//
 	}
 
 	/**
 	 * on destroy
 	 */
-	ngOnDestroy() {
+	ngOnDestroy()
+	{
 		super.ngOnDestroy();
 	}
 
 	/**
 	 * Ions view did enter
 	 */
-	ionViewDidEnter() {
+	ionViewDidEnter()
+	{
 		//
 	}
 
@@ -160,7 +233,7 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	 */
 	async searchUser()
 	{
-		
+
 		//start load
 		this.loadingService.present(`${StringKey.API_REQUEST_MESSAGE_1}`);
 
@@ -174,13 +247,15 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 		this.userService
 			.searchUserDetailsBySearchText(this._userModel)
 			.pipe(takeUntil(this.unsubscribe))
-			.subscribe(async (baseModel: BaseModel) => {
+			.subscribe(async (baseModel: BaseModel) =>
+			{
 
 				// stop loader
 				await this.loadingService.dismiss();
 
 				// check response data exist
-				if (baseModel.data.success) {
+				if (baseModel.data.success)
+				{
 
 					// remove no data ui
 					this._hasData = true;
@@ -189,7 +264,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 					this._users = baseModel.data.data;
 				}
 				// if data does not exist
-				else {
+				else
+				{
 					// keep no data ui
 					this._hasData = false;
 
@@ -204,7 +280,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 	 * @param user 
 	 * @param userTypeEnum 
 	 */
-	async joinUserToProject(user: UserModel, userTypeEnum: UserTypeEnum) {
+	async joinUserToProject(user: UserModel, userTypeEnum: UserTypeEnum)
+	{
 
 		// show loader
 		this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_2}`);
@@ -223,13 +300,15 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 			.projectMemberCrud(passedData)
 			.pipe(takeUntil(this.unsubscribe))
 			.subscribe(
-				async (baseModel: BaseModel) => {
+				async (baseModel: BaseModel) =>
+				{
 
 					// stop loader
 					await this.loadingService.dismiss();
 
 					//check if success response case back
-					if (baseModel.success) {
+					if (baseModel.success)
+					{
 						//toast api response
 						await this.presentToast(baseModel.message);
 
@@ -243,14 +322,16 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 						this.dismissModal();
 					}
 				},
-				error => {
+				error =>
+				{
 					this.loadingService.dismiss();
 				}
 			);
 	}
 
 	//openUserOptions
-	async openUserOptions(user: UserModel) {
+	async openUserOptions(user: UserModel)
+	{
 		const actionSheet = await this.actionSheetController.create({
 			header: this.stringKey.CHOOSE_YOUR_ACTION,
 			buttons: [
@@ -259,7 +340,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 					text:
 						this.stringKey.ADD_USER_AS_ADMIN,
 					icon: this.stringKey.ICON_ADD,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.joinUserToProject(user, UserTypeEnum.Administrator);
 					},
 				},
@@ -269,7 +351,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 					text:
 						this.stringKey.ADD_USER_AS_ASSIGNEE,
 					icon: this.stringKey.ICON_ADD,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.joinUserToProject(user, UserTypeEnum.Assignee);
 					},
 				},
@@ -279,7 +362,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 					text:
 						this.stringKey.ADD_USER_AS_REVIEWER,
 					icon: this.stringKey.ICON_ADD,
-					handler: async () => {
+					handler: async () =>
+					{
 						await this.joinUserToProject(user, UserTypeEnum.Reviewer);
 					},
 				},
@@ -288,7 +372,8 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 				{
 					text: this.stringKey.CANCEL,
 					icon: this.stringKey.ICON_CANCEL,
-					handler: () => {
+					handler: () =>
+					{
 						//
 					},
 				},
@@ -297,7 +382,11 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 		await actionSheet.present();
 	}
 
-	cancelModal() {
+	/**
+	 * Cancels modal
+	 */
+	cancelModal()
+	{
 		this._modalData = {
 			cancelled: true,
 			operationSubmitted: false,
@@ -307,8 +396,83 @@ export class CreateEditProjectUserComponent extends BaseFormComponent
 		this.dismissModal();
 	}
 
-	dismissModal() {
+	/**
+	 * Dismiss modal
+	 */
+	dismissModal()
+	{
 		this.modalController.dismiss(this._modalData).then(() => { });
+	}
+
+	/**
+	 * Sends invitation
+	 */
+	async sendInvitation()
+	{
+		const alert = await this.alertController.create({
+			header: this.stringKey.ALERT_INVITE,
+			mode: 'ios',
+			inputs: [
+				{
+					name: 'inviteEmail',
+					value: this._search,
+					type: 'text',
+					placeholder: this.stringKey.FORM_PLACEHOLDER_INVITE_EMAIL
+				},
+			],
+			buttons: [
+				{
+					text: this.stringKey.CANCEL,
+					cssClass: 'secondary',
+					handler: () =>
+					{
+						//console.log('Confirm Cancel');
+					}
+				}, {
+					text: this.stringKey.SEND,
+					handler: (data) =>
+					{
+						// show loader
+						this.loadingService.present(`${this.stringKey.API_REQUEST_MESSAGE_7}`);
+						
+						//build model
+						const passedData: UserModel = {
+							userId: this._loggedInUser,
+							userFirstName: this.activeUserFirstName,
+							userLastName: this.activeUserLastName,
+							inviteUserEmail: data.inviteEmail,
+							projectName: this.selectedProject.projectName,
+							projectId: this._projectModel.projectId
+						};
+
+						// send api
+						this.projectMemberService
+							.newMemberInvite(passedData)
+							.pipe(takeUntil(this.unsubscribe))
+							.subscribe(
+								async (baseModel: BaseModel) =>
+								{
+
+									// stop loader
+									await this.loadingService.dismiss();
+
+									//check if success response case back
+									if (baseModel.success)
+									{
+										//toast api response
+										await this.presentToast(baseModel.message);
+									}
+								},
+								error =>
+								{
+									this.loadingService.dismiss();
+								}
+							);
+					}
+				}
+			]
+		});
+		await alert.present();
 	}
 
 }

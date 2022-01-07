@@ -7,7 +7,7 @@
  * @author code@rollingarray.co.in
  *
  * Created at     : 2021-11-01 10:16:05 
- * Last modified  : 2021-11-01 10:17:58
+ * Last modified  : 2022-01-07 18:29:03
  */
 
 
@@ -46,6 +46,16 @@ export class LocalStorageService
 	 * Current active user id$ of local storage service
 	 */
 	public currentActiveUserId$ = new BehaviorSubject<string>("");
+
+	/**
+	 * Current active user first name$ of local storage service
+	 */
+	public currentActiveUserFirstName$ = new BehaviorSubject<string>("");
+
+	/**
+	 * Current active user last name$ of local storage service
+	 */
+	public currentActiveUserLastName$ = new BehaviorSubject<string>("");
 
 	/**
 	 * Current active user token$ of local storage service
@@ -94,6 +104,28 @@ export class LocalStorageService
 			localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_ID}`)
 		);
 		return this.currentActiveUserId$.asObservable();
+	}
+
+	/**
+	 * Gets active user first name
+	 * @returns active user first name 
+	 */
+	getActiveUserFirstName(): Observable<string> {
+		this.currentActiveUserFirstName$ = new BehaviorSubject<string>(
+			localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_FIRST_NAME}`)
+		);
+		return this.currentActiveUserFirstName$.asObservable();
+	}
+
+	/**
+	 * Gets active user last name
+	 * @returns active user last name 
+	 */
+	getActiveUserLastName(): Observable<string> {
+		this.currentActiveUserLastName$ = new BehaviorSubject<string>(
+			localStorage.getItem(`${LocalStoreKey.LOGGED_IN_USER_LAST_NAME}`)
+		);
+		return this.currentActiveUserLastName$.asObservable();
 	}
 
 	/**

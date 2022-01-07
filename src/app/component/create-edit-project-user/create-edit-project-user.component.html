@@ -24,7 +24,16 @@
     ></app-page-info-title>
     <!-- page title -->
 
-	<form>
+    <form>
+        <ion-card class="card-no-shadow">
+            <ion-button
+                class="float-right"
+                mode="ios"
+                fill="solid"
+                color="dark"
+                (click)="sendInvitation()"
+            >{{ stringKey.INVITE_USER }}</ion-button>
+        </ion-card>
         <ion-card>
             <ion-card-content>
                 <!-- supplier name -->
@@ -42,12 +51,12 @@
                             name="search"
                         ></ion-input>
                         <ion-button
-							mode="ios"
+                            mode="ios"
                             slot="end"
                             fill="solid"
                             color="dark"
                             (click)="searchUser()"
-                            >Search</ion-button
+                            >{{ stringKey.SEARCH }}</ion-button
                         >
                     </ion-item>
                 </ion-list>
@@ -55,6 +64,7 @@
             </ion-card-content>
         </ion-card>
     </form>
+
     <!-- no data -->
     <app-no-data
         [user]="true"
@@ -75,8 +85,7 @@
                 [isEventRequired]="true"
                 (event)="openUserOptions(user)"
             ></app-panel-header>
-            <app-custom-fields [email]="user?.userEmail">
-            </app-custom-fields>
+            <app-custom-fields [email]="user?.userEmail"> </app-custom-fields>
         </ion-card>
     </ng-container>
 </ion-content>
